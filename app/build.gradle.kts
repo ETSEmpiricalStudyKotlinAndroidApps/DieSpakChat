@@ -35,6 +35,12 @@ android {
         getByName("main").java.srcDirs("src/main/kotlin")
     }
 
+    configurations {
+        all {
+            exclude(group = "org.jetbrains", module = "annotations")
+        }
+    }
+
     packagingOptions {
         exclude("META-INF/DEPENDENCIES")
         exclude ("META-INF/library_release.kotlin_module")
