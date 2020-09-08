@@ -47,6 +47,7 @@ object Versions {
     }
 
     object Ui {
+        const val SmoothBottomBar = "1.7.6"
         const val YoYo = "2.4@aar"
         const val Lottie = "3.4.2"
         const val Material = "1.2.1"
@@ -67,9 +68,11 @@ object Dependencies {
         const val Auth = "com.google.firebase:firebase-auth:${Versions.Firebase.Auth}"
         const val Database = "com.google.firebase:firebase-database:${Versions.Firebase.DataBase}"
         const val Storage = "com.google.firebase:firebase-storage:${Versions.Firebase.Storage}"
-        const val Messaging = "com.google.firebase:firebase-messaging:${Versions.Firebase.Messaging}"
+        const val Messaging =
+            "com.google.firebase:firebase-messaging:${Versions.Firebase.Messaging}"
         const val Config = "com.google.firebase:firebase-config:${Versions.Firebase.Config}"
-        const val Analytics = "com.google.firebase:firebase-analytics:${Versions.Firebase.Analytics}"
+        const val Analytics =
+            "com.google.firebase:firebase-analytics:${Versions.Firebase.Analytics}"
     }
 
     object Rx {
@@ -81,13 +84,13 @@ object Dependencies {
         const val AppCompat = "androidx.appcompat:appcompat:${Versions.Essential.AppCompat}"
         const val Anko = "org.jetbrains.anko:anko:${Versions.Essential.Anko}"
         const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.Essential.Kotlin}"
-        const val LifeCycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.Essential.LifeCycleExtensions}"
-        const val LifeCycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Essential.LifeCycleViewModel}"
+        const val LifeCycleExtensions =
+            "androidx.lifecycle:lifecycle-extensions:${Versions.Essential.LifeCycleExtensions}"
+        const val LifeCycleViewModel =
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Essential.LifeCycleViewModel}"
     }
 
     object Ktx {
-        const val Paging = "androidx.paging:paging-runtime-ktx:${Versions.Jetpack.Paging}"
-        const val Room = "androidx.room:room-compiler:${Versions.Jetpack.Room}"
         const val Core = "androidx.core:core-ktx:${Versions.Ktx.Core}"
         const val Fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.Ktx.Fragment}"
     }
@@ -104,18 +107,22 @@ object Dependencies {
     }
 
     object Ui {
+        const val SmoothBottomBar =
+            "com.github.ibrahimsn98:SmoothBottomBar:${Versions.Ui.SmoothBottomBar}"
         const val YoYo = "com.daimajia.androidanimations:library:${Versions.Ui.YoYo}"
         const val Lottie = "com.airbnb.android:lottie:${Versions.Ui.Lottie}"
         const val Material = "com.google.android.material:material:${Versions.Ui.Material}"
         const val Glide = "com.github.bumptech.glide:glide:${Versions.Ui.Glide}"
         const val CardView = "androidx.cardview:cardview:${Versions.Ui.CardView}"
-        const val ConstraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.Ui.ConstraintLayout}"
+        const val ConstraintLayout =
+            "androidx.constraintlayout:constraintlayout:${Versions.Ui.ConstraintLayout}"
     }
 
     object Util {
         const val GlideCompiler = "com.github.bumptech.glide:compiler:${Versions.Ui.Glide}"
         const val YoyoHelper = "com.daimajia.easing:library:${Versions.Util.YoYoHelper}"
         const val AndroidUtils = "com.github.sungbin5304:SBT:${Versions.Util.AndroidUtils}"
-        const val CrashReporter = "com.balsikandar.android:crashreporter:${Versions.Util.CarshReporter}"
+        const val CrashReporter =
+            "com.balsikandar.android:crashreporter:${Versions.Util.CarshReporter}"
     }
 }

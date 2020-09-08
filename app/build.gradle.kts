@@ -27,7 +27,10 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -35,15 +38,15 @@ android {
         getByName("main").java.srcDirs("src/main/kotlin")
     }
 
-    configurations {
+    /*configurations {
         all {
             exclude(group = "org.jetbrains", module = "annotations")
         }
-    }
+    }*/
 
     packagingOptions {
         exclude("META-INF/DEPENDENCIES")
-        exclude ("META-INF/library_release.kotlin_module")
+        exclude("META-INF/library_release.kotlin_module")
     }
 
     compileOptions {
@@ -75,16 +78,16 @@ dependencies {
         Dependencies.Essential.AppCompat,
         Dependencies.Essential.Anko,
         Dependencies.Essential.Kotlin,
+        Dependencies.Ui.Material,
         Dependencies.Essential.LifeCycleExtensions,
         Dependencies.Essential.LifeCycleViewModel,
 
-        Dependencies.Ktx.Paging,
-        Dependencies.Ktx.Room,
         Dependencies.Ktx.Core,
         Dependencies.Ktx.Fragment,
 
         Dependencies.Di.Dagger,
 
+        Dependencies.Ui.SmoothBottomBar,
         Dependencies.Ui.YoYo,
         Dependencies.Ui.Lottie,
         Dependencies.Ui.Material,
