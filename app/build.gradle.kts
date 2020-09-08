@@ -62,11 +62,13 @@ dependencies {
     }
 
     def(
-        Dependencies.Firebase.analytics,
+        Dependencies.Firebase.Auth,
+        Dependencies.Firebase.Config,
+        Dependencies.Firebase.Database,
+        Dependencies.Firebase.Messaging,
+        Dependencies.Firebase.Storage,
+        Dependencies.Firebase.Analytics,
 
-        Dependencies.Rx.Kotlin,
-        Dependencies.Rx.Android,
-        Dependencies.Rx.Retrofit,
         Dependencies.Rx.Room,
         Dependencies.Rx.Paging,
 

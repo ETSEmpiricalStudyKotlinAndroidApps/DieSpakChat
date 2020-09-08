@@ -14,13 +14,12 @@ object Application {
 
 object Versions {
     object Firebase {
-        const val analytics = "17.5.0"
-    }
-
-    object Rx {
-        const val Kotlin = "3.0.0"
-        const val Android = "3.0.0"
-        const val Retrofit = "2.9.0"
+        const val DataBase = "19.4.0"
+        const val Storage = "19.2.0"
+        const val Messaging = "20.2.4"
+        const val Config = "19.2.0"
+        const val Auth = "19.3.2"
+        const val Analytics = "17.5.0"
     }
 
     object Essential {
@@ -58,22 +57,24 @@ object Versions {
 
     object Util {
         const val YoYoHelper = "2.4@aar"
-        const val AndroidUtils = "3.2.6"
+        const val AndroidUtils = "4.0.1"
         const val CarshReporter = "1.1.0"
     }
 }
 
 object Dependencies {
     object Firebase {
-        const val analytics = "com.google.firebase:firebase-analytics:${Versions.Firebase.analytics}"
+        const val Auth = "com.google.firebase:firebase-auth:${Versions.Firebase.Auth}"
+        const val Database = "com.google.firebase:firebase-database:${Versions.Firebase.DataBase}"
+        const val Storage = "com.google.firebase:firebase-storage:${Versions.Firebase.Storage}"
+        const val Messaging = "com.google.firebase:firebase-messaging:${Versions.Firebase.Messaging}"
+        const val Config = "com.google.firebase:firebase-config:${Versions.Firebase.Config}"
+        const val Analytics = "com.google.firebase:firebase-analytics:${Versions.Firebase.Analytics}"
     }
 
     object Rx {
         const val Paging = "androidx.paging:paging-rxjava2:${Versions.Jetpack.Paging}"
         const val Room = "androidx.room:room-rxjava2:${Versions.Jetpack.Room}"
-        const val Kotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.Rx.Kotlin}"
-        const val Android = "io.reactivex.rxjava3:rxandroid:${Versions.Rx.Android}"
-        const val Retrofit = "com.squareup.retrofit2:adapter-rxjava3:${Versions.Rx.Retrofit}"
     }
 
     object Essential {
