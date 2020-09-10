@@ -6,6 +6,10 @@
     <string name="main_navigation_chatting">채팅</string>
     <string name="main_navigation_call">전화</string>
     <string name="main_navigation_contact">연락처</string>
-    <string name="main_navigation_setting">설정</string>
+    <string name="main_navigation_more">더보기</string>
+
+    <string name="main_new_call">새로운 전화</string>
+    <string name="main_new_chat">새로운 채팅</string>
+    <string name="main_new_contact">새로운 연락처</string>
 
 </resources>

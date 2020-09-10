@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.test_fragment.*
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.ui.activity.MainActivity
 
 
 /**
@@ -24,6 +25,10 @@ class CallFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        MainActivity.efabAction.apply {
+            text = getString(R.string.main_new_call)
+            show()
+        }
         tv_test.text = "CallFragment"
     }
 }
