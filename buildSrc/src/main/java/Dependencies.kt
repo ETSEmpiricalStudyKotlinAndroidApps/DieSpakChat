@@ -42,6 +42,7 @@ object Versions {
     }
 
     object Jetpack {
+        const val Navigation = "2.3.0"
         const val Room = "2.3.0-alpha02"
         const val Paging = "2.1.2"
     }
@@ -91,6 +92,10 @@ object Dependencies {
     }
 
     object Ktx {
+        const val NavigationFragment =
+            "androidx.navigation:navigation-fragment-ktx:${Versions.Jetpack.Navigation}"
+        const val NavigationUi =
+            "androidx.navigation:navigation-ui-ktx:${Versions.Jetpack.Navigation}"
         const val Core = "androidx.core:core-ktx:${Versions.Ktx.Core}"
         const val Fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.Ktx.Fragment}"
     }

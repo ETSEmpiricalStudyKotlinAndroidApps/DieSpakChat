@@ -11,7 +11,8 @@
         android:id="@+id/cv_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/margin_half"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="@dimen/margin_default"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <me.ibrahimsn.lib.SmoothBottomBar

@@ -5,6 +5,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("androidx.navigation.safeargs.kotlin") // fix code-line locate
 }
 
 android {
@@ -37,12 +38,6 @@ android {
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
     }
-
-    /*configurations {
-        all {
-            exclude(group = "org.jetbrains", module = "annotations")
-        }
-    }*/
 
     packagingOptions {
         exclude("META-INF/DEPENDENCIES")
