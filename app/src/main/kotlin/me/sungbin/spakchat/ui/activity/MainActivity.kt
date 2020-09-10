@@ -14,14 +14,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     companion object {
-        lateinit var efabAction: ExtendedFloatingActionButton
+        lateinit var fabAction: ExtendedFloatingActionButton
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.fm_container)
-        efabAction = efab_action
+        fabAction = fab_action
         supportActionBar?.hide()
     }
 

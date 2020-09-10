@@ -11,5 +11,8 @@
     <string name="main_new_call">새로운 전화</string>
     <string name="main_new_chat">새로운 채팅</string>
     <string name="main_new_contact">새로운 연락처</string>
+    <string name="chat_preview_name">zmo__</string>
+    <string name="chat_preview_last_message">사진을 보냈습니다.</string>
+    <string name="chat_preview_time">오전 09시 47분</string>
 
 </resources>
