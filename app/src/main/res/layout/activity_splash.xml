@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/margin_twice_and_half"
-    android:background="@color/colorBackgroundWhite">
+    android:background="@color/colorBackgroundWhite"
+    tools:context=".ui.activity.MainActivity">
 
     <TextView
         android:id="@+id/tv_test"

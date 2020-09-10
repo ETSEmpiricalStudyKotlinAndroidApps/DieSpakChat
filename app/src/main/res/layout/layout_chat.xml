@@ -6,8 +6,7 @@
     android:layout_height="120dp"
     android:background="@color/colorBackgroundWhite"
     android:paddingStart="@dimen/margin_default"
-    android:paddingEnd="@dimen/margin_default"
-    tools:context=".ui.activity.MainActivity">
+    android:paddingEnd="@dimen/margin_default">
 
     <com.sungbin.sungbintool.ui.TagableRoundImageView
         android:id="@+id/iv_actor"
@@ -18,7 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:triv_imageRadius="@dimen/margin_twice_and_half"
         tools:src="@color/colorGreen" />
-
 
     <View
         android:id="@+id/v_top"
