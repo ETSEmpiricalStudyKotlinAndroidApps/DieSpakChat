@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@+id/chat">
+
+    <fragment
+        android:id="@+id/chat"
+        android:name="me.sungbin.spakchat.ui.fragment.ChatFragment"
+        android:label="ChatFragment" >
+        <action
+            android:id="@+id/action_chatFragment_to_callFragment3"
+            app:destination="@id/call" />
+        <action
+            android:id="@+id/action_chatFragment_to_contactFragment2"
+            app:destination="@id/contact" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/call"
+        android:name="me.sungbin.spakchat.ui.fragment.CallFragment"
+        android:label="CallFragment" >
+        <action
+            android:id="@+id/action_callFragment_to_contactFragment3"
+            app:destination="@id/contact" />
+        <action
+            android:id="@+id/action_callFragment_to_settingFragment3"
+            app:destination="@id/setting" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contact"
+        android:name="me.sungbin.spakchat.ui.fragment.ContactFragment"
+        android:label="ContactFragment" >
+        <action
+            android:id="@+id/action_contactFragment_to_settingFragment"
+            app:destination="@id/setting" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/setting"
+        android:name="me.sungbin.spakchat.ui.fragment.SettingFragment"
+        android:label="SettingFragment" >
+        <action
+            android:id="@+id/action_settingFragment_to_chatFragment"
+            app:destination="@id/chat" />
+    </fragment>
+
+</navigation>

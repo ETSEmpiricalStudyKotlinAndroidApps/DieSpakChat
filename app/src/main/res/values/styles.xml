@@ -7,12 +7,7 @@
         <item name="fontFamily">@font/nanumgothic</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar.WhiteStatusBar">
+    <style name="AppTheme.WhiteStatusBar">
         <item name="android:statusBarColor">@color/colorBackgroundWhite</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
