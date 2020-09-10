@@ -20,7 +20,6 @@ class ChatFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.test_fragment, container, false)
     }
 

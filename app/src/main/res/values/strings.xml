@@ -15,4 +15,13 @@
     <string name="chat_preview_last_message">사진을 보냈습니다.</string>
     <string name="chat_preview_time">오전 09시 47분</string>
 
+    <string name="singup_description">기존 채팅앱들을 대체할\n새로운 채팅 앱</string>
+    <string name="signup_singup">회원가입</string>
+    <string name="signup_signin">로그인</string>
+    <string name="signup_add_account">계정 추가</string>
+    <string name="singup_description_profile_picture">프로필 사진</string>
+    <string name="signup_email">이메일</string>
+    <string name="signup_nickname">닉네임</string>
+    <string name="signup_password">비밀번호</string>
+
 </resources>

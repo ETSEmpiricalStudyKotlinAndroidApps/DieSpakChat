@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lav_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/signup_background"
+        app:lottie_renderMode="hardware" />
+
+    <com.sungbin.sungbintool.ui.TagableRoundImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_margin="@dimen/margin_twice_and_half"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/singup_description"
+        android:layout_marginTop="@dimen/margin_twice"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:layout_marginStart="@dimen/margin_twice_and_half"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_icon" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_signin"
+        android:text="@string/signup_singup"
+        android:layout_width="200dp"
+        app:backgroundTint="@color/colorWhite"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="@dimen/margin_twice_and_half"
+        android:layout_height="50dp"
+        app:cornerRadius="@dimen/margin_default"
+        app:layout_constraintBottom_toBottomOf="@+id/lav_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_signup"
+        android:text="@string/signup_signin"
+        android:layout_width="200dp"
+        android:layout_marginBottom="@dimen/margin_twice_half"
+        android:layout_height="50dp"
+        app:cornerRadius="@dimen/margin_default"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
