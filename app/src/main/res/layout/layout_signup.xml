@@ -24,16 +24,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/iv_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/singup_description_profile_picture"
+        <com.sungbin.sungbintool.ui.TagableRoundImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/signup_description_profile_picture"
+            android:padding="@dimen/margin_default"
             android:src="@drawable/ic_outline_camera_alt_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:triv_imageRadius="@dimen/margin_twice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -90,8 +92,8 @@
             android:id="@+id/tiet_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:inputType="textPassword"
+            android:maxLines="1"
             android:singleLine="true" />
         ​
     </com.google.android.material.textfield.TextInputLayout>

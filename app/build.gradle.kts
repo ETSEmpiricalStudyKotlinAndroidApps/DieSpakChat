@@ -60,6 +60,7 @@ dependencies {
     }
 
     def(
+        Dependencies.Firebase.Firestore,
         Dependencies.Firebase.Auth,
         Dependencies.Firebase.Config,
         Dependencies.Firebase.Database,
@@ -82,6 +83,7 @@ dependencies {
 
         Dependencies.Di.Dagger,
 
+        Dependencies.Ui.FishBun,
         Dependencies.Ui.SmoothBottomBar,
         Dependencies.Ui.YoYo,
         Dependencies.Ui.Lottie,
@@ -90,6 +92,7 @@ dependencies {
         Dependencies.Ui.CardView,
         Dependencies.Ui.ConstraintLayout,
 
+        Dependencies.Util.TedPermission,
         Dependencies.Util.YoyoHelper,
         Dependencies.Util.AndroidUtils,
         Dependencies.Util.CrashReporter

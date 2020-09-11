@@ -16,6 +16,7 @@ object Versions {
     object Firebase {
         const val DataBase = "19.4.0"
         const val Storage = "19.2.0"
+        const val Firestore = "21.2.1"
         const val Messaging = "20.2.4"
         const val Config = "19.2.0"
         const val Auth = "19.3.2"
@@ -48,6 +49,7 @@ object Versions {
     }
 
     object Ui {
+        const val FishBun = "1.0.0-alpha03"
         const val SmoothBottomBar = "1.7.6"
         const val YoYo = "2.4@aar"
         const val Lottie = "3.4.2"
@@ -58,6 +60,7 @@ object Versions {
     }
 
     object Util {
+        const val TedPermission = "2.2.3"
         const val YoYoHelper = "2.4@aar"
         const val AndroidUtils = "4.0.1"
         const val CarshReporter = "1.1.0"
@@ -66,6 +69,8 @@ object Versions {
 
 object Dependencies {
     object Firebase {
+        const val Firestore =
+            "com.google.firebase:firebase-firestore:${Versions.Firebase.Firestore}"
         const val Auth = "com.google.firebase:firebase-auth:${Versions.Firebase.Auth}"
         const val Database = "com.google.firebase:firebase-database:${Versions.Firebase.DataBase}"
         const val Storage = "com.google.firebase:firebase-storage:${Versions.Firebase.Storage}"
@@ -112,6 +117,7 @@ object Dependencies {
     }
 
     object Ui {
+        const val FishBun = "com.sangcomz:FishBun:${Versions.Ui.FishBun}"
         const val SmoothBottomBar =
             "com.github.ibrahimsn98:SmoothBottomBar:${Versions.Ui.SmoothBottomBar}"
         const val YoYo = "com.daimajia.androidanimations:library:${Versions.Ui.YoYo}"
@@ -124,6 +130,7 @@ object Dependencies {
     }
 
     object Util {
+        const val TedPermission = "gun0912.ted:tedpermission:${Versions.Util.TedPermission}"
         const val GlideCompiler = "com.github.bumptech.glide:compiler:${Versions.Ui.Glide}"
         const val YoyoHelper = "com.daimajia.easing:library:${Versions.Util.YoYoHelper}"
         const val AndroidUtils = "com.github.sungbin5304:SBT:${Versions.Util.AndroidUtils}"
