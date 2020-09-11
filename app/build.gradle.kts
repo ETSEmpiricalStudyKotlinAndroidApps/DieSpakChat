@@ -52,6 +52,12 @@ android {
     kotlinOptions {
         jvmTarget = Application.jvmTarget
     }
+
+    configurations {
+        all {
+            exclude(module = "protobuf-lite")
+        }
+    }
 }
 
 dependencies {

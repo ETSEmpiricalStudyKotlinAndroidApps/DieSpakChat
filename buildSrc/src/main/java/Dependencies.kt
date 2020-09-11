@@ -16,7 +16,7 @@ object Versions {
     object Firebase {
         const val DataBase = "19.4.0"
         const val Storage = "19.2.0"
-        const val Firestore = "21.2.1"
+        const val Firestore = "21.6.0"
         const val Messaging = "20.2.4"
         const val Config = "19.2.0"
         const val Auth = "19.3.2"
@@ -27,7 +27,7 @@ object Versions {
         const val Google = "4.3.3"
         const val AppCompat = "1.2.0"
         const val Anko = "0.10.8"
-        const val Kotlin = "1.4.0"
+        const val Kotlin = "1.4.10"
         const val Gradle = "4.0.1"
         const val LifeCycleViewModel = "2.2.0"
         const val LifeCycleExtensions = "2.2.0"
@@ -39,7 +39,7 @@ object Versions {
     }
 
     object Di {
-        const val Dagger = "2.28.3"
+        const val Dagger = "2.29"
     }
 
     object Jetpack {

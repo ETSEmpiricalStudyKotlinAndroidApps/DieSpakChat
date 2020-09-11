@@ -10,6 +10,8 @@ import java.util.*
 data class User(
     val uuid: String? = null,
     val id: String? = null,
+    val email: String? = null,
+    val password: String? = null,
     val name: String? = null,
     val profileImage: String? = null,
     val backgroundImage: String? = null,
@@ -18,8 +20,8 @@ data class User(
     val lastOnline: Date? = null,
     val isOnline: Boolean? = null,
     val friends: List<String>? = null, // for user-uuid
-    val sex: Sex? = null,
+    val sex: Int? = null,
     val emoji: List<String>? = null, // for emoji-uuid
     val black: List<String>? = null, // for user-uuid
-    val accountStatus: AccountStatus? = null,
+    val accountStatus: Int? = null,
 )

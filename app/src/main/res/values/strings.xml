@@ -28,4 +28,11 @@
     <string name="signup_permission_denied">권한 사용이 거부되어 사진을 불러올 수 없습니다.\n앱 설정에서 권한 사용을 수락해 주세요.</string>
     <string name="signup_need_permission_for_load_picture">사진들을 불러오기 위해 내부 메모리에 접근 권한이 필요합니다.</string>
 
+    <string name="exception_except">오류가 발생했습니다 😔</string>
+    <string name="exception_preview_except">FATAL EXCEPTION: main exception</string>
+    <string name="signup_done">가입이 완료되었습니다 :)</string>
+    <string name="signup_input_all">모두 입력해 주세요</string>
+    <string name="signin_unknown_email">존재하지 않는 이메일 입니다.</string>
+    <string name="signin_dont_match_email_password">이메일과 비밀번호가 일치하지 않습니다.</string>
+
 </resources>

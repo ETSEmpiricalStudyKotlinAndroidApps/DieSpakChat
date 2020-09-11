@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import me.sungbin.spakchat.R
@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navController = findNavController(R.id.fm_container)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fcv_container) as NavHostFragment
+        navController = navHostFragment.navController
         fabAction = fab_action
         supportActionBar?.hide()
     }
