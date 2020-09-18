@@ -71,6 +71,7 @@ class SignupActivity : AppCompatActivity() {
                 val uri = data?.getParcelableArrayListExtra<Uri>(FishBun.INTENT_PATH)!![0]
                 signupBottomDialog.iv_profile.setPadding(0, 0, 0, 0)
                 GlideApp.with(applicationContext).load(uri).into(signupBottomDialog.iv_profile)
+                signupBottomDialog.iv_profile.tag = uri
             }
         }
     }

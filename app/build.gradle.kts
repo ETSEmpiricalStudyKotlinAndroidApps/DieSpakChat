@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     id("name.remal.check-dependency-updates") version "1.0.211"
     id("com.google.gms.google-services")
     kotlin("android")
@@ -87,7 +88,7 @@ dependencies {
         Dependencies.Ktx.Core,
         Dependencies.Ktx.Fragment,
 
-        Dependencies.Di.Dagger,
+        Dependencies.Di.Hilt,
 
         Dependencies.Ui.FishBun,
         Dependencies.Ui.SmoothBottomBar,
@@ -105,6 +106,6 @@ dependencies {
     )
 
     kapt(Dependencies.Util.GlideCompiler)
-    kapt(Dependencies.Di.DaggerCompiler)
+    kapt(Dependencies.Di.HiltCompiler)
     kapt(Dependencies.Jetpack.RoomCompiler)
 }

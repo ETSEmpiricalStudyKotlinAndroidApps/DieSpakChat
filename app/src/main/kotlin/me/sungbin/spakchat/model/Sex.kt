@@ -6,6 +6,6 @@ package me.sungbin.spakchat.model
  */
 
 object Sex {
-    val MEN = 1
-    var WOMEN = 2
+    const val MEN = 1
+    const val WOMEN = 2
 }

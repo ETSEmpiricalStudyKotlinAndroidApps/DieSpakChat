@@ -1,21 +1,26 @@
 package me.sungbin.spakchat.ui.dialog
 
 import android.Manifest
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
+import com.sungbin.sungbintool.util.ToastLength
+import com.sungbin.sungbintool.util.ToastType
 import com.sungbin.sungbintool.util.ToastUtil
 import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.AccountStatus
 import me.sungbin.spakchat.model.User
+import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.isBlank
 
@@ -23,6 +28,7 @@ import me.sungbin.spakchat.util.isBlank
 class SignupBottomDialog : BottomSheetDialogFragment() {
 
     private val db = FirebaseFirestore.getInstance()
+    private val storage = FirebaseStorage.getInstance().reference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +38,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         iv_profile.setOnClickListener {
             TedPermission.with(requireContext())
                 .setPermissionListener(object : PermissionListener {
@@ -48,8 +55,8 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                         ToastUtil.show(
                             requireContext(),
                             getString(R.string.signup_cant_load_picture),
-                            ToastUtil.SHORT,
-                            ToastUtil.WARNING
+                            ToastLength.SHORT,
+                            ToastType.WARNING
                         )
                     }
                 })
@@ -62,14 +69,19 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
         btn_signup_done.setOnClickListener {
             if (!tiet_email.isBlank() && !tiet_name.isBlank() && !tiet_password.isBlank()) {
                 val user = User(
-                    uuid = null,
                     id = null,
-                    email = tiet_email.text.toString(),
-                    password = tiet_password.text.toString(),
+                    email = EncryptUtil.encrypt(
+                        EncryptUtil.EncryptType.SHA256,
+                        tiet_email.text.toString()
+                    ),
+                    password = EncryptUtil.encrypt(
+                        EncryptUtil.EncryptType.MD5,
+                        tiet_password.text.toString()
+                    ),
                     name = tiet_name.text.toString(),
                     profileImage = null,
                     backgroundImage = null,
-                    statusMessage = "새로 가입했어요!",
+                    statusMessage = getString(R.string.signin_default_status_message),
                     birthday = null,
                     lastOnline = null,
                     isOnline = true,
@@ -81,26 +93,37 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                 )
 
                 db.collection("users")
-                    .document(tiet_email.text.toString())
+                    .document(
+                        EncryptUtil.encrypt(
+                            EncryptUtil.EncryptType.SHA256,
+                            tiet_email.text.toString()
+                        ).substring(0..5)
+                    )
                     .set(user)
                     .addOnSuccessListener {
                         ToastUtil.show(
                             requireContext(),
                             getString(R.string.signup_done),
-                            ToastUtil.SHORT,
-                            ToastUtil.SUCCESS
+                            ToastLength.SHORT,
+                            ToastType.SUCCESS
                         )
                         dismiss()
                     }
                     .addOnFailureListener {
                         ExceptionUtil.except(it, requireContext())
                     }
+
+                if (iv_profile.tag != null) {
+                    storage // 프로필 사진 등록
+                        .child("profile/${user.email}/profile.png")
+                        .putFile(Uri.parse(iv_profile.tag.toString()))
+                }
             } else {
                 ToastUtil.show(
                     requireContext(),
                     getString(R.string.signup_input_all),
-                    ToastUtil.SHORT,
-                    ToastUtil.WARNING
+                    ToastLength.SHORT,
+                    ToastType.WARNING
                 )
             }
         }

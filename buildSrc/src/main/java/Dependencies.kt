@@ -14,12 +14,12 @@ object Application {
 
 object Versions {
     object Firebase {
-        const val DataBase = "19.4.0"
+        const val Database = "19.4.0"
         const val Storage = "19.2.0"
         const val Firestore = "21.6.0"
         const val Messaging = "20.2.4"
         const val Config = "19.2.0"
-        const val Auth = "19.3.2"
+        const val Auth = "19.4.0"
         const val Analytics = "17.5.0"
     }
 
@@ -39,7 +39,7 @@ object Versions {
     }
 
     object Di {
-        const val Dagger = "2.29"
+        const val Hilt = "2.28-alpha"
     }
 
     object Jetpack {
@@ -62,7 +62,7 @@ object Versions {
     object Util {
         const val TedPermission = "2.2.3"
         const val YoYoHelper = "2.4@aar"
-        const val AndroidUtils = "4.0.1"
+        const val AndroidUtils = "4.0.2"
         const val CarshReporter = "1.1.0"
     }
 }
@@ -72,7 +72,7 @@ object Dependencies {
         const val Firestore =
             "com.google.firebase:firebase-firestore:${Versions.Firebase.Firestore}"
         const val Auth = "com.google.firebase:firebase-auth:${Versions.Firebase.Auth}"
-        const val Database = "com.google.firebase:firebase-database:${Versions.Firebase.DataBase}"
+        const val Database = "com.google.firebase:firebase-database:${Versions.Firebase.Database}"
         const val Storage = "com.google.firebase:firebase-storage:${Versions.Firebase.Storage}"
         const val Messaging =
             "com.google.firebase:firebase-messaging:${Versions.Firebase.Messaging}"
@@ -106,8 +106,8 @@ object Dependencies {
     }
 
     object Di {
-        const val Dagger = "com.google.dagger:dagger:${Versions.Di.Dagger}"
-        const val DaggerCompiler = "com.google.dagger:dagger-compiler:${Versions.Di.Dagger}"
+        const val Hilt = "com.google.dagger:hilt-android:${Versions.Di.Hilt}"
+        const val HiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Di.Hilt}"
     }
 
     object Jetpack {

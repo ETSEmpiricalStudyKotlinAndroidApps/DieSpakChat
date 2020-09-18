@@ -1,5 +1,7 @@
 package me.sungbin.spakchat.model
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import java.util.*
 
 
@@ -8,7 +10,6 @@ import java.util.*
  */
 
 data class User(
-    val uuid: String? = null,
     val id: String? = null,
     val email: String? = null,
     val password: String? = null,
@@ -24,4 +25,12 @@ data class User(
     val emoji: List<String>? = null, // for emoji-uuid
     val black: List<String>? = null, // for user-uuid
     val accountStatus: Int? = null,
-)
+) {
+    companion object {
+        @JvmStatic
+        @BindingAdapter("loadProfile")
+        fun loadProfile(imageView: ImageView, user: User) {
+            // todo: 프사 다운로드 주소 가져오기
+        }
+    }
+}

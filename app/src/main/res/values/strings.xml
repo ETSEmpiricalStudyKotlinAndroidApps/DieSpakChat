@@ -3,6 +3,8 @@
     <string name="app_name">SpakChat</string>
     <string name="action">action</string>
 
+    <string name="image_description_search">search</string>
+
     <string name="main_navigation_chatting">채팅</string>
     <string name="main_navigation_call">전화</string>
     <string name="main_navigation_contact">연락처</string>
@@ -11,6 +13,7 @@
     <string name="main_new_call">새로운 전화</string>
     <string name="main_new_chat">새로운 채팅</string>
     <string name="main_new_contact">새로운 연락처</string>
+
     <string name="chat_preview_name">zmo__</string>
     <string name="chat_preview_last_message">사진을 보냈습니다.</string>
     <string name="chat_preview_time">오전 09시 47분</string>
@@ -30,9 +33,14 @@
 
     <string name="exception_except">오류가 발생했습니다 😔</string>
     <string name="exception_preview_except">FATAL EXCEPTION: main exception</string>
+
     <string name="signup_done">가입이 완료되었습니다 :)</string>
     <string name="signup_input_all">모두 입력해 주세요</string>
     <string name="signin_unknown_email">존재하지 않는 이메일 입니다.</string>
     <string name="signin_dont_match_email_password">이메일과 비밀번호가 일치하지 않습니다.</string>
+    <string name="signin_default_status_message">새로 가입했어요!</string>
+
+    <string name="fragment_chat_online">온라인</string>
+    <string name="image_description_online_status">online status</string>
 
 </resources>

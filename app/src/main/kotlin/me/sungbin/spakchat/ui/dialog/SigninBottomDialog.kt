@@ -11,11 +11,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.sungbin.sungbintool.util.ToastLength
+import com.sungbin.sungbintool.util.ToastType
 import com.sungbin.sungbintool.util.ToastUtil
 import kotlinx.android.synthetic.main.layout_signin.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.User
 import me.sungbin.spakchat.ui.activity.MainActivity
+import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.isBlank
 import org.jetbrains.anko.support.v4.startActivity
@@ -37,35 +41,46 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
         btn_signin_done.setOnClickListener {
             if (!tiet_email.isBlank() && !tiet_password.isBlank()) {
                 db.collection("users")
-                    .document(tiet_email.text.toString())
+                    .document(
+                        EncryptUtil.encrypt(
+                            EncryptUtil.EncryptType.SHA256,
+                            tiet_email.text.toString()
+                        ).substring(0..5)
+                    )
                     .get()
                     .addOnSuccessListener {
                         it?.let {
                             it.toObject(User::class.java)?.run {
-                                if (tiet_email.text.toString() == email &&
-                                    tiet_password.text.toString() == password
+                                if (EncryptUtil.encrypt(
+                                        EncryptUtil.EncryptType.SHA256,
+                                        tiet_email.text.toString()
+                                    ) == email &&
+                                    EncryptUtil.encrypt(
+                                        EncryptUtil.EncryptType.MD5,
+                                        tiet_password.text.toString()
+                                    ) == password
                                 ) {
                                     ToastUtil.show(
                                         requireContext(),
-                                        "환영합니다",
-                                        ToastUtil.SHORT,
-                                        ToastUtil.SUCCESS
+                                        "$name 님 환영합니다!",
+                                        ToastLength.SHORT,
+                                        ToastType.SUCCESS
                                     )
                                     startActivity<MainActivity>()
                                 } else {
                                     ToastUtil.show(
                                         requireContext(),
                                         getString(R.string.signin_dont_match_email_password),
-                                        ToastUtil.SHORT,
-                                        ToastUtil.WARNING
+                                        ToastLength.SHORT,
+                                        ToastType.WARNING
                                     )
                                 }
                             }
                         } ?: ToastUtil.show(
                             requireContext(),
                             getString(R.string.signin_unknown_email),
-                            ToastUtil.SHORT,
-                            ToastUtil.WARNING
+                            ToastLength.SHORT,
+                            ToastType.WARNING
                         )
                     }
                     .addOnFailureListener {
@@ -75,8 +90,8 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
                 ToastUtil.show(
                     requireContext(),
                     getString(R.string.signup_input_all),
-                    ToastUtil.SHORT,
-                    ToastUtil.WARNING
+                    ToastLength.SHORT,
+                    ToastType.WARNING
                 )
             }
         }
