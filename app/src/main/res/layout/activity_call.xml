@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="User"
+            type="me.sungbin.spakchat.model.User" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundWhite">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackgroundWhite">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_description_back"
+                        android:src="@drawable/ic_baseline_arrow_back_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/colorBlack" />
+
+                    <TextView
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:id="@+id/tv_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/call_call"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/iv_back"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.sfyc.ctpv.CountTimeProgressView
+            android:id="@+id/ctpv_counter"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:backgroundColorCenter="@color/colorBackgroundWhite"
+            app:borderBottomColor="@color/colorTwiceLightGray"
+            app:borderDrawColor="@color/colorSky"
+            app:borderWidth="2dp"
+            app:countTime="30000"
+            app:layout_constraintBottom_toTopOf="@+id/view_horizontal_center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:markBallColor="@color/colorSky"
+            app:markBallFlag="true"
+            app:markBallWidth="15dp"
+            app:titleCenterText="" />
+
+        <com.sungbin.sungbintool.ui.TagableRoundImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@color/colorGreen"
+            app:loadProfile="@{User}"
+            app:layout_constraintBottom_toBottomOf="@+id/ctpv_counter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ctpv_counter"
+            app:triv_imageRadius="100dp" />
+
+        <View
+            android:id="@+id/view_horizontal_center"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            tools:background="@color/colorSky"
+            tools:layout_height="2dp" />
+
+        <TextView
+            android:text="@{User.name}"
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_twice_and_half"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_horizontal_center"
+            tools:text="@string/user_preview_name" />
+
+        <TextView
+            android:text="@{User.id}"
+            android:id="@+id/tv_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_half"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="@string/user_preview_id" />
+
+        <View
+            android:id="@+id/view_vertical_center"
+            android:layout_width="0.1dp"
+            android:layout_height="0dp"
+            android:background="@color/colorSky"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id"
+            tools:background="@color/colorSky"
+            tools:layout_width="2dp" />
+
+        <com.sungbin.sungbintool.ui.TagableRoundImageView
+            android:id="@+id/triv_accept"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginEnd="@dimen/margin_twice"
+            android:background="@color/colorLightGreen"
+            android:padding="@dimen/margin_default"
+            android:src="@drawable/ic_baseline_call_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/view_vertical_center"
+            app:layout_constraintTop_toTopOf="@+id/view_vertical_center"
+            app:tint="@color/colorWhite"
+            app:triv_imageRadius="@dimen/margin_twice_and_half" />
+
+        <com.sungbin.sungbintool.ui.TagableRoundImageView
+            android:id="@+id/triv_denied"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="@dimen/margin_twice"
+            android:background="@color/colorLightPink"
+            android:padding="@dimen/margin_default"
+            android:src="@drawable/ic_baseline_clear_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view_vertical_center"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id"
+            app:tint="@color/colorWhite"
+            app:triv_imageRadius="@dimen/margin_twice_and_half" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

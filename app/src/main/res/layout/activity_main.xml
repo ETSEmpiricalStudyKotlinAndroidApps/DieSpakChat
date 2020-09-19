@@ -11,6 +11,7 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/colorBackgroundWhite"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/cv_container"
         app:layout_constraintTop_toTopOf="parent"

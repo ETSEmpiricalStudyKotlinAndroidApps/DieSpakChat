@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="Message"
+            type="me.sungbin.spakchat.model.Message" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundWhite">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackgroundWhite">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/margin_default">
+
+                    <ImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_description_back"
+                        android:src="@drawable/ic_baseline_arrow_back_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/colorBlack" />
+
+                    <com.sungbin.sungbintool.ui.TagableRoundImageView
+                        android:id="@+id/iv_room_cover"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="@dimen/margin_default"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/iv_back"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:loadProfile="@{Message.owner}"
+                        app:triv_imageRadius="@dimen/margin_twice_and_half"
+                        tools:src="@color/colorGreen" />
+
+                    <View
+                        android:id="@+id/view_vertical_center"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:background="@color/colorGreen"
+                        tools:layout_height="2dp" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{Message.owner.name}"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/view_vertical_center"
+                        app:layout_constraintStart_toEndOf="@+id/iv_room_cover"
+                        tools:text="@string/user_preview_name" />
+
+                    <TextView
+                        android:id="@+id/tv_last_online"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_room_cover"
+                        app:layout_constraintStart_toEndOf="@+id/iv_room_cover"
+                        app:layout_constraintTop_toBottomOf="@+id/view_vertical_center"
+                        app:loadLastOnline="@{Message.owner.lastOnline}"
+                        tools:text="@string/user_preview_last_online" />
+
+                    <com.sungbin.sungbintool.ui.TagableRoundImageView
+                        android:id="@+id/iv_search"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/colorTripleLightGray"
+                        android:padding="@dimen/margin_half"
+                        android:src="@drawable/ic_baseline_search_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/colorLightGray"
+                        app:triv_imageRadius="@dimen/margin_twice_and_half" />
+
+                    <com.sungbin.sungbintool.ui.TagableRoundImageView
+                        android:id="@+id/iv_call"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="@dimen/margin_half"
+                        android:background="@color/colorTripleLightGray"
+                        android:padding="@dimen/margin_half"
+                        android:src="@drawable/ic_outline_call_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/iv_search"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/colorLightGray"
+                        app:triv_imageRadius="@dimen/margin_twice_and_half" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chat"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/colorBackgroundWhite"
+            android:padding="@dimen/margin_default"
+            tools:listitem="@layout/layout_own_chat"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_round_top_32"
+            android:backgroundTint="@color/colorWhite"
+            android:elevation="@dimen/margin_default"
+            android:padding="@dimen/margin_default"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.sungbin.sungbintool.ui.TagableRoundImageView
+                android:id="@+id/iv_attachment"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@color/colorLightBlue"
+                android:padding="@dimen/margin_twice_half"
+                android:src="@drawable/ic_baseline_add_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorPrimary"
+                app:triv_imageRadius="@dimen/margin_twice_and_half" />
+
+            <EditText
+                android:id="@+id/et_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:autoLink="web"
+                android:background="@null"
+                android:hint="@string/chat_input_message"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:maxHeight="150dp"
+                android:scrollbars="vertical"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_send"
+                app:layout_constraintStart_toEndOf="@+id/iv_attachment"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.sungbin.sungbintool.ui.TagableRoundImageView
+                android:id="@+id/iv_send"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@color/colorLightBlue"
+                android:padding="@dimen/margin_half"
+                android:src="@drawable/ic_baseline_send_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorTwiceLightGray"
+                app:triv_imageRadius="@dimen/margin_twice_and_half" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

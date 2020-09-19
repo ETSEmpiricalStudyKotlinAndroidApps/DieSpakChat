@@ -2,6 +2,7 @@ package me.sungbin.spakchat.model
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import me.sungbin.spakchat.util.ColorUtil
 import java.util.*
 
 
@@ -31,6 +32,12 @@ data class User(
         @BindingAdapter("loadProfile")
         fun loadProfile(imageView: ImageView, user: User) {
             // todo: 프사 다운로드 주소 가져오기
+            imageView.setBackgroundColor(ColorUtil.randomColor)
+
+            /*GlideApp
+                .with(imageView.context)
+                .load(ColorUtil.randomColor)
+                .into(imageView)*/
         }
     }
 }

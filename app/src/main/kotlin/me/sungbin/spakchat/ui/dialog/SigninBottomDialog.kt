@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.sungbin.sungbintool.util.ToastLength
 import com.sungbin.sungbintool.util.ToastType
 import com.sungbin.sungbintool.util.ToastUtil
@@ -70,7 +69,7 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
                                 } else {
                                     ToastUtil.show(
                                         requireContext(),
-                                        getString(R.string.signin_dont_match_email_password),
+                                        getString(R.string.signin_not_match_email_password),
                                         ToastLength.SHORT,
                                         ToastType.WARNING
                                     )

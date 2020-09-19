@@ -6,12 +6,19 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="textAllCaps">false</item>
         <item name="fontFamily">@font/nanumgothic</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/nanumgothic</item>
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
     </style>
 
     <style name="AppTheme.WhiteStatusBar">
         <item name="android:statusBarColor">@color/colorBackgroundWhite</item>
         <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="AppTheme.WhiteStatusBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

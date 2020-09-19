@@ -5,8 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.sungbin.sungbintool.extensions.setFab
+import kotlinx.android.synthetic.main.fragment_chat.*
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.adapter.FeedChatAdapter
+import me.sungbin.spakchat.adapter.OnlineAdapter
 import me.sungbin.spakchat.ui.activity.MainActivity
+import me.sungbin.spakchat.util.TestUtil
 
 
 /**
@@ -27,5 +32,8 @@ class ChatFragment : Fragment() {
             text = getString(R.string.main_new_chat)
         }.show()
 
+        rv_online.adapter = OnlineAdapter(TestUtil.getTestUser(10), requireActivity())
+        rv_feed_chat.adapter = FeedChatAdapter(TestUtil.getTestMessage(10), requireActivity())
+        rv_feed_chat.setFab(MainActivity.fabAction)
     }
 }

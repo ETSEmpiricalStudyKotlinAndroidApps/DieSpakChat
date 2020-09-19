@@ -4,19 +4,17 @@
     <string name="action">action</string>
 
     <string name="image_description_search">search</string>
+    <string name="image_description_online_status">online status</string>
+    <string name="image_description_back">back</string>
+    <string name="image_description_send">send</string>
 
     <string name="main_navigation_chatting">채팅</string>
     <string name="main_navigation_call">전화</string>
     <string name="main_navigation_contact">연락처</string>
     <string name="main_navigation_more">더보기</string>
-
     <string name="main_new_call">새로운 전화</string>
     <string name="main_new_chat">새로운 채팅</string>
     <string name="main_new_contact">새로운 연락처</string>
-
-    <string name="chat_preview_name">zmo__</string>
-    <string name="chat_preview_last_message">사진을 보냈습니다.</string>
-    <string name="chat_preview_time">오전 09시 47분</string>
 
     <string name="signup_description">기존 채팅앱들을 대체할\n새로운 채팅 앱</string>
     <string name="signup_singup">회원가입</string>
@@ -31,16 +29,27 @@
     <string name="signup_permission_denied">권한 사용이 거부되어 사진을 불러올 수 없습니다.\n앱 설정에서 권한 사용을 수락해 주세요.</string>
     <string name="signup_need_permission_for_load_picture">사진들을 불러오기 위해 내부 메모리에 접근 권한이 필요합니다.</string>
 
-    <string name="exception_except">오류가 발생했습니다 😔</string>
-    <string name="exception_preview_except">FATAL EXCEPTION: main exception</string>
-
     <string name="signup_done">가입이 완료되었습니다 :)</string>
     <string name="signup_input_all">모두 입력해 주세요</string>
     <string name="signin_unknown_email">존재하지 않는 이메일 입니다.</string>
-    <string name="signin_dont_match_email_password">이메일과 비밀번호가 일치하지 않습니다.</string>
+    <string name="signin_not_match_email_password">이메일과 비밀번호가 일치하지 않습니다.</string>
     <string name="signin_default_status_message">새로 가입했어요!</string>
 
+    <string name="exception_except">오류가 발생했습니다 😔</string>
+    <string name="exception_preview_except">FATAL EXCEPTION: main exception</string>
+
     <string name="fragment_chat_online">온라인</string>
-    <string name="image_description_online_status">online status</string>
+
+    <string name="call_call">전화</string>
+
+    <string name="user_preview_name">zmo__</string>
+    <string name="user_preview_id">sungbin_dev</string>
+    <string name="user_preview_last_online">어제 오후 7시까지 접속함</string>
+
+    <string name="chat_input_message">메시지 입력…</string>
+    <string name="chat_preview_message">성빈 대학붙게 해주세요!!!</string>
+    <string name="chat_preview_last_message">사진을 보냈습니다.</string>
+    <string name="chat_preview_time">오전 09:47</string>
+    <string name="chat_preview_unread_count">99</string>
 
 </resources>

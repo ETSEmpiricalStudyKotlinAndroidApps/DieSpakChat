@@ -67,6 +67,8 @@ dependencies {
     }
 
     def(
+        "com.sfyc.ctpv:library:1.1.3",
+
         Dependencies.Firebase.Firestore,
         Dependencies.Firebase.Auth,
         Dependencies.Firebase.Config,
@@ -81,7 +83,6 @@ dependencies {
         Dependencies.Essential.AppCompat,
         Dependencies.Essential.Anko,
         Dependencies.Essential.Kotlin,
-        Dependencies.Ui.Material,
         Dependencies.Essential.LifeCycleExtensions,
         Dependencies.Essential.LifeCycleViewModel,
 

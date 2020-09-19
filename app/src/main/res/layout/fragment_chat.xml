@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundWhite"
-    android:padding="@dimen/margin_default">
+    android:paddingTop="@dimen/margin_default">
 
     <TextView
         android:id="@+id/tv_online"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
         android:text="@string/fragment_chat_online"
         android:textColor="@color/colorBlack"
         android:textSize="25sp"
@@ -21,6 +22,7 @@
         android:id="@+id/iv_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_default"
         android:contentDescription="@string/image_description_search"
         android:src="@drawable/ic_baseline_search_24"
         app:layout_constraintBottom_toBottomOf="@+id/tv_online"
@@ -36,19 +38,23 @@
         android:clipToPadding="false"
         android:orientation="horizontal"
         android:overScrollMode="never"
+        android:paddingStart="@dimen/margin_default"
+        android:paddingEnd="@dimen/margin_default"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/tv_online"
         tools:listitem="@layout/layout_feed_online" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_chat"
+        android:id="@+id/rv_feed_chat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_twice"
+        android:background="@color/colorBackgroundWhite"
         android:orientation="vertical"
+        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_online"
-        tools:listitem="@layout/layout_chat" />
+        tools:listitem="@layout/layout_feed_chat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
