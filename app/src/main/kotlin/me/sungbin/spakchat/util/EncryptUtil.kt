@@ -22,7 +22,7 @@ object EncryptUtil {
                     ((byteDatum and 0xff.toByte()) + 0x100).toString(16).substring(1)
                 )
             }
-            with (sb.toString()) {
+            with(sb.toString()) {
                 if (length > 10) this.substring(0..10)
                 else this
             }

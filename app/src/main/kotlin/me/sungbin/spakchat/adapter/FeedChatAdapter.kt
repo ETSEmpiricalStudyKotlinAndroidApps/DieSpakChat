@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sungbin.sungbintool.extensions.hide
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
-import me.sungbin.spakchat.model.Message
+import me.sungbin.spakchat.model.message.Message
 
 
 /**

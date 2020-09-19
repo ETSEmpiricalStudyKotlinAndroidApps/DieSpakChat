@@ -1,7 +1,11 @@
 package me.sungbin.spakchat.util
 
 import com.sungbin.sungbintool.util.Util
-import me.sungbin.spakchat.model.*
+import me.sungbin.spakchat.model.message.Message
+import me.sungbin.spakchat.model.message.MessageType
+import me.sungbin.spakchat.model.user.AccountStatus
+import me.sungbin.spakchat.model.user.Sex
+import me.sungbin.spakchat.model.user.User
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.random.Random

@@ -7,7 +7,7 @@
 
         <variable
             name="Message"
-            type="me.sungbin.spakchat.model.Message" />
+            type="me.sungbin.spakchat.model.message.Message" />
 
     </data>
 

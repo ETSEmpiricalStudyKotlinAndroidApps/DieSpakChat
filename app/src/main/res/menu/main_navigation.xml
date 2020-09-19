@@ -4,21 +4,21 @@
     <item
         android:id="@+id/chat"
         android:title="@string/main_navigation_chatting"
-        android:icon="@drawable/ic_outline_message_24"/>
+        android:icon="@drawable/ic_outline_message_24" />
 
     <item
         android:id="@+id/call"
         android:title="@string/main_navigation_call"
-        android:icon="@drawable/ic_outline_call_24"/>
+        android:icon="@drawable/ic_outline_call_24" />
 
     <item
         android:id="@+id/contact"
         android:title="@string/main_navigation_contact"
-        android:icon="@drawable/ic_outline_people_24"/>
+        android:icon="@drawable/ic_outline_people_24" />
 
     <item
         android:id="@+id/more"
         android:title="@string/main_navigation_more"
-        android:icon="@drawable/ic_outline_dashboard_24"/>
+        android:icon="@drawable/ic_outline_dashboard_24" />
 
 </menu>

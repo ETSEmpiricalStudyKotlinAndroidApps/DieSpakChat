@@ -67,8 +67,6 @@ dependencies {
     }
 
     def(
-        "com.sfyc.ctpv:library:1.1.3",
-
         Dependencies.Firebase.Firestore,
         Dependencies.Firebase.Auth,
         Dependencies.Firebase.Config,
@@ -76,6 +74,10 @@ dependencies {
         Dependencies.Firebase.Messaging,
         Dependencies.Firebase.Storage,
         Dependencies.Firebase.Analytics,
+
+        Dependencies.Jetpack.DataStore,
+        Dependencies.Jetpack.Paging,
+        Dependencies.Jetpack.Room,
 
         Dependencies.Rx.Room,
         Dependencies.Rx.Paging,
@@ -91,6 +93,7 @@ dependencies {
 
         Dependencies.Di.Hilt,
 
+        Dependencies.Ui.CountTimeProgressView,
         Dependencies.Ui.FishBun,
         Dependencies.Ui.SmoothBottomBar,
         Dependencies.Ui.YoYo,

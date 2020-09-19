@@ -43,12 +43,14 @@ object Versions {
     }
 
     object Jetpack {
+        const val DataStore = "1.0.0-alpha01"
         const val Navigation = "2.3.0"
         const val Room = "2.3.0-alpha02"
         const val Paging = "2.1.2"
     }
 
     object Ui {
+        const val CountTimeProgressView = "1.1.3"
         const val FishBun = "1.0.0-alpha03"
         const val SmoothBottomBar = "1.7.6"
         const val YoYo = "2.4@aar"
@@ -111,12 +113,16 @@ object Dependencies {
     }
 
     object Jetpack {
+        const val DataStore =
+            "androidx.datastore:datastore-preferences:${Versions.Jetpack.DataStore}"
         const val Room = "androidx.room:room-runtime:${Versions.Jetpack.Room}"
         const val RoomCompiler = "androidx.room:room-compiler:${Versions.Jetpack.Room}"
         const val Paging = "androidx.paging:paging-runtime:${Versions.Jetpack.Paging}"
     }
 
     object Ui {
+        const val CountTimeProgressView =
+            "com.sfyc.ctpv:library:${Versions.Ui.CountTimeProgressView}"
         const val FishBun = "com.sangcomz:FishBun:${Versions.Ui.FishBun}"
         const val SmoothBottomBar =
             "com.github.ibrahimsn98:SmoothBottomBar:${Versions.Ui.SmoothBottomBar}"

@@ -1,10 +1,11 @@
-package me.sungbin.spakchat.model
+package me.sungbin.spakchat.model.message
 
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.sungbin.sungbintool.extensions.plusAssign
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ColorUtil
 import java.text.SimpleDateFormat
 import java.util.*

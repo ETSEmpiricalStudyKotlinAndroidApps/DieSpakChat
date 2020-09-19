@@ -18,8 +18,8 @@ import com.sungbin.sungbintool.util.ToastType
 import com.sungbin.sungbintool.util.ToastUtil
 import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.model.AccountStatus
-import me.sungbin.spakchat.model.User
+import me.sungbin.spakchat.model.user.AccountStatus
+import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.isBlank

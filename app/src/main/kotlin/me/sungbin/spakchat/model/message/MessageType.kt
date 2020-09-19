@@ -1,4 +1,4 @@
-package me.sungbin.spakchat.model
+package me.sungbin.spakchat.model.message
 
 
 /**

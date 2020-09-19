@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFeedOnlineBinding
-import me.sungbin.spakchat.model.User
+import me.sungbin.spakchat.model.user.User
 
 
 /**
