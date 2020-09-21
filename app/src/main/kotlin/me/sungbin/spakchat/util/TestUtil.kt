@@ -1,6 +1,5 @@
 package me.sungbin.spakchat.util
 
-import com.sungbin.sungbintool.util.Util
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.model.user.AccountStatus
@@ -13,11 +12,9 @@ import kotlin.random.nextInt
 
 object TestUtil {
 
-    val getTestId get() = Util.makeRandomUUID().replace("-", "").substring(0..8)
-
     val getTestUser
         get() = User(
-            id = getTestId,
+            id = Util.randomId,
             email = "sungbin.dev@gmail.com",
             password = "test-pw",
             name = "zmo__${Random.nextInt(0..10)}",
@@ -36,7 +33,7 @@ object TestUtil {
 
     val getTestMessage
         get() = Message(
-            id = getTestId,
+            id = Util.randomId,
             message = "싹쓰리",
             time = Date(),
             type = MessageType.CHAT,
@@ -45,7 +42,7 @@ object TestUtil {
             mention = listOf(getTestUser)
         )
 
-    val getTestText get() = getTestId.substring(0..5)
+    val getTestText get() = Util.randomId.substring(0..5)
 
     fun getTestUser(count: Int): List<User> {
         val users = ArrayList<User>()

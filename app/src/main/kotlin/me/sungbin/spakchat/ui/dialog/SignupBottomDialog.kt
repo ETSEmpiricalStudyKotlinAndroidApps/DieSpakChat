@@ -35,7 +35,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
 
     @Inject
     @Named("firestore")
-    lateinit var db: FirebaseFirestore
+    lateinit var firestore: FirebaseFirestore
 
     @Inject
     @Named("storage")
@@ -59,8 +59,8 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                         FishBun
                             .with(requireActivity())
                             .setImageAdapter(GlideAdapter())
-                            //.setMaxCount(1)
-                            //.setMinCount(1)
+                            .setMaxCount(1)
+                            .setMinCount(1)
                             .startAlbum()
                     }
 
@@ -105,7 +105,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                     accountStatus = AccountStatus.NORMAL,
                 )
 
-                db.collection("users")
+                firestore.collection("users")
                     .document(
                         EncryptUtil.encrypt(
                             EncryptUtil.EncryptType.SHA256,

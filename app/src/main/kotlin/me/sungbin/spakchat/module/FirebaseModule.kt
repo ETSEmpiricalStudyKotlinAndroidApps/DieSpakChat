@@ -33,6 +33,8 @@ class FirebaseModule {
     @Singleton
     @Named("database")
     @Provides
-    fun provideFirebaseRealtimeDatabase() = FirebaseDatabase.getInstance()
+    fun provideFirebaseRealtimeDatabase() = FirebaseDatabase.getInstance().reference.apply {
+        keepSynced(true)
+    }
 
 }

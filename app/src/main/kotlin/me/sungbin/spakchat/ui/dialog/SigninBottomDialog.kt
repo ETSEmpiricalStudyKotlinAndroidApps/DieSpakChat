@@ -32,11 +32,9 @@ import javax.inject.Named
 @WithFragmentBindings
 class SigninBottomDialog : BottomSheetDialogFragment() {
 
-    // private val db = FirebaseFirestore.getInstance()
-
     @Inject
     @Named("firestore")
-    lateinit var db: FirebaseFirestore
+    lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +49,7 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
 
         btn_signin_done.setOnClickListener {
             if (!tiet_email.isBlank() && !tiet_password.isBlank()) {
-                db.collection("users")
+                firestore.collection("users")
                     .document(
                         EncryptUtil.encrypt(
                             EncryptUtil.EncryptType.SHA256,

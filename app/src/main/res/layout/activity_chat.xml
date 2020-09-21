@@ -186,7 +186,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/colorTwiceLightGray"
+                app:tint="@color/colorPrimary"
                 app:triv_imageRadius="@dimen/margin_twice_and_half" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,5 +51,6 @@
     <string name="chat_preview_last_message">사진을 보냈습니다.</string>
     <string name="chat_preview_time">오전 09:47</string>
     <string name="chat_preview_unread_count">99</string>
+    <string name="image_description_logo">logo</string>
 
 </resources>
