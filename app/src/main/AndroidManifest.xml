@@ -21,7 +21,7 @@
         tools:targetApi="q">
 
         <activity
-            android:theme="@style/AppTheme.WhiteStatusBar.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.WhiteStatusBar"
             android:name=".ui.activity.SignupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

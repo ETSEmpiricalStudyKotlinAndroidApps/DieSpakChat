@@ -53,13 +53,13 @@ class SignupActivity : AppCompatActivity() {
             ssb.setSpan(
                 StyleSpan(Typeface.BOLD),
                 text.lastIndexOf("새로운"),
-                text.lastIndex + 1,
+                text.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             ssb.setSpan(
                 RelativeSizeSpan(1.6f),
                 text.lastIndexOf("새로운"),
-                text.lastIndex + 1,
+                text.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             text = ssb
@@ -70,7 +70,8 @@ class SignupActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             FishBun.FISHBUN_REQUEST_CODE -> {
-                val uri = data?.getParcelableArrayListExtra<Uri>(FishBun.INTENT_PATH)!![0]
+                val uri =
+                    data?.getParcelableArrayListExtra<Uri>(FishBun.INTENT_PATH)?.get(0) ?: return
                 signupBottomDialog.iv_profile.setPadding(0, 0, 0, 0)
                 GlideApp.with(applicationContext).load(uri).into(signupBottomDialog.iv_profile)
                 signupBottomDialog.iv_profile.tag = uri

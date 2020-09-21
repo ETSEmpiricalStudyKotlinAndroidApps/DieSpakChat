@@ -2,6 +2,8 @@ package me.sungbin.spakchat.model.user
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import me.sungbin.spakchat.util.ColorUtil
 import java.util.*
 
@@ -9,6 +11,7 @@ import java.util.*
 /**
  * Created by SungBin on 2020-09-11.
  */
+
 
 data class User(
     val id: String? = null,
@@ -27,6 +30,10 @@ data class User(
     val black: List<String>? = null, // for user-uuid
     val accountStatus: Int? = null,
 ) {
+
+    private val db = FirebaseStorage.getInstance().reference
+    private val storage = FirebaseFirestore.getInstance()
+
     companion object {
         @JvmStatic
         @BindingAdapter("loadProfile")

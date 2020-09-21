@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
@@ -16,6 +16,8 @@ import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import com.sungbin.sungbintool.util.ToastLength
 import com.sungbin.sungbintool.util.ToastType
 import com.sungbin.sungbintool.util.ToastUtil
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
 import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.AccountStatus
@@ -23,12 +25,21 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.isBlank
+import javax.inject.Inject
+import javax.inject.Named
 
 
+@AndroidEntryPoint
+@WithFragmentBindings
 class SignupBottomDialog : BottomSheetDialogFragment() {
 
-    private val db = FirebaseFirestore.getInstance()
-    private val storage = FirebaseStorage.getInstance().reference
+    @Inject
+    @Named("firestore")
+    lateinit var db: FirebaseFirestore
+
+    @Inject
+    @Named("storage")
+    lateinit var storage: StorageReference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +50,8 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        retainInstance = false
+
         iv_profile.setOnClickListener {
             TedPermission.with(requireContext())
                 .setPermissionListener(object : PermissionListener {
@@ -46,8 +59,8 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                         FishBun
                             .with(requireActivity())
                             .setImageAdapter(GlideAdapter())
-                            .setMaxCount(1)
-                            .setMinCount(1)
+                            //.setMaxCount(1)
+                            //.setMinCount(1)
                             .startAlbum()
                     }
 

@@ -3,6 +3,8 @@ package me.sungbin.spakchat.model.message
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.sungbin.sungbintool.extensions.plusAssign
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.User
@@ -26,6 +28,10 @@ data class Message(
     val owner: User? = null,
     val mention: List<User>? = null,
 ) {
+
+    private val db = FirebaseStorage.getInstance().reference
+    private val storage = FirebaseFirestore.getInstance()
+
     companion object {
         @JvmStatic
         @BindingAdapter("loadProfile")
@@ -43,7 +49,7 @@ data class Message(
         @BindingAdapter("loadMessage")
         fun loadMessage(textView: TextView, message: Message) {
             // todo: 메시지 타입 가져와서 처리하기
-            textView += message.message.toString()
+            textView += message.message ?: "unknown message"
         }
 
         @JvmStatic
@@ -73,7 +79,7 @@ data class Message(
         fun loadStatus(imageView: ImageView, message: Message) {
             // todo: 온라인/오프라인 표시
             imageView.setImageResource(
-                if (message.owner!!.isOnline!!) R.drawable.bg_shape_online
+                if (message.owner?.isOnline == true) R.drawable.bg_shape_online
                 else R.drawable.bg_shape_offline
             )
         }

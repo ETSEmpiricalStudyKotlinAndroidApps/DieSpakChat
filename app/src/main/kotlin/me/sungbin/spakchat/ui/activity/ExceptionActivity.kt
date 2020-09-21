@@ -22,7 +22,7 @@ class ExceptionActivity : AppCompatActivity() {
             ssb.setSpan(
                 StyleSpan(Typeface.ITALIC),
                 message.lastIndexOf("#"),
-                message.lastIndex + 1,
+                message.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             text = ssb
