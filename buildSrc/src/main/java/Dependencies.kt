@@ -39,6 +39,7 @@ object Versions {
     }
 
     object Di {
+        const val Dagger = "2.28.3"
         const val Hilt = "2.28-alpha"
     }
 
@@ -108,6 +109,8 @@ object Dependencies {
     }
 
     object Di {
+        const val Dagger = "com.google.dagger:dagger:${Versions.Di.Dagger}"
+        const val DaggerCompiler = "com.google.dagger:dagger-compiler:${Versions.Di.Dagger}"
         const val Hilt = "com.google.dagger:hilt-android:${Versions.Di.Hilt}"
         const val HiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Di.Hilt}"
     }

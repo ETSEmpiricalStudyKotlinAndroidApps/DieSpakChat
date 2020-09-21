@@ -11,6 +11,7 @@ import android.text.style.StyleSpan
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.sangcomz.fishbun.FishBun
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
@@ -23,6 +24,7 @@ import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
  * Created by SungBin on 2020-09-11.
  */
 
+@AndroidEntryPoint
 class SignupActivity : AppCompatActivity() {
 
     private val signupBottomDialog by lazy { SignupBottomDialog.instance() }

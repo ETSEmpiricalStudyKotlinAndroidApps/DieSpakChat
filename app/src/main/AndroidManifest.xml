@@ -22,7 +22,7 @@
 
         <activity
             android:theme="@style/AppTheme.WhiteStatusBar.NoActionBar"
-            android:name=".ui.activity.ChatActivity">
+            android:name=".ui.activity.SignupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -14,6 +14,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.sungbin.sungbintool.util.ToastLength
 import com.sungbin.sungbintool.util.ToastType
 import com.sungbin.sungbintool.util.ToastUtil
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
 import kotlinx.android.synthetic.main.layout_signin.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.User
@@ -22,11 +24,19 @@ import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.isBlank
 import org.jetbrains.anko.support.v4.startActivity
+import javax.inject.Inject
+import javax.inject.Named
 
 
+@AndroidEntryPoint
+@WithFragmentBindings
 class SigninBottomDialog : BottomSheetDialogFragment() {
 
-    private val db = FirebaseFirestore.getInstance()
+    // private val db = FirebaseFirestore.getInstance()
+
+    @Inject
+    @Named("firestore")
+    lateinit var db: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +46,8 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        retainInstance = false
 
         btn_signin_done.setOnClickListener {
             if (!tiet_email.isBlank() && !tiet_password.isBlank()) {

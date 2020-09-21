@@ -91,6 +91,7 @@ dependencies {
         Dependencies.Ktx.Core,
         Dependencies.Ktx.Fragment,
 
+        // Dependencies.Di.Dagger,
         Dependencies.Di.Hilt,
 
         Dependencies.Ui.CountTimeProgressView,
@@ -109,6 +110,7 @@ dependencies {
         Dependencies.Util.CrashReporter
     )
 
+    // kapt(Dependencies.Di.DaggerCompiler)
     kapt(Dependencies.Util.GlideCompiler)
     kapt(Dependencies.Di.HiltCompiler)
     kapt(Dependencies.Jetpack.RoomCompiler)

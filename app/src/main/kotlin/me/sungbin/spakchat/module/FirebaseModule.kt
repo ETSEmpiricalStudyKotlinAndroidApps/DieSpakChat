@@ -19,19 +19,20 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 class FirebaseModule {
 
-    @Provides
-    @Named("firestore")
     @Singleton
-    fun provideFirestore() = FirebaseFirestore.getInstance()
-
-    @Provides
     @Named("storage")
-    @Singleton
+    @Provides
     fun provideFirebaseStorage() = FirebaseStorage.getInstance().reference
 
-    @Provides
-    @Named("database")
     @Singleton
+    @Named("firestore")
+    @Provides
+    fun provideFirestore() = FirebaseFirestore.getInstance()
+
+
+    @Singleton
+    @Named("database")
+    @Provides
     fun provideFirebaseRealtimeDatabase() = FirebaseDatabase.getInstance()
 
 }
