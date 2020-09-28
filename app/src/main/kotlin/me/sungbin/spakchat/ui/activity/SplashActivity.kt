@@ -12,6 +12,7 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ExceptionUtil
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -42,57 +43,12 @@ class SplashActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     for (user in it) {
                         user?.let {
-                            user.toObject(User::class.java).run {
-                                storage
-                                    .child("profile/${email ?: return@let}/profile.png")
-                                    .downloadUrl.addOnSuccessListener { profileUri ->
-                                        storage.child("background/$email/background.png")
-                                            .downloadUrl.addOnSuccessListener { backgroundUri ->
-                                                SpakChat.users.postValue(
-                                                    hashMapOf(
-                                                        email to User(
-                                                            id = id,
-                                                            email = email,
-                                                            password = password,
-                                                            name = name,
-                                                            profileImage = profileUri,
-                                                            backgroundImage = backgroundUri,
-                                                            statusMessage = statusMessage,
-                                                            birthday = birthday,
-                                                            lastOnline = lastOnline,
-                                                            isOnline = isOnline,
-                                                            friends = friends,
-                                                            sex = sex,
-                                                            emoji = emoji,
-                                                            black = black,
-                                                            accountStatus = accountStatus
-                                                        )
-                                                    )
-                                                )
-                                            }.addOnFailureListener {
-                                                SpakChat.users.postValue(
-                                                    hashMapOf(
-                                                        email to User(
-                                                            id = id,
-                                                            email = email,
-                                                            password = password,
-                                                            name = name,
-                                                            profileImage = profileUri,
-                                                            backgroundImage = backgroundImage,
-                                                            statusMessage = statusMessage,
-                                                            birthday = birthday,
-                                                            lastOnline = lastOnline,
-                                                            isOnline = isOnline,
-                                                            friends = friends,
-                                                            sex = sex,
-                                                            emoji = emoji,
-                                                            black = black,
-                                                            accountStatus = accountStatus
-                                                        )
-                                                    )
-                                                )
-                                            }
-                                    }
+                            with(user.toObject(User::class.java)) {
+                                SpakChat.users.postValue(
+                                    hashMapOf(
+                                        (this.email ?: return@let) to this
+                                    )
+                                )
                             }
                         }
                     }
@@ -101,6 +57,7 @@ class SplashActivity : AppCompatActivity() {
                     ExceptionUtil.except(it, applicationContext)
                 }
         }
+        startActivity<MainActivity>()
     }
 
 }

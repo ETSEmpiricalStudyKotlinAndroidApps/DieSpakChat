@@ -81,55 +81,103 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
 
         btn_signup_done.setOnClickListener {
             if (!tiet_email.isBlank() && !tiet_name.isBlank() && !tiet_password.isBlank()) {
-                val user = User(
-                    id = null,
-                    email = EncryptUtil.encrypt(
-                        EncryptUtil.EncryptType.SHA256,
-                        tiet_email.text.toString()
-                    ),
-                    password = EncryptUtil.encrypt(
-                        EncryptUtil.EncryptType.MD5,
-                        tiet_password.text.toString()
-                    ),
-                    name = tiet_name.text.toString(),
-                    profileImage = null,
-                    backgroundImage = null,
-                    statusMessage = getString(R.string.signin_default_status_message),
-                    birthday = null,
-                    lastOnline = null,
-                    isOnline = true,
-                    friends = listOf(),
-                    sex = null,
-                    emoji = listOf(),
-                    black = listOf(),
-                    accountStatus = AccountStatus.NORMAL,
-                )
-
-                firestore.collection("users")
-                    .document(
-                        EncryptUtil.encrypt(
-                            EncryptUtil.EncryptType.SHA256,
-                            tiet_email.text.toString()
-                        ).substring(0..5)
-                    )
-                    .set(user)
-                    .addOnSuccessListener {
-                        ToastUtil.show(
-                            requireContext(),
-                            getString(R.string.signup_done),
-                            ToastLength.SHORT,
-                            ToastType.SUCCESS
-                        )
-                        dismiss()
-                    }
-                    .addOnFailureListener {
-                        ExceptionUtil.except(it, requireContext())
-                    }
-
                 if (iv_profile.tag != null) {
                     storage // 프로필 사진 등록
-                        .child("profile/${user.email}/profile.png")
+                        .child("profile/${tiet_email.text}/profile.png")
                         .putFile(Uri.parse(iv_profile.tag.toString()))
+                        .addOnSuccessListener {
+                            it.storage.downloadUrl.addOnSuccessListener { uri ->
+                                val user = User(
+                                    id = null,
+                                    email = EncryptUtil.encrypt(
+                                        EncryptUtil.EncryptType.SHA256,
+                                        tiet_email.text.toString()
+                                    ),
+                                    password = EncryptUtil.encrypt(
+                                        EncryptUtil.EncryptType.MD5,
+                                        tiet_password.text.toString()
+                                    ),
+                                    name = tiet_name.text.toString(),
+                                    profileImage = uri,
+                                    backgroundImage = null,
+                                    statusMessage = getString(R.string.signin_default_status_message),
+                                    birthday = null,
+                                    lastOnline = null,
+                                    isOnline = true,
+                                    friends = listOf(),
+                                    sex = null,
+                                    emoji = listOf(),
+                                    black = listOf(),
+                                    accountStatus = AccountStatus.NORMAL,
+                                )
+
+                                firestore.collection("users")
+                                    .document(
+                                        EncryptUtil.encrypt(
+                                            EncryptUtil.EncryptType.SHA256,
+                                            tiet_email.text.toString()
+                                        ).substring(0..5)
+                                    )
+                                    .set(user)
+                                    .addOnSuccessListener {
+                                        ToastUtil.show(
+                                            requireContext(),
+                                            getString(R.string.signup_done),
+                                            ToastLength.SHORT,
+                                            ToastType.SUCCESS
+                                        )
+                                        dismiss()
+                                    }
+                                    .addOnFailureListener {
+                                        ExceptionUtil.except(it, requireContext())
+                                    }
+                            }
+                        }
+                } else {
+                    val user = User(
+                        id = null,
+                        email = EncryptUtil.encrypt(
+                            EncryptUtil.EncryptType.SHA256,
+                            tiet_email.text.toString()
+                        ),
+                        password = EncryptUtil.encrypt(
+                            EncryptUtil.EncryptType.MD5,
+                            tiet_password.text.toString()
+                        ),
+                        name = tiet_name.text.toString(),
+                        profileImage = null,
+                        backgroundImage = null,
+                        statusMessage = getString(R.string.signin_default_status_message),
+                        birthday = null,
+                        lastOnline = null,
+                        isOnline = true,
+                        friends = listOf(),
+                        sex = null,
+                        emoji = listOf(),
+                        black = listOf(),
+                        accountStatus = AccountStatus.NORMAL,
+                    )
+
+                    firestore.collection("users")
+                        .document(
+                            EncryptUtil.encrypt(
+                                EncryptUtil.EncryptType.SHA256,
+                                tiet_email.text.toString()
+                            ).substring(0..5)
+                        )
+                        .set(user)
+                        .addOnSuccessListener {
+                            ToastUtil.show(
+                                requireContext(),
+                                getString(R.string.signup_done),
+                                ToastLength.SHORT,
+                                ToastType.SUCCESS
+                            )
+                            dismiss()
+                        }
+                        .addOnFailureListener {
+                            ExceptionUtil.except(it, requireContext())
+                        }
                 }
             } else {
                 ToastUtil.show(
