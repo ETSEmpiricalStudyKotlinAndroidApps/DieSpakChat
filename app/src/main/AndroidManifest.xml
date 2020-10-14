@@ -20,18 +20,24 @@
         android:theme="@style/AppTheme"
         tools:targetApi="q">
 
-        <activity
+        <!--<activity
             android:theme="@style/AppTheme.NoActionBar.WhiteStatusBar"
             android:name=".ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>-->
 
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:theme="@style/AppTheme.WhiteStatusBar" />
+            android:name=".ui.activity.SignupActivity"
+            android:theme="@style/AppTheme.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <activity
             android:name=".ui.activity.ExceptionActivity"

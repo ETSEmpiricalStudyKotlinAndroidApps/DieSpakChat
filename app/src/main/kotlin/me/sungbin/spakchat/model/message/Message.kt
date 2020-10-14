@@ -9,7 +9,7 @@ import com.sungbin.sungbintool.extensions.plusAssign
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.model.user.User
-import me.sungbin.spakchat.module.GlideApp
+import me.sungbin.spakchat.modules.GlideApp
 import java.text.SimpleDateFormat
 import java.util.*
 

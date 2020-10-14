@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.module.GlideApp
+import me.sungbin.spakchat.modules.GlideApp
 import me.sungbin.spakchat.ui.dialog.SigninBottomDialog
 import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
 
@@ -34,7 +34,6 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        supportActionBar?.hide()
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS

@@ -1,4 +1,4 @@
-package me.sungbin.spakchat.module
+package me.sungbin.spakchat.modules
 
 import android.content.Context
 import com.bumptech.glide.GlideBuilder
@@ -19,7 +19,7 @@ class GlideModule : AppGlideModule() {
         builder.setDefaultRequestOptions(
             RequestOptions()
                 .format(DecodeFormat.PREFER_ARGB_8888)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
         )
     }
 }
