@@ -1,8 +1,11 @@
 package me.sungbin.spakchat.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.spakchat.R
@@ -10,6 +13,7 @@ import me.sungbin.spakchat.databinding.LayoutOtherChatBinding
 import me.sungbin.spakchat.databinding.LayoutOwnChatBinding
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageViewType
+import me.sungbin.spakchat.ui.imageview.activity.DetailImageActivity
 
 
 /**
@@ -28,7 +32,19 @@ class ChatAdapter(
         fun bindViewHolder(message: Message) {
             with(binding) {
                 this.message = message
-                invalidateAll()
+                ivProfile.setOnClickListener {
+                    val context = it.context
+                    val transitionName = context.getString(R.string.image_transition)
+                    val intent = Intent(context, DetailImageActivity::class.java)
+                        .putExtra("image", message.owner?.profileImageColor)
+                        .putExtra("name", message.owner?.name)
+                        .putExtra("avatar", message.owner?.profileImageColor)
+                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        context as Activity,
+                        ivProfile, transitionName
+                    )
+                    context.startActivity(intent, options.toBundle())
+                }
             }
         }
 
@@ -42,7 +58,6 @@ class ChatAdapter(
         fun bindViewHolder(message: Message) {
             with(binding) {
                 this.message = message
-                invalidateAll()
             }
         }
 

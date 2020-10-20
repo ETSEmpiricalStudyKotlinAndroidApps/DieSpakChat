@@ -10,6 +10,8 @@
 
     <style name="SpakChat.Chat.WhiteStatusBar" parent="SpakChat">
         <item name="android:statusBarColor">@color/colorWhite</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:navigationBarColor">@color/colorWhite</item>
         <item name="android:windowLightNavigationBar">true</item>

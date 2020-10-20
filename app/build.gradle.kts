@@ -94,6 +94,7 @@ dependencies {
         // Dependencies.Di.Dagger,
         Dependencies.Di.Hilt,
 
+        Dependencies.Ui.Slidr,
         Dependencies.Ui.CountTimeProgressView,
         Dependencies.Ui.FishBun,
         Dependencies.Ui.SmoothBottomBar,

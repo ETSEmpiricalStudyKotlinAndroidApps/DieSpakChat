@@ -26,8 +26,27 @@
     </style>
 
     <style name="SpakChat.Chat.WhiteStatusBar" parent="SpakChat">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:statusBarColor">@color/colorWhite</item>
         <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="SpakChat.DetailImageActivity" parent="SpakChat">
+        <item name="android:fontFamily">@font/nanumgothic</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/rounded_image_transition_enter
+        </item>
+        <item name="android:windowSharedElementReturnTransition">
+            @transition/rounded_image_transition_return
+        </item>
     </style>
 
     <style name="SpakChat.NoActionBar">

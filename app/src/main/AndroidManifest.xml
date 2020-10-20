@@ -43,6 +43,11 @@
             android:theme="@style/SpakChat.Chat.WhiteStatusBar" />
 
         <activity
+            android:name=".ui.imageview.activity.DetailImageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/SpakChat.DetailImageActivity" />
+
+        <activity
             android:name=".ui.activity.ExceptionActivity"
             android:theme="@style/SpakChat.NoActionBar" />
 

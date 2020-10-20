@@ -1,16 +1,16 @@
 package me.sungbin.spakchat.ui.activity
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
-import com.sungbin.androidutils.extensions.clear
-import com.sungbin.androidutils.extensions.plusAssign
-import com.sungbin.androidutils.extensions.setTint
-import com.sungbin.androidutils.extensions.toBottomScroll
+import com.r0adkll.slidr.Slidr
+import com.sungbin.androidutils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_chat.*
 import me.sungbin.spakchat.R
@@ -45,10 +45,27 @@ class ChatActivity : AppCompatActivity() {
     @Named("database")
     lateinit var database: DatabaseReference
 
+    private var rootHeight = -1
+    private var keyboardHeight = -1
+    private var showEmotionContainer = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
         supportActionBar?.hide()
+        Slidr.attach(this)
+
+
+        // https://wooooooak.github.io/android/2020/07/30/emoticon_container/
+        cl_container.viewTreeObserver.addOnGlobalLayoutListener {
+            if (rootHeight == -1) rootHeight = cl_container.height
+            val visibleFrameSize = Rect()
+            cl_container.getWindowVisibleDisplayFrame(visibleFrameSize)
+            val heightExceptKeyboard = visibleFrameSize.bottom - visibleFrameSize.top
+            if (heightExceptKeyboard < rootHeight) {
+                keyboardHeight = rootHeight - heightExceptKeyboard
+            }
+        }
 
         val id = intent.getStringExtra("id")
 
@@ -69,6 +86,26 @@ class ChatActivity : AppCompatActivity() {
                     )
                 )
             }
+        }
+
+        @Suppress("DEPRECATION")
+        et_input.setEndDrawableClickEvent {
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+            if (!showEmotionContainer) {
+                et_input.hideKeyboard()
+                tv_test.height = keyboardHeight
+                doDelay(50L) {
+                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+                    tv_test.show()
+                }
+            } else {
+                et_input.showKeyboard()
+                doDelay(50L) {
+                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+                    tv_test.hide(true)
+                }
+            }
+            showEmotionContainer = !showEmotionContainer
         }
 
         iv_send.setOnClickListener {

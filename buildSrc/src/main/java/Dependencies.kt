@@ -51,6 +51,7 @@ object Versions {
     }
 
     object Ui {
+        const val Slidr = "2.1.0"
         const val CountTimeProgressView = "1.1.3"
         const val FishBun = "1.0.0-alpha03"
         const val SmoothBottomBar = "1.7.6"
@@ -65,7 +66,7 @@ object Versions {
     object Util {
         const val TedPermission = "2.2.3"
         const val YoYoHelper = "2.4@aar"
-        const val AndroidUtils = "4.0.7"
+        const val AndroidUtils = "4.1.1"
         const val CarshReporter = "1.1.0"
     }
 }
@@ -124,6 +125,7 @@ object Dependencies {
     }
 
     object Ui {
+        const val Slidr = "com.r0adkll:slidableactivity:${Versions.Ui.Slidr}"
         const val CountTimeProgressView =
             "com.sfyc.ctpv:library:${Versions.Ui.CountTimeProgressView}"
         const val FishBun = "com.sangcomz:FishBun:${Versions.Ui.FishBun}"
