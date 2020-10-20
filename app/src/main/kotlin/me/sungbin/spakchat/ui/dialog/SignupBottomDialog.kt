@@ -13,9 +13,9 @@ import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
-import com.sungbin.sungbintool.util.ToastLength
-import com.sungbin.sungbintool.util.ToastType
-import com.sungbin.sungbintool.util.ToastUtil
+import com.sungbin.androidutils.util.ToastLength
+import com.sungbin.androidutils.util.ToastType
+import com.sungbin.androidutils.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 import kotlinx.android.synthetic.main.layout_signup.*

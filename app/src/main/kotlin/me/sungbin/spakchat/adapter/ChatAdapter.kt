@@ -65,9 +65,9 @@ class ChatAdapter(
     }
 
     override fun onBindViewHolder(@NonNull viewholder: RecyclerView.ViewHolder, position: Int) {
-        when (items[position].type!!) {
-            MessageViewType.OTHER -> (viewholder as OtherChatViewHolder).bindViewHolder(items[position])
+        when (items[position].messageViewType!!) {
             MessageViewType.OWN -> (viewholder as OwnChatViewHolder).bindViewHolder(items[position])
+            MessageViewType.OTHER -> (viewholder as OtherChatViewHolder).bindViewHolder(items[position])
             else -> throw Exception("없는 뷰 홀더")
         }
     }

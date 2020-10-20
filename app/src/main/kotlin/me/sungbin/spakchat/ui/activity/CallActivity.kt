@@ -3,7 +3,7 @@ package me.sungbin.spakchat.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sfyc.ctpv.CountTimeProgressView
-import com.sungbin.sungbintool.util.Logger
+import com.sungbin.androidutils.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_call.*
 import me.sungbin.spakchat.R

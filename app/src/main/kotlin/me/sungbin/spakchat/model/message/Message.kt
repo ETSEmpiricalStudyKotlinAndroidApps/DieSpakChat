@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.sungbin.sungbintool.extensions.plusAssign
+import com.sungbin.androidutils.extensions.plusAssign
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.model.user.User
@@ -19,6 +19,7 @@ import kotlin.random.Random
 /**
  * Created by SungBin on 2020-09-18.
  */
+
 
 data class Message(
     val id: String? = null,

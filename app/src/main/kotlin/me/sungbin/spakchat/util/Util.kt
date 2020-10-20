@@ -1,6 +1,6 @@
 package me.sungbin.spakchat.util
 
-import com.sungbin.sungbintool.util.Util
+import com.sungbin.androidutils.util.Util
 
 object Util {
 

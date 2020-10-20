@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorBackgroundWhite">
 
-        <com.sungbin.sungbintool.ui.TagableRoundImageView
+        <com.sungbin.androidutils.ui.TagableRoundImageView
             android:id="@+id/iv_profile"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
-            android:text="@{Message.owner.name"
+            android:text="@{Message.owner.name}"
             android:textColor="@color/colorBlack"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/iv_profile"
@@ -46,7 +46,6 @@
             android:layout_marginTop="@dimen/margin_half"
             app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="@dimen/margin_half"
-            app:cardElevation="0dp"
             app:layout_constraintStart_toEndOf="@+id/iv_profile"
             app:layout_constraintTop_toBottomOf="@+id/tv_name">
 
@@ -78,10 +77,16 @@
             android:text="@string/chat_preview_time"
             android:textColor="@color/colorLightGray"
             android:textSize="8sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/cv_message_container"
             app:layout_constraintStart_toEndOf="@+id/cv_message_container"
             app:loadDate="@{Message.time}"
             tools:ignore="SmallSp" />
+
+        <Space
+            android:id="@+id/space_margin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_default"
+            app:layout_constraintTop_toBottomOf="@id/cv_message_container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

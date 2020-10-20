@@ -19,7 +19,7 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha="0.9"
+            android:alpha="0.95"
             android:background="@color/colorWhite"
             android:translationZ="90dp"
             app:layout_constraintTop_toTopOf="parent">
@@ -45,7 +45,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/colorBlack" />
 
-                    <com.sungbin.sungbintool.ui.TagableRoundImageView
+                    <com.sungbin.androidutils.ui.TagableRoundImageView
                         android:id="@+id/iv_room_cover"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -68,7 +68,7 @@
                         tools:layout_height="2dp" />
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_default"
@@ -94,7 +94,7 @@
                         app:loadLastOnline="@{Message.owner.lastOnline}"
                         tools:text="@string/user_preview_last_online" />
 
-                    <com.sungbin.sungbintool.ui.TagableRoundImageView
+                    <com.sungbin.androidutils.ui.TagableRoundImageView
                         android:id="@+id/iv_search"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -107,7 +107,7 @@
                         app:tint="@color/colorLightGray"
                         app:triv_imageRadius="@dimen/margin_twice_and_half" />
 
-                    <com.sungbin.sungbintool.ui.TagableRoundImageView
+                    <com.sungbin.androidutils.ui.TagableRoundImageView
                         android:id="@+id/iv_call"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -131,7 +131,9 @@
             android:id="@+id/rv_chat"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:clipToPadding="false"
             android:background="@color/colorBackgroundWhite"
+            android:overScrollMode="never"
             android:orientation="vertical"
             android:padding="@dimen/margin_default"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -150,7 +152,7 @@
             android:padding="@dimen/margin_default"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <com.sungbin.sungbintool.ui.TagableRoundImageView
+            <com.sungbin.androidutils.ui.TagableRoundImageView
                 android:id="@+id/iv_attachment"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -176,13 +178,13 @@
                 android:inputType="textMultiLine"
                 android:maxHeight="150dp"
                 android:scrollbars="vertical"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iv_send"
                 app:layout_constraintStart_toEndOf="@+id/iv_attachment"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.sungbin.sungbintool.ui.TagableRoundImageView
+            <com.sungbin.androidutils.ui.TagableRoundImageView
                 android:id="@+id/iv_send"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
