@@ -1,6 +1,5 @@
 package me.sungbin.spakchat.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
@@ -16,15 +15,14 @@ import me.sungbin.spakchat.model.user.User
  */
 
 class OnlineAdapter(
-    private val items: List<User>,
-    private val activity: Activity
+    private val items: List<User>
 ) : RecyclerView.Adapter<OnlineAdapter.ViewHolder>() {
 
-    class ViewHolder(private val onlineBinding: LayoutFeedOnlineBinding) :
-        RecyclerView.ViewHolder(onlineBinding.root) {
+    inner class ViewHolder(private val binding: LayoutFeedOnlineBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bindViewHolder(user: User) {
-            with(onlineBinding) {
+            with(binding) {
                 this.user = user
                 invalidateAll()
             }
@@ -35,7 +33,7 @@ class OnlineAdapter(
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =
         ViewHolder(
             DataBindingUtil.inflate(
-                LayoutInflater.from(activity),
+                LayoutInflater.from(viewGroup.context),
                 R.layout.layout_feed_online, viewGroup, false
             )
         )

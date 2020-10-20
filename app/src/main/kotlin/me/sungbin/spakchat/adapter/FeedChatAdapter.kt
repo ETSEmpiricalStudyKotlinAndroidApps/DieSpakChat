@@ -1,6 +1,5 @@
 package me.sungbin.spakchat.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
@@ -10,6 +9,7 @@ import com.sungbin.sungbintool.extensions.hide
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
 import me.sungbin.spakchat.model.message.Message
+import me.sungbin.spakchat.ui.activity.ChatActivity
 
 
 /**
@@ -17,19 +17,22 @@ import me.sungbin.spakchat.model.message.Message
  */
 
 class FeedChatAdapter(
-    private val items: List<Message>,
-    private val activity: Activity
+    private val items: List<Message>
 ) : RecyclerView.Adapter<FeedChatAdapter.ViewHolder>() {
 
-    class ViewHolder(
-        private val feedChatBinding: LayoutFeedChatBinding,
+    inner class ViewHolder(
+        private val binding: LayoutFeedChatBinding,
     ) :
-        RecyclerView.ViewHolder(feedChatBinding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bindViewHolder(message: Message, position: Int) {
-            with(feedChatBinding) {
+            with(binding) {
                 this.message = message
+                ivProfile.setOnClickListener {
+                    it.context.startActivity<ChatActivity>("id" to message.owner?.id)
+                }
                 if (adapterPosition == 0) viewTop.hide(true)
+                invalidateAll()
             }
         }
 
@@ -38,7 +41,7 @@ class FeedChatAdapter(
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =
         ViewHolder(
             DataBindingUtil.inflate(
-                LayoutInflater.from(activity),
+                LayoutInflater.from(viewGroup.context),
                 R.layout.layout_feed_chat, viewGroup, false
             )
         )

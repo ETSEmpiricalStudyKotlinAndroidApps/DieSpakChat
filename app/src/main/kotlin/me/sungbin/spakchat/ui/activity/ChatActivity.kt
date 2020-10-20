@@ -12,13 +12,16 @@ import com.sungbin.sungbintool.extensions.setTint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_chat.*
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.adapter.ChatAdapter
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
-import me.sungbin.spakchat.model.user.User
+import me.sungbin.spakchat.model.message.MessageViewType
+import me.sungbin.spakchat.util.TestUtil
 import me.sungbin.spakchat.util.Util
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.collections.ArrayList
 
 
 /**
@@ -43,6 +46,13 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+        supportActionBar?.hide()
+
+        val id = intent.getStringExtra("id")
+
+        val messages = ArrayList<Message>()
+        val adapter = ChatAdapter(messages)
+        rv_chat.adapter = adapter
 
         et_input.doAfterTextChanged {
             if (it.toString().isNotBlank()) {
@@ -66,11 +76,15 @@ class ChatActivity : AppCompatActivity() {
                     time = Date(),
                     type = MessageType.CHAT,
                     attachment = null,
-                    owner = User(),
-                    mention = listOf()
+                    owner = TestUtil.getTestUser,
+                    mention = listOf(),
+                    messageViewType = MessageViewType.OWN
                 )
+                messages.add(message)
+                adapter.notifyDataSetChanged()
+                rv_chat.scrollToPosition(adapter.itemCount - 1)
                 et_input.clear()
-                database.child("chat/room/uuid").push().setValue(message)
+                // database.child("chat/room/uuid").push().setValue(message)
             }
         }
     }

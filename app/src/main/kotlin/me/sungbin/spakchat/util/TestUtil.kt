@@ -19,6 +19,7 @@ object TestUtil {
             password = "test-pw",
             name = "zmo__${Random.nextInt(0..10)}",
             profileImage = null,
+            profileImageColor = ColorUtil.randomColor,
             backgroundImage = null,
             statusMessage = "싹쓰리",
             birthday = Date(),
@@ -28,7 +29,8 @@ object TestUtil {
             sex = Sex.WOMEN,
             emoji = listOf(),
             black = listOf(),
-            accountStatus = AccountStatus.NORMAL
+            accountStatus = AccountStatus.NORMAL,
+            isTestMode = true
         )
 
     val getTestMessage
@@ -39,14 +41,15 @@ object TestUtil {
             type = MessageType.CHAT,
             attachment = null,
             owner = getTestUser,
-            mention = listOf(getTestUser)
+            mention = listOf(getTestUser),
+            messageViewType = Random.nextInt(0, 3)
         )
 
     val getTestText get() = Util.randomId.substring(0..5)
 
     fun getTestUser(count: Int): List<User> {
         val users = ArrayList<User>()
-        for (i in 0..count) {
+        repeat(count) {
             users.add(getTestUser)
         }
         return users
@@ -54,7 +57,7 @@ object TestUtil {
 
     fun getTestMessage(count: Int): List<Message> {
         val users = ArrayList<Message>()
-        for (i in 0..count) {
+        repeat(count) {
             users.add(getTestMessage)
         }
         return users

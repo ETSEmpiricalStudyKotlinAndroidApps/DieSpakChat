@@ -1,5 +1,6 @@
 package me.sungbin.spakchat.model.message
 
+import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -12,6 +13,7 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.modules.GlideApp
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.random.Random
 
 
 /**
@@ -26,6 +28,7 @@ data class Message(
     val attachment: Int? = null,
     val owner: User? = null,
     val mention: List<User>? = null,
+    val messageViewType: Int? = null
 ) {
 
     private val db = FirebaseStorage.getInstance().reference
@@ -35,10 +38,17 @@ data class Message(
         @JvmStatic
         @BindingAdapter("loadProfile")
         fun loadProfile(imageView: ImageView, user: User) {
-            GlideApp
-                .with(imageView.context)
-                .load(SpakChat.users.value?.get(user.email!!)?.profileImage)
-                .into(imageView)
+            if (!user.isTestMode!!) {
+                GlideApp
+                    .with(imageView.context)
+                    .load(SpakChat.users.value?.get(user.email!!)?.profileImage)
+                    .into(imageView)
+            } else {
+                GlideApp
+                    .with(imageView.context)
+                    .load(ColorDrawable(user.profileImageColor!!))
+                    .into(imageView)
+            }
         }
 
         @JvmStatic
@@ -71,8 +81,9 @@ data class Message(
         @JvmStatic
         @BindingAdapter("loadUnreadCount")
         fun loadUnreadCount(textView: TextView, message: Message) {
-            // todo: 메시지 안읽은 수 구하기
-
+            if (message.owner?.isTestMode!!) {
+                textView += Random.nextInt(0, 100).toString()
+            }
         }
 
         @JvmStatic

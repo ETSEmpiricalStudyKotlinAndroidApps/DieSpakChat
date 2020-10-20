@@ -1,5 +1,6 @@
 package me.sungbin.spakchat.model.user
 
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -21,6 +22,7 @@ data class User(
     val password: String? = null,
     val name: String? = null,
     val profileImage: Uri? = null,
+    val profileImageColor: Int? = null,
     val backgroundImage: Uri? = null,
     val statusMessage: String? = null,
     val birthday: Date? = null,
@@ -31,6 +33,7 @@ data class User(
     val emoji: List<String>? = null, // for emoji-uuid
     val black: List<String>? = null, // for user-uuid
     val accountStatus: Int? = null,
+    val isTestMode: Boolean? = null
 ) {
 
     private val db = FirebaseStorage.getInstance().reference
@@ -40,10 +43,17 @@ data class User(
         @JvmStatic
         @BindingAdapter("loadProfile")
         fun loadProfile(imageView: ImageView, user: User) {
-            GlideApp
-                .with(imageView.context)
-                .load(SpakChat.users.value?.get(user.email!!)?.profileImage)
-                .into(imageView)
+            if (!user.isTestMode!!) {
+                GlideApp
+                    .with(imageView.context)
+                    .load(SpakChat.users.value?.get(user.email!!)?.profileImage)
+                    .into(imageView)
+            } else {
+                GlideApp
+                    .with(imageView.context)
+                    .load(ColorDrawable(user.profileImageColor!!))
+                    .into(imageView)
+            }
         }
     }
 }

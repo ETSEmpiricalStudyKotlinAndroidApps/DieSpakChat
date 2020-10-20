@@ -56,8 +56,8 @@ class ChatFragment : Fragment() {
             text = getString(R.string.main_new_chat)
         }.show()
 
-        rv_online.adapter = OnlineAdapter(TestUtil.getTestUser(10), requireActivity())
-        rv_feed_chat.adapter = FeedChatAdapter(TestUtil.getTestMessage(10), requireActivity())
+        rv_online.adapter = OnlineAdapter(TestUtil.getTestUser(10))
+        rv_feed_chat.adapter = FeedChatAdapter(TestUtil.getTestMessage(10))
         rv_feed_chat.setFab(MainActivity.fabAction)
 
     }
