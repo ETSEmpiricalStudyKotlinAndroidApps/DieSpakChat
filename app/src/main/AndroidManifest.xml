@@ -30,8 +30,8 @@
         </activity>-->
 
         <activity
-            android:name=".ui.activity.SignupActivity"
-            android:theme="@style/AppTheme.FullScreen">
+            android:name=".ui.activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar.WhiteStatusBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -14,13 +14,13 @@ object Application {
 
 object Versions {
     object Firebase {
-        const val Database = "19.4.0"
+        const val Database = "19.5.0"
         const val Storage = "19.2.0"
-        const val Firestore = "21.6.0"
-        const val Messaging = "20.2.4"
+        const val Firestore = "21.7.1"
+        const val Messaging = "20.3.0"
         const val Config = "19.2.0"
         const val Auth = "19.4.0"
-        const val Analytics = "17.5.0"
+        const val Analytics = "17.6.0"
     }
 
     object Essential {
@@ -34,7 +34,7 @@ object Versions {
     }
 
     object Ktx {
-        const val Core = "1.3.1"
+        const val Core = "1.3.2"
         const val Fragment = "2.3.0"
     }
 
@@ -45,7 +45,7 @@ object Versions {
 
     object Jetpack {
         const val DataStore = "1.0.0-alpha01"
-        const val Navigation = "2.3.0"
+        const val Navigation = "2.3.1"
         const val Room = "2.3.0-alpha02"
         const val Paging = "2.1.2"
     }
@@ -55,17 +55,17 @@ object Versions {
         const val FishBun = "1.0.0-alpha03"
         const val SmoothBottomBar = "1.7.6"
         const val YoYo = "2.4@aar"
-        const val Lottie = "3.4.2"
+        const val Lottie = "3.4.4"
         const val Material = "1.2.1"
         const val Glide = "4.11.0"
         const val CardView = "1.0.0"
-        const val ConstraintLayout = "2.0.1"
+        const val ConstraintLayout = "2.0.2"
     }
 
     object Util {
         const val TedPermission = "2.2.3"
         const val YoYoHelper = "2.4@aar"
-        const val AndroidUtils = "4.0.3"
+        const val AndroidUtils = "4.0.4"
         const val CarshReporter = "1.1.0"
     }
 }

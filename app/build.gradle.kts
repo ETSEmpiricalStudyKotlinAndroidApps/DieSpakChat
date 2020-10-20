@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
-    id("name.remal.check-dependency-updates") version "1.0.211"
+    id("name.remal.check-dependency-updates") version "1.1.0"
     id("com.google.gms.google-services")
     kotlin("android")
     kotlin("android.extensions")
