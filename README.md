@@ -1,6 +1,6 @@
 <img align="right" src="https://raw.githubusercontent.com/sungbin5304/SpakChat/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
 
-# SpakChat [![codebeat badge](https://codebeat.co/badges/18a1b0d1-bd49-47cc-bdee-23990693870d)](https://codebeat.co/projects/github-com-sungbin5304-spakchat-master)
+# SpakChat [![codebeat badge](https://codebeat.co/badges/18a1b0d1-bd49-47cc-bdee-23990693870d)](https://codebeat.co/projects/github-com-sungbin5304-spakchat-master) [![time tracker](https://wakatime.com/badge/github/sungbin5304/SpakChat.svg)](https://wakatime.com/badge/github/sungbin5304/SpakChat)
 android chatting application
 
 ## Design Preview at Dribbble
