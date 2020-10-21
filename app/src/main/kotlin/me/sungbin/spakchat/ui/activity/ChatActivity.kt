@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.core.widget.doAfterTextChanged
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,9 +46,9 @@ class ChatActivity : AppCompatActivity() {
     @Named("database")
     lateinit var database: DatabaseReference
 
-    private var rootHeight = -1
-    private var keyboardHeight = -1
-    private var showEmotionContainer = false
+    private var rootHeight = 0
+    private var keyboardHeight = 0
+    private var isEmoticonContainerShown = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +56,9 @@ class ChatActivity : AppCompatActivity() {
         supportActionBar?.hide()
         Slidr.attach(this)
 
-
         // https://wooooooak.github.io/android/2020/07/30/emoticon_container/
         cl_container.viewTreeObserver.addOnGlobalLayoutListener {
-            if (rootHeight == -1) rootHeight = cl_container.height
+            if (rootHeight == 0) rootHeight = cl_container.height
             val visibleFrameSize = Rect()
             cl_container.getWindowVisibleDisplayFrame(visibleFrameSize)
             val heightExceptKeyboard = visibleFrameSize.bottom - visibleFrameSize.top
@@ -91,21 +91,29 @@ class ChatActivity : AppCompatActivity() {
         @Suppress("DEPRECATION")
         et_input.setEndDrawableClickEvent {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
-            if (!showEmotionContainer) {
-                et_input.hideKeyboard()
+            if (!isEmoticonContainerShown) { // 컨테이너 보여주기
+                TextViewCompat.setCompoundDrawableTintList(
+                    et_input,
+                    getColor(R.color.colorGray).toColorStateList()
+                )
                 tv_test.height = keyboardHeight
+                et_input.hideKeyboard()
                 doDelay(50L) {
-                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
                     tv_test.show()
-                }
-            } else {
-                et_input.showKeyboard()
-                doDelay(50L) {
                     window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+                }
+            } else { // 컨테이너 가리기
+                et_input.showKeyboard()
+                TextViewCompat.setCompoundDrawableTintList(
+                    et_input,
+                    getColor(R.color.colorLightGray).toColorStateList()
+                )
+                doDelay(50L) {
                     tv_test.hide(true)
+                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
                 }
             }
-            showEmotionContainer = !showEmotionContainer
+            isEmoticonContainerShown = !isEmoticonContainerShown
         }
 
         iv_send.setOnClickListener {
@@ -128,6 +136,7 @@ class ChatActivity : AppCompatActivity() {
                 // database.child("chat/room/uuid").push().setValue(message)
             }
         }
+
     }
 
 }
