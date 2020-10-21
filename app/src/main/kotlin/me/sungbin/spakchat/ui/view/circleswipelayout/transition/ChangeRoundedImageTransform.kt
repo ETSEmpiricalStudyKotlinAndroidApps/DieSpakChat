@@ -1,4 +1,4 @@
-package me.sungbin.spakchat.ui.imageview.transition
+package me.sungbin.spakchat.ui.view.circleswipelayout.transition
 
 import android.animation.Animator
 import android.animation.AnimatorSet
@@ -8,8 +8,8 @@ import android.transition.ChangeBounds
 import android.transition.TransitionValues
 import android.util.AttributeSet
 import android.view.ViewGroup
+import com.sungbin.androidutils.ui.TagableRoundImageView
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.ui.imageview.view.RoundedImageView
 
 class ChangeRoundedImageTransform(context: Context?, attrs: AttributeSet?) :
     ChangeBounds(context, attrs) {
@@ -41,8 +41,8 @@ class ChangeRoundedImageTransform(context: Context?, attrs: AttributeSet?) :
         val changeRadius = ValueAnimator.ofInt(fromRadius, toRadius)
         changeRadius.addUpdateListener { animator ->
             val view = startValues.view
-            if (view is RoundedImageView) {
-                view.radius = animator.animatedValue as Int
+            if (view is TagableRoundImageView) {
+                view.updateRadius(animator.animatedValue as Int)
             }
         }
 
@@ -51,11 +51,6 @@ class ChangeRoundedImageTransform(context: Context?, attrs: AttributeSet?) :
         }
     }
 
-    fun getFromRadius(): Int {
-        return fromRadius
-    }
-
-    fun getToRadius(): Int {
-        return toRadius
-    }
+    fun getFromRadius() = fromRadius
+    fun getToRadius() = toRadius
 }

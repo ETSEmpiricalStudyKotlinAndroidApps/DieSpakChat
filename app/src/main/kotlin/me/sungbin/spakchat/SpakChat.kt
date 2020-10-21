@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.HiltAndroidApp
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.user.User
-import me.sungbin.spakchat.util.ExceptionUtil
 
 
 /**
@@ -27,9 +26,9 @@ class SpakChat : Application() {
 
         context = applicationContext
 
-        Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
+        /*Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             ExceptionUtil.except(Exception(throwable), applicationContext)
-        }
+        }*/
 
     }
 

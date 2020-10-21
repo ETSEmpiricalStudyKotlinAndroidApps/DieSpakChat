@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.sungbin.spakchat.ui.imageview.view.CircleSwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<me.sungbin.spakchat.ui.view.circleswipelayout.CircleSwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeLayout"
@@ -76,4 +76,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</me.sungbin.spakchat.ui.imageview.view.CircleSwipeLayout>
+</me.sungbin.spakchat.ui.view.circleswipelayout.CircleSwipeLayout>

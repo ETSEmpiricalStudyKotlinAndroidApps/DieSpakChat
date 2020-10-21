@@ -7,7 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import me.sungbin.spakchat.SpakChat
-import me.sungbin.spakchat.modules.GlideApp
+import me.sungbin.spakchat.module.GlideApp
 import java.util.*
 
 

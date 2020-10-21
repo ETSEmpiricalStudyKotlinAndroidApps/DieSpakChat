@@ -1,4 +1,4 @@
-package me.sungbin.spakchat.ui.imageview.view
+package me.sungbin.spakchat.ui.view.circleswipelayout
 
 import android.animation.Animator
 import android.animation.TypeEvaluator
@@ -18,8 +18,7 @@ import android.widget.FrameLayout
 import androidx.annotation.FloatRange
 import androidx.core.view.GestureDetectorCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import me.sungbin.spakchat.ui.imageview.drawable.CircularDrawable
-import me.sungbin.spakchat.ui.imageview.transition.AnimationListener
+import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.properties.Delegates

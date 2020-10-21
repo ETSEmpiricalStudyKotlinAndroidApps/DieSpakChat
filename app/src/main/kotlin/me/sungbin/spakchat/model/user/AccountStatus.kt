@@ -7,5 +7,5 @@ package me.sungbin.spakchat.model.user
 object AccountStatus {
     const val BAN = -1
     const val VERIFIED = 1
-    const val NORMAL = 0
+    const val UNVARIED = 0
 }

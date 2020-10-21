@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.AccountStatus
 import me.sungbin.spakchat.model.user.User
+import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.isBlank
@@ -89,16 +90,14 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                             it.storage.downloadUrl.addOnSuccessListener { uri ->
                                 val user = User(
                                     id = null,
-                                    email = EncryptUtil.encrypt(
-                                        EncryptUtil.EncryptType.SHA256,
-                                        tiet_email.text.toString()
-                                    ),
+                                    email = tiet_email.text.toString(),
                                     password = EncryptUtil.encrypt(
                                         EncryptUtil.EncryptType.MD5,
                                         tiet_password.text.toString()
                                     ),
                                     name = tiet_name.text.toString(),
                                     profileImage = uri,
+                                    profileImageColor = ColorUtil.randomColor,
                                     backgroundImage = null,
                                     statusMessage = getString(R.string.signin_default_status_message),
                                     birthday = null,
@@ -108,7 +107,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                                     sex = null,
                                     emoji = listOf(),
                                     black = listOf(),
-                                    accountStatus = AccountStatus.NORMAL,
+                                    accountStatus = AccountStatus.UNVARIED,
                                 )
 
                                 firestore.collection("users")
@@ -136,16 +135,14 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                 } else {
                     val user = User(
                         id = null,
-                        email = EncryptUtil.encrypt(
-                            EncryptUtil.EncryptType.SHA256,
-                            tiet_email.text.toString()
-                        ),
+                        email = tiet_email.text.toString(),
                         password = EncryptUtil.encrypt(
                             EncryptUtil.EncryptType.MD5,
                             tiet_password.text.toString()
                         ),
                         name = tiet_name.text.toString(),
                         profileImage = null,
+                        profileImageColor = ColorUtil.randomColor,
                         backgroundImage = null,
                         statusMessage = getString(R.string.signin_default_status_message),
                         birthday = null,
@@ -155,7 +152,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                         sex = null,
                         emoji = listOf(),
                         black = listOf(),
-                        accountStatus = AccountStatus.NORMAL,
+                        accountStatus = AccountStatus.UNVARIED
                     )
 
                     firestore.collection("users")

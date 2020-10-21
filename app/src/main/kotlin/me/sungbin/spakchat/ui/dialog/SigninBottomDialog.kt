@@ -60,10 +60,7 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
                     .addOnSuccessListener {
                         it?.let {
                             it.toObject(User::class.java)?.run {
-                                if (EncryptUtil.encrypt(
-                                        EncryptUtil.EncryptType.SHA256,
-                                        tiet_email.text.toString()
-                                    ) == email &&
+                                if (tiet_email.text.toString() == email &&
                                     EncryptUtil.encrypt(
                                         EncryptUtil.EncryptType.MD5,
                                         tiet_password.text.toString()

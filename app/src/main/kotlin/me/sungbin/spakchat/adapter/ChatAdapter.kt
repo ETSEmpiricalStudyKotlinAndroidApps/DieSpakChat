@@ -13,7 +13,7 @@ import me.sungbin.spakchat.databinding.LayoutOtherChatBinding
 import me.sungbin.spakchat.databinding.LayoutOwnChatBinding
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageViewType
-import me.sungbin.spakchat.ui.imageview.activity.DetailImageActivity
+import me.sungbin.spakchat.ui.activity.DetailImageActivity
 
 
 /**

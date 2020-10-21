@@ -12,7 +12,7 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/signup_background"
-        app:lottie_renderMode="hardware" />
+        app:lottie_renderMode="software" />
 
     <com.sungbin.androidutils.ui.TagableRoundImageView
         android:id="@+id/iv_icon"

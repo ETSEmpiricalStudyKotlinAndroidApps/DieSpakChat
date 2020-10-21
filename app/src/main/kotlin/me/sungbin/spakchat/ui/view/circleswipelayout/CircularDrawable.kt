@@ -1,4 +1,4 @@
-package me.sungbin.spakchat.ui.imageview.drawable
+package me.sungbin.spakchat.ui.view.circleswipelayout
 
 import android.graphics.*
 import android.graphics.drawable.Drawable

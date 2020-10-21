@@ -1,4 +1,4 @@
-package me.sungbin.spakchat.ui.imageview.transition
+package me.sungbin.spakchat.ui.view.circleswipelayout.transition
 
 import android.animation.Animator
 

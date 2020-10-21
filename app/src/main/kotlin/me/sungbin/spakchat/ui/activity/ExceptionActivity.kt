@@ -6,11 +6,10 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.method.ScrollingMovementMethod
 import android.text.style.StyleSpan
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_exception.*
 import me.sungbin.spakchat.R
 
-class ExceptionActivity : AppCompatActivity() {
+class ExceptionActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

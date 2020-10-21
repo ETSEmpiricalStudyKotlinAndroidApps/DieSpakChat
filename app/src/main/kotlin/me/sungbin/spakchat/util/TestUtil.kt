@@ -29,7 +29,7 @@ object TestUtil {
             sex = Sex.WOMEN,
             emoji = listOf(),
             black = listOf(),
-            accountStatus = AccountStatus.NORMAL,
+            accountStatus = AccountStatus.UNVARIED,
             isTestMode = true
         )
 

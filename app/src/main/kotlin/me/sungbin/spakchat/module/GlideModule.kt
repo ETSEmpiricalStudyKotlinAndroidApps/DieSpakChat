@@ -1,4 +1,4 @@
-package me.sungbin.spakchat.modules
+package me.sungbin.spakchat.module
 
 import android.content.Context
 import com.bumptech.glide.GlideBuilder

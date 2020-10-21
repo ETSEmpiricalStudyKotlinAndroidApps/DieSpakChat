@@ -1,15 +1,17 @@
 package me.sungbin.spakchat.ui.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
+import com.sungbin.androidutils.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakChat
+import me.sungbin.spakchat.database.DataBaseViewModel
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ExceptionUtil
 import org.jetbrains.anko.startActivity
@@ -21,9 +23,9 @@ import javax.inject.Named
  * Created by SungBin on 2020-09-21.
  */
 
-@Suppress("LABEL_NAME_CLASH")
+
 @AndroidEntryPoint
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
 
     @Inject
     @Named("firestore")
@@ -33,9 +35,17 @@ class SplashActivity : AppCompatActivity() {
     @Named("storage")
     lateinit var storage: StorageReference
 
+    @Inject
+    @Named("database")
+    lateinit var database: DatabaseReference
+
+    val db by viewModels<DataBaseViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        Logger.w("start activity")
 
         CoroutineScope(Dispatchers.IO).launch {
             firestore.collection("users")
@@ -44,9 +54,10 @@ class SplashActivity : AppCompatActivity() {
                     for (user in it) {
                         user?.let {
                             with(user.toObject(User::class.java)) {
-                                SpakChat.users.postValue(
+                                Logger.w(this.name)
+                                db.user.postValue(
                                     hashMapOf(
-                                        (this.email ?: return@let) to this
+                                        (this.id ?: return@let) to this
                                     )
                                 )
                             }
@@ -57,7 +68,7 @@ class SplashActivity : AppCompatActivity() {
                     ExceptionUtil.except(it, applicationContext)
                 }
         }
-        startActivity<MainActivity>()
+        startActivity<JoinActivity>()
     }
 
 }

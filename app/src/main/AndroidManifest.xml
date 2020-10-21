@@ -4,7 +4,9 @@
     package="me.sungbin.spakchat">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,18 +22,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
 
-        <!--<activity
-            android:theme="@style/AppTheme.NoActionBar.WhiteStatusBar"
-            android:name=".ui.activity.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
-
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:theme="@style/SpakChat.Main.WhiteStatusBar">
+            android:name=".ui.activity.SplashActivity"
+            android:theme="@style/SpakChat.NoActionBar.WhiteStatusBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,11 +32,19 @@
         </activity>
 
         <activity
+            android:name=".ui.activity.JoinActivity"
+            android:theme="@style/SpakChat.FullScreen" />
+
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:theme="@style/SpakChat.Main.WhiteStatusBar" />
+
+        <activity
             android:name=".ui.activity.ChatActivity"
             android:theme="@style/SpakChat.Chat.WhiteStatusBar" />
 
         <activity
-            android:name=".ui.imageview.activity.DetailImageActivity"
+            android:name=".ui.activity.DetailImageActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/SpakChat.DetailImageActivity" />
 

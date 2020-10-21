@@ -10,7 +10,7 @@ import com.sungbin.androidutils.extensions.plusAssign
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.model.user.User
-import me.sungbin.spakchat.modules.GlideApp
+import me.sungbin.spakchat.module.GlideApp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random

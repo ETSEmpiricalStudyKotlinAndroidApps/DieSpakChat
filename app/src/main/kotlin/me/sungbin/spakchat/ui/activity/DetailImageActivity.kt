@@ -1,4 +1,4 @@
-package me.sungbin.spakchat.ui.imageview.activity
+package me.sungbin.spakchat.ui.activity
 
 import android.animation.Animator
 import android.graphics.drawable.ColorDrawable
@@ -9,14 +9,14 @@ import android.view.View
 import android.view.ViewPropertyAnimator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
+import com.sungbin.androidutils.ui.TagableRoundImageView
 import kotlinx.android.synthetic.main.activity_detailview_image.*
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.modules.GlideApp
-import me.sungbin.spakchat.ui.imageview.transition.AnimationListener
-import me.sungbin.spakchat.ui.imageview.transition.ChangeRoundedImageTransform
-import me.sungbin.spakchat.ui.imageview.transition.TransitionListener
-import me.sungbin.spakchat.ui.imageview.view.CircleSwipeLayout
-import me.sungbin.spakchat.ui.imageview.view.RoundedImageView
+import me.sungbin.spakchat.module.GlideApp
+import me.sungbin.spakchat.ui.view.circleswipelayout.CircleSwipeLayout
+import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
+import me.sungbin.spakchat.ui.view.circleswipelayout.transition.ChangeRoundedImageTransform
+import me.sungbin.spakchat.ui.view.circleswipelayout.transition.TransitionListener
 
 
 class DetailImageActivity : AppCompatActivity() {
@@ -117,9 +117,9 @@ class DetailImageActivity : AppCompatActivity() {
     private fun initializeTransitionCallback() {
         setEnterSharedElementCallback(object : SharedElementCallback() {
             override fun onSharedElementStart(
-                sharedElementNames: MutableList<String>,
-                sharedElements: MutableList<View>,
-                sharedElementSnapshots: MutableList<View>
+                sharedElementNames: List<String>,
+                sharedElements: List<View>,
+                sharedElementSnapshots: List<View>
             ) {
                 super.onSharedElementStart(
                     sharedElementNames,
@@ -128,7 +128,7 @@ class DetailImageActivity : AppCompatActivity() {
                 )
 
                 for (view in sharedElements) {
-                    if (view is RoundedImageView) {
+                    if (view is TagableRoundImageView) {
                         sharedElementEnterLeft = view.left
                         sharedElementEnterTop = view.top
                         break
@@ -138,23 +138,23 @@ class DetailImageActivity : AppCompatActivity() {
         })
 
         val sharedElementTransition = window.sharedElementEnterTransition
-        sharedElementTransition!!.addListener(object : TransitionListener() {
-            override fun onTransitionStart(p0: Transition?) {
-                super.onTransitionStart(p0)
+        sharedElementTransition?.addListener(object : TransitionListener() {
+            override fun onTransitionStart(transition: Transition?) {
+                super.onTransitionStart(transition)
 
                 val roundedImageTransform: ChangeRoundedImageTransform? =
-                    if (p0 is TransitionSet) {
+                    if (transition is TransitionSet) {
                         var roundedImageTransform: ChangeRoundedImageTransform? = null
-                        for (i in 0..p0.transitionCount) {
-                            val transition = p0.getTransitionAt(i)
-                            if (transition is ChangeRoundedImageTransform) {
-                                roundedImageTransform = transition
+                        for (i in 0..transition.transitionCount) {
+                            val newTransition = transition.getTransitionAt(i)
+                            if (newTransition is ChangeRoundedImageTransform) {
+                                roundedImageTransform = newTransition
                                 break
                             }
                         }
                         roundedImageTransform
-                    } else if (p0 is ChangeRoundedImageTransform) {
-                        p0
+                    } else if (transition is ChangeRoundedImageTransform) {
+                        transition
                     } else {
                         null
                     }
@@ -162,12 +162,13 @@ class DetailImageActivity : AppCompatActivity() {
                     roundedImageTransform?.getFromRadius() ?: sharedElementEnterRadius
             }
 
-            override fun onTransitionEnd(p0: Transition?) {
+            override fun onTransitionEnd(transition: Transition?) {
             }
         })
     }
 
     private fun initializeSystemUi() {
+        @Suppress("DEPRECATION")
         window!!.decorView.systemUiVisibility += (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }

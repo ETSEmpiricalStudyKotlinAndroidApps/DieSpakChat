@@ -9,13 +9,12 @@ import android.text.SpannableStringBuilder
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import com.sangcomz.fishbun.FishBun
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.modules.GlideApp
+import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.dialog.SigninBottomDialog
 import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
 
@@ -25,14 +24,14 @@ import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
  */
 
 @AndroidEntryPoint
-class SignupActivity : AppCompatActivity() {
+class JoinActivity : BaseActivity() {
 
     private val signupBottomDialog by lazy { SignupBottomDialog.instance() }
     private val signinBottomDialog by lazy { SigninBottomDialog.instance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+        setContentView(R.layout.activity_join)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,

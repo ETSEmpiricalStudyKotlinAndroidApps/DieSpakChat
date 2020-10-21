@@ -3,7 +3,7 @@ package me.sungbin.spakchat.ui.activity
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import androidx.core.widget.doAfterTextChanged
@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_chat.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.adapter.ChatAdapter
+import me.sungbin.spakchat.database.DataBaseViewModel
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.util.TestUtil
@@ -32,7 +33,7 @@ import kotlin.random.Random
  */
 
 @AndroidEntryPoint
-class ChatActivity : AppCompatActivity() {
+class ChatActivity : BaseActivity() {
 
     @Inject
     @Named("firestore")
@@ -45,6 +46,8 @@ class ChatActivity : AppCompatActivity() {
     @Inject
     @Named("database")
     lateinit var database: DatabaseReference
+
+    val db by viewModels<DataBaseViewModel>()
 
     private var rootHeight = 0
     private var keyboardHeight = 0
@@ -74,6 +77,10 @@ class ChatActivity : AppCompatActivity() {
         val messages = ArrayList<Message>()
         val adapter = ChatAdapter(messages)
         rv_chat.adapter = adapter
+
+        iv_back.setOnClickListener {
+            finish()
+        }
 
         et_input.doAfterTextChanged {
             if (it.toString().isNotBlank()) {
