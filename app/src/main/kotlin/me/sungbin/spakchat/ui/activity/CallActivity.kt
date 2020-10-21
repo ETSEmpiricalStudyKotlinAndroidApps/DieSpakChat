@@ -6,7 +6,6 @@ import com.sungbin.androidutils.util.Logger
 import kotlinx.android.synthetic.main.activity_call.*
 import me.sungbin.spakchat.R
 
-
 /**
  * Created by SungBin on 2020-09-19.
  */

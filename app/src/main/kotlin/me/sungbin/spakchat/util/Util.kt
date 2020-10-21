@@ -3,7 +3,6 @@ package me.sungbin.spakchat.util
 import com.sungbin.androidutils.util.Util
 
 object Util {
-
     val randomId get() = Util.makeRandomUUID().replace("-", "").substring(0..8)
 
     fun generateMessageId(message: String, ownerName: String) =

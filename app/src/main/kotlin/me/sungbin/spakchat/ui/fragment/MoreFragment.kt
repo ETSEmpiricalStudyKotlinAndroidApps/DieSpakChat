@@ -8,11 +8,9 @@ import kotlinx.android.synthetic.main.test_fragment.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.ui.activity.MainActivity
 
-
 /**
  * Created by SungBin on 2020-09-10.
  */
-
 
 class MoreFragment : BaseFragment() {
 

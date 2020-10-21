@@ -12,7 +12,6 @@ import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.ui.activity.ChatActivity
 import org.jetbrains.anko.startActivity
 
-
 /**
  * Created by SungBin on 2020-07-20.
  */
@@ -36,7 +35,6 @@ class FeedChatAdapter(
                 invalidateAll()
             }
         }
-
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =

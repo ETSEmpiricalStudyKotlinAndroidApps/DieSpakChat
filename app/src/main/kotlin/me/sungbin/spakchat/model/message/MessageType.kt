@@ -1,6 +1,5 @@
 package me.sungbin.spakchat.model.message
 
-
 /**
  * Created by SungBin on 2020-09-18.
  */
@@ -14,7 +13,7 @@ object MessageType {
     const val NOTICE = 5 // 일반 공지
     const val SHOUT = 6 // 외치기
     const val FEED = 7 // 카카오링크 같은거
-    const val ZENLY = 8 // 실시간 위치공유
+    const val LOCATION = 8 // 실시간 위치공유
     const val VOICETALK = 9
     const val FACETALK = 10
     const val SPOILER = 11

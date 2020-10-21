@@ -13,11 +13,9 @@ import me.sungbin.spakchat.database.DataBaseViewModel
 import javax.inject.Inject
 import javax.inject.Named
 
-
 /**
  * Created by SungBin on 2020-10-21.
  */
-
 
 @AndroidEntryPoint
 @WithFragmentBindings

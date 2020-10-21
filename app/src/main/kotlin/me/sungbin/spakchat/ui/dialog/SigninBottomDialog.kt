@@ -27,7 +27,6 @@ import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject
 import javax.inject.Named
 
-
 @AndroidEntryPoint
 @WithFragmentBindings
 class SigninBottomDialog : BottomSheetDialogFragment() {

@@ -18,11 +18,9 @@ import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 import javax.inject.Named
 
-
 /**
  * Created by SungBin on 2020-09-21.
  */
-
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity() {

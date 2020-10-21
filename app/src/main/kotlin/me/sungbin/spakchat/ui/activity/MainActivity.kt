@@ -38,5 +38,4 @@ class MainActivity : BaseActivity() {
         navController.navigateUp()
         return true
     }
-
 }

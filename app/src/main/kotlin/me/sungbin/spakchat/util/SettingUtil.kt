@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.map
 import me.sungbin.spakchat.SpakChat.Companion.context
 
 object SettingUtil {
-
     val dataStore = context.createDataStore(
         name = "setting",
     )

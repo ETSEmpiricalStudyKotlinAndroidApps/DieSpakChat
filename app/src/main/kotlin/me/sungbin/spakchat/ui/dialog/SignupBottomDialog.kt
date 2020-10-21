@@ -29,7 +29,6 @@ import me.sungbin.spakchat.util.isBlank
 import javax.inject.Inject
 import javax.inject.Named
 
-
 @AndroidEntryPoint
 @WithFragmentBindings
 class SignupBottomDialog : BottomSheetDialogFragment() {

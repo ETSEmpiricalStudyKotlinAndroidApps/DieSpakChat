@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.ui.activity.MainActivity
 
-
 /**
  * Created by SungBin on 2020-09-10.
  */
-
 
 class ChatFragment : BaseFragment() {
 

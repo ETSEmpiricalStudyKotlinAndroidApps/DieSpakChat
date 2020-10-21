@@ -18,7 +18,6 @@ import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListene
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.ChangeRoundedImageTransform
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.TransitionListener
 
-
 class DetailImageActivity : AppCompatActivity() {
     private var sharedElementEnterLeft: Int = 0
     private var sharedElementEnterTop: Int = 0

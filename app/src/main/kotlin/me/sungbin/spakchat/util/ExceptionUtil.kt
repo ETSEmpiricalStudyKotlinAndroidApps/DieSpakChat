@@ -10,7 +10,6 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
 
 object ExceptionUtil {
-
     fun except(exception: Exception, context: Context) {
         Logger.w(exception)
         val message = exception.localizedMessage
@@ -24,5 +23,4 @@ object ExceptionUtil {
             ToastType.ERROR
         )
     }
-
 }

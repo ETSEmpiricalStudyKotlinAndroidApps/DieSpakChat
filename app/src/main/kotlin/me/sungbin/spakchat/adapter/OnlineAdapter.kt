@@ -9,7 +9,6 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFeedOnlineBinding
 import me.sungbin.spakchat.model.user.User
 
-
 /**
  * Created by SungBin on 2020-07-20.
  */
@@ -27,7 +26,6 @@ class OnlineAdapter(
                 invalidateAll()
             }
         }
-
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =

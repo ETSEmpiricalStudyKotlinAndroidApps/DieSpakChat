@@ -15,7 +15,6 @@ import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageViewType
 import me.sungbin.spakchat.ui.activity.DetailImageActivity
 
-
 /**
  * Created by SungBin on 2020-07-20.
  */
@@ -47,7 +46,6 @@ class ChatAdapter(
                 }
             }
         }
-
     }
 
     inner class OwnChatViewHolder(
@@ -60,7 +58,6 @@ class ChatAdapter(
                 this.message = message
             }
         }
-
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) = when (viewType) {

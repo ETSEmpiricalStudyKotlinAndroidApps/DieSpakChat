@@ -1,6 +1,5 @@
 package me.sungbin.spakchat.model.user
 
-
 /**
  * Created by SungBin on 2020-09-11.
  */

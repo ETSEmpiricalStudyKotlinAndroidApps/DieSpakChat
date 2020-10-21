@@ -18,7 +18,6 @@ import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.dialog.SigninBottomDialog
 import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
 
-
 /**
  * Created by SungBin on 2020-09-11.
  */

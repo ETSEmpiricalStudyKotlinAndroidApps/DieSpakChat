@@ -15,11 +15,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
 
-
 /**
  * Created by SungBin on 2020-09-18.
  */
-
 
 data class Message(
     val id: String? = null,

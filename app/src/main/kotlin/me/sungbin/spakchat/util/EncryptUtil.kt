@@ -5,7 +5,6 @@ import java.security.MessageDigest
 import kotlin.experimental.and
 
 object EncryptUtil {
-
     sealed class EncryptType {
         object MD5 : EncryptType()
         object SHA256 : EncryptType()
@@ -31,5 +30,4 @@ object EncryptUtil {
             message
         }
     }
-
 }

@@ -10,11 +10,9 @@ import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.module.GlideApp
 import java.util.*
 
-
 /**
  * Created by SungBin on 2020-09-11.
  */
-
 
 data class User(
     val id: String? = null,

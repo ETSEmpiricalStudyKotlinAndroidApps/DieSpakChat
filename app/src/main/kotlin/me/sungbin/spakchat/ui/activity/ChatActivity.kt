@@ -27,7 +27,6 @@ import javax.inject.Named
 import kotlin.collections.ArrayList
 import kotlin.random.Random
 
-
 /**
  * Created by SungBin on 2020-09-19.
  */
