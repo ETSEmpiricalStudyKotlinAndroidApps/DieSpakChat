@@ -6,7 +6,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import me.sungbin.spakchat.SpakChat
+import me.sungbin.spakchat.R
 import me.sungbin.spakchat.module.GlideApp
 import java.util.*
 
@@ -44,7 +44,7 @@ data class User(
             if (!user.isTestMode!!) {
                 GlideApp
                     .with(imageView.context)
-                    .load(SpakChat.users.value?.get(user.email!!)?.profileImage)
+                    .load(user.profileImage)
                     .into(imageView)
             } else {
                 GlideApp
@@ -52,6 +52,15 @@ data class User(
                     .load(ColorDrawable(user.profileImageColor!!))
                     .into(imageView)
             }
+        }
+
+        @JvmStatic
+        @BindingAdapter("loadStatus")
+        fun loadStatus(imageView: ImageView, isOnline: Boolean) {
+            imageView.setImageResource(
+                if (isOnline) R.drawable.bg_shape_online
+                else R.drawable.bg_shape_offline
+            )
         }
     }
 }

@@ -28,6 +28,7 @@ import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.isBlank
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.random.Random
 
 @AndroidEntryPoint
 @WithFragmentBindings
@@ -88,7 +89,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                         .addOnSuccessListener {
                             it.storage.downloadUrl.addOnSuccessListener { uri ->
                                 val user = User(
-                                    id = null,
+                                    id = "${tiet_name.text.toString()}${Random.nextInt(10000)}",
                                     email = tiet_email.text.toString(),
                                     password = EncryptUtil.encrypt(
                                         EncryptUtil.EncryptType.MD5,
@@ -107,6 +108,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                                     emoji = listOf(),
                                     black = listOf(),
                                     accountStatus = AccountStatus.UNVARIED,
+                                    isTestMode = false
                                 )
 
                                 firestore.collection("users")
@@ -133,7 +135,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                         }
                 } else {
                     val user = User(
-                        id = null,
+                        id = "${tiet_name.text.toString()}${Random.nextInt(10000)}",
                         email = tiet_email.text.toString(),
                         password = EncryptUtil.encrypt(
                             EncryptUtil.EncryptType.MD5,
@@ -151,7 +153,8 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                         sex = null,
                         emoji = listOf(),
                         black = listOf(),
-                        accountStatus = AccountStatus.UNVARIED
+                        accountStatus = AccountStatus.UNVARIED,
+                        isTestMode = false
                     )
 
                     firestore.collection("users")

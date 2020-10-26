@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clipToPadding="false"
     android:padding="@dimen/margin_twice">
 
     <TextView
@@ -29,8 +30,8 @@
             android:id="@+id/tiet_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:inputType="textEmailAddress"
+            android:maxLines="1"
             android:singleLine="true" />
         ​
     </com.google.android.material.textfield.TextInputLayout>
@@ -42,16 +43,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
         android:hint="@string/signup_password"
-        app:layout_constraintTop_toBottomOf="@+id/til_email"
         app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@+id/til_email"
         app:startIconDrawable="@drawable/ic_outline_vpn_key_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiet_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:inputType="textPassword"
+            android:maxLines="1"
             android:singleLine="true" />
         ​
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,9 +61,9 @@
         android:id="@+id/btn_signin_done"
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:layout_marginTop="@dimen/margin_twice"
         android:text="@string/signup_signin"
         app:cornerRadius="@dimen/margin_default"
-        android:layout_marginTop="@dimen/margin_twice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.test_fragment.*
+import com.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.ui.activity.MainActivity
 
@@ -18,16 +18,20 @@ class ContactFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.test_fragment, container, false)!!
+    ) = inflater.inflate(R.layout.fragment_contact, container, false)!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Logger.w("AAAAAA")
+
+        db.user.value?.values?.map {
+            Logger.w(it.name)
+        }
 
         MainActivity.fabAction.apply {
             text = getString(R.string.main_new_contact)
             show()
         }
-
-        tv_test.text = "ContactFragment"
     }
 }

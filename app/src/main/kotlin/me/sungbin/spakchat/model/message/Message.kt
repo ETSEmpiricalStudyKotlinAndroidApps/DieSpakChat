@@ -8,7 +8,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.sungbin.androidutils.extensions.plusAssign
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.module.GlideApp
 import java.text.SimpleDateFormat
@@ -40,7 +39,7 @@ data class Message(
             if (!user.isTestMode!!) {
                 GlideApp
                     .with(imageView.context)
-                    .load(SpakChat.users.value?.get(user.email!!)?.profileImage)
+                    .load(user.profileImage)
                     .into(imageView)
             } else {
                 GlideApp
@@ -89,7 +88,7 @@ data class Message(
         @BindingAdapter("loadStatus")
         fun loadStatus(imageView: ImageView, message: Message) {
             imageView.setImageResource(
-                if (SpakChat.users.value?.get(message.owner?.email)?.isOnline == true) R.drawable.bg_shape_online
+                if (message.owner?.isOnline == true) R.drawable.bg_shape_online
                 else R.drawable.bg_shape_offline
             )
         }

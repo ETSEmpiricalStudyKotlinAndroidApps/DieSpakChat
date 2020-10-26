@@ -40,14 +40,4 @@ abstract class BaseFragment : Fragment() {
         retainInstance = false
     }
 
-    fun <T : MutableCollection<T?>> MutableCollection<T?>.toList(): List<T> {
-        val list = ArrayList<T>()
-        this.forEach {
-            it?.let { element ->
-                list.add(element)
-            }
-        }
-        return list
-    }
-
 }

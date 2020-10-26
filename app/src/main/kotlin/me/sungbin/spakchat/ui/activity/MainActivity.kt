@@ -38,4 +38,9 @@ class MainActivity : BaseActivity() {
         navController.navigateUp()
         return true
     }
+
+    override fun onStop() { // vs onDestroy: 뭘 써야 할 까?
+        super.onStop()
+        // todo: 마지막 접속시간 갱신
+    }
 }

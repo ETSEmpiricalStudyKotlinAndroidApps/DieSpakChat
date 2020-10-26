@@ -16,6 +16,8 @@
         android:layout_height="match_parent"
         android:background="@color/colorBackgroundWhite">
 
+        <!-- todo: 리사이클러뷰 마지막 아이템 짤리는거 고치기 -->
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"

@@ -11,7 +11,7 @@
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
     </style>
 
-    <style name="SpakChat.FullScreen">
+    <style name="SpakChat.FullScreen" parent="SpakChat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -54,7 +54,7 @@
         </item>
     </style>
 
-    <style name="SpakChat.NoActionBar">
+    <style name="SpakChat.NoActionBar" parent="SpakChat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
