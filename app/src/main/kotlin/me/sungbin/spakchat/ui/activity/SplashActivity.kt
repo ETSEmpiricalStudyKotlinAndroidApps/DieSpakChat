@@ -16,10 +16,10 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.database.UserDatabase
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.model.user.UserEntity
+import me.sungbin.spakchat.util.toText
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.random.Random
 
 /**
  * Created by SungBin on 2020-09-21.
@@ -42,7 +42,7 @@ class SplashActivity : BaseActivity() {
 
     @Inject
     @Named("user-db")
-    lateinit var db: UserDatabase
+    lateinit var userDb: UserDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,37 +50,36 @@ class SplashActivity : BaseActivity() {
 
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
             CoroutineScope(Dispatchers.IO).launch {
-
-                val test = UserEntity(
-                    key = null,
-                    id = "AA",
-                    email = "AAAA",
-                    password = "AA",
-                    name = Random.nextInt(10000).toString(),
-                    profileImage = "AA",
-                    profileImageColor = null,
-                    backgroundImage = null,
-                    statusMessage = null,
-                    birthday = null,
-                    lastOnline = null,
-                    isOnline = null,
-                    friends = null,
-                    sex = null,
-                    emoji = null,
-                    black = null,
-                    accountStatus = null,
-                    isTestMode = null
-                )
-                db.dao().insert(test)
-                Logger.w("room 진행")
-
                 firestore.collection("users")
                     .get()
                     .addOnSuccessListener {
                         for (user in it) {
                             user?.let {
                                 with(user.toObject(User::class.java)) {
-                                    // todo
+                                    Logger.w(this.name)
+                                    Thread {
+                                        val entity = UserEntity(
+                                            key = this.key,
+                                            id = this.id,
+                                            email = this.email,
+                                            password = this.password,
+                                            name = this.name,
+                                            profileImage = this.profileImage.toString(),
+                                            profileImageColor = this.profileImageColor,
+                                            backgroundImage = this.backgroundImage.toString(),
+                                            statusMessage = this.statusMessage,
+                                            birthday = this.birthday.toString(),
+                                            lastOnline = this.lastOnline.toString(),
+                                            isOnline = this.isOnline,
+                                            friends = this.friends.toText(),
+                                            sex = this.sex,
+                                            emoji = this.emoji.toText(),
+                                            black = this.black.toText(),
+                                            accountStatus = this.accountStatus,
+                                            isTestMode = this.isTestMode
+                                        )
+                                        userDb.dao().insert(entity)
+                                    }.start()
                                 }
                             }
                         }

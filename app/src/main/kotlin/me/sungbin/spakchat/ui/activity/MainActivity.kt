@@ -5,9 +5,11 @@ import android.view.Menu
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import me.sungbin.spakchat.R
 
+@AndroidEntryPoint // for fragment
 class MainActivity : BaseActivity() {
 
     private lateinit var navController: NavController

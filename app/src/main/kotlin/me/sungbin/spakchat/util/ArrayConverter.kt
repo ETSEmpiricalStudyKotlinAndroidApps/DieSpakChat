@@ -20,9 +20,9 @@ fun String.toArray(): List<String> {
     return list
 }
 
-fun <T> List<T>.toText(): String {
+fun <T> List<T>?.toText(): String { // 처음써보는 제너릭!!
     val string = StringBuilder()
-    this.forEach {
+    this?.forEach {
         val value = it.toString()
         if (value.isNotBlank()) { // todo: 과연 공백이 들어오는 데이터가 있을까?
             string.append(PREFIX + value)

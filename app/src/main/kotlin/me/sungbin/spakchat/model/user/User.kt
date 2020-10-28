@@ -15,6 +15,7 @@ import java.util.*
  */
 
 data class User(
+    val key: Long? = null,
     val id: String? = null,
     val email: String? = null,
     val password: String? = null,

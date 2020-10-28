@@ -35,7 +35,6 @@ class DependencyModule {
     @Provides
     fun provideFirestore() = FirebaseFirestore.getInstance()
 
-
     @Singleton
     @Named("database")
     @Provides

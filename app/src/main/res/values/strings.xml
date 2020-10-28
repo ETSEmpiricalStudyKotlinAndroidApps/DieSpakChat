@@ -5,6 +5,8 @@
     <string name="action">action</string>
     <string name="cancel">닫기</string>
 
+    <string name="test_clear_room">room 초기화</string>
+
     <string name="image_transition">transition</string>
 
     <string name="image_description_favorite">favorite-star</string>

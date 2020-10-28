@@ -30,7 +30,7 @@ import javax.inject.Named
 class JoinActivity : BaseActivity() {
 
     private val signupBottomDialog by lazy { SignupBottomDialog.instance() } // 2중 싱글톤???
-    private val signinBottomDialog by lazy { SigninBottomDialog.instance() }
+    private val signinBottomDialog by lazy { SigninBottomDialog.instance() } // 2중 싱글톤???
 
     @Inject
     @Named("user-db")
@@ -42,7 +42,7 @@ class JoinActivity : BaseActivity() {
 
         Thread {
             db.dao().getAllUser().map {
-                Logger.w(arrayOf("${it.key}: ${it.name}"))
+                Logger.w("${it.key}: ${it.name}")
             }
         }.start()
 

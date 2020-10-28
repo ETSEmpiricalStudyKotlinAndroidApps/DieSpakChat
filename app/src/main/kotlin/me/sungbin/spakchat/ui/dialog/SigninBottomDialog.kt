@@ -15,7 +15,6 @@ import com.sungbin.androidutils.util.ToastLength
 import com.sungbin.androidutils.util.ToastType
 import com.sungbin.androidutils.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.WithFragmentBindings
 import kotlinx.android.synthetic.main.layout_signin.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.User
@@ -28,7 +27,6 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @AndroidEntryPoint
-@WithFragmentBindings
 class SigninBottomDialog : BottomSheetDialogFragment() {
 
     @Inject
@@ -43,7 +41,6 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         retainInstance = false
 
         btn_signin_done.setOnClickListener {

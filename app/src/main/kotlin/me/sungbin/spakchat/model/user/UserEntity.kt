@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 class UserEntity(
-    @PrimaryKey(autoGenerate = true) val key: Long?,
+    @PrimaryKey val key: Long?,
     val id: String?,
     val email: String?,
     val password: String?,

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.test_fragment.*
+import kotlinx.android.synthetic.main.fragment_more.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.ui.activity.MainActivity
 
@@ -18,12 +18,25 @@ class MoreFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.test_fragment, container, false)!!
+    ) = inflater.inflate(R.layout.fragment_more, container, false)!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         MainActivity.fabAction.hide()
-        tv_test.text = "SettingFragment"
+        btn_clear_room.setOnClickListener {
+            /*it.post {
+                Thread {
+                    userDb.clearAllTables()
+                    ToastUtil.show(
+                        requireContext(),
+                        "room 초기화 완료",
+                        ToastLength.SHORT,
+                        ToastType.SUCCESS
+                    )
+                }.start()
+            }*/
+            userDb.clearAllTables()
+        }
     }
 }

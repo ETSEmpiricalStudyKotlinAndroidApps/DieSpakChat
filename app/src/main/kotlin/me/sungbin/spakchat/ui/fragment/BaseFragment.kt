@@ -7,7 +7,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.WithFragmentBindings
+import me.sungbin.spakchat.database.UserDatabase
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -16,7 +16,6 @@ import javax.inject.Named
  */
 
 @AndroidEntryPoint
-@WithFragmentBindings
 abstract class BaseFragment : Fragment() {
 
     @Inject
@@ -30,6 +29,10 @@ abstract class BaseFragment : Fragment() {
     @Inject
     @Named("database")
     lateinit var database: DatabaseReference
+
+    @Inject
+    @Named("user-db")
+    lateinit var userDb: UserDatabase
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -17,7 +17,6 @@ import com.sungbin.androidutils.util.ToastLength
 import com.sungbin.androidutils.util.ToastType
 import com.sungbin.androidutils.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.WithFragmentBindings
 import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.AccountStatus
@@ -31,7 +30,6 @@ import javax.inject.Named
 import kotlin.random.Random
 
 @AndroidEntryPoint
-@WithFragmentBindings
 class SignupBottomDialog : BottomSheetDialogFragment() {
 
     @Inject
@@ -50,7 +48,6 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         retainInstance = false
 
         iv_profile.setOnClickListener {
@@ -88,95 +85,11 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                         .putFile(Uri.parse(iv_profile.tag.toString()))
                         .addOnSuccessListener {
                             it.storage.downloadUrl.addOnSuccessListener { uri ->
-                                val user = User(
-                                    id = "${tiet_name.text.toString()}${Random.nextInt(10000)}",
-                                    email = tiet_email.text.toString(),
-                                    password = EncryptUtil.encrypt(
-                                        EncryptUtil.EncryptType.MD5,
-                                        tiet_password.text.toString()
-                                    ),
-                                    name = tiet_name.text.toString(),
-                                    profileImage = uri,
-                                    profileImageColor = ColorUtil.randomColor,
-                                    backgroundImage = null,
-                                    statusMessage = getString(R.string.signin_default_status_message),
-                                    birthday = null,
-                                    lastOnline = null,
-                                    isOnline = true,
-                                    friends = listOf(),
-                                    sex = null,
-                                    emoji = listOf(),
-                                    black = listOf(),
-                                    accountStatus = AccountStatus.UNVARIED,
-                                    isTestMode = false
-                                )
-
-                                firestore.collection("users")
-                                    .document(
-                                        EncryptUtil.encrypt(
-                                            EncryptUtil.EncryptType.SHA256,
-                                            tiet_email.text.toString()
-                                        ).substring(0..5)
-                                    )
-                                    .set(user)
-                                    .addOnSuccessListener {
-                                        ToastUtil.show(
-                                            requireContext(),
-                                            getString(R.string.signup_done),
-                                            ToastLength.SHORT,
-                                            ToastType.SUCCESS
-                                        )
-                                        dismiss()
-                                    }
-                                    .addOnFailureListener {
-                                        ExceptionUtil.except(it, requireContext())
-                                    }
+                                upload(uri)
                             }
                         }
                 } else {
-                    val user = User(
-                        id = "${tiet_name.text.toString()}${Random.nextInt(10000)}",
-                        email = tiet_email.text.toString(),
-                        password = EncryptUtil.encrypt(
-                            EncryptUtil.EncryptType.MD5,
-                            tiet_password.text.toString()
-                        ),
-                        name = tiet_name.text.toString(),
-                        profileImage = null,
-                        profileImageColor = ColorUtil.randomColor,
-                        backgroundImage = null,
-                        statusMessage = getString(R.string.signin_default_status_message),
-                        birthday = null,
-                        lastOnline = null,
-                        isOnline = true,
-                        friends = listOf(),
-                        sex = null,
-                        emoji = listOf(),
-                        black = listOf(),
-                        accountStatus = AccountStatus.UNVARIED,
-                        isTestMode = false
-                    )
-
-                    firestore.collection("users")
-                        .document(
-                            EncryptUtil.encrypt(
-                                EncryptUtil.EncryptType.SHA256,
-                                tiet_email.text.toString()
-                            ).substring(0..5)
-                        )
-                        .set(user)
-                        .addOnSuccessListener {
-                            ToastUtil.show(
-                                requireContext(),
-                                getString(R.string.signup_done),
-                                ToastLength.SHORT,
-                                ToastType.SUCCESS
-                            )
-                            dismiss()
-                        }
-                        .addOnFailureListener {
-                            ExceptionUtil.except(it, requireContext())
-                        }
+                    upload()
                 }
             } else {
                 ToastUtil.show(
@@ -187,6 +100,58 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
                 )
             }
         }
+    }
+
+    private fun upload(profileImageUri: Uri? = null) {
+        val user = User(
+            key = "${tiet_email.text.toString().first().toInt()}${
+                Random.nextInt(
+                    10000,
+                    100000
+                )
+            }${tiet_name.text.toString().last().toInt()}".toLong(),
+            id = "${tiet_name.text.toString()}${Random.nextInt(10000)}",
+            email = tiet_email.text.toString(),
+            password = EncryptUtil.encrypt(
+                EncryptUtil.EncryptType.MD5,
+                tiet_password.text.toString()
+            ),
+            name = tiet_name.text.toString(),
+            profileImage = profileImageUri,
+            profileImageColor = ColorUtil.randomColor,
+            backgroundImage = null,
+            statusMessage = getString(R.string.signin_default_status_message),
+            birthday = null,
+            lastOnline = null,
+            isOnline = true,
+            friends = listOf(),
+            sex = null,
+            emoji = listOf(),
+            black = listOf(),
+            accountStatus = AccountStatus.UNVARIED,
+            isTestMode = false
+        )
+
+        firestore.collection("users")
+            .document(
+                EncryptUtil.encrypt(
+                    EncryptUtil.EncryptType.SHA256,
+                    tiet_email.text.toString()
+                ).substring(0..5)
+            )
+            .set(user)
+            .addOnSuccessListener {
+                ToastUtil.show(
+                    requireContext(),
+                    getString(R.string.signup_done),
+                    ToastLength.SHORT,
+                    ToastType.SUCCESS
+                )
+                dismiss()
+            }
+            .addOnFailureListener { exception ->
+                ExceptionUtil.except(exception, requireContext())
+            }
     }
 
     companion object {
