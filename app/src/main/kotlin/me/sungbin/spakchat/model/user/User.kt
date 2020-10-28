@@ -33,7 +33,6 @@ data class User(
     val accountStatus: Int? = null,
     val isTestMode: Boolean? = null
 ) {
-
     private val db = FirebaseStorage.getInstance().reference
     private val storage = FirebaseFirestore.getInstance()
 

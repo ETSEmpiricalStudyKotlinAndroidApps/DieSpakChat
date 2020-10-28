@@ -7,6 +7,7 @@ import me.sungbin.spakchat.R
  * Created by SungBin on 2020-10-21.
  */
 
+
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun finish() {

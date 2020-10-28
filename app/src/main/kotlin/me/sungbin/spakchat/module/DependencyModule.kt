@@ -7,6 +7,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import me.sungbin.spakchat.SpakChat
+import me.sungbin.spakchat.database.UserDatabase
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -16,7 +18,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class FirebaseModule {
+class DependencyModule {
+
+    @Singleton
+    @Named("user-db")
+    @Provides
+    fun provideUserRoom() = UserDatabase.instance(SpakChat.context)
 
     @Singleton
     @Named("storage")

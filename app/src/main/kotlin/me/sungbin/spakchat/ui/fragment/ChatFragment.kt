@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import com.sungbin.androidutils.extensions.setFab
 import kotlinx.android.synthetic.main.fragment_chat.*
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.adapter.FeedChatAdapter
-import me.sungbin.spakchat.adapter.OnlineAdapter
 import me.sungbin.spakchat.ui.activity.MainActivity
 
 /**
@@ -31,8 +29,8 @@ class ChatFragment : BaseFragment() {
         }.show()
 
 
-        rv_online.adapter = OnlineAdapter(db.user.value?.values?.toList() ?: listOf())
-        rv_feed_chat.adapter = FeedChatAdapter(db.message.value?.values?.toList() ?: listOf())
+//        rv_online.adapter = OnlineAdapter(db.user.value?.values?.toList() ?: listOf())
+//        rv_feed_chat.adapter = FeedChatAdapter(db.message.value?.values?.toList() ?: listOf())
         rv_feed_chat.setFab(MainActivity.fabAction)
     }
 }
