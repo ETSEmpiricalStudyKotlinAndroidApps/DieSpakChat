@@ -56,8 +56,8 @@ class SplashActivity : BaseActivity() {
                         for (user in it) {
                             user?.let {
                                 with(user.toObject(User::class.java)) {
-                                    Logger.w(this.name)
                                     Thread {
+                                        Logger.w(this.name)
                                         val entity = UserEntity(
                                             key = this.key,
                                             id = this.id,
