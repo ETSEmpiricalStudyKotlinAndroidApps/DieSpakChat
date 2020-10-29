@@ -26,7 +26,5 @@ class ContactFragment : BaseFragment() {
             text = getString(R.string.main_new_contact)
             show()
         }
-
-
     }
 }

@@ -10,7 +10,6 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.WindowManager
 import com.sangcomz.fishbun.FishBun
-import com.sungbin.androidutils.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.layout_signup.*
@@ -29,8 +28,8 @@ import javax.inject.Named
 @AndroidEntryPoint
 class JoinActivity : BaseActivity() {
 
-    private val signupBottomDialog by lazy { SignupBottomDialog.instance() } // 2중 싱글톤???
-    private val signinBottomDialog by lazy { SigninBottomDialog.instance() } // 2중 싱글톤???
+    private val signupBottomDialog by lazy { SignupBottomDialog.instance() } // todo: 2중 싱글톤???
+    private val signinBottomDialog by lazy { SigninBottomDialog.instance() } // todo: 2중 싱글톤???
 
     @Inject
     @Named("user-db")
@@ -39,12 +38,6 @@ class JoinActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
-
-        Thread {
-            db.dao().getAllUser().map {
-                Logger.w("${it.key}: ${it.name}")
-            }
-        }.start()
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,

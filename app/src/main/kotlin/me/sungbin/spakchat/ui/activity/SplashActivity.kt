@@ -56,8 +56,8 @@ class SplashActivity : BaseActivity() {
                         for (user in it) {
                             user?.let {
                                 with(user.toObject(User::class.java)) {
-                                    Thread {
-                                        Logger.w(this.name)
+                                    Thread { // todo: 왜 코루틴 안에서 쓰레드를 새로 만들어야 할 까?
+                                        Logger.w(this)
                                         val entity = UserEntity(
                                             key = this.key,
                                             id = this.id,

@@ -11,12 +11,12 @@ import androidx.room.*
  */
 
 @Dao
-interface UserDao {
+interface UserDao { // todo: suspend fun 써보기
     @Query("SELECT * FROM UserEntity")
     fun getAllUser(): List<UserEntity>
 
-    @Query("SELECT name FROM UserEntity WHERE id =:id")
-    fun getUserById(id: String): UserEntity
+    @Query("SELECT * FROM UserEntity WHERE id =:id")
+    fun getUserById(id: String): UserEntity? // 일치 항목 없을 땐 null 나옴
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg user: UserEntity)
