@@ -2,9 +2,7 @@ package me.sungbin.spakchat.ui.activity
 
 import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
 import com.sungbin.androidutils.util.Logger
 import com.sungbin.androidutils.util.NetworkUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,14 +31,6 @@ class SplashActivity : BaseActivity() {
     lateinit var firestore: FirebaseFirestore
 
     @Inject
-    @Named("storage")
-    lateinit var storage: StorageReference
-
-    @Inject
-    @Named("database")
-    lateinit var database: DatabaseReference
-
-    @Inject
     @Named("user-db")
     lateinit var userDb: UserDatabase
 
@@ -57,7 +47,6 @@ class SplashActivity : BaseActivity() {
                             user?.let {
                                 with(user.toObject(User::class.java)) {
                                     Thread { // todo: 왜 코루틴 안에서 쓰레드를 새로 만들어야 할 까?
-                                        Logger.w("why is null...", this)
                                         val entity = UserEntity(
                                             key = this.key,
                                             id = this.id,
@@ -76,7 +65,7 @@ class SplashActivity : BaseActivity() {
                                             emoji = this.emoji.toText(),
                                             black = this.black.toText(),
                                             accountStatus = this.accountStatus,
-                                            isTestMode = this.isTestMode ?: false
+                                            isTestMode = this.isTestMode
                                         )
                                         userDb.dao().insert(entity)
                                     }.start()

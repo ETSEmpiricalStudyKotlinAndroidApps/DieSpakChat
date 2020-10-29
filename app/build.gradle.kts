@@ -79,9 +79,6 @@ dependencies {
         Dependencies.Jetpack.Paging,
         Dependencies.Jetpack.Room,
 
-        Dependencies.Rx.Room,
-        Dependencies.Rx.Paging,
-
         Dependencies.Essential.AppCompat,
         Dependencies.Essential.Anko,
         Dependencies.Essential.Kotlin,
@@ -102,6 +99,7 @@ dependencies {
         Dependencies.Ui.Lottie,
         Dependencies.Ui.Material,
         Dependencies.Ui.Glide,
+        Dependencies.Ui.GlideTransformation,
         Dependencies.Ui.CardView,
         Dependencies.Ui.ConstraintLayout,
 

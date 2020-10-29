@@ -42,7 +42,7 @@ data class User(
         @BindingAdapter("loadProfile")
         fun loadProfile(imageView: ImageView, user: User) {
             Logger.w(user)
-            if (!user.isTestMode!!) {
+            if (user.isTestMode == true) { // nullable
                 GlideApp
                     .with(imageView.context)
                     .load(user.profileImage ?: ColorDrawable(user.profileImageColor!!))

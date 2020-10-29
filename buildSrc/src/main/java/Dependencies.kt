@@ -59,6 +59,7 @@ object Versions {
         const val Lottie = "3.4.4"
         const val Material = "1.2.1"
         const val Glide = "4.11.0"
+        const val GlideTransformation = "4.3.0"
         const val CardView = "1.0.0"
         const val ConstraintLayout = "2.0.2"
     }
@@ -83,11 +84,6 @@ object Dependencies {
         const val Config = "com.google.firebase:firebase-config:${Versions.Firebase.Config}"
         const val Analytics =
             "com.google.firebase:firebase-analytics:${Versions.Firebase.Analytics}"
-    }
-
-    object Rx {
-        const val Paging = "androidx.paging:paging-rxjava2:${Versions.Jetpack.Paging}"
-        const val Room = "androidx.room:room-rxjava2:${Versions.Jetpack.Room}"
     }
 
     object Essential {
@@ -135,6 +131,8 @@ object Dependencies {
         const val Lottie = "com.airbnb.android:lottie:${Versions.Ui.Lottie}"
         const val Material = "com.google.android.material:material:${Versions.Ui.Material}"
         const val Glide = "com.github.bumptech.glide:glide:${Versions.Ui.Glide}"
+        const val GlideTransformation =
+            "jp.wasabeef:glide-transformations:${Versions.Ui.GlideTransformation}"
         const val CardView = "androidx.cardview:cardview:${Versions.Ui.CardView}"
         const val ConstraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.Ui.ConstraintLayout}"

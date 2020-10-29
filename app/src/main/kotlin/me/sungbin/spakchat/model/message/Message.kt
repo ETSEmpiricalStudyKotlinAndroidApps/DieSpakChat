@@ -39,7 +39,7 @@ data class Message(
             if (!user.isTestMode!!) {
                 GlideApp
                     .with(imageView.context)
-                    .load(user.profileImage)
+                    .load(user.profileImage ?: ColorDrawable(user.profileImageColor!!))
                     .into(imageView)
             } else {
                 GlideApp

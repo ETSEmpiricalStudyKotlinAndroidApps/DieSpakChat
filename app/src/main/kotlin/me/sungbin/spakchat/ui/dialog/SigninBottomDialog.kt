@@ -17,6 +17,7 @@ import com.sungbin.androidutils.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_signin.*
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.EncryptUtil
@@ -62,6 +63,7 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
                                         tiet_password.text.toString()
                                     ) == password
                                 ) {
+                                    SpakChat.me = this
                                     ToastUtil.show(
                                         requireContext(),
                                         "$name 님 환영합니다!",

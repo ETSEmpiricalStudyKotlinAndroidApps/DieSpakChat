@@ -24,19 +24,9 @@ class MoreFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         MainActivity.fabAction.hide()
-        btn_clear_room.setOnClickListener {
-            /*it.post {
-                Thread {
-                    userDb.clearAllTables()
-                    ToastUtil.show(
-                        requireContext(),
-                        "room 초기화 완료",
-                        ToastLength.SHORT,
-                        ToastType.SUCCESS
-                    )
-                }.start()
-            }*/
-            userDb.clearAllTables()
+
+        iv_edit.setOnClickListener {
+
         }
     }
 }

@@ -64,5 +64,8 @@
     <string name="splash_need_internet">SpakChat을 이용하려면 인터넷에 연결되있어야 해요 😢</string>
 
     <string name="user_preview_status_message">성빈 대학붙게 해주세요!!!</string>
+    <string name="image_description_edit_profile">edit-profile</string>
+    <string name="image_description_background_image">profile-background-image</string>
+    <string name="image_description_camera">image-camera</string>
 
 </resources>

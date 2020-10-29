@@ -3,6 +3,7 @@ package me.sungbin.spakchat
 import android.app.Application
 import android.content.Context
 import dagger.hilt.android.HiltAndroidApp
+import me.sungbin.spakchat.model.user.User
 
 
 /**
@@ -14,6 +15,7 @@ class SpakChat : Application() {
 
     companion object {
         lateinit var context: Context
+        lateinit var me: User
     }
 
     override fun onCreate() {

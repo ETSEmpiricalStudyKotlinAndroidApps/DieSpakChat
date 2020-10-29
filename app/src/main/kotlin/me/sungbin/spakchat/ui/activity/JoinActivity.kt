@@ -14,12 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.database.UserDatabase
 import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.dialog.SigninBottomDialog
 import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
-import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * Created by SungBin on 2020-09-11.
@@ -30,10 +27,6 @@ class JoinActivity : BaseActivity() {
 
     private val signupBottomDialog by lazy { SignupBottomDialog.instance() } // todo: 2중 싱글톤???
     private val signinBottomDialog by lazy { SigninBottomDialog.instance() } // todo: 2중 싱글톤???
-
-    @Inject
-    @Named("user-db")
-    lateinit var db: UserDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -52,6 +52,10 @@
             android:name=".ui.activity.ExceptionActivity"
             android:theme="@style/SpakChat.NoActionBar" />
 
+        <activity
+            android:name=".ui.activity.ProfileEditActivity"
+            android:theme="@style/SpakChat.FullScreen" />
+
         <meta-data
             android:name="com.samsung.android.icon_container.has_icon_container"
             android:value="true" />
