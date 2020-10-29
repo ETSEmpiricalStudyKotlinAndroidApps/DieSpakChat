@@ -10,9 +10,9 @@ package me.sungbin.spakchat.util
 
 const val PREFIX = "⭓"
 
-fun String.toArray(): List<String> {
+fun String?.toArray(): List<String> {
     val list = ArrayList<String>()
-    this.split(PREFIX).map {
+    this?.split(PREFIX)?.map {
         if (it.isNotBlank()) { // todo: 과연 공백이 들어오는 데이터가 있을까?
             list.add(it)
         }
@@ -20,7 +20,7 @@ fun String.toArray(): List<String> {
     return list
 }
 
-fun <T> List<T>?.toText(): String { // 처음써보는 제너릭!!
+fun <T> List<T>?.toText(): String { // 처음써보는 제너릭!!, 근데 이게 과연 될 까?
     val string = StringBuilder()
     this?.forEach {
         val value = it.toString()

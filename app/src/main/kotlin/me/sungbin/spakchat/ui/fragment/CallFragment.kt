@@ -25,8 +25,7 @@ class CallFragment : BaseFragment() {
 
         MainActivity.fabAction.apply {
             text = getString(R.string.main_new_call)
-            show()
-        }
+        }.show()
 
         tv_test.text = "CallFragment"
     }

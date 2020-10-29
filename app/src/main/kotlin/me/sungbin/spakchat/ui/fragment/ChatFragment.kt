@@ -28,7 +28,6 @@ class ChatFragment : BaseFragment() {
             text = getString(R.string.main_new_chat)
         }.show()
 
-
 //        rv_online.adapter = OnlineAdapter(db.user.value?.values?.toList() ?: listOf())
 //        rv_feed_chat.adapter = FeedChatAdapter(db.message.value?.values?.toList() ?: listOf())
         rv_feed_chat.setFab(MainActivity.fabAction)

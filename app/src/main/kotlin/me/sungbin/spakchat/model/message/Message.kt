@@ -21,7 +21,7 @@ import kotlin.random.Random
 data class Message(
     val id: String? = null,
     val message: String? = null,
-    val time: Date? = null,
+    val time: Long? = null, // Date().time
     val type: Int? = null,
     val attachment: Int? = null,
     val owner: User? = null,
@@ -58,19 +58,22 @@ data class Message(
 
         @JvmStatic
         @BindingAdapter("loadDate")
-        fun loadData(textView: TextView, date: Date) {
+        fun loadData(textView: TextView, time: Long) {
             val formatter = SimpleDateFormat("aa hh:mm", Locale.KOREA)
-            val time = formatter.format(date)
-            textView += time
+            val date = Date()
+            date.time = time
+            textView += formatter.format(date)
         }
 
         @JvmStatic
         @BindingAdapter("loadLastOnline")
-        fun loadLastOnline(textView: TextView, date: Date) {
+        fun loadLastOnline(textView: TextView, time: Long) {
             textView.text = when {
-                date.time - Date().time in 0..(1000 * 60 * 30) -> "방금 전 까지 접속"
+                time - Date().time in 0..(1000 * 60 * 30) -> "방금 전 까지 접속"
                 else -> {
                     val formatter = SimpleDateFormat("MM.dd kk:mm 까지 접속", Locale.KOREA)
+                    val date = Date()
+                    date.time = time
                     formatter.format(date)
                 }
             }

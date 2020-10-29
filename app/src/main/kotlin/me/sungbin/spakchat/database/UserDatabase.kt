@@ -15,7 +15,7 @@ import me.sungbin.spakchat.model.user.UserEntity
  * Created by SungBin on 2020-10-28.
  */
 
-@Database(entities = [UserEntity::class], version = 2)
+@Database(entities = [UserEntity::class], version = 3)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun dao(): UserDao
 
@@ -28,7 +28,8 @@ abstract class UserDatabase : RoomDatabase() {
                     userDatabase = Room.databaseBuilder(
                         context,
                         UserDatabase::class.java, "user.db"
-                    ).build()
+                    ).fallbackToDestructiveMigration() // for Migration (database version change)
+                        .build()
                 }
             }
             return userDatabase

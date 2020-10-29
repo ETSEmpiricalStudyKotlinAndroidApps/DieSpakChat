@@ -6,9 +6,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.module.GlideApp
-import java.util.*
 
 /**
  * Created by SungBin on 2020-09-11.
@@ -24,8 +24,8 @@ data class User(
     val profileImageColor: Int? = null,
     val backgroundImage: Uri? = null,
     val statusMessage: String? = null,
-    val birthday: Date? = null,
-    val lastOnline: Date? = null,
+    val birthday: Long? = null, // Date().time
+    val lastOnline: Long? = null, // Date().time
     val isOnline: Boolean? = null,
     val friends: List<String>? = null, // for user-uuid
     val sex: Int? = null,
@@ -41,10 +41,11 @@ data class User(
         @JvmStatic
         @BindingAdapter("loadProfile")
         fun loadProfile(imageView: ImageView, user: User) {
+            Logger.w(user)
             if (!user.isTestMode!!) {
                 GlideApp
                     .with(imageView.context)
-                    .load(user.profileImage)
+                    .load(user.profileImage ?: user.profileImageColor!!)
                     .into(imageView)
             } else {
                 GlideApp

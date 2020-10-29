@@ -124,7 +124,7 @@ class ChatActivity : BaseActivity() {
                     // todo: User() 얻어오는 부분 추가
                     id = Util.generateMessageId(et_input.text.toString(), "my name"),
                     message = et_input.text.toString(),
-                    time = Date(),
+                    time = Date().time,
                     type = MessageType.CHAT,
                     attachment = null,
                     owner = TestUtil.getTestUser,

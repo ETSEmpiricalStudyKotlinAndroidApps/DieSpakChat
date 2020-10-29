@@ -47,7 +47,6 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
             CoroutineScope(Dispatchers.IO).launch {
                 firestore.collection("users")
@@ -57,7 +56,7 @@ class SplashActivity : BaseActivity() {
                             user?.let {
                                 with(user.toObject(User::class.java)) {
                                     Thread { // todo: 왜 코루틴 안에서 쓰레드를 새로 만들어야 할 까?
-                                        Logger.w(this)
+                                        Logger.w("why is null...", this)
                                         val entity = UserEntity(
                                             key = this.key,
                                             id = this.id,
@@ -68,8 +67,8 @@ class SplashActivity : BaseActivity() {
                                             profileImageColor = this.profileImageColor,
                                             backgroundImage = this.backgroundImage.toString(),
                                             statusMessage = this.statusMessage,
-                                            birthday = this.birthday.toString(),
-                                            lastOnline = this.lastOnline.toString(),
+                                            birthday = this.birthday,
+                                            lastOnline = this.lastOnline,
                                             isOnline = this.isOnline,
                                             friends = this.friends.toText(),
                                             sex = this.sex,

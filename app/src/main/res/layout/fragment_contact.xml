@@ -28,6 +28,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_search"
-        tools:listitem="@layout/layout_user" />
+        tools:listitem="@layout/layout_friend" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,8 +22,8 @@ class UserEntity(
     val profileImageColor: Int?,
     val backgroundImage: String?,
     val statusMessage: String?,
-    val birthday: String?, // array
-    val lastOnline: String?,
+    val birthday: Long?, // Date().time
+    val lastOnline: Long?, // Date().time
     val isOnline: Boolean?,
     val friends: String?, // for user-uuid // array
     val sex: Int?,
