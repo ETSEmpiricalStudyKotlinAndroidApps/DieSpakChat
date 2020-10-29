@@ -47,6 +47,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
             CoroutineScope(Dispatchers.IO).launch {
                 firestore.collection("users")
