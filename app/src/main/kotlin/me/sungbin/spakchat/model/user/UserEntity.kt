@@ -25,10 +25,10 @@ class UserEntity(
     val birthday: Long?, // Date().time
     val lastOnline: Long?, // Date().time
     val isOnline: Boolean?,
-    val friends: String?, // for user-uuid // array
+    val friends: String?, // for user-key // array
     val sex: Int?,
-    val emoji: String?, // for emoji-uuid // array
-    val black: String?, // for user-uuid // array
+    val emoji: String?, // for emoji-key // array
+    val black: String?, // for user-key // array
     val accountStatus: Int?,
     val isTestMode: Boolean?
 )

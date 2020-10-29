@@ -65,7 +65,7 @@ class ChatActivity : BaseActivity() {
             }
         }
 
-        val id = intent.getStringExtra("id")
+        val id = intent.getStringExtra("id") // todo: key로 바꾸기
 
         tv_name += "실험실"
 
@@ -122,7 +122,7 @@ class ChatActivity : BaseActivity() {
             if (et_input.text.toString().isNotBlank()) {
                 val message = Message(
                     // todo: User() 얻어오는 부분 추가
-                    id = Util.generateMessageId(et_input.text.toString(), "my name"),
+                    key = Util.generateMessageId(et_input.text.toString(), "my name"),
                     message = et_input.text.toString(),
                     time = Date().time,
                     type = MessageType.CHAT,

@@ -27,10 +27,10 @@ data class User(
     val birthday: Long? = null, // Date().time
     val lastOnline: Long? = null, // Date().time
     val isOnline: Boolean? = null,
-    val friends: List<String>? = null, // for user-uuid
+    val friends: List<Long>? = null, // for user-key
     val sex: Int? = null,
-    val emoji: List<String>? = null, // for emoji-uuid
-    val black: List<String>? = null, // for user-uuid
+    val emoji: List<Long>? = null, // for emoji-key
+    val black: List<Long>? = null, // for user-key
     val accountStatus: Int? = null,
     val isTestMode: Boolean? = null
 ) {
@@ -45,7 +45,7 @@ data class User(
             if (!user.isTestMode!!) {
                 GlideApp
                     .with(imageView.context)
-                    .load(user.profileImage ?: user.profileImageColor!!)
+                    .load(user.profileImage ?: ColorDrawable(user.profileImageColor!!))
                     .into(imageView)
             } else {
                 GlideApp

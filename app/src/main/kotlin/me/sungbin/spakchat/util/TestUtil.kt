@@ -13,7 +13,8 @@ import kotlin.random.nextInt
 object TestUtil {
     val getTestUser
         get() = User(
-            id = Util.randomId,
+            key = Util.randomId,
+            id = Util.randomId.toString(),
             email = "sungbin.dev@gmail.com",
             password = "test-pw",
             name = "zmo__${Random.nextInt(0..10)}",
@@ -34,17 +35,17 @@ object TestUtil {
 
     val getTestMessage
         get() = Message(
-            id = Util.randomId,
+            key = Util.randomId,
             message = "싹쓰리",
             time = Date().time,
             type = MessageType.CHAT,
             attachment = null,
             owner = getTestUser,
-            mention = listOf(getTestUser),
+            mention = listOf(getTestUser.key!!),
             messageViewType = Random.nextInt(0, 3)
         )
 
-    val getTestText get() = Util.randomId.substring(0..5)
+    val getTestText get() = Util.randomId.toString().substring(0..5)
 
     fun getTestUser(count: Int): List<User> {
         val users = ArrayList<User>()

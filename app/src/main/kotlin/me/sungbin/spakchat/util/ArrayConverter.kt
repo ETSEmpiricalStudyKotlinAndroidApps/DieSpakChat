@@ -10,11 +10,12 @@ package me.sungbin.spakchat.util
 
 const val PREFIX = "⭓"
 
-fun String?.toArray(): List<String> {
-    val list = ArrayList<String>()
+@Suppress("UNCHECKED_CAST")
+fun <T> String?.toArray(any: T): List<T> {
+    val list = ArrayList<T>()
     this?.split(PREFIX)?.map {
         if (it.isNotBlank()) { // todo: 과연 공백이 들어오는 데이터가 있을까?
-            list.add(it)
+            list.add(it as T)
         }
     }
     return list

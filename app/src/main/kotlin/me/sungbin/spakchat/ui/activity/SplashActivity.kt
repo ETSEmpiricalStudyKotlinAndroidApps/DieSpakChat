@@ -76,7 +76,7 @@ class SplashActivity : BaseActivity() {
                                             emoji = this.emoji.toText(),
                                             black = this.black.toText(),
                                             accountStatus = this.accountStatus,
-                                            isTestMode = this.isTestMode
+                                            isTestMode = this.isTestMode ?: false
                                         )
                                         userDb.dao().insert(entity)
                                     }.start()

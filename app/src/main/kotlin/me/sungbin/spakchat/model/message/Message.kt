@@ -19,13 +19,13 @@ import kotlin.random.Random
  */
 
 data class Message(
-    val id: String? = null,
+    val key: Long? = null,
     val message: String? = null,
     val time: Long? = null, // Date().time
     val type: Int? = null,
     val attachment: Int? = null,
     val owner: User? = null,
-    val mention: List<User>? = null,
+    val mention: List<Long>? = null, // for user-key
     val messageViewType: Int? = null
 ) {
 
