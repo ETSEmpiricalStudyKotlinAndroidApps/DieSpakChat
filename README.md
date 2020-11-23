@@ -8,4 +8,4 @@ android chatting application
 
 ## todo
 1. [ ] apply `Flexbox Layout`
-2. [ ] made 80%
+2. [ ] develop 80% more
