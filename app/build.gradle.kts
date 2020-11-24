@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
-    id("name.remal.check-dependency-updates") version "1.1.0"
+    id("name.remal.check-dependency-updates") version "1.1.4"
     id("com.google.gms.google-services")
     kotlin("android")
     kotlin("android.extensions")
@@ -88,9 +88,10 @@ dependencies {
         Dependencies.Ktx.Core,
         Dependencies.Ktx.Fragment,
 
-        // Dependencies.Di.Dagger,
+        // Dependencies.Di.Dagger, --- 따거 써보고싶은데;
         Dependencies.Di.Hilt,
 
+        Dependencies.Ui.FlexBox,
         Dependencies.Ui.Slidr,
         Dependencies.Ui.CountTimeProgressView,
         Dependencies.Ui.FishBun,

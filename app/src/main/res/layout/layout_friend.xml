@@ -49,6 +49,8 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_height="2dp" />
 
+        <!--        Apply FlexBox Layout-->
+
         <View
             android:id="@+id/view_horizontal_center"
             android:layout_width="match_parent"

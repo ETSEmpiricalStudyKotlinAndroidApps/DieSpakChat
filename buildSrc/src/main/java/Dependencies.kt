@@ -14,28 +14,28 @@ object Application {
 
 object Versions {
     object Firebase {
-        const val Database = "19.5.0"
-        const val Storage = "19.2.0"
-        const val Firestore = "21.7.1"
-        const val Messaging = "20.3.0"
-        const val Config = "19.2.0"
-        const val Auth = "19.4.0"
-        const val Analytics = "17.6.0"
+        const val Database = "19.5.1"
+        const val Storage = "20.0.1"
+        const val Firestore = "22.0.0"
+        const val Messaging = "21.0.0"
+        const val Config = "20.0.1"
+        const val Auth = "20.0.1"
+        const val Analytics = "18.0.0"
     }
 
     object Essential {
         const val Google = "4.3.3"
         const val AppCompat = "1.2.0"
         const val Anko = "0.10.8"
-        const val Kotlin = "1.4.10"
-        const val Gradle = "4.0.1"
+        const val Kotlin = "1.4.20"
+        const val Gradle = "4.1.1"
         const val LifeCycleViewModel = "2.2.0"
         const val LifeCycleExtensions = "2.2.0"
     }
 
     object Ktx {
         const val Core = "1.3.2"
-        const val Fragment = "2.3.0"
+        const val Fragment = "2.3.1"
     }
 
     object Di {
@@ -51,17 +51,18 @@ object Versions {
     }
 
     object Ui {
+        const val FlexBox = "2.0.1"
         const val Slidr = "2.1.0"
         const val CountTimeProgressView = "1.1.3"
         const val FishBun = "1.0.0-alpha03"
         const val SmoothBottomBar = "1.7.6"
         const val YoYo = "2.4@aar"
-        const val Lottie = "3.4.4"
+        const val Lottie = "3.5.0"
         const val Material = "1.2.1"
         const val Glide = "4.11.0"
         const val GlideTransformation = "4.3.0"
         const val CardView = "1.0.0"
-        const val ConstraintLayout = "2.0.2"
+        const val ConstraintLayout = "2.0.4"
     }
 
     object Util {
@@ -121,6 +122,7 @@ object Dependencies {
     }
 
     object Ui {
+        const val FlexBox = "com.google.android:flexbox:${Versions.Ui.FlexBox}"
         const val Slidr = "com.r0adkll:slidableactivity:${Versions.Ui.Slidr}"
         const val CountTimeProgressView =
             "com.sfyc.ctpv:library:${Versions.Ui.CountTimeProgressView}"

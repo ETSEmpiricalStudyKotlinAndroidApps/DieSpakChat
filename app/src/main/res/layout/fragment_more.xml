@@ -18,6 +18,8 @@
         app:triv_imageRadius="@dimen/margin_twice_and_half"
         tools:src="@mipmap/ic_launcher" />
 
+    <!--    Apply FlexBox Layout-->
+
     <View
         android:id="@+id/view_center"
         android:layout_width="0dp"
