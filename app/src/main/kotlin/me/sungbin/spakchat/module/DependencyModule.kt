@@ -1,8 +1,9 @@
 package me.sungbin.spakchat.module
 
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,17 +29,17 @@ class DependencyModule {
     @Singleton
     @Named("storage")
     @Provides
-    fun provideFirebaseStorage() = FirebaseStorage.getInstance().reference
+    fun provideFirebaseStorage() = Firebase.storage.reference
 
     @Singleton
     @Named("firestore")
     @Provides
-    fun provideFirestore() = FirebaseFirestore.getInstance()
+    fun provideFirestore() = Firebase.firestore
 
     @Singleton
     @Named("database")
     @Provides
-    fun provideFirebaseRealtimeDatabase() = FirebaseDatabase.getInstance().reference.apply {
+    fun provideFirebaseRealtimeDatabase() = Firebase.database.reference.apply {
         keepSynced(true)
     }
 

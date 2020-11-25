@@ -14,13 +14,7 @@ object Application {
 
 object Versions {
     object Firebase {
-        const val Database = "19.5.1"
-        const val Storage = "20.0.1"
-        const val Firestore = "22.0.0"
-        const val Messaging = "21.0.0"
-        const val Config = "20.0.1"
-        const val Auth = "20.0.1"
-        const val Analytics = "18.0.0"
+        const val Bom = "26.1.0"
     }
 
     object Essential {
@@ -75,16 +69,7 @@ object Versions {
 
 object Dependencies {
     object Firebase {
-        const val Firestore =
-            "com.google.firebase:firebase-firestore:${Versions.Firebase.Firestore}"
-        const val Auth = "com.google.firebase:firebase-auth:${Versions.Firebase.Auth}"
-        const val Database = "com.google.firebase:firebase-database:${Versions.Firebase.Database}"
-        const val Storage = "com.google.firebase:firebase-storage:${Versions.Firebase.Storage}"
-        const val Messaging =
-            "com.google.firebase:firebase-messaging:${Versions.Firebase.Messaging}"
-        const val Config = "com.google.firebase:firebase-config:${Versions.Firebase.Config}"
-        const val Analytics =
-            "com.google.firebase:firebase-analytics:${Versions.Firebase.Analytics}"
+        const val Bom = "com.google.firebase:firebase-bom:${Versions.Firebase.Bom}"
     }
 
     object Essential {
@@ -104,6 +89,13 @@ object Dependencies {
             "androidx.navigation:navigation-ui-ktx:${Versions.Jetpack.Navigation}"
         const val Core = "androidx.core:core-ktx:${Versions.Ktx.Core}"
         const val Fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.Ktx.Fragment}"
+        const val Storage = "com.google.firebase:firebase-storage-ktx"
+        const val Database = "com.google.firebase:firebase-database-ktx"
+        const val Config = "com.google.firebase:firebase-config-ktx"
+        const val Analytics = "com.google.firebase:firebase-analytics-ktx"
+        const val Auth = "com.google.firebase:firebase-auth-ktx"
+        const val Messaging = "com.google.firebase:firebase-messaging-ktx"
+        const val Firestore = "com.google.firebase:firebase-firestore-ktx"
     }
 
     object Di {

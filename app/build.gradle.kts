@@ -62,19 +62,13 @@ android {
 }
 
 dependencies {
+    "implementation"(platform(Dependencies.Firebase.Bom))
+
     fun def(vararg dependencies: String) {
         for (dependency in dependencies) implementation(dependency)
     }
 
     def(
-        Dependencies.Firebase.Firestore,
-        Dependencies.Firebase.Auth,
-        Dependencies.Firebase.Config,
-        Dependencies.Firebase.Database,
-        Dependencies.Firebase.Messaging,
-        Dependencies.Firebase.Storage,
-        Dependencies.Firebase.Analytics,
-
         Dependencies.Jetpack.DataStore,
         Dependencies.Jetpack.Paging,
         Dependencies.Jetpack.Room,
@@ -87,6 +81,15 @@ dependencies {
 
         Dependencies.Ktx.Core,
         Dependencies.Ktx.Fragment,
+        Dependencies.Ktx.NavigationFragment,
+        Dependencies.Ktx.NavigationUi,
+        Dependencies.Ktx.Storage,
+        Dependencies.Ktx.Config,
+        Dependencies.Ktx.Database,
+        Dependencies.Ktx.Analytics,
+        Dependencies.Ktx.Auth,
+        Dependencies.Ktx.Messaging,
+        Dependencies.Ktx.Firestore,
 
         // Dependencies.Di.Dagger, --- 따거 써보고싶은데;
         Dependencies.Di.Hilt,
