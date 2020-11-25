@@ -94,7 +94,7 @@ dependencies {
         // Dependencies.Di.Dagger, --- 따거 써보고싶은데;
         Dependencies.Di.Hilt,
 
-        Dependencies.Ui.FlexBox,
+        Dependencies.Ui.Flexbox,
         Dependencies.Ui.Slidr,
         Dependencies.Ui.CountTimeProgressView,
         Dependencies.Ui.FishBun,

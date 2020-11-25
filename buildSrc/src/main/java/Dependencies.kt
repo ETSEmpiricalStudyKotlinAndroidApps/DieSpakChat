@@ -45,7 +45,7 @@ object Versions {
     }
 
     object Ui {
-        const val FlexBox = "2.0.1"
+        const val Flexbox = "2.0.1"
         const val Slidr = "2.1.0"
         const val CountTimeProgressView = "1.1.3"
         const val FishBun = "1.0.0-alpha03"
@@ -114,7 +114,7 @@ object Dependencies {
     }
 
     object Ui {
-        const val FlexBox = "com.google.android:flexbox:${Versions.Ui.FlexBox}"
+        const val Flexbox = "com.google.android:flexbox:${Versions.Ui.Flexbox}"
         const val Slidr = "com.r0adkll:slidableactivity:${Versions.Ui.Slidr}"
         const val CountTimeProgressView =
             "com.sfyc.ctpv:library:${Versions.Ui.CountTimeProgressView}"
