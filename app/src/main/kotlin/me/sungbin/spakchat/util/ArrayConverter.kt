@@ -20,7 +20,7 @@ inline fun <reified T> String?.toArray(): List<T> {
     return list
 }
 
-fun <T> List<T>?.toText(): String { // 처음써보는 제너릭!!, 근데 이게 과연 될 까?
+fun <T> List<T>?.toText(): String {
     val string = StringBuilder()
     this?.forEach {
         val value = it.toString()

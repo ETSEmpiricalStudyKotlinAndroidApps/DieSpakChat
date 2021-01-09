@@ -1,10 +1,9 @@
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
-    id("name.remal.check-dependency-updates") version "1.1.4"
+    id("name.remal.check-dependency-updates") version "1.1.6"
     id("com.google.gms.google-services")
     kotlin("android")
-    kotlin("android.extensions")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin") // fix code-line locate
 }
@@ -16,12 +15,14 @@ android {
         targetSdkVersion(Application.targetSdk)
         versionCode = Application.versionCode
         versionName = Application.versionName
+        ndk.debugSymbolLevel = "FULL"
         multiDexEnabled = true
         setProperty("archivesBaseName", "v$versionName ($versionCode)")
     }
 
     buildFeatures {
         dataBinding = true
+        viewBinding = true
     }
 
     buildTypes {
