@@ -14,6 +14,8 @@ android firebase chatting application
 3. - [ ] [Animated emoji support](https://github.com/sungbin5304/SpakChat/issues/1)
 4. - [ ] Using `DI` in parameter (just goal...)
 5. - [ ] Using `Custom Annotation` (just goal...)
+6. - [x] Full Kotlin
+7. - [ ] Clean Architecture (presentation layer, MVVM)
 
 ## License
 `SpakChat` license is under the [MIT](https://github.com/sungbin5304/SpakChat/blob/master/LICENSE) license.
