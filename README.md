@@ -14,6 +14,6 @@ android firebase chatting application
 3. - [ ] [Animated emoji support](https://github.com/sungbin5304/SpakChat/issues/1)
 
 ## License
-`SpakChat` license is under the [GPL 3.0](https://github.com/sungbin5304/SpakChat/blob/master/LICENSE) license.
+`SpakChat` license is under the [MIT](https://github.com/sungbin5304/SpakChat/blob/master/LICENSE) license.
 
 # Happy Coding :)
