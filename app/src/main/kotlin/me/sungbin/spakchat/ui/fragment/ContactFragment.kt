@@ -49,10 +49,10 @@ class ContactFragment : BaseFragment() {
                         birthday = birthday,
                         lastOnline = lastOnline,
                         isOnline = isOnline,
-                        friends = friends.toArray(0L),
+                        friends = friends.toArray(),
                         sex = sex,
-                        emoji = emoji.toArray(0L),
-                        black = black.toArray(0L),
+                        emoji = emoji.toArray(),
+                        black = black.toArray(),
                         accountStatus = accountStatus,
                         isTestMode = isTestMode
                     )

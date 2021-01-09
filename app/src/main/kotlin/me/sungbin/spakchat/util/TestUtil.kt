@@ -57,9 +57,7 @@ object TestUtil {
 
     fun getTestMessage(count: Int): List<Message> {
         val users = ArrayList<Message>()
-        repeat(count) {
-            users.add(getTestMessage)
-        }
+        repeat(count) { users.add(getTestMessage) }
         return users
     }
 }

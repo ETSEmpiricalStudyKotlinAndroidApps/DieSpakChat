@@ -9,10 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/signup_background"
-        app:lottie_renderMode="software" />
+        app:lottie_rawRes="@raw/signup_background" />
 
     <com.sungbin.androidutils.ui.TagableRoundImageView
         android:id="@+id/iv_icon"
@@ -27,23 +30,23 @@
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_twice_and_half"
+        android:layout_marginTop="@dimen/margin_twice"
         android:lineSpacingExtra="5dp"
         android:text="@string/signup_description"
-        android:layout_marginTop="@dimen/margin_twice"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        android:layout_marginStart="@dimen/margin_twice_and_half"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_icon" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_signup"
-        android:text="@string/signup_singup"
         android:layout_width="200dp"
-        app:backgroundTint="@color/colorWhite"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginBottom="@dimen/margin_twice_and_half"
         android:layout_height="50dp"
+        android:layout_marginBottom="@dimen/margin_twice_and_half"
+        android:text="@string/signup_singup"
+        android:textColor="@color/colorPrimary"
+        app:backgroundTint="@color/colorWhite"
         app:cornerRadius="@dimen/margin_default"
         app:layout_constraintBottom_toBottomOf="@+id/lav_background"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,10 +54,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_signin"
-        android:text="@string/signup_signin"
         android:layout_width="200dp"
-        android:layout_marginBottom="@dimen/margin_twice_half"
         android:layout_height="50dp"
+        android:layout_marginBottom="@dimen/margin_twice_half"
+        android:text="@string/signup_signin"
         app:backgroundTint="@color/colorPrimary"
         app:cornerRadius="@dimen/margin_default"
         app:layout_constraintBottom_toTopOf="@+id/btn_signup"
