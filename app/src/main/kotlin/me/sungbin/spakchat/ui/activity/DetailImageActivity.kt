@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.transition.Transition
 import android.transition.TransitionSet
 import android.view.View
-import android.view.ViewPropertyAnimator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
 import com.sungbin.androidutils.ui.TagableRoundImageView
@@ -173,22 +172,16 @@ class DetailImageActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
 
-    private fun showInformationUi(): ViewPropertyAnimator {
-        return layoutInformation.animate().alpha(1f)
-
-    }
-
-    private fun hideInformationUi(): ViewPropertyAnimator {
-        return layoutInformation.animate().alpha(0f)
-    }
+    private fun showInformationUi() = binding.layoutInformation.animate().alpha(1f)
+    private fun hideInformationUi() = binding.layoutInformation.animate().alpha(0f)
 
     private fun startExitAnimation() {
-        swipeLayout.moveCircleToState(
+        binding.swipeLayout.moveCircleToState(
             sharedElementEnterLeft,
             sharedElementEnterTop,
             sharedElementEnterRadius,
             0
-        ).addListener(object : AnimationListener() {
+        )?.addListener(object : AnimationListener() {
             override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {
                 super.onAnimationEnd(animation, isReverse)
 

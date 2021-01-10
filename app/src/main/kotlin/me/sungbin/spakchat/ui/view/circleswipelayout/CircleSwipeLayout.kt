@@ -16,6 +16,7 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.annotation.FloatRange
 import androidx.core.view.GestureDetectorCompat
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -317,5 +318,66 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
             }
         })
         changeProgress.start()
+    }
+
+    fun moveCircleToState(left: Int, top: Int, radius: Int, dimAlpha: Int): Animator? {
+        if (!isTransitionPresent() && progress > MOVE_PROGRESS_OFFSET)
+            return null
+
+        val currentRadius = getRadius()
+        val currentAlpha = getDimAlpha().toFloat()
+        val currentForeground = foreground as LayerDrawable
+
+        val halfWidth = width / 2f
+        val halfHeight = height / 2f
+
+        val insetLeft = currentForeground.getLayerInsetLeft(CIRCULAR_DRAWABLE_LAYER_INDEX)
+        val insetTop = currentForeground.getLayerInsetTop(CIRCULAR_DRAWABLE_LAYER_INDEX)
+
+        val startLeft = halfWidth + -insetLeft / 2f - currentRadius
+        val startTop = halfHeight + -insetTop / 2f - currentRadius
+
+        val endLeft = left.toFloat()
+        val endTop = top.toFloat()
+
+        val startValues = arrayOf(startLeft, startTop, currentRadius, currentAlpha)
+        val endValues = arrayOf(endLeft, endTop, radius.toFloat(), dimAlpha.toFloat())
+
+        val moveImage = ValueAnimator.ofObject(stateAnimTypeEvaluator, startValues, endValues)
+        moveImage.duration = DEFAULT_ANIMATION_DURATION_IN_MS
+        moveImage.interpolator = FastOutSlowInInterpolator()
+        moveImage.addUpdateListener { animator ->
+            val animatedValue = animator.animatedValue
+            if (animatedValue is Array<*>) {
+                val animLeft = animatedValue[0] as Float
+                val animTop = animatedValue[1] as Float
+                val animRadius = animatedValue[2] as Float
+                val animAlpha = animatedValue[3] as Float
+
+                val animInsetLeft = ((-animLeft + halfWidth - animRadius) * 2).toInt()
+                val animInsetTop = ((-animTop + halfHeight - animRadius) * 2).toInt()
+
+                setDimAlpha(animAlpha.toInt())
+                setRadius(animRadius)
+                updateCircularDrawableLayerInset(animInsetLeft, animInsetTop, 0, 0)
+                updateCircularDrawableMatrixForLayerInset(animInsetLeft, animInsetTop)
+            }
+        }
+        moveImage.addListener(object : AnimationListener() {
+            override fun onAnimationStart(animation: Animator, isReverse: Boolean) {
+                super.onAnimationStart(animation, isReverse)
+
+                isMoveToStateAnimationPresent = true
+            }
+
+            override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {
+                super.onAnimationEnd(animation, isReverse)
+
+                isMoveToStateAnimationPresent = false
+            }
+        })
+        moveImage.start()
+
+        return moveImage
     }
 }
