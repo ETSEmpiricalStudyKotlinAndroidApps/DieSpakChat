@@ -3,7 +3,6 @@ package me.sungbin.spakchat.ui.view.circleswipelayout
 import android.animation.Animator
 import android.animation.TypeEvaluator
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.ColorDrawable
@@ -17,7 +16,6 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.annotation.FloatRange
 import androidx.core.view.GestureDetectorCompat
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -110,16 +108,17 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         if (swipeEnabled && !isMoveToStateAnimationPresent) {
-            when {
-                ev.actionMasked == MotionEvent.ACTION_UP || ev.actionMasked == MotionEvent.ACTION_CANCEL ->
+            when (ev.actionMasked) {
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL ->
                     if (isTransitionPresent()) {
-                        if (progress > MOVE_PROGRESS_OFFSET)
+                        if (progress > MOVE_PROGRESS_OFFSET) {
                             listener?.onSwiped()
-                        else
+                        } else {
                             listener?.onSwipeCancelled()
-
-                        if (autoReset)
+                        }
+                        if (autoReset) {
                             resetTransition()
+                        }
                     }
             }
             gestureDetector.onTouchEvent(ev)
@@ -134,9 +133,7 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
 
     override fun onDown(e: MotionEvent): Boolean {
         lastDownPoint = PointF(e.x, e.y)
-
         initializeTransition()
-
         return false
     }
 
@@ -144,21 +141,19 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
         ev1: MotionEvent,
         ev2: MotionEvent,
         velocityX: Float,
-        velocityY: Float
-    ): Boolean {
-        return if (velocityY > 1000) {
-            listener?.onSwipedFling()
-            true
-        } else {
-            false
-        }
+        velocityY: Float,
+    ) = if (velocityY > 1000) {
+        listener?.onSwipedFling()
+        true
+    } else {
+        false
     }
 
     override fun onScroll(
         ev1: MotionEvent,
         ev2: MotionEvent,
         distanceX: Float,
-        distanceY: Float
+        distanceY: Float,
     ): Boolean {
         lastScrollPoint = PointF(ev2.x, ev2.y)
 
@@ -176,9 +171,8 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
         }
     }
 
-    override fun onLongPress(ev: MotionEvent) {}
-
-    override fun onShowPress(ev: MotionEvent) {}
+    override fun onLongPress(ev: MotionEvent) = Unit
+    override fun onShowPress(ev: MotionEvent) = Unit
 
     override fun setForeground(foreground: Drawable?) {
         defaultForeground = foreground
@@ -193,16 +187,12 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
         background?.alpha = 0
     }
 
-    private fun getDimAlpha(): Int {
-        return dimDrawable.alpha
-    }
+    fun isTransitionPresent() = progress != 0f
+    private fun getDimAlpha() = dimDrawable.alpha
+    private fun getRadius() = circularDrawable!!.radius
 
     private fun setDimAlpha(alpha: Int) {
         dimDrawable.alpha = alpha
-    }
-
-    private fun getRadius(): Float {
-        return circularDrawable!!.radius
     }
 
     private fun setRadius(radius: Float) {
@@ -224,7 +214,6 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
             setTranslate(matrixLeft, matrixTop)
         }
         circularDrawable!!.setMatrix(matrix)
-
         invalidate()
     }
 
@@ -311,7 +300,6 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
 
     private fun removeTransition() {
         super.setForeground(defaultForeground)
-
         showBackground()
     }
 
@@ -329,71 +317,5 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
             }
         })
         changeProgress.start()
-    }
-
-    fun isTransitionPresent(): Boolean {
-        return progress != 0f
-    }
-
-    @SuppressLint("NewApi")
-    fun moveCircleToState(left: Int, top: Int, radius: Int, dimAlpha: Int): Animator? {
-        if (!isTransitionPresent() && progress > MOVE_PROGRESS_OFFSET)
-            return null
-
-        val currentRadius = getRadius()
-        val currentAlpha = getDimAlpha().toFloat()
-        val currentForeground = foreground as LayerDrawable
-
-        val halfWidth = width / 2f
-        val halfHeight = height / 2f
-
-        val insetLeft = currentForeground.getLayerInsetLeft(CIRCULAR_DRAWABLE_LAYER_INDEX)
-        val insetTop = currentForeground.getLayerInsetTop(CIRCULAR_DRAWABLE_LAYER_INDEX)
-
-        val startLeft = halfWidth + -insetLeft / 2f - currentRadius
-        val startTop = halfHeight + -insetTop / 2f - currentRadius
-
-        val endLeft = left.toFloat()
-        val endTop = top.toFloat()
-
-        val startValues = arrayOf(startLeft, startTop, currentRadius, currentAlpha)
-        val endValues = arrayOf(endLeft, endTop, radius.toFloat(), dimAlpha.toFloat())
-
-        val moveImage = ValueAnimator.ofObject(stateAnimTypeEvaluator, startValues, endValues)
-        moveImage.duration = DEFAULT_ANIMATION_DURATION_IN_MS
-        moveImage.interpolator = FastOutSlowInInterpolator()
-        moveImage.addUpdateListener { animator ->
-            val animatedValue = animator.animatedValue
-            if (animatedValue is Array<*>) {
-                val animLeft = animatedValue[0] as Float
-                val animTop = animatedValue[1] as Float
-                val animRadius = animatedValue[2] as Float
-                val animAlpha = animatedValue[3] as Float
-
-                val animInsetLeft = ((-animLeft + halfWidth - animRadius) * 2).toInt()
-                val animInsetTop = ((-animTop + halfHeight - animRadius) * 2).toInt()
-
-                setDimAlpha(animAlpha.toInt())
-                setRadius(animRadius)
-                updateCircularDrawableLayerInset(animInsetLeft, animInsetTop, 0, 0)
-                updateCircularDrawableMatrixForLayerInset(animInsetLeft, animInsetTop)
-            }
-        }
-        moveImage.addListener(object : AnimationListener() {
-            override fun onAnimationStart(animation: Animator, isReverse: Boolean) {
-                super.onAnimationStart(animation, isReverse)
-
-                isMoveToStateAnimationPresent = true
-            }
-
-            override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {
-                super.onAnimationEnd(animation, isReverse)
-
-                isMoveToStateAnimationPresent = false
-            }
-        })
-        moveImage.start()
-
-        return moveImage
     }
 }

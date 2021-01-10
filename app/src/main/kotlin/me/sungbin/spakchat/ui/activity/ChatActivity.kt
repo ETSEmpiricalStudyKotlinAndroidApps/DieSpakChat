@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
+import androidx.core.widget.doAfterTextChanged
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
 import com.sungbin.androidutils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_chat.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.adapter.ChatAdapter
 import me.sungbin.spakchat.databinding.ActivityChatBinding
@@ -75,15 +75,16 @@ class ChatActivity : BaseActivity() {
         val adapter = ChatAdapter(messages)
         binding.rvChat.adapter = adapter
 
-        binding.ivBa.setOnClickListener {
+        binding.ivBack.setOnClickListener {
             finish()
         }
 
-        et_input.doAfterTextChanged {
+        binding.etInput.doAfterTextChanged {
             if (it.toString().isNotBlank()) {
-                iv_send.setTint(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
+                binding.ivSend.setTint(ContextCompat.getColor(applicationContext,
+                    R.color.colorPrimary))
             } else {
-                iv_send.setTint(
+                binding.ivSend.setTint(
                     ContextCompat.getColor(
                         applicationContext,
                         R.color.colorTwiceLightGray
@@ -93,39 +94,40 @@ class ChatActivity : BaseActivity() {
         }
 
         @Suppress("DEPRECATION")
-        et_input.setEndDrawableClickEvent {
+        binding.etInput.setEndDrawableClickEvent {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
             if (!isEmoticonContainerShown) { // 컨테이너 보여주기
                 TextViewCompat.setCompoundDrawableTintList(
-                    et_input,
+                    binding.etInput,
                     getColor(R.color.colorGray).toColorStateList()
                 )
-                tv_test.height = keyboardHeight
-                et_input.hideKeyboard()
+                binding.tvTest.height = keyboardHeight
+                binding.etInput.hideKeyboard()
                 doDelay(50L) {
-                    tv_test.show()
+                    binding.tvTest.show()
                     window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
                 }
             } else { // 컨테이너 가리기
-                et_input.showKeyboard()
+                binding.etInput.showKeyboard()
                 TextViewCompat.setCompoundDrawableTintList(
-                    et_input,
+                    binding.etInput,
                     getColor(R.color.colorLightGray).toColorStateList()
                 )
                 doDelay(50L) {
-                    tv_test.hide(true)
+                    binding.tvTest.hide(true)
                     window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
                 }
             }
             isEmoticonContainerShown = !isEmoticonContainerShown
         }
 
-        iv_send.setOnClickListener {
-            if (et_input.text.toString().isNotBlank()) {
+        binding.ivSend.setOnClickListener {
+            val inputMessage = binding.etInput.text.toString()
+            if (inputMessage.isNotBlank()) {
                 val message = Message(
                     // todo: User() 얻어오는 부분 추가
-                    key = Util.generateMessageId(et_input.text.toString(), "my name"),
-                    message = et_input.text.toString(),
+                    key = Util.generateMessageId(inputMessage, "my name"),
+                    message = inputMessage,
                     time = Date().time,
                     type = MessageType.CHAT,
                     attachment = null,
@@ -135,8 +137,8 @@ class ChatActivity : BaseActivity() {
                 )
                 messages.add(message)
                 adapter.notifyDataSetChanged()
-                rv_chat.toBottomScroll()
-                et_input.clear()
+                binding.rvChat.toBottomScroll()
+                binding.etInput.clear()
                 // database.child("chat/room/uuid").push().setValue(message)
             }
         }

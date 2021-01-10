@@ -10,8 +10,7 @@ import android.view.ViewPropertyAnimator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
 import com.sungbin.androidutils.ui.TagableRoundImageView
-import kotlinx.android.synthetic.main.activity_detailview_image.*
-import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.ActivityDetailviewImageBinding
 import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.view.circleswipelayout.CircleSwipeLayout
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
@@ -24,6 +23,8 @@ class DetailImageActivity : AppCompatActivity() {
     private var sharedElementEnterRadius: Int = 0
     private var isInformationUiHidden = false
     private var isFlingSwiped = false
+
+    private val binding by lazy { ActivityDetailviewImageBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,7 @@ class DetailImageActivity : AppCompatActivity() {
     }
 
     private fun initializeViews(savedInstanceState: Bundle?) {
-        setContentView(R.layout.activity_detailview_image)
+        setContentView(binding.root)
 
         // todo: 이미지 불러오는 부분
         /*val path = ImageUtils.getDownloadFilePath(intent.getStringExtra("image")!!)
@@ -60,16 +61,16 @@ class DetailImageActivity : AppCompatActivity() {
         name.text = intent.getStringExtra("name")*/
 
         val colorDrawable = ColorDrawable(intent.getIntExtra("image", 0))
-        GlideApp.with(applicationContext).load(colorDrawable).into(iv_photo)
-        GlideApp.with(applicationContext).load(colorDrawable).into(iv_profile)
+        GlideApp.with(applicationContext).load(colorDrawable).into(binding.ivPhoto)
+        GlideApp.with(applicationContext).load(colorDrawable).into(binding.ivProfile)
 
-        tv_name.text = intent.getStringExtra("name")
+        binding.tvName.text = intent.getStringExtra("name")
 
-        btn_back.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             supportFinishAfterTransition()
         }
 
-        swipeLayout.listener = object : CircleSwipeLayout.Listener {
+        binding.swipeLayout.listener = object : CircleSwipeLayout.Listener {
             override fun onSwipeStarted() {
             }
 
@@ -77,7 +78,7 @@ class DetailImageActivity : AppCompatActivity() {
             }
 
             override fun onSwiped() {
-                swipeLayout.autoReset = false
+                binding.swipeLayout.autoReset = false
                 startExitAnimation()
             }
 
@@ -91,20 +92,20 @@ class DetailImageActivity : AppCompatActivity() {
             }
         }
 
-        swipeLayout.setOnClickListener {
-            if (!swipeLayout.isTransitionPresent()) {
+        binding.swipeLayout.setOnClickListener {
+            if (!binding.swipeLayout.isTransitionPresent()) {
                 if (!isInformationUiHidden) {
                     supportFinishAfterTransition()
                 } else {
-                    swipeLayout.swipeEnabled = true
+                    binding.swipeLayout.swipeEnabled = true
                     isInformationUiHidden = false
                 }
             }
         }
 
-        swipeLayout.setOnLongClickListener {
-            if (!swipeLayout.isTransitionPresent()) {
-                swipeLayout.swipeEnabled = false
+        binding.swipeLayout.setOnLongClickListener {
+            if (!binding.swipeLayout.isTransitionPresent()) {
+                binding.swipeLayout.swipeEnabled = false
                 isInformationUiHidden = true
                 hideInformationUi()
             }
@@ -118,7 +119,7 @@ class DetailImageActivity : AppCompatActivity() {
             override fun onSharedElementStart(
                 sharedElementNames: List<String>,
                 sharedElements: List<View>,
-                sharedElementSnapshots: List<View>
+                sharedElementSnapshots: List<View>,
             ) {
                 super.onSharedElementStart(
                     sharedElementNames,
@@ -187,7 +188,7 @@ class DetailImageActivity : AppCompatActivity() {
             sharedElementEnterTop,
             sharedElementEnterRadius,
             0
-        )?.addListener(object : AnimationListener() {
+        ).addListener(object : AnimationListener() {
             override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {
                 super.onAnimationEnd(animation, isReverse)
 
