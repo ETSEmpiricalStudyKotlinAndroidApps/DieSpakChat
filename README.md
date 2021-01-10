@@ -5,6 +5,10 @@ android firebase chatting application
 
 -----
 
+> 이걸 완성하기엔 아직 너무 지식이 부족한 거 같아서! <br/>
+> 당분간은 공부만 할 예정입네다... <br/>
+> **임시 개발 중단!**
+
 # Dev-Skill
 1. `Hilt` and `Dagger2` for `DI`
 2. `Room` and `EncryptedSharedPreferences` for `Storage`
