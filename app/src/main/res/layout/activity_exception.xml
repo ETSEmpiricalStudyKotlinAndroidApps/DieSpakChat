@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view_horizontal_center" />
 
     <TextView
-        android:id="@+id/tv_except"
+        android:id="@+id/tv_exception"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"

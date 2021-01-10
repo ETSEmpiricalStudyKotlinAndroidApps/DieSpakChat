@@ -11,18 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
+import com.sungbin.androidutils.extensions.isNotBlank
 import com.sungbin.androidutils.util.ToastLength
 import com.sungbin.androidutils.util.ToastType
 import com.sungbin.androidutils.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_signin.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakChat
+import me.sungbin.spakchat.databinding.LayoutSigninBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
-import me.sungbin.spakchat.util.isBlank
 import org.jetbrains.anko.support.v4.startActivity
 import javax.inject.Inject
 import javax.inject.Named
@@ -34,39 +34,46 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
     @Named("firestore")
     lateinit var firestore: FirebaseFirestore
 
+    lateinit var binding: LayoutSigninBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.layout_signin, container, false)!!
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = LayoutSigninBinding.inflate(inflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         retainInstance = false
 
-        btn_signin_done.setOnClickListener {
-            if (!tiet_email.isBlank() && !tiet_password.isBlank()) {
+        binding.btnSigninDone.setOnClickListener {
+            if (binding.tietEmail.isNotBlank() && binding.tietPassword.isNotBlank()) {
+                val email = binding.tietEmail.text.toString()
+                val password = binding.tietPassword.text.toString()
                 firestore.collection("users")
                     .document(
                         EncryptUtil.encrypt(
                             EncryptUtil.EncryptType.SHA256,
-                            tiet_email.text.toString()
+                            email
                         ).substring(0..5)
                     )
                     .get()
                     .addOnSuccessListener {
                         it?.let {
                             it.toObject(User::class.java)?.run {
-                                if (tiet_email.text.toString() == email &&
+                                if (this.email == email &&
                                     EncryptUtil.encrypt(
                                         EncryptUtil.EncryptType.MD5,
-                                        tiet_password.text.toString()
-                                    ) == password
+                                        password
+                                    ) == this.password
                                 ) {
                                     SpakChat.me = this
                                     ToastUtil.show(
                                         requireContext(),
-                                        "$name 님 환영합니다!",
+                                        getString(R.string.signin_welcome, name),
                                         ToastLength.SHORT,
                                         ToastType.SUCCESS
                                     )

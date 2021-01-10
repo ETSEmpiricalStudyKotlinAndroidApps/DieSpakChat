@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- global string -->
     <string name="app_name">SpakChat</string>
     <string name="action">action</string>
     <string name="cancel">닫기</string>
@@ -15,6 +14,9 @@
     <string name="image_description_back">back</string>
     <string name="image_description_send">send</string>
     <string name="image_description_logo">logo</string>
+    <string name="image_description_edit_profile">edit-profile</string>
+    <string name="image_description_background_image">profile-background-image</string>
+    <string name="image_description_camera">image-camera</string>
 
     <string name="main_navigation_chatting">채팅</string>
     <string name="main_navigation_call">전화</string>
@@ -39,6 +41,7 @@
     <string name="signup_done">가입이 완료되었습니다 :)</string>
     <string name="signup_input_all">모두 입력해 주세요</string>
 
+    <string name="signin_welcome">%s님 환영합니다!</string>
     <string name="signin_unknown_email">존재하지 않는 이메일 입니다.</string>
     <string name="signin_not_match_email_password">이메일과 비밀번호가 일치하지 않습니다.</string>
     <string name="signin_default_status_message">새로 가입했어요!</string>
@@ -53,6 +56,7 @@
     <string name="user_preview_name">zmo__</string>
     <string name="user_preview_id">sungbin_dev</string>
     <string name="user_preview_last_online">어제 오후 7시까지 접속함</string>
+    <string name="user_preview_status_message">성빈 대학붙게 해주세요!!!</string>
 
     <string name="chat_input_message">메시지 입력…</string>
     <string name="chat_preview_message">성빈 대학붙게 해주세요!!!</string>
@@ -62,10 +66,5 @@
 
     <string name="splash_non_internet">인터넷 없음!</string>
     <string name="splash_need_internet">SpakChat을 이용하려면 인터넷에 연결되있어야 해요 😢</string>
-
-    <string name="user_preview_status_message">성빈 대학붙게 해주세요!!!</string>
-    <string name="image_description_edit_profile">edit-profile</string>
-    <string name="image_description_background_image">profile-background-image</string>
-    <string name="image_description_camera">image-camera</string>
 
 </resources>

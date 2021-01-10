@@ -62,7 +62,7 @@ object Versions {
     object Util {
         const val TedPermission = "2.2.3"
         const val YoYoHelper = "2.4@aar"
-        const val AndroidUtils = "4.2.4"
+        const val AndroidUtils = "4.2.5"
         const val CarshReporter = "1.1.0"
     }
 }

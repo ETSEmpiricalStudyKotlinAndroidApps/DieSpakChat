@@ -11,9 +11,7 @@ import android.text.style.StyleSpan
 import android.view.WindowManager
 import com.sangcomz.fishbun.FishBun
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_join.*
-import kotlinx.android.synthetic.main.layout_signup.*
-import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.dialog.SigninBottomDialog
 import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
@@ -25,27 +23,29 @@ import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
 @AndroidEntryPoint
 class JoinActivity : BaseActivity() {
 
-    private val signupBottomDialog by lazy { SignupBottomDialog.instance() } // todo: 2중 싱글톤???
-    private val signinBottomDialog by lazy { SigninBottomDialog.instance() } // todo: 2중 싱글톤???
+    private val signupBottomDialog by lazy { SignupBottomDialog.instance() }
+    private val signinBottomDialog by lazy { SigninBottomDialog.instance() }
+
+    private val binding by lazy { ActivityJoinBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_join)
+        setContentView(binding.root)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
-        btn_signup.setOnClickListener {
+        binding.btnSignup.setOnClickListener {
             signupBottomDialog.show(supportFragmentManager, "")
         }
 
-        btn_signin.setOnClickListener {
+        binding.btnSignin.setOnClickListener {
             signinBottomDialog.show(supportFragmentManager, "")
         }
 
-        tv_description.run {
+        binding.tvDescription.run {
             val ssb = SpannableStringBuilder(text)
             ssb.setSpan(
                 StyleSpan(Typeface.BOLD),

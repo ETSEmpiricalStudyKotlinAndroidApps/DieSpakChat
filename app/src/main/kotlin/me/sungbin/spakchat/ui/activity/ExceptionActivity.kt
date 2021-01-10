@@ -6,17 +6,18 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.method.ScrollingMovementMethod
 import android.text.style.StyleSpan
-import kotlinx.android.synthetic.main.activity_exception.*
-import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.ActivityExceptionBinding
 
 class ExceptionActivity : BaseActivity() {
 
+    private val binding by lazy { ActivityExceptionBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exception)
+        setContentView(binding.root)
 
         val message = intent.getStringExtra("message") ?: "NullPointerException"
-        tv_except.apply {
+        binding.tvException.run {
             val ssb = SpannableStringBuilder(message)
             ssb.setSpan(
                 StyleSpan(Typeface.ITALIC),
@@ -28,8 +29,8 @@ class ExceptionActivity : BaseActivity() {
             movementMethod = ScrollingMovementMethod()
         }
 
-        lav_exception.setOnClickListener {
-            lav_exception.playAnimation()
+        binding.lavException.setOnClickListener {
+            binding.lavException.playAnimation()
         }
     }
 
