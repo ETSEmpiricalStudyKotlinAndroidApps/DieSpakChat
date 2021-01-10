@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
 import dagger.hilt.android.AndroidEntryPoint
-import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.ActivityEditProfileBinding
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -28,11 +28,11 @@ class ProfileEditActivity : BaseActivity() {
     @Named("storage")
     lateinit var storage: StorageReference
 
+    private val binding by lazy { ActivityEditProfileBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_profile)
-
+        setContentView(binding.root)
         Slidr.attach(this)
-
     }
 }

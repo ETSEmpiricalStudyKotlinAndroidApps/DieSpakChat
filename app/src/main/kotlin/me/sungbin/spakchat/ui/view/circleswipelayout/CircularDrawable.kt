@@ -34,9 +34,7 @@ class CircularDrawable(bitmap: Bitmap) : Drawable() {
         invalidateSelf()
     }
 
-    override fun getOpacity(): Int {
-        return PixelFormat.TRANSPARENT
-    }
+    override fun getOpacity() = PixelFormat.TRANSPARENT
 
     fun setMatrix(matrix: Matrix) {
         paint.shader.setLocalMatrix(matrix)

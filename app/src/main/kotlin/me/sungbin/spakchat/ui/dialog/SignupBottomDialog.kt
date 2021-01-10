@@ -40,7 +40,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
     @Named("storage")
     lateinit var storage: StorageReference
 
-    lateinit var binding: LayoutSignupBinding
+    private lateinit var binding: LayoutSignupBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

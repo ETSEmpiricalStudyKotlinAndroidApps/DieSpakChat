@@ -6,13 +6,14 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.ActivityMainBinding
 
 @AndroidEntryPoint // for fragment
 class MainActivity : BaseActivity() {
 
     private lateinit var navController: NavController
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     companion object {
         lateinit var fabAction: ExtendedFloatingActionButton
@@ -20,17 +21,17 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fcv_container) as NavHostFragment
         navController = navHostFragment.navController
-        fabAction = fab_action
+        fabAction = binding.fabAction
         supportActionBar?.hide()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_navigation, menu)
-        sbb_navigation.setupWithNavController(menu!!, navController)
+        binding.sbbNavigation.setupWithNavController(menu!!, navController)
         return true
     }
 
@@ -39,8 +40,4 @@ class MainActivity : BaseActivity() {
         return true
     }
 
-    override fun onStop() { // todo: onDestroy: 뭘 써야 할 까?
-        super.onStop()
-        // todo: 마지막 접속시간 갱신
-    }
 }

@@ -12,6 +12,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.database.UserDatabase
+import me.sungbin.spakchat.databinding.ActivitySplashBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.model.user.UserEntity
 import me.sungbin.spakchat.util.toText
@@ -34,10 +35,12 @@ class SplashActivity : BaseActivity() {
     @Named("user-db")
     lateinit var userDb: UserDatabase
 
+    private val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
-        
+        setContentView(binding.root)
+
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
             CoroutineScope(Dispatchers.IO).launch {
                 firestore.collection("users")

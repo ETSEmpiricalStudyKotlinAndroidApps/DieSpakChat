@@ -10,7 +10,9 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.WindowManager
 import com.sangcomz.fishbun.FishBun
+import com.sungbin.androidutils.ui.TagableRoundImageView
 import dagger.hilt.android.AndroidEntryPoint
+import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.dialog.SigninBottomDialog
@@ -67,11 +69,12 @@ class JoinActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             FishBun.FISHBUN_REQUEST_CODE -> {
+                val profileImageView =
+                    signupBottomDialog.view?.findViewById<TagableRoundImageView>(R.id.iv_profile)
                 val uri =
                     data?.getParcelableArrayListExtra<Uri>(FishBun.INTENT_PATH)?.get(0) ?: return
-                signupBottomDialog.iv_profile.setPadding(0, 0, 0, 0)
-                GlideApp.with(applicationContext).load(uri).into(signupBottomDialog.iv_profile)
-                signupBottomDialog.iv_profile.tag = uri
+                GlideApp.with(applicationContext).load(uri).into(profileImageView!!)
+                profileImageView.tag = uri
             }
         }
     }

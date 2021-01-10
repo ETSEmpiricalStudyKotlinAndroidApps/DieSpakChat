@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.test_fragment.*
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.TestFragmentBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
 
 /**
@@ -14,11 +14,16 @@ import me.sungbin.spakchat.ui.activity.MainActivity
 
 class CallFragment : BaseFragment() {
 
+    private lateinit var binding: TestFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.test_fragment, container, false)!!
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = TestFragmentBinding.inflate(inflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,6 +32,6 @@ class CallFragment : BaseFragment() {
             text = getString(R.string.main_new_call)
         }.show()
 
-        tv_test.text = "CallFragment"
+        binding.tvTest.text = "CallFragment"
     }
 }

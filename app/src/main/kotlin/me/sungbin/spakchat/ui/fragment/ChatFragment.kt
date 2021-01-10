@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sungbin.androidutils.extensions.setFab
-import kotlinx.android.synthetic.main.fragment_chat.*
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.FragmentChatBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
 
 /**
@@ -15,11 +15,16 @@ import me.sungbin.spakchat.ui.activity.MainActivity
 
 class ChatFragment : BaseFragment() {
 
+    private lateinit var binding: FragmentChatBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_chat, container, false)!!
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = FragmentChatBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +35,6 @@ class ChatFragment : BaseFragment() {
 
 //        rv_online.adapter = OnlineAdapter(db.user.value?.values?.toList() ?: listOf())
 //        rv_feed_chat.adapter = FeedChatAdapter(db.message.value?.values?.toList() ?: listOf())
-        rv_feed_chat.setFab(MainActivity.fabAction)
+        binding.rvFeedChat.setFab(MainActivity.fabAction)
     }
 }

@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_more.*
-import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.FragmentMoreBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
 
 /**
@@ -14,18 +13,23 @@ import me.sungbin.spakchat.ui.activity.MainActivity
 
 class MoreFragment : BaseFragment() {
 
+    private lateinit var binding: FragmentMoreBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_more, container, false)!!
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = FragmentMoreBinding.inflate(inflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         MainActivity.fabAction.hide()
 
-        iv_edit.setOnClickListener {
+        binding.ivEdit.setOnClickListener {
 
         }
     }

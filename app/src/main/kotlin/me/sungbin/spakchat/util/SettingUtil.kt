@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.map
 import me.sungbin.spakchat.SpakChat.Companion.context
 
 object SettingUtil {
-    val dataStore = context.createDataStore(
+    private val dataStore = context.createDataStore(
         name = "setting",
     )
 
-    fun getKey(key: String) = preferencesKey<Any>(key)
+    private fun getKey(key: String) = preferencesKey<Any>(key)
 
     suspend fun save(key: String, value: String) {
         dataStore.edit { preferences ->
@@ -19,8 +19,8 @@ object SettingUtil {
         }
     }
 
-    // todo: 무조건 LiveData룰 써야 할 까?
-    fun read(key: String): Any? {
+    // todo: 무조건 LiveData를 써야 할 까?
+    fun read(key: String): Any {
         return dataStore.data.map {
             return@map it[getKey(key)]
         }

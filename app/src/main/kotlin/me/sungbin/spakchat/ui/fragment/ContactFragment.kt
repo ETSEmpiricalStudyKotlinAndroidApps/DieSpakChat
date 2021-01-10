@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
-import kotlinx.android.synthetic.main.fragment_contact.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.adapter.FriendAdapter
+import me.sungbin.spakchat.databinding.FragmentContactBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.toArray
@@ -18,11 +18,16 @@ import me.sungbin.spakchat.util.toArray
 
 class ContactFragment : BaseFragment() {
 
+    private lateinit var binding: FragmentContactBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_contact, container, false)!!
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = FragmentContactBinding.inflate(inflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,7 +66,7 @@ class ContactFragment : BaseFragment() {
             }
         }
         dbThread.start()
-        dbThread.join()
-        rv_friends.adapter = FriendAdapter(users)
+        dbThread.join() // todo: UI-Thread blocking /// .join() 말고 다릏게 하기
+        binding.rvFriends.adapter = FriendAdapter(users)
     }
 }
