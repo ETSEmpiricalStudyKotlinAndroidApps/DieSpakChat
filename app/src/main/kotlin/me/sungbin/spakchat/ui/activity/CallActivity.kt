@@ -2,8 +2,7 @@ package me.sungbin.spakchat.ui.activity
 
 import android.os.Bundle
 import com.sfyc.ctpv.CountTimeProgressView
-import kotlinx.android.synthetic.main.activity_call.*
-import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.ActivityCallBinding
 
 /**
  * Created by SungBin on 2020-09-19.
@@ -11,11 +10,13 @@ import me.sungbin.spakchat.R
 
 class CallActivity : BaseActivity() {
 
+    private val binding by lazy { ActivityCallBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_call)
+        setContentView(binding.root)
 
-        ctpv_counter.addOnEndListener(object : CountTimeProgressView.OnEndListener {
+        binding.ctpvCounter.addOnEndListener(object : CountTimeProgressView.OnEndListener {
             override fun onAnimationEnd() {
                 // todo: 통화 끊기
             }
@@ -24,7 +25,7 @@ class CallActivity : BaseActivity() {
                 // todo: 프로필 열기
             }
         })
-        ctpv_counter.startCountTimeAnimation()
+        binding.ctpvCounter.startCountTimeAnimation()
     }
 
 }

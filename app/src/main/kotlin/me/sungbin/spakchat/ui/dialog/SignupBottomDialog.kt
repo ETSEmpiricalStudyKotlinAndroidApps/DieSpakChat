@@ -17,14 +17,12 @@ import com.sungbin.androidutils.util.ToastLength
 import com.sungbin.androidutils.util.ToastType
 import com.sungbin.androidutils.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_signup.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.AccountStatus
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
-import me.sungbin.spakchat.util.isBlank
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.random.Random

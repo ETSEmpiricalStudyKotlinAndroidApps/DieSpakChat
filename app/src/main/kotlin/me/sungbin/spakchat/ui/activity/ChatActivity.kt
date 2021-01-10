@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
-import androidx.core.widget.doAfterTextChanged
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
@@ -15,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_chat.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.adapter.ChatAdapter
+import me.sungbin.spakchat.databinding.ActivityChatBinding
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.util.TestUtil
@@ -48,17 +48,19 @@ class ChatActivity : BaseActivity() {
     private var keyboardHeight = 0
     private var isEmoticonContainerShown = false
 
+    private val binding by lazy { ActivityChatBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat)
+        setContentView(binding.root)
         supportActionBar?.hide()
         Slidr.attach(this)
 
         // https://wooooooak.github.io/android/2020/07/30/emoticon_container/
-        cl_container.viewTreeObserver.addOnGlobalLayoutListener {
-            if (rootHeight == 0) rootHeight = cl_container.height
+        binding.clContainer.viewTreeObserver.addOnGlobalLayoutListener {
+            if (rootHeight == 0) rootHeight = binding.clContainer.height
             val visibleFrameSize = Rect()
-            cl_container.getWindowVisibleDisplayFrame(visibleFrameSize)
+            binding.clContainer.getWindowVisibleDisplayFrame(visibleFrameSize)
             val heightExceptKeyboard = visibleFrameSize.bottom - visibleFrameSize.top
             if (heightExceptKeyboard < rootHeight) {
                 keyboardHeight = rootHeight - heightExceptKeyboard
@@ -67,13 +69,13 @@ class ChatActivity : BaseActivity() {
 
         val id = intent.getStringExtra("id") // todo: key로 바꾸기
 
-        tv_name += "실험실"
+        binding.tvName += "실험실"
 
         val messages = ArrayList<Message>()
         val adapter = ChatAdapter(messages)
-        rv_chat.adapter = adapter
+        binding.rvChat.adapter = adapter
 
-        iv_back.setOnClickListener {
+        binding.ivBa.setOnClickListener {
             finish()
         }
 
