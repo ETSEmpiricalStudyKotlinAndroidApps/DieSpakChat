@@ -69,7 +69,7 @@ class ChatActivity : BaseActivity() {
 
         val id = intent.getStringExtra("id") // todo: key로 바꾸기
 
-        binding.tvName += "실험실"
+        binding.tvName.text = "실험실"
 
         val messages = ArrayList<Message>()
         val adapter = ChatAdapter(messages)

@@ -48,7 +48,7 @@ object Versions {
         const val Flexbox = "2.0.1"
         const val Slidr = "2.1.0"
         const val CountTimeProgressView = "1.1.3"
-        const val FishBun = "1.0.0-alpha03"
+        const val FishBun = "1.0.0-alpha05"
         const val SmoothBottomBar = "1.7.6"
         const val YoYo = "2.4@aar"
         const val Lottie = "3.6.0"

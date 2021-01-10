@@ -1,5 +1,6 @@
 package me.sungbin.spakchat.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.WindowManager
 import com.sangcomz.fishbun.FishBun
+import com.sungbin.androidutils.extensions.get
 import com.sungbin.androidutils.ui.TagableRoundImageView
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.spakchat.R
@@ -65,15 +67,18 @@ class JoinActivity : BaseActivity() {
         }
     }
 
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             FishBun.FISHBUN_REQUEST_CODE -> {
                 val profileImageView =
-                    signupBottomDialog.view?.findViewById<TagableRoundImageView>(R.id.iv_profile)
+                    signupBottomDialog.view?.get(R.id.iv_profile,
+                        TagableRoundImageView::class.java)!!
                 val uri =
                     data?.getParcelableArrayListExtra<Uri>(FishBun.INTENT_PATH)?.get(0) ?: return
-                GlideApp.with(applicationContext).load(uri).into(profileImageView!!)
+                profileImageView.setPadding(0, 0, 0, 0)
+                GlideApp.with(applicationContext).load(uri).into(profileImageView)
                 profileImageView.tag = uri
             }
         }

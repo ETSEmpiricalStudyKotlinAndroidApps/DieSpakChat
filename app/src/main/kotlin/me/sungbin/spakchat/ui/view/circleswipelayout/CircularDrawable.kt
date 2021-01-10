@@ -8,7 +8,7 @@ class CircularDrawable(bitmap: Bitmap) : Drawable() {
         shader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
     }
 
-    var radius: Float = intrinsicWidth.toFloat() / 2
+    var radius = intrinsicWidth.toFloat() / 2
         set(value) {
             field = value
             invalidateSelf()

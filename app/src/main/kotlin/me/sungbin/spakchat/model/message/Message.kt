@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.sungbin.androidutils.extensions.plusAssign
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.module.GlideApp
@@ -53,7 +52,7 @@ data class Message(
         @BindingAdapter("loadMessage")
         fun loadMessage(textView: TextView, message: Message) {
             // todo: 메시지 타입 가져와서 처리하기
-            textView += message.message ?: "unknown message"
+            textView.text = message.message ?: "unknown message"
         }
 
         @JvmStatic
@@ -62,7 +61,7 @@ data class Message(
             val formatter = SimpleDateFormat("aa hh:mm", Locale.KOREA)
             val date = Date()
             date.time = time
-            textView += formatter.format(date)
+            textView.text = formatter.format(date)
         }
 
         @JvmStatic
@@ -83,7 +82,7 @@ data class Message(
         @BindingAdapter("loadUnreadCount")
         fun loadUnreadCount(textView: TextView, message: Message) {
             if (message.owner?.isTestMode!!) {
-                textView += Random.nextInt(0, 100).toString()
+                textView.text = Random.nextInt(0, 100).toString()
             }
         }
 
