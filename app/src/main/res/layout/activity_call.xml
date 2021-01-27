@@ -78,7 +78,7 @@
             app:markBallWidth="15dp"
             app:titleCenterText="" />
 
-        <com.sungbin.androidutils.ui.TagableRoundImageView
+        <me.sungbin.androidutils.ui.TagableRoundImageView
             android:id="@+id/iv_profile"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -141,7 +141,7 @@
             tools:background="@color/colorSky"
             tools:layout_width="2dp" />
 
-        <com.sungbin.androidutils.ui.TagableRoundImageView
+        <me.sungbin.androidutils.ui.TagableRoundImageView
             android:id="@+id/triv_accept"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -155,7 +155,7 @@
             app:tint="@color/colorWhite"
             app:triv_imageRadius="@dimen/margin_twice_and_half" />
 
-        <com.sungbin.androidutils.ui.TagableRoundImageView
+        <me.sungbin.androidutils.ui.TagableRoundImageView
             android:id="@+id/triv_denied"
             android:layout_width="75dp"
             android:layout_height="75dp"

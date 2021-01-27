@@ -13,11 +13,14 @@ import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
-import com.sungbin.androidutils.extensions.isNotBlank
-import com.sungbin.androidutils.util.ToastLength
-import com.sungbin.androidutils.util.ToastType
-import com.sungbin.androidutils.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Named
+import kotlin.random.Random
+import me.sungbin.androidutils.extensions.isNotBlank
+import me.sungbin.androidutils.util.ToastLength
+import me.sungbin.androidutils.util.ToastType
+import me.sungbin.androidutils.util.ToastUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutSignupBinding
 import me.sungbin.spakchat.model.user.AccountStatus
@@ -25,9 +28,6 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
-import javax.inject.Inject
-import javax.inject.Named
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class SignupBottomDialog : BottomSheetDialogFragment() {

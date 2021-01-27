@@ -10,8 +10,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
-import com.sungbin.androidutils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import javax.inject.Inject
+import javax.inject.Named
+import kotlin.collections.ArrayList
+import kotlin.random.Random
+import me.sungbin.androidutils.extensions.*
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.adapter.ChatAdapter
 import me.sungbin.spakchat.databinding.ActivityChatBinding
@@ -19,11 +24,6 @@ import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.util.TestUtil
 import me.sungbin.spakchat.util.Util
-import java.util.*
-import javax.inject.Inject
-import javax.inject.Named
-import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 /**
  * Created by SungBin on 2020-09-19.

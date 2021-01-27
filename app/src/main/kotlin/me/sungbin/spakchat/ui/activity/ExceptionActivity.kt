@@ -33,5 +33,4 @@ class ExceptionActivity : BaseActivity() {
             binding.lavException.playAnimation()
         }
     }
-
 }

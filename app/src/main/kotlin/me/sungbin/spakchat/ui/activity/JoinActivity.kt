@@ -11,9 +11,9 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.WindowManager
 import com.sangcomz.fishbun.FishBun
-import com.sungbin.androidutils.extensions.get
-import com.sungbin.androidutils.ui.TagableRoundImageView
 import dagger.hilt.android.AndroidEntryPoint
+import me.sungbin.androidutils.extensions.get
+import me.sungbin.androidutils.ui.TagableRoundImageView
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.module.GlideApp

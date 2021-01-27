@@ -17,7 +17,7 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/signup_background" />
 
-    <com.sungbin.androidutils.ui.TagableRoundImageView
+    <me.sungbin.androidutils.ui.TagableRoundImageView
         android:id="@+id/iv_icon"
         android:layout_width="75dp"
         android:layout_height="75dp"

@@ -6,7 +6,7 @@ object Application {
     const val compileSdk = 30
     const val jvmTarget = "1.8"
     const val versionCode = 1
-    const val versionName = "1.0.0"
+    const val versionName = "Please_end_Corona"
 
     val targetCompat = JavaVersion.VERSION_1_8
     val sourceCompat = JavaVersion.VERSION_1_8
@@ -14,15 +14,14 @@ object Application {
 
 object Versions {
     object Firebase {
-        const val Bom = "26.2.0"
+        const val Bom = "26.3.0"
     }
 
     object Essential {
         const val Google = "4.3.3"
         const val AppCompat = "1.2.0"
-        const val Anko = "0.10.8"
         const val Kotlin = "1.4.21-2"
-        const val Gradle = "4.1.1"
+        const val Gradle = "4.1.2"
         const val LifeCycleViewModel = "2.2.0"
         const val LifeCycleExtensions = "2.2.0"
     }
@@ -33,13 +32,12 @@ object Versions {
     }
 
     object Di {
-        const val Dagger = "2.28.3"
         const val Hilt = "2.28-alpha"
     }
 
     object Jetpack {
         const val DataStore = "1.0.0-alpha01"
-        const val Navigation = "2.3.2"
+        const val Navigation = "2.3.3"
         const val Room = "2.3.0-alpha02"
         const val Paging = "2.1.2"
     }
@@ -62,7 +60,7 @@ object Versions {
     object Util {
         const val TedPermission = "2.2.3"
         const val YoYoHelper = "2.4@aar"
-        const val AndroidUtils = "4.2.6"
+        const val AndroidUtils = "5.1.4"
         const val CarshReporter = "1.1.0"
     }
 }
@@ -74,7 +72,6 @@ object Dependencies {
 
     object Essential {
         const val AppCompat = "androidx.appcompat:appcompat:${Versions.Essential.AppCompat}"
-        const val Anko = "org.jetbrains.anko:anko:${Versions.Essential.Anko}"
         const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.Essential.Kotlin}"
         const val LifeCycleExtensions =
             "androidx.lifecycle:lifecycle-extensions:${Versions.Essential.LifeCycleExtensions}"
@@ -83,33 +80,33 @@ object Dependencies {
     }
 
     object Ktx {
+        const val Core = "androidx.core:core-ktx:${Versions.Ktx.Core}"
+        const val Fragment =
+            "androidx.navigation:navigation-fragment-ktx:${Versions.Ktx.Fragment}"
         const val NavigationFragment =
             "androidx.navigation:navigation-fragment-ktx:${Versions.Jetpack.Navigation}"
         const val NavigationUi =
             "androidx.navigation:navigation-ui-ktx:${Versions.Jetpack.Navigation}"
-        const val Core = "androidx.core:core-ktx:${Versions.Ktx.Core}"
-        const val Fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.Ktx.Fragment}"
-        const val Storage = "com.google.firebase:firebase-storage-ktx"
-        const val Database = "com.google.firebase:firebase-database-ktx"
-        const val Config = "com.google.firebase:firebase-config-ktx"
-        const val Analytics = "com.google.firebase:firebase-analytics-ktx"
-        const val Auth = "com.google.firebase:firebase-auth-ktx"
-        const val Messaging = "com.google.firebase:firebase-messaging-ktx"
-        const val Firestore = "com.google.firebase:firebase-firestore-ktx"
+
+        object Firebase {
+            const val Storage = "com.google.firebase:firebase-storage-ktx"
+            const val Database = "com.google.firebase:firebase-database-ktx"
+            const val Config = "com.google.firebase:firebase-config-ktx"
+            const val Analytics = "com.google.firebase:firebase-analytics-ktx"
+            const val Auth = "com.google.firebase:firebase-auth-ktx"
+            const val Messaging = "com.google.firebase:firebase-messaging-ktx"
+            const val Firestore = "com.google.firebase:firebase-firestore-ktx"
+        }
     }
 
     object Di {
-        const val Dagger = "com.google.dagger:dagger:${Versions.Di.Dagger}"
-        const val DaggerCompiler = "com.google.dagger:dagger-compiler:${Versions.Di.Dagger}"
         const val Hilt = "com.google.dagger:hilt-android:${Versions.Di.Hilt}"
-        const val HiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Di.Hilt}"
     }
 
     object Jetpack {
         const val DataStore =
             "androidx.datastore:datastore-preferences:${Versions.Jetpack.DataStore}"
         const val Room = "androidx.room:room-runtime:${Versions.Jetpack.Room}"
-        const val RoomCompiler = "androidx.room:room-compiler:${Versions.Jetpack.Room}"
         const val Paging = "androidx.paging:paging-runtime:${Versions.Jetpack.Paging}"
     }
 
@@ -134,10 +131,17 @@ object Dependencies {
 
     object Util {
         const val TedPermission = "gun0912.ted:tedpermission:${Versions.Util.TedPermission}"
-        const val GlideCompiler = "com.github.bumptech.glide:compiler:${Versions.Ui.Glide}"
         const val YoyoHelper = "com.daimajia.easing:library:${Versions.Util.YoYoHelper}"
-        const val AndroidUtils = "com.github.sungbin5304:SBT:${Versions.Util.AndroidUtils}"
+        const val AndroidUtils =
+            "com.github.sungbin5304.SBT:androidutils:${Versions.Util.AndroidUtils}"
         const val CrashReporter =
             "com.balsikandar.android:crashreporter:${Versions.Util.CarshReporter}"
+    }
+
+    object Compiler {
+        const val Room = "androidx.room:room-compiler:${Versions.Jetpack.Room}"
+        const val AndroidUtils = "com.github.sungbin5304.SBT:compiler:${Versions.Util.AndroidUtils}"
+        const val Glide = "com.github.bumptech.glide:compiler:${Versions.Ui.Glide}"
+        const val Hilt = "com.google.dagger:hilt-android-compiler:${Versions.Di.Hilt}"
     }
 }

@@ -1,10 +1,10 @@
 package me.sungbin.spakchat.util
 
 import android.content.Context
-import com.sungbin.androidutils.util.Logger
-import com.sungbin.androidutils.util.ToastLength
-import com.sungbin.androidutils.util.ToastType
-import com.sungbin.androidutils.util.ToastUtil
+import me.sungbin.androidutils.util.Logger
+import me.sungbin.androidutils.util.ToastLength
+import me.sungbin.androidutils.util.ToastType
+import me.sungbin.androidutils.util.ToastUtil
 import me.sungbin.spakchat.ui.activity.ExceptionActivity
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask

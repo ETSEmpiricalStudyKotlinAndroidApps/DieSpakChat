@@ -3,22 +3,21 @@ package me.sungbin.spakchat.ui.activity
 import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
-import com.sungbin.androidutils.util.Logger
-import com.sungbin.androidutils.util.NetworkUtil
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Named
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import me.sungbin.androidutils.util.Logger
+import me.sungbin.androidutils.util.NetworkUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.database.UserDatabase
 import me.sungbin.spakchat.databinding.ActivitySplashBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.model.user.UserEntity
 import me.sungbin.spakchat.util.toText
-import org.jetbrains.anko.startActivity
-import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * Created by SungBin on 2020-09-21.

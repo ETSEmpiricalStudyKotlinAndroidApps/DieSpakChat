@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sungbin.androidutils.extensions.hide
+import me.sungbin.androidutils.extensions.hide
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFriendBinding
 import me.sungbin.spakchat.model.user.User

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sungbin.androidutils.extensions.setFab
+import me.sungbin.androidutils.extensions.setFab
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.FragmentChatBinding
 import me.sungbin.spakchat.ui.activity.MainActivity

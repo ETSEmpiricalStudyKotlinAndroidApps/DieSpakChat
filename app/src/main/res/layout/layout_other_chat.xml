@@ -17,7 +17,7 @@
         android:background="@color/colorBackgroundWhite"
         android:clipToPadding="false">
 
-        <com.sungbin.androidutils.ui.TagableRoundImageView
+        <me.sungbin.androidutils.ui.TagableRoundImageView
             android:id="@+id/iv_profile"
             android:layout_width="50dp"
             android:layout_height="50dp"

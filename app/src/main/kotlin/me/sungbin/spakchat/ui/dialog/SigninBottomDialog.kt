@@ -11,11 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
-import com.sungbin.androidutils.extensions.isNotBlank
-import com.sungbin.androidutils.util.ToastLength
-import com.sungbin.androidutils.util.ToastType
-import com.sungbin.androidutils.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Named
+import me.sungbin.androidutils.extensions.isNotBlank
+import me.sungbin.androidutils.util.ToastLength
+import me.sungbin.androidutils.util.ToastType
+import me.sungbin.androidutils.util.ToastUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.databinding.LayoutSigninBinding
@@ -23,9 +25,6 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
-import org.jetbrains.anko.support.v4.startActivity
-import javax.inject.Inject
-import javax.inject.Named
 
 @AndroidEntryPoint
 class SigninBottomDialog : BottomSheetDialogFragment() {

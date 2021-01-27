@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
-    id("name.remal.check-dependency-updates") version "1.1.6"
+    id("name.remal.check-dependency-updates") version "1.2.2"
     id("com.google.gms.google-services")
     kotlin("android")
     kotlin("kapt")
@@ -70,52 +70,51 @@ dependencies {
     }
 
     def(
-        Dependencies.Jetpack.DataStore,
-        Dependencies.Jetpack.Paging,
         Dependencies.Jetpack.Room,
+        Dependencies.Jetpack.Paging,
+        Dependencies.Jetpack.DataStore,
 
-        Dependencies.Essential.AppCompat,
-        Dependencies.Essential.Anko,
         Dependencies.Essential.Kotlin,
-        Dependencies.Essential.LifeCycleExtensions,
+        Dependencies.Essential.AppCompat,
         Dependencies.Essential.LifeCycleViewModel,
+        Dependencies.Essential.LifeCycleExtensions,
 
         Dependencies.Ktx.Core,
         Dependencies.Ktx.Fragment,
-        Dependencies.Ktx.NavigationFragment,
         Dependencies.Ktx.NavigationUi,
-        Dependencies.Ktx.Storage,
-        Dependencies.Ktx.Config,
-        Dependencies.Ktx.Database,
-        Dependencies.Ktx.Analytics,
-        Dependencies.Ktx.Auth,
-        Dependencies.Ktx.Messaging,
-        Dependencies.Ktx.Firestore,
+        Dependencies.Ktx.NavigationFragment,
 
-        // Dependencies.Di.Dagger, --- 따거 써보고싶은데;
+        Dependencies.Ktx.Firebase.Auth,
+        Dependencies.Ktx.Firebase.Config,
+        Dependencies.Ktx.Firebase.Storage,
+        Dependencies.Ktx.Firebase.Database,
+        Dependencies.Ktx.Firebase.Analytics,
+        Dependencies.Ktx.Firebase.Messaging,
+        Dependencies.Ktx.Firebase.Firestore,
+
         Dependencies.Di.Hilt,
 
-        Dependencies.Ui.Flexbox,
-        Dependencies.Ui.Slidr,
-        Dependencies.Ui.CountTimeProgressView,
-        Dependencies.Ui.FishBun,
-        Dependencies.Ui.SmoothBottomBar,
         Dependencies.Ui.YoYo,
-        Dependencies.Ui.Lottie,
-        Dependencies.Ui.Material,
+        Dependencies.Ui.Slidr,
         Dependencies.Ui.Glide,
-        Dependencies.Ui.GlideTransformation,
+        Dependencies.Ui.Lottie,
+        Dependencies.Ui.FishBun,
+        Dependencies.Ui.Flexbox,
+        Dependencies.Ui.Material,
         Dependencies.Ui.CardView,
+        Dependencies.Ui.SmoothBottomBar,
         Dependencies.Ui.ConstraintLayout,
+        Dependencies.Ui.GlideTransformation,
+        Dependencies.Ui.CountTimeProgressView,
 
-        Dependencies.Util.TedPermission,
         Dependencies.Util.YoyoHelper,
         Dependencies.Util.AndroidUtils,
-        Dependencies.Util.CrashReporter
+        Dependencies.Util.CrashReporter,
+        Dependencies.Util.TedPermission
     )
 
-    // kapt(Dependencies.Di.DaggerCompiler)
-    kapt(Dependencies.Util.GlideCompiler)
-    kapt(Dependencies.Di.HiltCompiler)
-    kapt(Dependencies.Jetpack.RoomCompiler)
+    kapt(Dependencies.Compiler.Hilt)
+    kapt(Dependencies.Compiler.Room)
+    kapt(Dependencies.Compiler.Glide)
+    kapt(Dependencies.Compiler.AndroidUtils)
 }

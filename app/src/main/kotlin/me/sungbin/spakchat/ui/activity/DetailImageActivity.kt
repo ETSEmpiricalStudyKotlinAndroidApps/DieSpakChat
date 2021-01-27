@@ -8,7 +8,7 @@ import android.transition.TransitionSet
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
-import com.sungbin.androidutils.ui.TagableRoundImageView
+import me.sungbin.androidutils.ui.TagableRoundImageView
 import me.sungbin.spakchat.databinding.ActivityDetailviewImageBinding
 import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.view.circleswipelayout.CircleSwipeLayout

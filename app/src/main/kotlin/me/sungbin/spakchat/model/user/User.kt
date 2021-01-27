@@ -6,7 +6,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.sungbin.androidutils.util.Logger
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.module.GlideApp
 

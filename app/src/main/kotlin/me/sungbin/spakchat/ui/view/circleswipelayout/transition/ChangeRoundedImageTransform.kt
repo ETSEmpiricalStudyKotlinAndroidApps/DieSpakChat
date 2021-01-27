@@ -8,7 +8,7 @@ import android.transition.ChangeBounds
 import android.transition.TransitionValues
 import android.util.AttributeSet
 import android.view.ViewGroup
-import com.sungbin.androidutils.ui.TagableRoundImageView
+import me.sungbin.androidutils.ui.TagableRoundImageView
 import me.sungbin.spakchat.R
 
 class ChangeRoundedImageTransform(context: Context?, attrs: AttributeSet?) :

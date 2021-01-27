@@ -1,6 +1,6 @@
 package me.sungbin.spakchat.util
 
-import com.sungbin.androidutils.util.Util
+import me.sungbin.androidutils.util.Util
 
 object Util {
     val randomId get() = Util.makeRandomUUID().replace("-", "").toLong()
