@@ -1,3 +1,8 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ */
+
 package me.sungbin.spakchat.model.message
 
 import android.graphics.drawable.ColorDrawable
@@ -10,12 +15,9 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.module.GlideApp
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 import kotlin.random.Random
-
-/**
- * Created by SungBin on 2020-09-18.
- */
 
 data class Message(
     val key: Long? = null,

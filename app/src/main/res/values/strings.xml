@@ -34,6 +34,7 @@
     <string name="signup_email">이메일</string>
     <string name="signup_nickname">닉네임</string>
     <string name="signup_password">비밀번호</string>
+    <string name="signup_password_confirm">비밀번호 확인</string>
     <string name="signup_welcome_back">돌아오신걸 환영합니다!</string>
     <string name="signup_cant_load_picture">권한 사용이 거부되어 사진을 불러올 수 없습니다.</string>
     <string name="signup_permission_denied">권한 사용이 거부되어 사진을 불러올 수 없습니다.\n앱 설정에서 권한 사용을 수락해 주세요.</string>
@@ -66,5 +67,4 @@
 
     <string name="splash_non_internet">인터넷 없음!</string>
     <string name="splash_need_internet">SpakChat을 이용하려면 인터넷에 연결되있어야 해요 😢</string>
-
 </resources>

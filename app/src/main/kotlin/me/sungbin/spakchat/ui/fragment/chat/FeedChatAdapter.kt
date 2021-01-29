@@ -1,8 +1,9 @@
 /*
- * Copyright (c) 2020. Ji Sungbin.
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  */
 
-package me.sungbin.spakchat.adapter
+package me.sungbin.spakchat.ui.fragment.chat
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,25 +12,25 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.androidutils.extensions.hide
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.LayoutFriendBinding
-import me.sungbin.spakchat.model.user.User
+import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
+import me.sungbin.spakchat.model.message.Message
+import me.sungbin.spakchat.ui.activity.chat.ChatActivity
 
-/**
- * Created by SungBin on 2020-10-29.
- */
-
-class FriendAdapter(
-    private val items: List<User>
-) : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
+class FeedChatAdapter(
+    private val items: List<Message>
+) : RecyclerView.Adapter<FeedChatAdapter.ViewHolder>() {
 
     inner class ViewHolder(
-        private val binding: LayoutFriendBinding,
+        private val binding: LayoutFeedChatBinding,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(user: User, position: Int) {
+        fun bindViewHolder(message: Message, position: Int) {
             with(binding) {
-                this.user = user
+                this.message = message
+                ivProfile.setOnClickListener {
+                    it.context.startActivity<ChatActivity>("id" to message.owner?.id)
+                }
                 if (adapterPosition == 0) viewTop.hide(true)
                 invalidateAll()
             }
@@ -40,7 +41,7 @@ class FriendAdapter(
         ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
-                R.layout.layout_friend, viewGroup, false
+                R.layout.layout_feed_chat, viewGroup, false
             )
         )
 

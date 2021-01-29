@@ -1,4 +1,9 @@
-package me.sungbin.spakchat.ui.activity
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ */
+
+package me.sungbin.spakchat.ui.activity.chat
 
 import android.graphics.Rect
 import android.os.Bundle
@@ -11,19 +16,19 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
 import dagger.hilt.android.AndroidEntryPoint
+import me.sungbin.androidutils.extensions.*
+import me.sungbin.spakchat.R
+import me.sungbin.spakchat.databinding.ActivityChatBinding
+import me.sungbin.spakchat.model.message.Message
+import me.sungbin.spakchat.model.message.MessageType
+import me.sungbin.spakchat.ui.activity.BaseActivity
+import me.sungbin.spakchat.util.TestUtil
+import me.sungbin.spakchat.util.Util
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.collections.ArrayList
 import kotlin.random.Random
-import me.sungbin.androidutils.extensions.*
-import me.sungbin.spakchat.R
-import me.sungbin.spakchat.adapter.ChatAdapter
-import me.sungbin.spakchat.databinding.ActivityChatBinding
-import me.sungbin.spakchat.model.message.Message
-import me.sungbin.spakchat.model.message.MessageType
-import me.sungbin.spakchat.util.TestUtil
-import me.sungbin.spakchat.util.Util
 
 /**
  * Created by SungBin on 2020-09-19.
@@ -81,8 +86,12 @@ class ChatActivity : BaseActivity() {
 
         binding.etInput.doAfterTextChanged {
             if (it.toString().isNotBlank()) {
-                binding.ivSend.setTint(ContextCompat.getColor(applicationContext,
-                    R.color.colorPrimary))
+                binding.ivSend.setTint(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        R.color.colorPrimary
+                    )
+                )
             } else {
                 binding.ivSend.setTint(
                     ContextCompat.getColor(
@@ -142,7 +151,5 @@ class ChatActivity : BaseActivity() {
                 // database.child("chat/room/uuid").push().setValue(message)
             }
         }
-
     }
-
 }

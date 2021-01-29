@@ -1,8 +1,9 @@
-package me.sungbin.spakchat.model.message
-
-/**
- * Created by SungBin on 2020-09-18.
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  */
+
+package me.sungbin.spakchat.model.message
 
 object MessageType {
     const val ATTACHMENT = 0

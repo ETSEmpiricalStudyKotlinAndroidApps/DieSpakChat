@@ -1,4 +1,9 @@
-package me.sungbin.spakchat.adapter
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ */
+
+package me.sungbin.spakchat.ui.activity.chat
 
 import android.app.Activity
 import android.content.Intent
@@ -14,10 +19,6 @@ import me.sungbin.spakchat.databinding.LayoutOwnChatBinding
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageViewType
 import me.sungbin.spakchat.ui.activity.DetailImageActivity
-
-/**
- * Created by SungBin on 2020-07-20.
- */
 
 class ChatAdapter(
     private val items: List<Message>

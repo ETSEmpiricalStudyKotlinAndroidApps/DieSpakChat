@@ -1,10 +1,15 @@
 /*
- * Copyright (c) 2020. Ji Sungbin.
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  */
 
 package me.sungbin.spakchat.model.message
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 
 @Dao
 interface MessageDao { // todo: suspend fun 써보기

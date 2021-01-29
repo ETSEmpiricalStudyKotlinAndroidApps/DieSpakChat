@@ -40,7 +40,7 @@
             android:theme="@style/SpakChat.Main.WhiteStatusBar" />
 
         <activity
-            android:name=".ui.activity.ChatActivity"
+            android:name=".ui.activity.chat.ChatActivity"
             android:theme="@style/SpakChat.Chat.WhiteStatusBar" />
 
         <activity

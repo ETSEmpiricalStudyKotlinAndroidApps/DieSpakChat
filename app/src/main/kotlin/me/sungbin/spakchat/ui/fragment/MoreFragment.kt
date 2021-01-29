@@ -30,7 +30,6 @@ class MoreFragment : BaseFragment() {
         MainActivity.fabAction.hide()
 
         binding.ivEdit.setOnClickListener {
-
         }
     }
 }

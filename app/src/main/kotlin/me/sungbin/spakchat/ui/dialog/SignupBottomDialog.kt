@@ -1,3 +1,8 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ */
+
 package me.sungbin.spakchat.ui.dialog
 
 import android.Manifest
@@ -14,30 +19,32 @@ import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
-import javax.inject.Named
-import kotlin.random.Random
 import me.sungbin.androidutils.extensions.isNotBlank
-import me.sungbin.androidutils.util.ToastLength
-import me.sungbin.androidutils.util.ToastType
-import me.sungbin.androidutils.util.ToastUtil
+import me.sungbin.androidutils.extensions.toast
+import me.sungbin.androidutils.util.toastutil.ToastLength
+import me.sungbin.androidutils.util.toastutil.ToastType
+import me.sungbin.androidutils.util.toastutil.ToastUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutSignupBinding
+import me.sungbin.spakchat.di.Firestore
+import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.user.AccountStatus
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
+import javax.inject.Inject
+import kotlin.random.Random
 
 @AndroidEntryPoint
-class SignupBottomDialog : BottomSheetDialogFragment() {
+class SignupBottomDialog private constructor() : BottomSheetDialogFragment() {
 
+    @Firestore
     @Inject
-    @Named("firestore")
     lateinit var firestore: FirebaseFirestore
 
+    @Storage
     @Inject
-    @Named("storage")
     lateinit var storage: StorageReference
 
     private lateinit var binding: LayoutSignupBinding
@@ -113,10 +120,10 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
         val password = binding.tietPassword.text.toString()
         val user = User(
             key = "${email.first().toInt()}${
-                Random.nextInt(
-                    10000,
-                    100000
-                )
+            Random.nextInt(
+                10000,
+                100000
+            )
             }${name.last().toInt()}".toLong(),
             id = "$name${Random.nextInt(10000)}",
             email = email,
@@ -149,12 +156,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
             )
             .set(user)
             .addOnSuccessListener {
-                ToastUtil.show(
-                    requireContext(),
-                    getString(R.string.signup_done),
-                    ToastLength.SHORT,
-                    ToastType.SUCCESS
-                )
+                toast(getString(R.string.signup_done))
                 dismiss()
             }
             .addOnFailureListener { exception ->
@@ -163,13 +165,7 @@ class SignupBottomDialog : BottomSheetDialogFragment() {
     }
 
     companion object {
-        private lateinit var bottomSheetDialogFragment: BottomSheetDialogFragment
-
-        fun instance(): BottomSheetDialogFragment {
-            if (!::bottomSheetDialogFragment.isInitialized) {
-                bottomSheetDialogFragment = SignupBottomDialog()
-            }
-            return bottomSheetDialogFragment
-        }
+        private val bottomSheetDialogFragment = BottomSheetDialogFragment()
+        fun instance() = bottomSheetDialogFragment
     }
 }

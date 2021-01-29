@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/chat"
-        android:name="me.sungbin.spakchat.ui.fragment.ChatFragment"
+        android:name="me.sungbin.spakchat.ui.fragment.chat.ChatFragment"
         android:label="ChatFragment" />
 
     <fragment
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/contact"
-        android:name="me.sungbin.spakchat.ui.fragment.ContactFragment"
+        android:name="me.sungbin.spakchat.ui.fragment.contact.ContactFragment"
         android:label="ContactFragment" />
 
     <fragment

@@ -1,12 +1,13 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ */
+
 package me.sungbin.spakchat.ui.activity
 
 import android.os.Bundle
 import com.sfyc.ctpv.CountTimeProgressView
 import me.sungbin.spakchat.databinding.ActivityCallBinding
-
-/**
- * Created by SungBin on 2020-09-19.
- */
 
 class CallActivity : BaseActivity() {
 
@@ -27,5 +28,4 @@ class CallActivity : BaseActivity() {
         })
         binding.ctpvCounter.startCountTimeAnimation()
     }
-
 }

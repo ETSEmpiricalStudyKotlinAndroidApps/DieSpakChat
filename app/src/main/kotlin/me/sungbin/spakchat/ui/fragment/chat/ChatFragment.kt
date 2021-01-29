@@ -1,4 +1,9 @@
-package me.sungbin.spakchat.ui.fragment
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ */
+
+package me.sungbin.spakchat.ui.fragment.chat
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +13,7 @@ import me.sungbin.androidutils.extensions.setFab
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.FragmentChatBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
+import me.sungbin.spakchat.ui.fragment.BaseFragment
 
 /**
  * Created by SungBin on 2020-09-10.

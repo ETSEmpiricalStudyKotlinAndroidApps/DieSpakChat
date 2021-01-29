@@ -1,12 +1,12 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ */
+
 package me.sungbin.spakchat.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import me.sungbin.spakchat.R
-
-/**
- * Created by SungBin on 2020-10-21.
- */
-
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -14,5 +14,4 @@ abstract class BaseActivity : AppCompatActivity() {
         super.finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
-
 }

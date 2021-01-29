@@ -1,4 +1,9 @@
-package me.sungbin.spakchat.ui.fragment
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ */
+
+package me.sungbin.spakchat.ui.fragment.contact
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.adapter.FriendAdapter
 import me.sungbin.spakchat.databinding.FragmentContactBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
+import me.sungbin.spakchat.ui.fragment.BaseFragment
 import me.sungbin.spakchat.util.toArray
 
 /**
@@ -36,10 +41,10 @@ class ContactFragment : BaseFragment() {
             text = getString(R.string.main_new_contact)
         }.show()
 
-        val users = ArrayList<User>()
+        val users = mutableListOf<User>()
         val dbThread = Thread {
             val usersEntity = userDb.dao().getAllUser()
-            usersEntity.map {
+            usersEntity.forEach {
                 it.run {
                     val user = User(
                         key = key,
@@ -66,7 +71,7 @@ class ContactFragment : BaseFragment() {
             }
         }
         dbThread.start()
-        dbThread.join() // todo: UI-Thread blocking /// .join() 말고 다릏게 하기
+        dbThread.join() // todo: UI-Thread blocking /// .join() 말고 다르게 하기
         binding.rvFriends.adapter = FriendAdapter(users)
     }
 }

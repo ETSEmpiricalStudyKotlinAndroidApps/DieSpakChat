@@ -1,36 +1,38 @@
 package me.sungbin.spakchat.ui.dialog
 
-
 /**
  * Created by SungBin on 2020-09-11.
  */
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
-import javax.inject.Named
 import me.sungbin.androidutils.extensions.isNotBlank
-import me.sungbin.androidutils.util.ToastLength
-import me.sungbin.androidutils.util.ToastType
-import me.sungbin.androidutils.util.ToastUtil
+import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakChat
+import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.LayoutSigninBinding
+import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
+import java.io.Serializable
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class SigninBottomDialog : BottomSheetDialogFragment() {
+class SigninBottomDialog private constructor(private val vm: SpakViewModel) :
+    BottomSheetDialogFragment() {
 
+    @Firestore
     @Inject
-    @Named("firestore")
     lateinit var firestore: FirebaseFirestore
 
     lateinit var binding: LayoutSigninBinding
@@ -65,56 +67,73 @@ class SigninBottomDialog : BottomSheetDialogFragment() {
                             it.toObject(User::class.java)?.run {
                                 if (this.email == email &&
                                     EncryptUtil.encrypt(
-                                        EncryptUtil.EncryptType.MD5,
-                                        password
-                                    ) == this.password
+                                            EncryptUtil.EncryptType.MD5,
+                                            password
+                                        ) == this.password
                                 ) {
-                                    SpakChat.me = this
-                                    ToastUtil.show(
-                                        requireContext(),
-                                        getString(R.string.signin_welcome, name),
-                                        ToastLength.SHORT,
-                                        ToastType.SUCCESS
-                                    )
+                                    vm.me = this
+                                    toast(getString(R.string.signin_welcome, name))
                                     startActivity<MainActivity>()
                                 } else {
-                                    ToastUtil.show(
-                                        requireContext(),
-                                        getString(R.string.signin_not_match_email_password),
-                                        ToastLength.SHORT,
-                                        ToastType.WARNING
-                                    )
+                                    toast(getString(R.string.signin_not_match_email_password))
                                 }
                             }
-                        } ?: ToastUtil.show(
-                            requireContext(),
-                            getString(R.string.signin_unknown_email),
-                            ToastLength.SHORT,
-                            ToastType.WARNING
-                        )
+                        } ?: toast(getString(R.string.signin_unknown_email))
                     }
                     .addOnFailureListener {
                         ExceptionUtil.except(it, requireContext())
                     }
             } else {
-                ToastUtil.show(
-                    requireContext(),
-                    getString(R.string.signup_input_all),
-                    ToastLength.SHORT,
-                    ToastType.WARNING
-                )
+                toast(getString(R.string.signup_input_all))
             }
         }
     }
 
     companion object {
-        private lateinit var bottomSheetDialogFragment: BottomSheetDialogFragment
-
-        fun instance(): BottomSheetDialogFragment {
-            if (!::bottomSheetDialogFragment.isInitialized) {
-                bottomSheetDialogFragment = SigninBottomDialog()
+        private lateinit var signinBottomDialog: SigninBottomDialog
+        fun instance(vm: SpakViewModel): SigninBottomDialog {
+            if (!::signinBottomDialog.isInitialized) {
+                signinBottomDialog = SigninBottomDialog(vm)
             }
-            return bottomSheetDialogFragment
+            return signinBottomDialog
         }
+    }
+
+    @Throws(Exception::class)
+    private inline fun <reified T> Fragment.startActivity(
+        isNewTask: Boolean = false,
+        vararg extras: Pair<String, *>
+    ) {
+        requireActivity().startActivity(
+            Intent(requireActivity(), T::class.java).apply {
+                if (isNewTask) addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                extras.iterator().forEach {
+                    when (it.second) {
+                        is Int -> putExtra(it.first, it.second as Int)
+                        is Long -> putExtra(it.first, it.second as Long)
+                        is Char -> putExtra(it.first, it.second as Char)
+                        is Byte -> putExtra(it.first, it.second as Byte)
+                        is Short -> putExtra(it.first, it.second as Short)
+                        is Float -> putExtra(it.first, it.second as Float)
+                        is Double -> putExtra(it.first, it.second as Double)
+                        is Boolean -> putExtra(it.first, it.second as Boolean)
+                        is String? -> putExtra(it.first, it.second as String?)
+                        is Bundle? -> putExtra(it.first, it.second as Bundle?)
+                        is IntArray? -> putExtra(it.first, it.second as IntArray?)
+                        is CharArray? -> putExtra(it.first, it.second as CharArray?)
+                        is LongArray? -> putExtra(it.first, it.second as LongArray?)
+                        is ByteArray? -> putExtra(it.first, it.second as ByteArray?)
+                        is ShortArray? -> putExtra(it.first, it.second as ShortArray?)
+                        is Parcelable? -> putExtra(it.first, it.second as Parcelable?)
+                        is FloatArray? -> putExtra(it.first, it.second as FloatArray?)
+                        is DoubleArray? -> putExtra(it.first, it.second as DoubleArray?)
+                        is CharSequence? -> putExtra(it.first, it.second as CharSequence?)
+                        is Serializable? -> putExtra(it.first, it.second as Serializable?)
+                        is BooleanArray? -> putExtra(it.first, it.second as BooleanArray?)
+                        else -> throw Exception("${it.first} pair second value(${it.second}) is not supported type.")
+                    }
+                }
+            }
+        )
     }
 }

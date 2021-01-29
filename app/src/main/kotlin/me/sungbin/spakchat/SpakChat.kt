@@ -1,21 +1,19 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ */
+
 package me.sungbin.spakchat
 
 import android.app.Application
 import android.content.Context
 import dagger.hilt.android.HiltAndroidApp
-import me.sungbin.spakchat.model.user.User
-
-
-/**
- * Created by SungBin on 2020-09-11.
- */
 
 @HiltAndroidApp
 class SpakChat : Application() {
 
     companion object {
         lateinit var context: Context
-        lateinit var me: User
     }
 
     override fun onCreate() {

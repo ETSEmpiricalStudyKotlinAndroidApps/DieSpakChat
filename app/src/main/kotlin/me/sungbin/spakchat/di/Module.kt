@@ -1,4 +1,9 @@
-package me.sungbin.spakchat.module
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ */
+
+package me.sungbin.spakchat.di
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
@@ -6,41 +11,35 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.database.UserDatabase
-import javax.inject.Named
-import javax.inject.Singleton
-
-/**
- * Created by SungBin on 2020-09-18.
- */
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class DependencyModule {
+class Module {
 
-    @Singleton
-    @Named("user-db")
+    @UserDB
+    @Reusable
     @Provides
     fun provideUserRoom() = UserDatabase.instance(SpakChat.context)
 
-    @Singleton
-    @Named("storage")
+    @Storage
+    @Reusable
     @Provides
     fun provideFirebaseStorage() = Firebase.storage.reference
 
-    @Singleton
-    @Named("firestore")
+    @Firestore
+    @Reusable
     @Provides
     fun provideFirestore() = Firebase.firestore
 
-    @Singleton
-    @Named("database")
+    @RealtimeDatabase
+    @Reusable
     @Provides
-    fun provideFirebaseRealtimeDatabase() = Firebase.database.reference.apply {
+    fun provideRealtimeDatabase() = Firebase.database.reference.apply {
         keepSynced(true)
     }
-
 }

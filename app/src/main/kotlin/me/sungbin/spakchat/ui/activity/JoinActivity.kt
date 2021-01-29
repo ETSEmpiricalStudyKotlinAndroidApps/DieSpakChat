@@ -1,6 +1,10 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ */
+
 package me.sungbin.spakchat.ui.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
@@ -13,16 +17,12 @@ import android.view.WindowManager
 import com.sangcomz.fishbun.FishBun
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.androidutils.extensions.get
-import me.sungbin.androidutils.ui.TagableRoundImageView
+import me.sungbin.androidutils.ui.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.dialog.SigninBottomDialog
 import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
-
-/**
- * Created by SungBin on 2020-09-11.
- */
 
 @AndroidEntryPoint
 class JoinActivity : BaseActivity() {
@@ -67,17 +67,18 @@ class JoinActivity : BaseActivity() {
         }
     }
 
-    @SuppressLint("UseRequireInsteadOfGet")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             FishBun.FISHBUN_REQUEST_CODE -> {
                 val profileImageView =
-                    signupBottomDialog.view?.get(R.id.iv_profile,
-                        TagableRoundImageView::class.java)!!
+                    signupBottomDialog.view?.get(
+                        R.id.iv_profile,
+                        TagableRoundImageView::class.java
+                    )
                 val uri =
                     data?.getParcelableArrayListExtra<Uri>(FishBun.INTENT_PATH)?.get(0) ?: return
-                profileImageView.setPadding(0, 0, 0, 0)
+                profileImageView!!.setPadding(0, 0, 0, 0)
                 GlideApp.with(applicationContext).load(uri).into(profileImageView)
                 profileImageView.tag = uri
             }
