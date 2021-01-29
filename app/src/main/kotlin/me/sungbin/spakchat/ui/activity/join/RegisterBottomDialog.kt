@@ -1,9 +1,12 @@
 /*
- * Create by Sungbin Ji on 2021. 1. 29.
- * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.ui.dialog
+package me.sungbin.spakchat.ui.activity.join
 
 import android.Manifest
 import android.net.Uri
@@ -19,12 +22,11 @@ import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import me.sungbin.androidutils.extensions.afterTextChanged
 import me.sungbin.androidutils.extensions.isNotBlank
 import me.sungbin.androidutils.extensions.toast
-import me.sungbin.androidutils.util.toastutil.ToastLength
-import me.sungbin.androidutils.util.toastutil.ToastType
-import me.sungbin.androidutils.util.toastutil.ToastUtil
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.LayoutSignupBinding
 import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.di.Storage
@@ -33,11 +35,14 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
+import me.sungbin.spakchat.util.extensions.hideWithAnimate
+import me.sungbin.spakchat.util.extensions.showWithAnimate
 import javax.inject.Inject
 import kotlin.random.Random
 
 @AndroidEntryPoint
-class SignupBottomDialog private constructor() : BottomSheetDialogFragment() {
+class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
+    BottomSheetDialogFragment() {
 
     @Firestore
     @Inject
@@ -75,18 +80,21 @@ class SignupBottomDialog private constructor() : BottomSheetDialogFragment() {
                     }
 
                     override fun onPermissionDenied(deniedPermissions: List<String>) {
-                        ToastUtil.show(
-                            requireContext(),
-                            getString(R.string.signup_cant_load_picture),
-                            ToastLength.SHORT,
-                            ToastType.WARNING
-                        )
+                        toast(getString(R.string.signup_cant_load_picture))
                     }
                 })
                 .setRationaleMessage(getString(R.string.signup_need_permission_for_load_picture))
                 .setDeniedMessage(R.string.signup_permission_denied)
                 .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .check()
+        }
+
+        binding.tietPassword.afterTextChanged {
+            if (it.toString().isNotBlank()) {
+                binding.tilPasswordConfirm.showWithAnimate()
+            } else {
+                binding.tilPasswordConfirm.hideWithAnimate(true)
+            }
         }
 
         binding.btnSignupDone.setOnClickListener {
@@ -104,12 +112,7 @@ class SignupBottomDialog private constructor() : BottomSheetDialogFragment() {
                     upload()
                 }
             } else {
-                ToastUtil.show(
-                    requireContext(),
-                    getString(R.string.signup_input_all),
-                    ToastLength.SHORT,
-                    ToastType.WARNING
-                )
+                toast(getString(R.string.signup_input_all))
             }
         }
     }
@@ -165,7 +168,12 @@ class SignupBottomDialog private constructor() : BottomSheetDialogFragment() {
     }
 
     companion object {
-        private val bottomSheetDialogFragment = BottomSheetDialogFragment()
-        fun instance() = bottomSheetDialogFragment
+        private lateinit var registerBottomDialog: RegisterBottomDialog
+        fun instance(vm: SpakViewModel): RegisterBottomDialog {
+            if (!::registerBottomDialog.isInitialized) {
+                registerBottomDialog = RegisterBottomDialog(vm)
+            }
+            return registerBottomDialog
+        }
     }
 }

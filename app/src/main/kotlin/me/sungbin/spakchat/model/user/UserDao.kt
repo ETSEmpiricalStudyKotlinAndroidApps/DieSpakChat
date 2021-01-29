@@ -4,11 +4,11 @@
 
 package me.sungbin.spakchat.model.user
 
-import androidx.room.*
-
-/**
- * Created by SungBin on 2020-10-28.
- */
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 
 @Dao
 interface UserDao { // todo: suspend fun 써보기

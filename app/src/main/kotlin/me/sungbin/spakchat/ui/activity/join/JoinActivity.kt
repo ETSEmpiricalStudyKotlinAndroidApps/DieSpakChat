@@ -1,9 +1,12 @@
 /*
- * Create by Sungbin Ji on 2021. 1. 29.
+ * Create by Sungbin Ji on 2021. 1. 30.
  * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.ui.activity
+package me.sungbin.spakchat.ui.activity.join
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -14,21 +17,23 @@ import android.text.SpannableStringBuilder
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.WindowManager
+import androidx.activity.viewModels
 import com.sangcomz.fishbun.FishBun
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.androidutils.extensions.get
-import me.sungbin.androidutils.ui.tagableroundimageview.TagableRoundImageView
+import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.module.GlideApp
-import me.sungbin.spakchat.ui.dialog.SigninBottomDialog
-import me.sungbin.spakchat.ui.dialog.SignupBottomDialog
+import me.sungbin.spakchat.ui.activity.BaseActivity
 
 @AndroidEntryPoint
 class JoinActivity : BaseActivity() {
 
-    private val signupBottomDialog by lazy { SignupBottomDialog.instance() }
-    private val signinBottomDialog by lazy { SigninBottomDialog.instance() }
+    private val vm: SpakViewModel by viewModels()
+    private val signupBottomDialog by lazy { RegisterBottomDialog.instance(vm) }
+    private val signinBottomDialog by lazy { LoginBottomDialog.instance(vm) }
 
     private val binding by lazy { ActivityJoinBinding.inflate(layoutInflater) }
 

@@ -2,14 +2,13 @@ package me.sungbin.spakchat.util
 
 import android.content.Context
 import me.sungbin.androidutils.util.Logger
-import me.sungbin.androidutils.util.ToastLength
-import me.sungbin.androidutils.util.ToastType
-import me.sungbin.androidutils.util.ToastUtil
+import me.sungbin.androidutils.util.toastutil.ToastLength
+import me.sungbin.androidutils.util.toastutil.ToastType
+import me.sungbin.androidutils.util.toastutil.ToastUtil
 import me.sungbin.spakchat.ui.activity.ExceptionActivity
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.newTask
 
 object ExceptionUtil {
+
     fun except(exception: Exception, context: Context) {
         Logger.w(exception)
         val message = exception.localizedMessage

@@ -9,5 +9,6 @@ import androidx.lifecycle.ViewModel
 import me.sungbin.spakchat.model.user.User
 
 class SpakViewModel : ViewModel() {
+
     lateinit var me: User
 }

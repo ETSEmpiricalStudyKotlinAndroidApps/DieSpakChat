@@ -15,6 +15,7 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 object TestUtil {
+
     val getTestUser
         get() = User(
             key = Util.randomId,

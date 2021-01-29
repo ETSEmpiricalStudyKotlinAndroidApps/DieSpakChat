@@ -32,7 +32,7 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.JoinActivity"
+            android:name=".ui.activity.join.JoinActivity"
             android:theme="@style/SpakChat.FullScreen" />
 
         <activity
