@@ -10,8 +10,9 @@ import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.spakchat.databinding.ActivityEditProfileBinding
+import me.sungbin.spakchat.di.Firestore
+import me.sungbin.spakchat.di.Storage
 import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * Created by SungBin on 2020-10-29.
@@ -20,12 +21,12 @@ import javax.inject.Named
 @AndroidEntryPoint
 class ProfileEditActivity : BaseActivity() {
 
+    @Firestore
     @Inject
-    @Named("firestore")
     lateinit var firestore: FirebaseFirestore
 
+    @Storage
     @Inject
-    @Named("storage")
     lateinit var storage: StorageReference
 
     private val binding by lazy { ActivityEditProfileBinding.inflate(layoutInflater) }

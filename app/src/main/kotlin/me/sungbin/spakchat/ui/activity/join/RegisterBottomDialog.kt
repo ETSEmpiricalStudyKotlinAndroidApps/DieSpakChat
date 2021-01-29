@@ -22,12 +22,11 @@ import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import me.sungbin.androidutils.extensions.afterTextChanged
 import me.sungbin.androidutils.extensions.isNotBlank
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakViewModel
-import me.sungbin.spakchat.databinding.LayoutSignupBinding
+import me.sungbin.spakchat.databinding.LayoutDialogRegisterBinding
 import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.user.AccountStatus
@@ -35,8 +34,6 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
-import me.sungbin.spakchat.util.extensions.hideWithAnimate
-import me.sungbin.spakchat.util.extensions.showWithAnimate
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -52,14 +49,14 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
     @Inject
     lateinit var storage: StorageReference
 
-    private lateinit var binding: LayoutSignupBinding
+    private lateinit var binding: LayoutDialogRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = LayoutSignupBinding.inflate(inflater)
+        binding = LayoutDialogRegisterBinding.inflate(inflater)
         return binding.root
     }
 
@@ -80,21 +77,13 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
                     }
 
                     override fun onPermissionDenied(deniedPermissions: List<String>) {
-                        toast(getString(R.string.signup_cant_load_picture))
+                        toast(getString(R.string.register_cant_load_picture))
                     }
                 })
-                .setRationaleMessage(getString(R.string.signup_need_permission_for_load_picture))
-                .setDeniedMessage(R.string.signup_permission_denied)
+                .setRationaleMessage(getString(R.string.register_need_permission_for_load_picture))
+                .setDeniedMessage(R.string.register_permission_denied)
                 .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .check()
-        }
-
-        binding.tietPassword.afterTextChanged {
-            if (it.toString().isNotBlank()) {
-                binding.tilPasswordConfirm.showWithAnimate()
-            } else {
-                binding.tilPasswordConfirm.hideWithAnimate(true)
-            }
         }
 
         binding.btnSignupDone.setOnClickListener {
@@ -112,7 +101,7 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
                     upload()
                 }
             } else {
-                toast(getString(R.string.signup_input_all))
+                toast(getString(R.string.register_input_all))
             }
         }
     }
@@ -138,7 +127,7 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
             profileImage = profileImageUri,
             profileImageColor = ColorUtil.randomColor,
             backgroundImage = null,
-            statusMessage = getString(R.string.signin_default_status_message),
+            statusMessage = getString(R.string.login_default_status_message),
             birthday = null,
             lastOnline = null,
             isOnline = true,
@@ -159,7 +148,7 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
             )
             .set(user)
             .addOnSuccessListener {
-                toast(getString(R.string.signup_done))
+                toast(getString(R.string.register_done))
                 dismiss()
             }
             .addOnFailureListener { exception ->

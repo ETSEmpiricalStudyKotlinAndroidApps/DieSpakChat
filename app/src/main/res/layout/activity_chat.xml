@@ -48,7 +48,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/colorBlack" />
 
-                    <me.sungbin.androidutils.ui.TagableRoundImageView
+                    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
                         android:id="@+id/iv_room_cover"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -97,7 +97,7 @@
                         app:loadLastOnline="@{Message.owner.lastOnline}"
                         tools:text="@string/user_preview_last_online" />
 
-                    <me.sungbin.androidutils.ui.TagableRoundImageView
+                    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
                         android:id="@+id/iv_search"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -110,7 +110,7 @@
                         app:tint="@color/colorLightGray"
                         app:triv_imageRadius="@dimen/margin_twice_and_half" />
 
-                    <me.sungbin.androidutils.ui.TagableRoundImageView
+                    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
                         android:id="@+id/iv_call"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -155,7 +155,7 @@
             android:padding="@dimen/margin_default"
             app:layout_constraintBottom_toTopOf="@id/tv_test">
 
-            <me.sungbin.androidutils.ui.TagableRoundImageView
+            <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
                 android:id="@+id/iv_attachment"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -189,7 +189,7 @@
                 app:layout_constraintStart_toEndOf="@+id/iv_attachment"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <me.sungbin.androidutils.ui.TagableRoundImageView
+            <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
                 android:id="@+id/iv_send"
                 android:layout_width="35dp"
                 android:layout_height="35dp"

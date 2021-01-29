@@ -1,3 +1,11 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ */
+
 package me.sungbin.spakchat.ui.fragment
 
 import android.os.Bundle
@@ -8,35 +16,33 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.spakchat.database.UserDatabase
+import me.sungbin.spakchat.di.Firestore
+import me.sungbin.spakchat.di.RealtimeDatabase
+import me.sungbin.spakchat.di.Storage
+import me.sungbin.spakchat.di.UserDB
 import javax.inject.Inject
-import javax.inject.Named
-
-/**
- * Created by SungBin on 2020-10-21.
- */
 
 @AndroidEntryPoint
 abstract class BaseFragment : Fragment() {
 
+    @Firestore
     @Inject
-    @Named("firestore")
     lateinit var firestore: FirebaseFirestore
 
+    @Storage
     @Inject
-    @Named("storage")
     lateinit var storage: StorageReference
 
+    @RealtimeDatabase
     @Inject
-    @Named("database")
     lateinit var database: DatabaseReference
 
+    @UserDB
     @Inject
-    @Named("user-db")
     lateinit var userDb: UserDatabase
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         retainInstance = false
     }
-
 }

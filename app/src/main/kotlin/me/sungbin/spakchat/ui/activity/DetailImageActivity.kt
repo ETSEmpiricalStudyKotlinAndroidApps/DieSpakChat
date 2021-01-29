@@ -1,3 +1,11 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ */
+
 package me.sungbin.spakchat.ui.activity
 
 import android.animation.Animator
@@ -8,9 +16,9 @@ import android.transition.TransitionSet
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
-import me.sungbin.androidutils.ui.TagableRoundImageView
+import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
+import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.databinding.ActivityDetailviewImageBinding
-import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.view.circleswipelayout.CircleSwipeLayout
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.ChangeRoundedImageTransform
@@ -168,8 +176,10 @@ class DetailImageActivity : AppCompatActivity() {
 
     private fun initializeSystemUi() {
         @Suppress("DEPRECATION")
-        window!!.decorView.systemUiVisibility += (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+        window!!.decorView.systemUiVisibility += (
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            )
     }
 
     private fun showInformationUi() = binding.layoutInformation.animate().alpha(1f)

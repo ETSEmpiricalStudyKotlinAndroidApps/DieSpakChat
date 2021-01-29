@@ -19,8 +19,8 @@ object Versions {
 
     object Essential {
         const val Google = "4.3.3"
-        const val Kotlin = "1.4.21-2"
-        const val Gradle = "4.1.2"
+        const val Kotlin = "1.4.30-RC"
+        const val Gradle = "4.1.1"
         const val AppCompat = "1.2.0"
         const val LifeCycleViewModel = "2.2.0"
         const val LifeCycleExtensions = "2.2.0"

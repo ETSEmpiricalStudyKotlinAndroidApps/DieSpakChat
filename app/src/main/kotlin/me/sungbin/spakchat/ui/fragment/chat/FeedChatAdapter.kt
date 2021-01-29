@@ -5,19 +5,21 @@
 
 package me.sungbin.spakchat.ui.fragment.chat
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.androidutils.extensions.hide
+import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.ui.activity.chat.ChatActivity
 
 class FeedChatAdapter(
-    private val items: List<Message>
+    private val items: List<Message>,
 ) : RecyclerView.Adapter<FeedChatAdapter.ViewHolder>() {
 
     inner class ViewHolder(
@@ -25,11 +27,14 @@ class FeedChatAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(message: Message, position: Int) {
+        fun bindViewHolder(message: Message) {
             with(binding) {
                 this.message = message
                 ivProfile.setOnClickListener {
-                    it.context.startActivity<ChatActivity>("id" to message.owner?.id)
+                    (it.context as Activity).startActivity<ChatActivity>(
+                        false,
+                        "id" to message.owner?.id
+                    )
                 }
                 if (adapterPosition == 0) viewTop.hide(true)
                 invalidateAll()
@@ -46,7 +51,7 @@ class FeedChatAdapter(
         )
 
     override fun onBindViewHolder(@NonNull viewholder: ViewHolder, position: Int) {
-        viewholder.bindViewHolder(items[position], position)
+        viewholder.bindViewHolder(items[position])
     }
 
     override fun getItemCount() = items.size

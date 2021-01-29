@@ -17,7 +17,7 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/signup_background" />
 
-    <me.sungbin.androidutils.ui.TagableRoundImageView
+    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
         android:id="@+id/iv_icon"
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -33,7 +33,7 @@
         android:layout_marginStart="@dimen/margin_twice_and_half"
         android:layout_marginTop="@dimen/margin_twice"
         android:lineSpacingExtra="5dp"
-        android:text="@string/signup_description"
+        android:text="@string/register_description"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginBottom="@dimen/margin_twice_and_half"
-        android:text="@string/signup_singup"
+        android:text="@string/register_singup"
         android:textColor="@color/colorPrimary"
         app:backgroundTint="@color/colorWhite"
         app:cornerRadius="@dimen/margin_default"
@@ -57,7 +57,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginBottom="@dimen/margin_twice_half"
-        android:text="@string/signup_signin"
+        android:text="@string/register_signin"
         app:backgroundTint="@color/colorPrimary"
         app:cornerRadius="@dimen/margin_default"
         app:layout_constraintBottom_toTopOf="@+id/btn_signup"

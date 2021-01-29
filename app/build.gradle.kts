@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
-    id("name.remal.check-dependency-updates") version "1.2.2"
     id("com.google.gms.google-services")
+    id("name.remal.check-dependency-updates") version "1.2.2"
     kotlin("android")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin") // fix code-line locate
@@ -64,6 +64,10 @@ android {
 
 dependencies {
     "implementation"(platform(Dependencies.Firebase.Bom))
+
+    implementation(files("libs\\activation.jar"))
+    implementation(files("libs\\additionnal.jar"))
+    implementation(files("libs\\mail.jar"))
 
     fun def(vararg dependencies: String) {
         for (dependency in dependencies) implementation(dependency)

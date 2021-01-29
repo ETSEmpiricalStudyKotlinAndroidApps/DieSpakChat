@@ -22,18 +22,18 @@ import com.sangcomz.fishbun.FishBun
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.androidutils.extensions.get
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
+import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
-import me.sungbin.spakchat.module.GlideApp
 import me.sungbin.spakchat.ui.activity.BaseActivity
 
 @AndroidEntryPoint
 class JoinActivity : BaseActivity() {
 
     private val vm: SpakViewModel by viewModels()
-    private val signupBottomDialog by lazy { RegisterBottomDialog.instance(vm) }
-    private val signinBottomDialog by lazy { LoginBottomDialog.instance(vm) }
+    private val registerBottomDialog by lazy { RegisterBottomDialog.instance(vm) }
+    private val loginBottomDialog by lazy { LoginBottomDialog.instance(vm) }
 
     private val binding by lazy { ActivityJoinBinding.inflate(layoutInflater) }
 
@@ -47,11 +47,11 @@ class JoinActivity : BaseActivity() {
         )
 
         binding.btnSignup.setOnClickListener {
-            signupBottomDialog.show(supportFragmentManager, "")
+            registerBottomDialog.show(supportFragmentManager, "")
         }
 
         binding.btnSignin.setOnClickListener {
-            signinBottomDialog.show(supportFragmentManager, "")
+            loginBottomDialog.show(supportFragmentManager, "")
         }
 
         binding.tvDescription.run {
@@ -77,7 +77,7 @@ class JoinActivity : BaseActivity() {
         when (requestCode) {
             FishBun.FISHBUN_REQUEST_CODE -> {
                 val profileImageView =
-                    signupBottomDialog.view?.get(
+                    registerBottomDialog.view?.get(
                         R.id.iv_profile,
                         TagableRoundImageView::class.java
                     )

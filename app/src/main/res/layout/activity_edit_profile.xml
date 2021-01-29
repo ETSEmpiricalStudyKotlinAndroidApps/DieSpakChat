@@ -60,7 +60,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <me.sungbin.androidutils.ui.TagableRoundImageView
+    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
         android:id="@+id/iv_profile"
         android:layout_width="100dp"
         android:layout_height="100dp"

@@ -1,6 +1,9 @@
 /*
- * Create by Sungbin Ji on 2021. 1. 29.
- * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat.ui.activity.chat
@@ -16,37 +19,43 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
 import dagger.hilt.android.AndroidEntryPoint
-import me.sungbin.androidutils.extensions.*
+import me.sungbin.androidutils.extensions.clear
+import me.sungbin.androidutils.extensions.doDelay
+import me.sungbin.androidutils.extensions.hide
+import me.sungbin.androidutils.extensions.hideKeyboard
+import me.sungbin.androidutils.extensions.setEndDrawableClickEvent
+import me.sungbin.androidutils.extensions.setTint
+import me.sungbin.androidutils.extensions.show
+import me.sungbin.androidutils.extensions.showKeyboard
+import me.sungbin.androidutils.extensions.toBottomScroll
+import me.sungbin.androidutils.extensions.toColorStateList
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivityChatBinding
+import me.sungbin.spakchat.di.Firestore
+import me.sungbin.spakchat.di.RealtimeDatabase
+import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.ui.activity.BaseActivity
 import me.sungbin.spakchat.util.TestUtil
 import me.sungbin.spakchat.util.Util
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
-import javax.inject.Named
-import kotlin.collections.ArrayList
 import kotlin.random.Random
-
-/**
- * Created by SungBin on 2020-09-19.
- */
 
 @AndroidEntryPoint
 class ChatActivity : BaseActivity() {
 
+    @Firestore
     @Inject
-    @Named("firestore")
     lateinit var firestore: FirebaseFirestore
 
+    @Storage
     @Inject
-    @Named("storage")
     lateinit var storage: StorageReference
 
+    @RealtimeDatabase
     @Inject
-    @Named("database")
     lateinit var database: DatabaseReference
 
     private var rootHeight = 0

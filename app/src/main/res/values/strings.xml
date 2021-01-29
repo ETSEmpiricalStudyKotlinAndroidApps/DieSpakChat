@@ -26,26 +26,26 @@
     <string name="main_new_chat">새로운 채팅</string>
     <string name="main_new_contact">새로운 연락처</string>
 
-    <string name="signup_description">기존 채팅앱들을 대체할\n새로운 채팅 앱</string>
-    <string name="signup_singup">회원가입</string>
-    <string name="signup_signin">로그인</string>
-    <string name="signup_add_account">계정 추가</string>
-    <string name="signup_description_profile_picture">프로필 사진</string>
-    <string name="signup_email">이메일</string>
-    <string name="signup_nickname">닉네임</string>
-    <string name="signup_password">비밀번호</string>
-    <string name="signup_password_confirm">비밀번호 확인</string>
-    <string name="signup_welcome_back">돌아오신걸 환영합니다!</string>
-    <string name="signup_cant_load_picture">권한 사용이 거부되어 사진을 불러올 수 없습니다.</string>
-    <string name="signup_permission_denied">권한 사용이 거부되어 사진을 불러올 수 없습니다.\n앱 설정에서 권한 사용을 수락해 주세요.</string>
-    <string name="signup_need_permission_for_load_picture">사진들을 불러오기 위해 내부 메모리에 접근 권한이 필요합니다.</string>
-    <string name="signup_done">가입이 완료되었습니다 :)</string>
-    <string name="signup_input_all">모두 입력해 주세요</string>
+    <string name="register_description">기존 채팅앱들을 대체할\n새로운 채팅 앱</string>
+    <string name="register_singup">회원가입</string>
+    <string name="register_signin">로그인</string>
+    <string name="register_add_account">계정 추가</string>
+    <string name="register_description_profile_picture">프로필 사진</string>
+    <string name="register_email">이메일</string>
+    <string name="register_nickname">닉네임</string>
+    <string name="register_password">비밀번호</string>
+    <string name="register_password_confirm">비밀번호 확인</string>
+    <string name="register_welcome_back">돌아오신걸 환영합니다!</string>
+    <string name="register_cant_load_picture">권한 사용이 거부되어 사진을 불러올 수 없습니다.</string>
+    <string name="register_permission_denied">권한 사용이 거부되어 사진을 불러올 수 없습니다.\n앱 설정에서 권한 사용을 수락해 주세요.</string>
+    <string name="register_need_permission_for_load_picture">사진들을 불러오기 위해 내부 메모리에 접근 권한이 필요합니다.</string>
+    <string name="register_done">가입이 완료되었습니다 :)</string>
+    <string name="register_input_all">모두 입력해 주세요</string>
 
-    <string name="signin_welcome">%s님 환영합니다!</string>
-    <string name="signin_unknown_email">존재하지 않는 이메일 입니다.</string>
-    <string name="signin_not_match_email_password">이메일과 비밀번호가 일치하지 않습니다.</string>
-    <string name="signin_default_status_message">새로 가입했어요!</string>
+    <string name="login_welcome">%s님 환영합니다!</string>
+    <string name="login_unknown_email">존재하지 않는 이메일 입니다.</string>
+    <string name="login_not_match_email_password">이메일과 비밀번호가 일치하지 않습니다.</string>
+    <string name="login_default_status_message">새로 가입했어요!</string>
 
     <string name="exception_except">오류가 발생했습니다 😔</string>
     <string name="exception_preview_except">FATAL EXCEPTION: main exception</string>

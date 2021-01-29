@@ -8,10 +8,6 @@
 
 package me.sungbin.spakchat.ui.activity.join
 
-/**
- * Created by SungBin on 2020-09-11.
- */
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +20,7 @@ import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakViewModel
-import me.sungbin.spakchat.databinding.LayoutSigninBinding
+import me.sungbin.spakchat.databinding.LayoutDialogLoginBinding
 import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
@@ -40,14 +36,14 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
     @Inject
     lateinit var firestore: FirebaseFirestore
 
-    lateinit var binding: LayoutSigninBinding
+    lateinit var binding: LayoutDialogLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = LayoutSigninBinding.inflate(inflater)
+        binding = LayoutDialogLoginBinding.inflate(inflater)
         return binding.root
     }
 
@@ -77,19 +73,19 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
                                         ) == this.password
                                 ) {
                                     vm.me = this
-                                    toast(getString(R.string.signin_welcome, name))
+                                    toast(getString(R.string.login_welcome, name))
                                     startActivity<MainActivity>()
                                 } else {
-                                    toast(getString(R.string.signin_not_match_email_password))
+                                    toast(getString(R.string.login_not_match_email_password))
                                 }
                             }
-                        } ?: toast(getString(R.string.signin_unknown_email))
+                        } ?: toast(getString(R.string.login_unknown_email))
                     }
                     .addOnFailureListener {
                         ExceptionUtil.except(it, requireContext())
                     }
             } else {
-                toast(getString(R.string.signup_input_all))
+                toast(getString(R.string.register_input_all))
             }
         }
     }
