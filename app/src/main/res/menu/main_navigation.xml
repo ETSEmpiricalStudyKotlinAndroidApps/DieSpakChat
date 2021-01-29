@@ -1,24 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Create by Sungbin Ji on 2021. 1. 30.
+  ~ Copyright (c) 2021. Sungbin Ji. All rights reserved.
+  ~
+  ~ SpakChat license is under the MIT license.
+  ~ SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+  -->
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/chat"
-        android:title="@string/main_navigation_chatting"
-        android:icon="@drawable/ic_outline_message_24" />
+        android:icon="@drawable/ic_outline_message_24"
+        android:title="@string/main_navigation_chatting" />
 
     <item
         android:id="@+id/call"
-        android:title="@string/main_navigation_call"
-        android:icon="@drawable/ic_outline_call_24" />
+        android:icon="@drawable/ic_outline_call_24"
+        android:title="@string/main_navigation_call" />
 
     <item
         android:id="@+id/contact"
-        android:title="@string/main_navigation_contact"
-        android:icon="@drawable/ic_outline_people_24" />
+        android:icon="@drawable/ic_outline_people_24"
+        android:title="@string/main_navigation_contact" />
 
     <item
         android:id="@+id/more"
-        android:title="@string/main_navigation_more"
-        android:icon="@drawable/ic_outline_dashboard_24" />
+        android:icon="@drawable/ic_outline_dashboard_24"
+        android:title="@string/main_navigation_more" />
 
 </menu>

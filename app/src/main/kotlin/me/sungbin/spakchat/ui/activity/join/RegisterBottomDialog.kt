@@ -9,6 +9,7 @@
 package me.sungbin.spakchat.ui.activity.join
 
 import android.Manifest
+import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,9 +25,11 @@ import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.androidutils.extensions.isNotBlank
 import me.sungbin.androidutils.extensions.toast
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.LayoutDialogRegisterBinding
+import me.sungbin.spakchat.databinding.LayoutDialogRegisterConfirmCodeBinding
 import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.user.AccountStatus
@@ -34,6 +37,7 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
+import me.sungbin.spakchat.util.Gmail
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -88,18 +92,39 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
 
         binding.btnSignupDone.setOnClickListener {
             if (binding.tietEmail.isNotBlank() && binding.tietName.isNotBlank() && binding.tietPassword.isNotBlank()) {
-                if (binding.ivProfile.tag != null) {
-                    storage // 프로필 사진 등록
-                        .child("profile/${binding.tietEmail.text}/profile.png")
-                        .putFile(Uri.parse(binding.ivProfile.tag.toString()))
-                        .addOnSuccessListener {
-                            it.storage.downloadUrl.addOnSuccessListener { uri ->
-                                upload(uri)
-                            }
+                val code = Random.nextInt(10000, 100000).toString()
+                Gmail.send(
+                    binding.tietEmail.text.toString(),
+                    "SpakChat 회원가입 인증코드",
+                    "SpakChat 인증코드 입니다.\n\n\n[ $code ]\n\n\n위 코드를 사용해 주세요."
+                )
+                val layout = LayoutDialogRegisterConfirmCodeBinding.inflate(layoutInflater)
+                val dialog = AlertDialog.Builder(requireActivity())
+                dialog.setTitle("인증코드")
+                dialog.setView(layout.root)
+                dialog.setCancelable(false)
+                dialog.setPositiveButton("인증") { _, _ ->
+                    if (code == layout.etConfirmCode.text.toString()) {
+                        if (binding.ivProfile.tag != null) {
+                            storage // 프로필 사진 등록
+                                .child("profile/${binding.tietEmail.text}/profile.png")
+                                .putFile(Uri.parse(binding.ivProfile.tag.toString()))
+                                .addOnSuccessListener {
+                                    it.storage.downloadUrl.addOnSuccessListener { uri ->
+                                        upload(uri)
+                                    }
+                                }
+                                .addOnFailureListener { exception ->
+                                    ExceptionUtil.except(exception, requireContext())
+                                }
+                        } else {
+                            upload()
                         }
-                } else {
-                    upload()
+                    } else {
+                        toast("인증코드가 잘못되었어요.")
+                    }
                 }
+                dialog.show()
             } else {
                 toast(getString(R.string.register_input_all))
             }
@@ -124,7 +149,7 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
                 password
             ),
             name = name,
-            profileImage = profileImageUri,
+            profileImage = profileImageUri.toString(),
             profileImageColor = ColorUtil.randomColor,
             backgroundImage = null,
             statusMessage = getString(R.string.login_default_status_message),
@@ -152,7 +177,8 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
                 dismiss()
             }
             .addOnFailureListener { exception ->
-                ExceptionUtil.except(exception, requireContext())
+                Logger.e(exception.localizedMessage)
+                // ExceptionUtil.except(exception, requireContext())
             }
     }
 

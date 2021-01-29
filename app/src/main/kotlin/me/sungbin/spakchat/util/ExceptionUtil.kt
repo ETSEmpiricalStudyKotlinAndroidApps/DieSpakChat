@@ -18,7 +18,7 @@ import me.sungbin.spakchat.ui.activity.ExceptionActivity
 object ExceptionUtil {
 
     fun except(exception: Exception, context: Context) {
-        Logger.w(exception)
+        Logger.e(exception.toString())
         val message = exception.localizedMessage
         val line = exception.stackTrace[0].lineNumber
         val content = "$message #$line"

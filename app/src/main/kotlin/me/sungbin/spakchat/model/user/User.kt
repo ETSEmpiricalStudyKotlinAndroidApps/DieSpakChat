@@ -8,17 +8,15 @@
 
 package me.sungbin.spakchat.model.user
 
-import android.net.Uri
-
 data class User(
     val key: Long? = null,
     val id: String? = null,
     val email: String? = null,
     val password: String? = null,
     val name: String? = null,
-    val profileImage: Uri? = null,
+    val profileImage: String? = null,
     val profileImageColor: Int? = null,
-    val backgroundImage: Uri? = null,
+    val backgroundImage: String? = null,
     val statusMessage: String? = null,
     val birthday: Long? = null, // Date().time
     val lastOnline: Long? = null, // Date().time

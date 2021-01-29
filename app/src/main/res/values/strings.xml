@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Create by Sungbin Ji on 2021. 1. 30.
+  ~ Copyright (c) 2021. Sungbin Ji. All rights reserved.
+  ~
+  ~ SpakChat license is under the MIT license.
+  ~ SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+  -->
+
 <resources>
     <string name="app_name">SpakChat</string>
     <string name="action">action</string>
@@ -27,20 +34,22 @@
     <string name="main_new_contact">새로운 연락처</string>
 
     <string name="register_description">기존 채팅앱들을 대체할\n새로운 채팅 앱</string>
-    <string name="register_singup">회원가입</string>
-    <string name="register_signin">로그인</string>
-    <string name="register_add_account">계정 추가</string>
-    <string name="register_description_profile_picture">프로필 사진</string>
-    <string name="register_email">이메일</string>
-    <string name="register_nickname">닉네임</string>
-    <string name="register_password">비밀번호</string>
-    <string name="register_password_confirm">비밀번호 확인</string>
-    <string name="register_welcome_back">돌아오신걸 환영합니다!</string>
+    <string name="register_dialog_singup">회원가입</string>
+    <string name="register_dialog_signin">로그인</string>
+    <string name="register_dialog_add_account">계정 추가</string>
+    <string name="register_dialog_description_profile_picture">프로필 사진</string>
+    <string name="register_dialog_email">이메일</string>
+    <string name="register_dialog_nickname">닉네임</string>
+    <string name="register_dialog_password">비밀번호</string>
+    <string name="register_dialog_password_confirm">비밀번호 확인</string>
+    <string name="register_dialog_welcome_back">돌아오신걸 환영합니다!</string>
     <string name="register_cant_load_picture">권한 사용이 거부되어 사진을 불러올 수 없습니다.</string>
     <string name="register_permission_denied">권한 사용이 거부되어 사진을 불러올 수 없습니다.\n앱 설정에서 권한 사용을 수락해 주세요.</string>
     <string name="register_need_permission_for_load_picture">사진들을 불러오기 위해 내부 메모리에 접근 권한이 필요합니다.</string>
     <string name="register_done">가입이 완료되었습니다 :)</string>
     <string name="register_input_all">모두 입력해 주세요</string>
+    <string name="register_dialog_confirm_code">인증코드</string>
+    <string name="register_dialog_label_confirm_code">인증코드가 해당 이메일로 발송되었어요.\n인증코드를 입력해 주세요.</string>
 
     <string name="login_welcome">%s님 환영합니다!</string>
     <string name="login_unknown_email">존재하지 않는 이메일 입니다.</string>

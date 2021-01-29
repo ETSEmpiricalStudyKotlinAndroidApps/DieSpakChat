@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Create by Sungbin Ji on 2021. 1. 30.
+  ~ Copyright (c) 2021. Sungbin Ji. All rights reserved.
+  ~
+  ~ SpakChat license is under the MIT license.
+  ~ SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+  -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -43,10 +50,10 @@
                         app:tint="@color/colorBlack" />
 
                     <TextView
-                        android:layout_marginStart="@dimen/margin_default"
                         android:id="@+id/tv_label"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default"
                         android:gravity="center"
                         android:text="@string/call_call"
                         android:textColor="@color/colorBlack"
@@ -83,11 +90,11 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@color/colorGreen"
-            app:loadProfile="@{User}"
             app:layout_constraintBottom_toBottomOf="@+id/ctpv_counter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ctpv_counter"
+            app:loadProfile="@{User}"
             app:triv_imageRadius="100dp" />
 
         <View
@@ -101,12 +108,12 @@
             tools:layout_height="2dp" />
 
         <TextView
-            android:text="@{User.name}"
             android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_twice_and_half"
             android:gravity="center"
+            android:text="@{User.name}"
             android:textColor="@color/colorBlack"
             android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,12 +122,12 @@
             tools:text="@string/user_preview_name" />
 
         <TextView
-            android:text="@{User.id}"
             android:id="@+id/tv_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_half"
             android:gravity="center"
+            android:text="@{User.id}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"

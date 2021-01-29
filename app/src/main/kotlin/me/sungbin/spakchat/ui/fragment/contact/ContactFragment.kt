@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.FragmentContactBinding
 import me.sungbin.spakchat.model.user.User
@@ -52,9 +51,9 @@ class ContactFragment : BaseFragment() {
                         email = email,
                         password = password,
                         name = name,
-                        profileImage = profileImage?.toUri(),
+                        profileImage = profileImage,
                         profileImageColor = profileImageColor,
-                        backgroundImage = backgroundImage?.toUri(),
+                        backgroundImage = backgroundImage,
                         statusMessage = statusMessage,
                         birthday = birthday,
                         lastOnline = lastOnline,
