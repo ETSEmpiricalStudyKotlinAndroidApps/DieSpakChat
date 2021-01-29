@@ -1,12 +1,9 @@
 /*
- * Copyright (c) 2020. Ji Sungbin.
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  */
 
 package me.sungbin.spakchat.util
-
-/**
- * Created by SungBin on 2020-10-28.
- */
 
 const val PREFIX = "⭓"
 

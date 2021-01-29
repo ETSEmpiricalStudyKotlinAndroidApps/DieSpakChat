@@ -1,3 +1,8 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ */
+
 package me.sungbin.spakchat.util
 
 import java.nio.charset.StandardCharsets

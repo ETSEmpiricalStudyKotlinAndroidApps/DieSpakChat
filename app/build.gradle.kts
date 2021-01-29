@@ -73,6 +73,7 @@ dependencies {
         Dependencies.Jetpack.Room,
         Dependencies.Jetpack.Paging,
         Dependencies.Jetpack.DataStore,
+        Dependencies.Jetpack.SecurityCrypto,
 
         Dependencies.Essential.Kotlin,
         Dependencies.Essential.AppCompat,
@@ -89,8 +90,8 @@ dependencies {
         Dependencies.Ktx.Firebase.Storage,
         Dependencies.Ktx.Firebase.Database,
         Dependencies.Ktx.Firebase.Analytics,
-        Dependencies.Ktx.Firebase.Messaging,
         Dependencies.Ktx.Firebase.Firestore,
+        Dependencies.Ktx.Firebase.Messaging,
 
         Dependencies.Di.Hilt,
 
@@ -116,5 +117,4 @@ dependencies {
     kapt(Dependencies.Compiler.Hilt)
     kapt(Dependencies.Compiler.Room)
     kapt(Dependencies.Compiler.Glide)
-    kapt(Dependencies.Compiler.AndroidUtils)
 }

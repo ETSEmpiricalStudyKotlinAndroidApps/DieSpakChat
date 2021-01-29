@@ -1,3 +1,8 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 29.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ */
+
 package me.sungbin.spakchat.util
 
 import me.sungbin.spakchat.model.message.Message
@@ -5,8 +10,7 @@ import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.model.user.AccountStatus
 import me.sungbin.spakchat.model.user.Sex
 import me.sungbin.spakchat.model.user.User
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Date
 import kotlin.random.Random
 import kotlin.random.nextInt
 
