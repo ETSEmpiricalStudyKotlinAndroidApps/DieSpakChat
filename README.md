@@ -7,6 +7,8 @@ Android firebase sns application.
 
 # 🚧 Process in Developing
 
+-----
+
 # 🔧 Dev-Skill
 1. `Hilt` for `DI`
 2. `Room` and `EncryptedSharedPreferences` for `Storage`
