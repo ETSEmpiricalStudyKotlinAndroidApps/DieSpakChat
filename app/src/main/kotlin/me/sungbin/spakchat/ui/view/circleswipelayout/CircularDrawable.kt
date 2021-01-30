@@ -1,8 +1,24 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ */
+
 package me.sungbin.spakchat.ui.view.circleswipelayout
 
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapShader
+import android.graphics.Canvas
+import android.graphics.ColorFilter
+import android.graphics.Matrix
+import android.graphics.Paint
+import android.graphics.PixelFormat
+import android.graphics.Shader
 import android.graphics.drawable.Drawable
 
+// https://github.com/salih-demir/swipe-layout
 class CircularDrawable(bitmap: Bitmap) : Drawable() {
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         shader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)

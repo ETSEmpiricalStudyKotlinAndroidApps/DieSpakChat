@@ -3,7 +3,7 @@
  * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
  *
  * SpakChat license is under the MIT license.
- * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat.util
@@ -18,11 +18,11 @@ import me.sungbin.spakchat.ui.activity.ExceptionActivity
 object ExceptionUtil {
 
     fun except(exception: Exception, context: Context) {
-        Logger.e(exception.toString())
         val message = exception.localizedMessage
         val line = exception.stackTrace[0].lineNumber
         val content = "$message #$line"
         (context as Activity).startActivity<ExceptionActivity>(false, "message" to content)
         ToastUtil.show(context, exception.toString())
+        Logger.e(message)
     }
 }

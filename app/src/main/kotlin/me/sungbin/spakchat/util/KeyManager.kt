@@ -6,10 +6,12 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.model.user
+package me.sungbin.spakchat.util
 
-object AccountStatus {
-    const val BAN = -1
-    const val VERIFIED = 1
-    const val UNVARIED = 0
+object KeyManager {
+
+    object User {
+        const val EMAIL = "USER_EMAIL"
+        const val PASSWORD = "USER_PASSWORD"
+    }
 }

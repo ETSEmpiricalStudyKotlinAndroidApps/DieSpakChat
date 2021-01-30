@@ -3,7 +3,7 @@
  * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  *
  * SpakChat license is under the MIT license.
- * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat.ui.activity
@@ -14,9 +14,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.androidutils.extensions.doDelay
 import me.sungbin.androidutils.extensions.startActivity
-import me.sungbin.androidutils.util.Logger
+import me.sungbin.androidutils.extensions.toast
 import me.sungbin.androidutils.util.NetworkUtil
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.database.UserDatabase
 import me.sungbin.spakchat.databinding.ActivitySplashBinding
 import me.sungbin.spakchat.di.Firestore
@@ -24,7 +25,11 @@ import me.sungbin.spakchat.di.UserDB
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.model.user.UserEntity
 import me.sungbin.spakchat.ui.activity.join.JoinActivity
-import me.sungbin.spakchat.util.toText
+import me.sungbin.spakchat.util.ArrayConverter.toText
+import me.sungbin.spakchat.util.EncryptUtil
+import me.sungbin.spakchat.util.ExceptionUtil
+import me.sungbin.spakchat.util.KeyManager
+import me.sungbin.spakchat.util.PrefUtil
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -38,6 +43,7 @@ class SplashActivity : BaseActivity() {
     @Inject
     lateinit var userDb: UserDatabase
 
+    private val vm = SpakViewModel.instance()
     private val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +51,7 @@ class SplashActivity : BaseActivity() {
         setContentView(binding.root)
 
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
+            // todo: 없는 정보만 처리하기
             firestore.collection("users")
                 .get()
                 .addOnSuccessListener {
@@ -78,12 +85,38 @@ class SplashActivity : BaseActivity() {
                         }
                     }
                 }
-                .addOnFailureListener {
-                    // ExceptionUtil.except(it, applicationContext)
-                    Logger.e(it)
+                .addOnFailureListener { exception ->
+                    ExceptionUtil.except(exception, applicationContext)
                 }
             doDelay(1000) {
-                startActivity<JoinActivity>()
+                val email = PrefUtil.read(applicationContext, KeyManager.User.EMAIL, null)
+                val password = PrefUtil.read(applicationContext, KeyManager.User.PASSWORD, null)
+                if (email == null || password == null) {
+                    startActivity<JoinActivity>()
+                    return@doDelay
+                }
+                firestore.collection("users")
+                    .document(
+                        EncryptUtil.encrypt(
+                            EncryptUtil.EncryptType.SHA256,
+                            email
+                        ).substring(0..5)
+                    )
+                    .get()
+                    .addOnSuccessListener {
+                        it!!.toObject(User::class.java)?.run {
+                            if (this.email == email &&
+                                EncryptUtil.encrypt(
+                                        EncryptUtil.EncryptType.MD5,
+                                        password
+                                    ) == this.password
+                            ) {
+                                vm.me = this
+                                toast(getString(R.string.login_welcome, name))
+                                startActivity<MainActivity>()
+                            }
+                        }
+                    }
             }
         } else {
             // todo: offline 처리 하기 (room 이용)

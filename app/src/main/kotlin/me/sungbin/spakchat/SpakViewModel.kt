@@ -1,6 +1,9 @@
 /*
- * Create by Sungbin Ji on 2021. 1. 29.
- * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat
@@ -8,7 +11,12 @@ package me.sungbin.spakchat
 import androidx.lifecycle.ViewModel
 import me.sungbin.spakchat.model.user.User
 
-class SpakViewModel : ViewModel() {
+class SpakViewModel private constructor() : ViewModel() {
 
     lateinit var me: User
+
+    companion object {
+        private val instance = SpakViewModel()
+        fun instance() = instance
+    }
 }

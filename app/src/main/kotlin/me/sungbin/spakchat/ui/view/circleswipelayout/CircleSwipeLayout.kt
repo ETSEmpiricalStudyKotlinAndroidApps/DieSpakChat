@@ -1,10 +1,22 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ */
+
 package me.sungbin.spakchat.ui.view.circleswipelayout
 
 import android.animation.Animator
 import android.animation.TypeEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Matrix
+import android.graphics.PointF
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
@@ -22,6 +34,7 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.properties.Delegates
 
+// // https://github.com/salih-demir/swipe-layout
 class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
     interface Listener {
         fun onSwipeStarted()

@@ -1,3 +1,11 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ */
+
 package me.sungbin.spakchat.ui.fragment
 
 import android.os.Bundle
@@ -7,10 +15,6 @@ import android.view.ViewGroup
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.TestFragmentBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
-
-/**
- * Created by SungBin on 2020-09-10.
- */
 
 class CallFragment : BaseFragment() {
 

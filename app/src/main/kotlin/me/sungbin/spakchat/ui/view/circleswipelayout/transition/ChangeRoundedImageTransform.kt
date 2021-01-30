@@ -1,3 +1,11 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ */
+
 package me.sungbin.spakchat.ui.view.circleswipelayout.transition
 
 import android.animation.Animator
@@ -11,6 +19,7 @@ import android.view.ViewGroup
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.R
 
+// https://github.com/salih-demir/swipe-layout
 class ChangeRoundedImageTransform(context: Context?, attrs: AttributeSet?) :
     ChangeBounds(context, attrs) {
     private var fromRadius: Int = 0
@@ -34,7 +43,7 @@ class ChangeRoundedImageTransform(context: Context?, attrs: AttributeSet?) :
     override fun createAnimator(
         sceneRoot: ViewGroup,
         startValues: TransitionValues,
-        endValues: TransitionValues
+        endValues: TransitionValues,
     ): Animator {
         val changeBounds = super.createAnimator(sceneRoot, startValues, endValues)
 

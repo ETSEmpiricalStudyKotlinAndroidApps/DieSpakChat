@@ -3,7 +3,7 @@
   ~ Copyright (c) 2021. Sungbin Ji. All rights reserved.
   ~
   ~ SpakChat license is under the MIT license.
-  ~ SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+  ~ SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
   -->
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_twice"
         android:hint="@string/register_dialog_email"
+        app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         app:startIconDrawable="@drawable/ic_outline_email_24">
 
@@ -64,7 +65,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:singleLine="true" />
-        ​
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -72,8 +73,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_half"
         android:hint="@string/register_dialog_nickname"
+        app:counterEnabled="true"
+        app:counterMaxLength="16"
         app:layout_constraintTop_toBottomOf="@+id/til_email"
         app:startIconDrawable="@drawable/ic_outline_person_24">
 
@@ -83,7 +86,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:singleLine="true" />
-        ​
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -91,9 +94,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_half"
         android:hint="@string/register_dialog_password"
+        app:counterEnabled="true"
         app:endIconMode="password_toggle"
+        app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/til_name"
         app:startIconDrawable="@drawable/ic_outline_vpn_key_24">
 
@@ -104,7 +109,7 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true" />
-        ​
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -112,9 +117,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_half"
         android:hint="@string/register_dialog_password_confirm"
+        app:counterEnabled="true"
         app:endIconMode="password_toggle"
+        app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/til_password"
         app:startIconDrawable="@drawable/ic_outline_vpn_key_24">
 
@@ -125,7 +132,7 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true" />
-        ​
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

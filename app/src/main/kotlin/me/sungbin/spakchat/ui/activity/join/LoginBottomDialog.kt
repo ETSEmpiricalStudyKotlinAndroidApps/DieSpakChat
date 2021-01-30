@@ -3,7 +3,7 @@
  * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  *
  * SpakChat license is under the MIT license.
- * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat.ui.activity.join
@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
-import me.sungbin.androidutils.extensions.isNotBlank
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
@@ -26,6 +25,8 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
+import me.sungbin.spakchat.util.KeyManager
+import me.sungbin.spakchat.util.PrefUtil
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -52,41 +53,43 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
         retainInstance = false
 
         binding.btnSigninDone.setOnClickListener {
-            if (binding.tietEmail.isNotBlank() && binding.tietPassword.isNotBlank()) {
-                val email = binding.tietEmail.text.toString()
-                val password = binding.tietPassword.text.toString()
-                firestore.collection("users")
-                    .document(
-                        EncryptUtil.encrypt(
-                            EncryptUtil.EncryptType.SHA256,
-                            email
-                        ).substring(0..5)
-                    )
-                    .get()
-                    .addOnSuccessListener {
-                        it?.let {
-                            it.toObject(User::class.java)?.run {
-                                if (this.email == email &&
-                                    EncryptUtil.encrypt(
-                                            EncryptUtil.EncryptType.MD5,
-                                            password
-                                        ) == this.password
-                                ) {
-                                    vm.me = this
-                                    toast(getString(R.string.login_welcome, name))
-                                    startActivity<MainActivity>()
-                                } else {
-                                    toast(getString(R.string.login_not_match_email_password))
-                                }
-                            }
-                        } ?: toast(getString(R.string.login_unknown_email))
-                    }
-                    .addOnFailureListener {
-                        ExceptionUtil.except(it, requireContext())
-                    }
-            } else {
+            val email = binding.tietEmail.text.toString()
+            val password = binding.tietPassword.text.toString()
+            if (email.isBlank() || password.isBlank()) {
                 toast(getString(R.string.register_input_all))
+                return@setOnClickListener
             }
+            firestore.collection("users")
+                .document(
+                    EncryptUtil.encrypt(
+                        EncryptUtil.EncryptType.SHA256,
+                        email
+                    ).substring(0..5)
+                )
+                .get()
+                .addOnSuccessListener {
+                    it?.let {
+                        it.toObject(User::class.java)?.run {
+                            if (this.email == email &&
+                                EncryptUtil.encrypt(
+                                        EncryptUtil.EncryptType.MD5,
+                                        password
+                                    ) == this.password
+                            ) {
+                                vm.me = this
+                                toast(getString(R.string.login_welcome, name))
+                                PrefUtil.save(requireContext(), KeyManager.User.EMAIL, email)
+                                PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
+                                startActivity<MainActivity>()
+                            } else {
+                                toast(getString(R.string.login_not_match_email_password))
+                            }
+                        }
+                    } ?: toast(getString(R.string.login_unknown_email))
+                }
+                .addOnFailureListener {
+                    ExceptionUtil.except(it, requireContext())
+                }
         }
     }
 

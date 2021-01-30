@@ -1,5 +1,9 @@
 /*
- * Copyright (c) 2020. Ji Sungbin.
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat.ui.activity
@@ -13,10 +17,6 @@ import me.sungbin.spakchat.databinding.ActivityEditProfileBinding
 import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.di.Storage
 import javax.inject.Inject
-
-/**
- * Created by SungBin on 2020-10-29.
- */
 
 @AndroidEntryPoint
 class ProfileEditActivity : BaseActivity() {

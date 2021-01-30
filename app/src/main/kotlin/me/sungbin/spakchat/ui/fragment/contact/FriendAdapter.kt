@@ -1,6 +1,9 @@
 /*
- * Create by Sungbin Ji on 2021. 1. 29.
- * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat.ui.fragment.contact
@@ -15,10 +18,6 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFriendBinding
 import me.sungbin.spakchat.model.user.User
 
-/**
- * Created by SungBin on 2020-10-29.
- */
-
 class FriendAdapter(
     private val items: List<User>
 ) : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
@@ -28,7 +27,7 @@ class FriendAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(user: User, position: Int) {
+        fun bindViewHolder(user: User) {
             with(binding) {
                 this.user = user
                 if (adapterPosition == 0) viewTop.hide(true)
@@ -46,7 +45,7 @@ class FriendAdapter(
         )
 
     override fun onBindViewHolder(@NonNull viewholder: ViewHolder, position: Int) {
-        viewholder.bindViewHolder(items[position], position)
+        viewholder.bindViewHolder(items[position])
     }
 
     override fun getItemCount() = items.size

@@ -1,6 +1,9 @@
 /*
- * Create by Sungbin Ji on 2021. 1. 29.
+ * Create by Sungbin Ji on 2021. 1. 30.
  * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat.ui.fragment.contact
@@ -14,7 +17,7 @@ import me.sungbin.spakchat.databinding.FragmentContactBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.ui.fragment.BaseFragment
-import me.sungbin.spakchat.util.toArray
+import me.sungbin.spakchat.util.ArrayConverter.toArray
 
 /**
  * Created by SungBin on 2020-09-10.
@@ -58,10 +61,10 @@ class ContactFragment : BaseFragment() {
                         birthday = birthday,
                         lastOnline = lastOnline,
                         isOnline = isOnline,
-                        friends = friends.toArray(),
+                        friends = toArray<Long>(friends),
                         sex = sex,
-                        emoji = emoji.toArray(),
-                        black = black.toArray(),
+                        emoji = toArray<Long>(emoji),
+                        black = toArray<Long>(black),
                         accountStatus = accountStatus,
                         isTestMode = isTestMode
                     )
@@ -71,6 +74,6 @@ class ContactFragment : BaseFragment() {
         }
         dbThread.start()
         dbThread.join() // todo: UI-Thread blocking /// .join() 말고 다르게 하기
-        binding.rvFriends.adapter = FriendAdapter(users)
+        // binding.rvFriends.adapter = FriendAdapter(users)
     }
 }

@@ -1,8 +1,17 @@
+/*
+ * Create by Sungbin Ji on 2021. 1. 30.
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
+ *
+ * SpakChat license is under the MIT license.
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ */
+
 package me.sungbin.spakchat.ui.view.circleswipelayout.transition
 
 import android.transition.Transition
 
-abstract class TransitionListener : Transition.TransitionListener {
+// // https://github.com/salih-demir/swipe-layout
+open class TransitionListener : Transition.TransitionListener {
     override fun onTransitionEnd(transition: Transition?) {}
     override fun onTransitionResume(transition: Transition?) {}
     override fun onTransitionPause(transition: Transition?) {}

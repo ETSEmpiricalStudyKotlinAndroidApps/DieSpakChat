@@ -3,7 +3,7 @@
  * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  *
  * SpakChat license is under the MIT license.
- * SEE LICENSE : https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
+ * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
 package me.sungbin.spakchat.ui.activity.join
@@ -17,7 +17,6 @@ import android.text.SpannableStringBuilder
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.WindowManager
-import androidx.activity.viewModels
 import com.sangcomz.fishbun.FishBun
 import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.androidutils.extensions.get
@@ -31,9 +30,9 @@ import me.sungbin.spakchat.ui.activity.BaseActivity
 @AndroidEntryPoint
 class JoinActivity : BaseActivity() {
 
-    private val vm: SpakViewModel by viewModels()
-    private val registerBottomDialog by lazy { RegisterBottomDialog.instance(vm) }
-    private val loginBottomDialog by lazy { LoginBottomDialog.instance(vm) }
+    private val vm = SpakViewModel.instance()
+    private val registerBottomDialog = RegisterBottomDialog.instance(vm)
+    private val loginBottomDialog = LoginBottomDialog.instance(vm)
 
     private val binding by lazy { ActivityJoinBinding.inflate(layoutInflater) }
 
@@ -46,12 +45,12 @@ class JoinActivity : BaseActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
-        binding.btnSignup.setOnClickListener {
-            registerBottomDialog.show(supportFragmentManager, "")
+        binding.btnLogin.setOnClickListener { // todo: 왜 랙이 걸릴까???
+            loginBottomDialog.show(supportFragmentManager, "")
         }
 
-        binding.btnSignin.setOnClickListener {
-            loginBottomDialog.show(supportFragmentManager, "")
+        binding.btnRegister.setOnClickListener { // todo: 왜 랙이 걸릴까???
+            registerBottomDialog.show(supportFragmentManager, "")
         }
 
         binding.tvDescription.run {
