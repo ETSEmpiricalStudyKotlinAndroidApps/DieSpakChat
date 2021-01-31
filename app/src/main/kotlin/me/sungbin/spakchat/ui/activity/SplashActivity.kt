@@ -12,7 +12,6 @@ import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
-import me.sungbin.androidutils.extensions.doDelay
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.androidutils.util.NetworkUtil
@@ -84,40 +83,11 @@ class SplashActivity : BaseActivity() {
                             }
                         }
                     }
+                    gotoLoginOrMainPage()
                 }
                 .addOnFailureListener { exception ->
                     ExceptionUtil.except(exception, applicationContext)
                 }
-            doDelay(1000) {
-                val email = PrefUtil.read(applicationContext, KeyManager.User.EMAIL, null)
-                val password = PrefUtil.read(applicationContext, KeyManager.User.PASSWORD, null)
-                if (email == null || password == null) {
-                    startActivity<JoinActivity>()
-                    return@doDelay
-                }
-                firestore.collection("users")
-                    .document(
-                        EncryptUtil.encrypt(
-                            EncryptUtil.EncryptType.SHA256,
-                            email
-                        ).substring(0..5)
-                    )
-                    .get()
-                    .addOnSuccessListener {
-                        it!!.toObject(User::class.java)?.run {
-                            if (this.email == email &&
-                                EncryptUtil.encrypt(
-                                        EncryptUtil.EncryptType.MD5,
-                                        password
-                                    ) == this.password
-                            ) {
-                                vm.me = this
-                                toast(getString(R.string.login_welcome, name))
-                                startActivity<MainActivity>()
-                            }
-                        }
-                    }
-            }
         } else {
             // todo: offline 처리 하기 (room 이용)
             MaterialAlertDialogBuilder(this)
@@ -128,6 +98,37 @@ class SplashActivity : BaseActivity() {
                     finish()
                 }
                 .show()
+        }
+    }
+
+    private fun gotoLoginOrMainPage() { // todo: change naming
+        val email = PrefUtil.read(applicationContext, KeyManager.User.EMAIL, null)
+        val password = PrefUtil.read(applicationContext, KeyManager.User.PASSWORD, null)
+        if (email == null || password == null) {
+            startActivity<JoinActivity>()
+        } else {
+            firestore.collection("users")
+                .document(
+                    EncryptUtil.encrypt(
+                        EncryptUtil.EncryptType.SHA256,
+                        email
+                    ).substring(0..5)
+                )
+                .get()
+                .addOnSuccessListener {
+                    it!!.toObject(User::class.java)?.run {
+                        if (this.email == email &&
+                            EncryptUtil.encrypt(
+                                    EncryptUtil.EncryptType.MD5,
+                                    password
+                                ) == this.password
+                        ) {
+                            vm.me = this
+                            toast(getString(R.string.login_welcome, name))
+                            startActivity<MainActivity>()
+                        }
+                    }
+                }
         }
     }
 }

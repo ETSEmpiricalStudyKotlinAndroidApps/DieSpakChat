@@ -17,6 +17,7 @@ import me.sungbin.spakchat.databinding.FragmentContactBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.ui.fragment.BaseFragment
+import me.sungbin.spakchat.ui.fragment.contact.adapter.FriendListAdapter
 import me.sungbin.spakchat.util.ArrayConverter.toArray
 
 /**
@@ -43,11 +44,13 @@ class ContactFragment : BaseFragment() {
             text = getString(R.string.main_new_contact)
         }.show()
 
-        val users = mutableListOf<User>()
-        val dbThread = Thread {
+        val friendAdapter = FriendListAdapter(vm.users)
+        binding.rvFriends.adapter = friendAdapter
+
+        Thread {
             val usersEntity = userDb.dao().getAllUser()
             usersEntity.forEach {
-                it.run {
+                with(it) {
                     val user = User(
                         key = key,
                         id = id,
@@ -68,12 +71,10 @@ class ContactFragment : BaseFragment() {
                         accountStatus = accountStatus,
                         isTestMode = isTestMode
                     )
-                    users.add(user)
+                    vm.users.add(user)
+                    friendAdapter.submit(vm.users)
                 }
             }
-        }
-        dbThread.start()
-        dbThread.join() // todo: UI-Thread blocking /// .join() 말고 다르게 하기
-        // binding.rvFriends.adapter = FriendAdapter(users)
+        }.start()
     }
 }

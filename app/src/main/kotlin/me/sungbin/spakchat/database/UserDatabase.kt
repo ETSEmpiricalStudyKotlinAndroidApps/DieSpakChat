@@ -15,7 +15,7 @@ import androidx.room.RoomDatabase
 import me.sungbin.spakchat.model.user.UserDao
 import me.sungbin.spakchat.model.user.UserEntity
 
-@Database(entities = [UserEntity::class], version = 4)
+@Database(entities = [UserEntity::class], version = 1)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun dao(): UserDao
 

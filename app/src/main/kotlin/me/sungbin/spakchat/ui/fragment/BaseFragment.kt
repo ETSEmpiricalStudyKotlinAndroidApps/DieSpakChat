@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
+import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.database.UserDatabase
 import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.di.RealtimeDatabase
@@ -40,6 +41,8 @@ abstract class BaseFragment : Fragment() {
     @UserDB
     @Inject
     lateinit var userDb: UserDatabase
+
+    val vm = SpakViewModel.instance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

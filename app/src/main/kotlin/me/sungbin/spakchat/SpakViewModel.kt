@@ -14,6 +14,7 @@ import me.sungbin.spakchat.model.user.User
 class SpakViewModel private constructor() : ViewModel() {
 
     lateinit var me: User
+    val users = mutableListOf<User>()
 
     companion object {
         private val instance = SpakViewModel()
