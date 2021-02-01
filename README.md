@@ -22,7 +22,7 @@ Android firebase sns application.
 
 # ✅ TODO
 1. - [x] apply `Flexbox Layout`
-2. - [ ] develop 80% more
+2. - [ ] **develop 100%!**
 3. - [ ] [Animated emoji support](https://github.com/sungbin5304/SpakChat/issues/1)
 4. - [ ] Using `DI` in parameter (just goal...)
 5. - [x] Using `Custom Annotation` (just goal...)
