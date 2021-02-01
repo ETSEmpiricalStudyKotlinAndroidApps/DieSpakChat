@@ -21,11 +21,11 @@ Android firebase sns application.
 [dribbble.com](https://dribbble.com/zmo__/collections/3269989-SpakChat-Design?utm_source=Clipboard_clipboard_collection&utm_campaign=zmo__&utm_content=SpakChat%20%23Design&utm_medium=Social_Share)
 
 # ✅ TODO
-1. - [ ] apply `Flexbox Layout`
+1. - [x] apply `Flexbox Layout`
 2. - [ ] develop 80% more
 3. - [ ] [Animated emoji support](https://github.com/sungbin5304/SpakChat/issues/1)
 4. - [ ] Using `DI` in parameter (just goal...)
-5. - [ ] Using `Custom Annotation` (just goal...)
+5. - [x] Using `Custom Annotation` (just goal...)
 6. - [x] Full Kotlin
 7. - [ ] Clean Architecture (presentation layer, MVVM)
 8. - [ ] Project re-packaging
