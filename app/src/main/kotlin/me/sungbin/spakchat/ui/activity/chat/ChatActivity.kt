@@ -85,8 +85,7 @@ class ChatActivity : BaseActivity() {
 
         binding.tvName.text = "실험실"
 
-        val messages = ArrayList<Message>()
-        val adapter = ChatAdapter(messages)
+        val adapter = ChatAdapter()
         binding.rvChat.adapter = adapter
 
         binding.ivBack.setOnClickListener {
@@ -153,8 +152,7 @@ class ChatActivity : BaseActivity() {
                     mention = listOf(),
                     messageViewType = Random.nextInt(0, 2)
                 )
-                messages.add(message)
-                adapter.notifyDataSetChanged()
+                // messages.add(message)
                 binding.rvChat.toBottomScroll()
                 binding.etInput.clear()
                 // database.child("chat/room/uuid").push().setValue(message)

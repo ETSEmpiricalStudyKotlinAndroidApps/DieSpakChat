@@ -15,12 +15,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
-import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.database.UserDatabase
 import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.di.RealtimeDatabase
 import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.di.UserDB
+import me.sungbin.spakchat.ui.fragment.contact.SpakViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint

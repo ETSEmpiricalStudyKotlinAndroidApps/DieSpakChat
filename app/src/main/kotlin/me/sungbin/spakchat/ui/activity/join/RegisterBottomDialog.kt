@@ -26,7 +26,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.LayoutDialogRegisterBinding
 import me.sungbin.spakchat.databinding.LayoutDialogRegisterConfirmCodeBinding
 import me.sungbin.spakchat.di.Firestore
@@ -34,6 +33,7 @@ import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.user.AccountStatus
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
+import me.sungbin.spakchat.ui.fragment.contact.SpakViewModel
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil

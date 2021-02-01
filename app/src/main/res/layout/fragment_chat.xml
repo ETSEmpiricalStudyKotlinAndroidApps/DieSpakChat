@@ -10,19 +10,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackgroundWhite">
-
-    <TextView
-        android:id="@+id/tv_online"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_default"
-        android:text="@string/fragment_chat_online"
-        android:textColor="@color/colorBlack"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/iv_search"
@@ -36,30 +24,14 @@
         app:tint="@color/colorLightGray" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_online"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_half"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:overScrollMode="never"
-        android:paddingStart="@dimen/margin_default"
-        android:paddingEnd="@dimen/margin_default"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/tv_online"
-        tools:listitem="@layout/layout_feed_online" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_feed_chat"
+        android:id="@+id/rv_friends"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/margin_default"
-        android:background="@color/colorBackgroundWhite"
+        android:layout_marginTop="@dimen/margin_half"
         android:orientation="vertical"
-        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_online"
-        tools:listitem="@layout/layout_feed_chat" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_search"
+        tools:listitem="@layout/layout_user" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

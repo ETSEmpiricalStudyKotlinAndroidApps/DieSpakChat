@@ -16,7 +16,6 @@ import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.androidutils.util.NetworkUtil
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.database.UserDatabase
 import me.sungbin.spakchat.databinding.ActivitySplashBinding
 import me.sungbin.spakchat.di.Firestore
@@ -24,6 +23,7 @@ import me.sungbin.spakchat.di.UserDB
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.model.user.UserEntity
 import me.sungbin.spakchat.ui.activity.join.JoinActivity
+import me.sungbin.spakchat.ui.fragment.contact.SpakViewModel
 import me.sungbin.spakchat.util.ArrayConverter.toText
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil

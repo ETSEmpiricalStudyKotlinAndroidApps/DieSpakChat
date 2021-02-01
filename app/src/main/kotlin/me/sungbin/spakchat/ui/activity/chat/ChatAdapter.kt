@@ -9,23 +9,27 @@
 package me.sungbin.spakchat.ui.activity.chat
 
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.LayoutOtherChatBinding
-import me.sungbin.spakchat.databinding.LayoutOwnChatBinding
+import me.sungbin.spakchat.databinding.LayoutChatOtherBinding
+import me.sungbin.spakchat.databinding.LayoutChatOwnBinding
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageViewType
+import me.sungbin.spakchat.ui.activity.DetailImageActivity
 
-class ChatAdapter(
-    private val items: List<Message>
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val differ = AsyncListDiffer(this, ChatDiffItemCallback())
 
     inner class OtherChatViewHolder(
-        private val binding: LayoutOtherChatBinding,
+        private val binding: LayoutChatOtherBinding,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -50,7 +54,7 @@ class ChatAdapter(
     }
 
     inner class OwnChatViewHolder(
-        private val binding: LayoutOwnChatBinding,
+        private val binding: LayoutChatOwnBinding,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -62,30 +66,33 @@ class ChatAdapter(
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) = when (viewType) {
-        MessageViewType.OTHER -> OtherChatViewHolder(
-            DataBindingUtil.inflate(
-                LayoutInflater.from(viewGroup.context),
-                R.layout.layout_chat_other, viewGroup, false
-            )
-        )
         MessageViewType.OWN -> OwnChatViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
                 R.layout.layout_chat_own, viewGroup, false
             )
         )
-        else -> throw Exception("없는 뷰 홀더")
+        MessageViewType.OTHER -> OtherChatViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(viewGroup.context),
+                R.layout.layout_chat_other, viewGroup, false
+            )
+        )
+        else -> throw Exception("$viewType is unknown viewType.")
     }
 
     override fun onBindViewHolder(@NonNull viewholder: RecyclerView.ViewHolder, position: Int) {
-        when (items[position].messageViewType!!) {
-            MessageViewType.OWN -> (viewholder as OwnChatViewHolder).bindViewHolder(items[position])
-            MessageViewType.OTHER -> (viewholder as OtherChatViewHolder).bindViewHolder(items[position])
+        val chat = getItem(position)
+        when (chat.messageViewType!!) {
+            MessageViewType.OWN -> (viewholder as OwnChatViewHolder).bindViewHolder(chat)
+            MessageViewType.OTHER -> (viewholder as OtherChatViewHolder).bindViewHolder(chat)
             else -> throw Exception("없는 뷰 홀더")
         }
     }
 
-    override fun getItemCount() = items.size
+    fun getItem(position: Int) = differ.currentList[position]
+
+    override fun getItemCount() = differ.currentList.size
     override fun getItemId(position: Int) = position.toLong()
-    override fun getItemViewType(position: Int) = items[position].messageViewType!!
+    override fun getItemViewType(position: Int) = getItem(position).messageViewType!!
 }
