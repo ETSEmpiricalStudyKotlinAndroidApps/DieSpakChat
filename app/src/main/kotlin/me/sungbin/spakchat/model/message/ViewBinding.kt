@@ -8,15 +8,12 @@
 
 package me.sungbin.spakchat.model.message
 
-import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.model.user.User
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -26,22 +23,6 @@ object ViewBinding {
 
     private val db = FirebaseStorage.getInstance().reference
     private val storage = FirebaseFirestore.getInstance()
-
-    @JvmStatic
-    @BindingAdapter("loadProfile")
-    fun loadProfile(imageView: ImageView, user: User) {
-        if (!user.isTestMode!!) {
-            GlideApp
-                .with(imageView.context)
-                .load(user.profileImage ?: ColorDrawable(user.profileImageColor!!))
-                .into(imageView)
-        } else {
-            GlideApp
-                .with(imageView.context)
-                .load(ColorDrawable(user.profileImageColor!!))
-                .into(imageView)
-        }
-    }
 
     @JvmStatic
     @BindingAdapter("loadMessage")

@@ -19,9 +19,7 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFriendBinding
 import me.sungbin.spakchat.model.user.User
 
-class FriendListAdapter(
-    private val items: List<User>,
-) : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
+class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
 
     private val differ = AsyncListDiffer(this, FriendsDiffItemCallback())
 
@@ -51,7 +49,7 @@ class FriendListAdapter(
         viewholder.bindViewHolder(getUser(position))
     }
 
-    fun getUser(position: Int) = differ.currentList.get(position)
+    fun getUser(position: Int) = differ.currentList[position]
 
     fun submit(user: List<User>) {
         differ.submitList(user)

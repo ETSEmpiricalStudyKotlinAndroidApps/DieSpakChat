@@ -44,37 +44,40 @@ class ContactFragment : BaseFragment() {
             text = getString(R.string.main_new_contact)
         }.show()
 
-        val friendAdapter = FriendListAdapter(vm.users)
+        val friendAdapter = FriendListAdapter()
         binding.rvFriends.adapter = friendAdapter
+        friendAdapter.submit(vm.users)
 
-        Thread {
-            val usersEntity = userDb.dao().getAllUser()
-            usersEntity.forEach {
-                with(it) {
-                    val user = User(
-                        key = key,
-                        id = id,
-                        email = email,
-                        password = password,
-                        name = name,
-                        profileImage = profileImage,
-                        profileImageColor = profileImageColor,
-                        backgroundImage = backgroundImage,
-                        statusMessage = statusMessage,
-                        birthday = birthday,
-                        lastOnline = lastOnline,
-                        isOnline = isOnline,
-                        friends = toArray<Long>(friends),
-                        sex = sex,
-                        emoji = toArray<Long>(emoji),
-                        black = toArray<Long>(black),
-                        accountStatus = accountStatus,
-                        isTestMode = isTestMode
-                    )
-                    vm.users.add(user)
-                    friendAdapter.submit(vm.users)
+        if (vm.users.isEmpty()) {
+            Thread {
+                val usersEntity = userDb.dao().getAllUser()
+                usersEntity.forEach {
+                    with(it) {
+                        val user = User(
+                            key = key,
+                            id = id,
+                            email = email,
+                            password = password,
+                            name = name,
+                            profileImage = profileImage,
+                            profileImageColor = profileImageColor,
+                            backgroundImage = backgroundImage,
+                            statusMessage = statusMessage,
+                            birthday = birthday,
+                            lastOnline = lastOnline,
+                            isOnline = isOnline,
+                            friends = toArray<Long>(friends),
+                            sex = sex,
+                            emoji = toArray<Long>(emoji),
+                            black = toArray<Long>(black),
+                            accountStatus = accountStatus,
+                            isTestMode = isTestMode
+                        )
+                        vm.users.add(user)
+                        friendAdapter.submit(vm.users)
+                    }
                 }
-            }
-        }.start()
+            }.start()
+        }
     }
 }
