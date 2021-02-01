@@ -13,8 +13,8 @@
     <data>
 
         <variable
-            name="Message"
-            type="me.sungbin.spakchat.model.message.Message" />
+            name="User"
+            type="me.sungbin.spakchat.model.user.User" />
 
     </data>
 
@@ -32,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadProfile="@{Message.owner}"
+            app:loadProfile="@{User}"
             app:triv_imageRadius="@dimen/margin_twice_and_half"
             tools:src="@color/colorGreen" />
 
@@ -44,10 +44,10 @@
             android:contentDescription="@string/image_description_online_status"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toEndOf="@+id/iv_profile"
-            app:loadStatus="@{Message}" />
+            app:loadStatus="@{User.isOnline}" />
 
         <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/fbl_container_chat"
+            android:id="@+id/fbl_container_user"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/margin_default"
@@ -66,7 +66,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@{Message.owner.name}"
+                android:text="@{User.name}"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -76,15 +76,13 @@
                 android:id="@+id/tv_last_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:text="@{User.statusMessage}"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
-                app:loadMessage="@{Message}"
-                tools:drawableStartCompat="@drawable/ic_outline_photo_24"
-                tools:text="@string/chat_preview_last_message" />
+                tools:text="@string/user_preview_status_message" />
 
         </com.google.android.flexbox.FlexboxLayout>
 
@@ -96,25 +94,9 @@
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_profile"
-            app:loadDate="@{Message.time}"
+            app:loadDate="@{User.lastOnline}"
             tools:ignore="SmallSp"
             tools:text="@string/chat_preview_time" />
-
-        <TextView
-            android:id="@+id/tv_unread_counter"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_baseline_lens_24"
-            android:backgroundTint="@color/colorPrimary"
-            android:gravity="center"
-            android:maxLength="2"
-            android:textColor="@color/colorWhite"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:loadUnreadCount="@{Message}"
-            tools:ignore="SmallSp"
-            tools:text="@string/chat_preview_unread_count" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

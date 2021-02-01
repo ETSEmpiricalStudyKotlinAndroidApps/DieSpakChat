@@ -9,11 +9,9 @@
 package me.sungbin.spakchat.ui.activity.chat
 
 import android.app.Activity
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
-import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.spakchat.R
@@ -21,7 +19,6 @@ import me.sungbin.spakchat.databinding.LayoutOtherChatBinding
 import me.sungbin.spakchat.databinding.LayoutOwnChatBinding
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageViewType
-import me.sungbin.spakchat.ui.activity.DetailImageActivity
 
 class ChatAdapter(
     private val items: List<Message>
@@ -68,13 +65,13 @@ class ChatAdapter(
         MessageViewType.OTHER -> OtherChatViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
-                R.layout.layout_other_chat, viewGroup, false
+                R.layout.layout_chat_other, viewGroup, false
             )
         )
         MessageViewType.OWN -> OwnChatViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
-                R.layout.layout_own_chat, viewGroup, false
+                R.layout.layout_chat_own, viewGroup, false
             )
         )
         else -> throw Exception("없는 뷰 홀더")

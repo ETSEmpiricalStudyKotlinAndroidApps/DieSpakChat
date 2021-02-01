@@ -150,7 +150,7 @@
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintTop_toTopOf="parent"
             app:stackFromEnd="true"
-            tools:listitem="@layout/layout_own_chat" />
+            tools:listitem="@layout/layout_chat_own" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

@@ -14,9 +14,8 @@ import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
-import me.sungbin.androidutils.extensions.hide
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.LayoutFriendBinding
+import me.sungbin.spakchat.databinding.LayoutUserBinding
 import me.sungbin.spakchat.model.user.User
 
 class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
@@ -24,14 +23,13 @@ class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
     private val differ = AsyncListDiffer(this, FriendsDiffItemCallback())
 
     inner class ViewHolder(
-        private val binding: LayoutFriendBinding,
+        private val binding: LayoutUserBinding,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindViewHolder(user: User) {
             with(binding) {
                 this.user = user
-                if (adapterPosition == 0) viewTop.hide(true)
                 invalidateAll()
             }
         }
@@ -41,7 +39,7 @@ class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
         ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
-                R.layout.layout_friend, viewGroup, false
+                R.layout.layout_user, viewGroup, false
             )
         )
 
