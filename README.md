@@ -28,7 +28,7 @@ Android firebase sns application.
 5. - [x] Using `Custom Annotation` (just goal...)
 6. - [x] Full Kotlin
 7. - [ ] Clean Architecture (mvvm parttern)
-8. - [ ] Project re-packaging
+8. - [ ] Project re-packaging (project clean-up)
 
 # 📜 License
 `SpakChat` license is under the [MIT](https://github.com/sungbin5304/SpakChat/blob/master/LICENSE) license.
