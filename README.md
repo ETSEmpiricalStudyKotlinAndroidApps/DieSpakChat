@@ -27,7 +27,7 @@ Android firebase sns application.
 4. - [ ] Using `DI` in parameter (just goal...)
 5. - [x] Using `Custom Annotation` (just goal...)
 6. - [x] Full Kotlin
-7. - [ ] Clean Architecture (presentation layer, MVVM)
+7. - [ ] Clean Architecture (mvvm parttern)
 8. - [ ] Project re-packaging
 
 # 📜 License
