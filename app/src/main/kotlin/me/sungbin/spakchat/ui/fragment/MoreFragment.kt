@@ -12,19 +12,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import me.sungbin.spakchat.databinding.FragmentMoreBinding
+import me.sungbin.spakchat.databinding.FragmentHomeBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
 
 class MoreFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentMoreBinding
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentMoreBinding.inflate(inflater)
+        binding = FragmentHomeBinding.inflate(inflater)
         return binding.root
     }
 

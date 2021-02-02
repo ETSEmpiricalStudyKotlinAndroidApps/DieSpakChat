@@ -22,57 +22,47 @@
         app:triv_imageRadius="@dimen/margin_twice_and_half"
         tools:src="@mipmap/ic_launcher" />
 
-    <!--    Apply FlexBox Layout-->
-
-    <View
-        android:id="@+id/view_center"
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="0dp"
-        android:layout_height="0.1dp"
-        android:background="@color/colorBlack"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile"
-        app:layout_constraintTop_toTopOf="@id/iv_profile" />
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_marginEnd="@dimen/margin_default"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textColor="@color/colorBlack"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/view_center"
-        app:layout_constraintEnd_toStartOf="@+id/iv_edit"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile"
-        app:layout_constraintTop_toTopOf="@+id/iv_profile"
-        tools:text="@string/user_preview_name" />
-
-    <TextView
-        android:id="@+id/tv_status_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginEnd="@dimen/margin_default"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="18sp"
+        app:flexDirection="column"
+        app:justifyContent="space_around"
         app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
         app:layout_constraintEnd_toStartOf="@+id/iv_edit"
         app:layout_constraintStart_toEndOf="@+id/iv_profile"
-        app:layout_constraintTop_toBottomOf="@+id/view_center"
-        tools:text="@string/user_preview_status_message" />
+        app:layout_constraintTop_toTopOf="@+id/iv_profile">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/colorBlack"
+            android:textSize="25sp"
+            tools:text="@string/user_preview_name" />
+
+        <TextView
+            android:id="@+id/tv_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="18sp"
+            tools:text="@string/user_preview_status_message" />
+
+    </com.google.android.flexbox.FlexboxLayout>
 
     <ImageView
         android:id="@+id/iv_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_description_edit_profile"
+        android:padding="@dimen/margin_half"
         android:src="@drawable/ic_baseline_edit_24"
         app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
         app:layout_constraintEnd_toEndOf="parent"
