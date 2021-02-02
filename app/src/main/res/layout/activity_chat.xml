@@ -25,63 +25,63 @@
 
         <!-- todo: 리사이클러뷰 마지막 아이템 짤리는거 고치기 -->
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tb_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.95"
             android:background="@color/colorWhite"
             android:translationZ="90dp"
+            app:contentInsetEnd="@dimen/margin_half"
+            app:contentInsetStart="@dimen/margin_half"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_container_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorWhite">
+                android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/margin_default">
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/image_description_back"
+                    android:padding="@dimen/margin_half"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorBlack" />
 
-                    <ImageView
-                        android:id="@+id/iv_back"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/image_description_back"
-                        android:src="@drawable/ic_baseline_arrow_back_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/colorBlack" />
+                <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
+                    android:id="@+id/iv_room_cover"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/margin_default"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_back"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loadProfile="@{Message.owner}"
+                    app:triv_imageRadius="@dimen/margin_twice_and_half"
+                    tools:src="@color/colorGreen" />
 
-                    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
-                        android:id="@+id/iv_room_cover"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/margin_default"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/iv_back"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:loadProfile="@{Message.owner}"
-                        app:triv_imageRadius="@dimen/margin_twice_and_half"
-                        tools:src="@color/colorGreen" />
-
-                    <View
-                        android:id="@+id/view_vertical_center"
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:visibility="invisible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:background="@color/colorGreen"
-                        tools:layout_height="2dp" />
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/fbl_container_toolbar"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/margin_half"
+                    android:layout_marginEnd="@dimen/margin_half"
+                    app:flexDirection="column"
+                    app:justifyContent="space_around"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_call"
+                    app:layout_constraintStart_toEndOf="@+id/iv_room_cover"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_default"
                         android:marqueeRepeatLimit="marquee_forever"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -89,53 +89,48 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/view_vertical_center"
-                        app:layout_constraintStart_toEndOf="@+id/iv_room_cover"
                         tools:text="@string/user_preview_name" />
 
                     <TextView
                         android:id="@+id/tv_last_online"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_default"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_room_cover"
-                        app:layout_constraintStart_toEndOf="@+id/iv_room_cover"
-                        app:layout_constraintTop_toBottomOf="@+id/view_vertical_center"
                         app:loadLastOnline="@{Message.owner.lastOnline}"
-                        tools:text="@string/user_preview_last_online" />
+                        tools:text="@string/user_preview_last_online"
+                        tools:visibility="gone" />
 
-                    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
-                        android:id="@+id/iv_search"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:background="@color/colorTripleLightGray"
-                        android:padding="@dimen/margin_half"
-                        android:src="@drawable/ic_baseline_search_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/colorLightGray"
-                        app:triv_imageRadius="@dimen/margin_twice_and_half" />
+                </com.google.android.flexbox.FlexboxLayout>
 
-                    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
-                        android:id="@+id/iv_call"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="@dimen/margin_half"
-                        android:background="@color/colorTripleLightGray"
-                        android:padding="@dimen/margin_half"
-                        android:src="@drawable/ic_outline_call_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/iv_search"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/colorLightGray"
-                        app:triv_imageRadius="@dimen/margin_twice_and_half" />
+                <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@color/colorTripleLightGray"
+                    android:padding="@dimen/margin_half"
+                    android:src="@drawable/ic_baseline_search_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorLightGray"
+                    app:triv_imageRadius="@dimen/margin_twice_and_half" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
+                    android:id="@+id/iv_call"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="@dimen/margin_half"
+                    android:background="@color/colorTripleLightGray"
+                    android:padding="@dimen/margin_half"
+                    android:src="@drawable/ic_outline_call_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_search"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorLightGray"
+                    app:triv_imageRadius="@dimen/margin_twice_and_half" />
 
-            </com.google.android.material.appbar.MaterialToolbar>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_chat"
@@ -147,13 +142,13 @@
             android:overScrollMode="never"
             android:padding="@dimen/margin_default"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintBottom_toTopOf="@+id/cl_container_input"
             app:layout_constraintTop_toTopOf="parent"
             app:stackFromEnd="true"
             tools:listitem="@layout/layout_chat_own" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/cl_container_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_round_top_32"

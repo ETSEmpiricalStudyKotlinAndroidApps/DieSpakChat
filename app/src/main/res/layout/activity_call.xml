@@ -26,13 +26,14 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tb_container"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="@color/colorBackgroundWhite"
             app:contentInsetEnd="@dimen/margin_half"
             app:contentInsetStart="@dimen/margin_half"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:id="@+id/ll_container_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -61,7 +62,6 @@
             </LinearLayout>
 
         </com.google.android.material.appbar.MaterialToolbar>
-
 
         <com.sfyc.ctpv.CountTimeProgressView
             android:id="@+id/ctpv_counter"
