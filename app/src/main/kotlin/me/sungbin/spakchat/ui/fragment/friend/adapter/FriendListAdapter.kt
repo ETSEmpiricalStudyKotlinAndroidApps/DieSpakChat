@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.ui.fragment.contact.adapter
+package me.sungbin.spakchat.ui.fragment.friend.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

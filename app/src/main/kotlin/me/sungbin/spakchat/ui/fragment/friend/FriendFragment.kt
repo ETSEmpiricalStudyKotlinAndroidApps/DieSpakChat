@@ -6,34 +6,34 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.ui.fragment.contact
+package me.sungbin.spakchat.ui.fragment.friend
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.FragmentContactBinding
+import me.sungbin.spakchat.databinding.FragmentFriendBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.ui.fragment.BaseFragment
-import me.sungbin.spakchat.ui.fragment.contact.adapter.FriendListAdapter
+import me.sungbin.spakchat.ui.fragment.friend.adapter.FriendListAdapter
 import me.sungbin.spakchat.util.ArrayConverter.toArray
 
 /**
  * Created by SungBin on 2020-09-10.
  */
 
-class ContactFragment : BaseFragment() {
+class FriendFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentContactBinding
+    private lateinit var binding: FragmentFriendBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentContactBinding.inflate(inflater)
+        binding = FragmentFriendBinding.inflate(inflater)
         return binding.root
     }
 

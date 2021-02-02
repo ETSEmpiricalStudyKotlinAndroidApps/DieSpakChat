@@ -12,26 +12,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- todo: 오픈채팅 / 일반채팅 indicator -->
+
     <ImageView
         android:id="@+id/iv_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_default"
+        android:layout_margin="@dimen/margin_half"
         android:contentDescription="@string/image_description_search"
+        android:padding="@dimen/margin_half"
         android:src="@drawable/ic_baseline_search_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/colorLightGray" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_friends"
+        android:id="@+id/rv_chat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/margin_half"
+        android:background="@color/colorBackgroundWhite"
         android:orientation="vertical"
+        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_search"
-        tools:listitem="@layout/layout_user" />
+        tools:listitem="@layout/layout_feed_chat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

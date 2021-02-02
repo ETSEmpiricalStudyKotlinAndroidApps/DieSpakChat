@@ -15,7 +15,7 @@ import android.view.ViewGroup
 import me.sungbin.spakchat.databinding.FragmentHomeBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
 
-class MoreFragment : BaseFragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
 

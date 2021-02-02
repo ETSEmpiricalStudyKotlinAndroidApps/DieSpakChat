@@ -81,8 +81,7 @@ class DetailImageActivity : AppCompatActivity() {
             override fun onSwipeStarted() {
             }
 
-            override fun onSwipeCancelled() {
-            }
+            override fun onSwipeCancelled() {}
 
             override fun onSwiped() {
                 binding.swipeLayout.autoReset = false
@@ -94,8 +93,9 @@ class DetailImageActivity : AppCompatActivity() {
             }
 
             override fun onSwipeReset() {
-                if (isFlingSwiped)
+                if (isFlingSwiped) {
                     supportFinishAfterTransition()
+                }
             }
         }
 
@@ -169,8 +169,7 @@ class DetailImageActivity : AppCompatActivity() {
                     roundedImageTransform?.getFromRadius() ?: sharedElementEnterRadius
             }
 
-            override fun onTransitionEnd(transition: Transition?) {
-            }
+            override fun onTransitionEnd(transition: Transition?) {}
         })
     }
 
@@ -182,8 +181,8 @@ class DetailImageActivity : AppCompatActivity() {
             )
     }
 
-    private fun showInformationUi() = binding.layoutInformation.animate().alpha(1f)
-    private fun hideInformationUi() = binding.layoutInformation.animate().alpha(0f)
+    private fun showInformationUi() = binding.clContainerToolbar.animate().alpha(1f)
+    private fun hideInformationUi() = binding.clContainerToolbar.animate().alpha(0f)
 
     private fun startExitAnimation() {
         binding.swipeLayout.moveCircleToState(

@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import me.sungbin.androidutils.extensions.hide
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
@@ -39,7 +38,6 @@ class FeedChatAdapter(
                         "id" to message.owner?.id
                     )
                 }
-                if (adapterPosition == 0) viewTop.hide(true)
                 invalidateAll()
             }
         }

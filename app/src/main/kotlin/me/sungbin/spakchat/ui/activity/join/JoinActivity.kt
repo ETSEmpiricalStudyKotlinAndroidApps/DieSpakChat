@@ -23,9 +23,9 @@ import me.sungbin.androidutils.extensions.get
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.ui.activity.BaseActivity
-import me.sungbin.spakchat.ui.fragment.contact.SpakViewModel
 
 @AndroidEntryPoint
 class JoinActivity : BaseActivity() {

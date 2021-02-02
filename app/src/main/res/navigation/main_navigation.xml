@@ -22,12 +22,12 @@
 
     <fragment
         android:id="@+id/contact"
-        android:name="me.sungbin.spakchat.ui.fragment.contact.ContactFragment"
+        android:name="me.sungbin.spakchat.ui.fragment.friend.FriendFragment"
         android:label="ContactFragment" />
 
     <fragment
         android:id="@+id/more"
-        android:name="me.sungbin.spakchat.ui.fragment.MoreFragment"
+        android:name="me.sungbin.spakchat.ui.fragment.HomeFragment"
         android:label="MoreFragment" />
 
 </navigation>
