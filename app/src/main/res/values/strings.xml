@@ -49,9 +49,16 @@
     <string name="register_done">가입이 완료되었어요 :)</string>
     <string name="register_input_all">모두 입력해 주세요</string>
     <string name="register_dialog_confirm_code">인증코드</string>
-    <string name="register_dialog_label_confirm_code">인증코드가 해당 이메일로 발송되었어요.\n인증코드를 입력해 주세요.</string>
+    <string name="register_dialog_label_confirm_code">인증코드가\n%s\n이메일로 발송되었어요.\n인증코드를 입력해 주세요.</string>
     <string name="register_label_signup_code">SpakChat 회원가입 인증코드</string>
-    <string name="register_value_signup_code">SpakChat 인증코드 입니다.\n\n[ %s ]\n\n위 코드를 사용해 주세요.</string>
+    <string name="register_value_signup_code">😍 우선 SpakChat에 가입해 주셔서 감사해요!\n\n[ %s ]\n\n위 코드를 사용해 SpakChat 가입을 완료해 주세요 :)</string>
+    <string name="register_confirm_code">인증코드</string>
+    <string name="register_confirm">인증</string>
+    <string name="register_not_match_confirm_code">인증코드가 잘못되었어요.</string>
+    <string name="register_not_match_email_pattern">이메일 형식에 맞게 입력해 주세요</string>
+    <string name="register_nickname_too_long">닉네임이 너무 길어요</string>
+    <string name="register_input_eight_length">8자 이상 입력해 주세요</string>
+    <string name="register_not_match_password_confirm">비밀번호가 일치하지 않아요</string>
 
     <string name="login_welcome">%s님 환영합니다!</string>
     <string name="login_unknown_email">존재하지 않는 이메일 이에요.</string>
@@ -59,7 +66,7 @@
     <string name="login_default_status_message">새로 가입했어요!</string>
 
     <string name="exception_except">오류가 발생했습니다 😔</string>
-    <string name="exception_preview_except">FATAL EXCEPTION: main exception</string>
+    <string name="exception_preview_except">getWifiLinkLayerStats_1_3_Internal(l.934) failed {.code = ERROR_NOT_SUPPORTED, .description = }</string>
 
     <string name="fragment_chat_online">온라인</string>
 
@@ -78,11 +85,5 @@
 
     <string name="splash_non_internet">인터넷 없음!</string>
     <string name="splash_need_internet">SpakChat을 이용하려면 인터넷에 연결되있어야 해요 😢</string>
-    <string name="register_confirm_code">인증코드</string>
-    <string name="register_confirm">인증</string>
-    <string name="register_not_match_confirm_code">인증코드가 잘못되었어요.</string>
-    <string name="register_not_match_email_pattern">이메일 형식에 맞게 입력해 주세요</string>
-    <string name="register_nickname_too_long">닉네임이 너무 길어요</string>
-    <string name="register_input_eight_length">8자 이상 입력해 주세요</string>
-    <string name="register_not_match_password_confirm">비밀번호가 일치하지 않아요</string>
+
 </resources>

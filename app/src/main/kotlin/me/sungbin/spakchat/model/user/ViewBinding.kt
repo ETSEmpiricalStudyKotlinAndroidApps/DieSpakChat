@@ -14,11 +14,11 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import me.sungbin.spakchat.GlideApp
-import me.sungbin.spakchat.R
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import me.sungbin.spakchat.GlideApp
+import me.sungbin.spakchat.R
 
 object ViewBinding {
 
@@ -28,17 +28,10 @@ object ViewBinding {
     @JvmStatic
     @BindingAdapter("spak_loadProfile")
     fun loadProfile(imageView: ImageView, user: User) {
-        if (user.isTestMode == true) { // nullable
-            GlideApp
-                .with(imageView.context)
-                .load(user.profileImage ?: ColorDrawable(user.profileImageColor!!))
-                .into(imageView)
-        } else {
-            GlideApp
-                .with(imageView.context)
-                .load(ColorDrawable(user.profileImageColor!!))
-                .into(imageView)
-        }
+        GlideApp
+            .with(imageView.context)
+            .load(user.profileImage ?: ColorDrawable(user.profileImageColor!!))
+            .into(imageView)
     }
 
     @JvmStatic

@@ -6,7 +6,7 @@ object Application {
     const val compileSdk = 30
     const val jvmTarget = "1.8"
     const val versionCode = 1
-    const val versionName = "Please_end_Corona"
+    const val versionName = "Please_end_FUCKING_CORONA"
 
     val targetCompat = JavaVersion.VERSION_1_8
     val sourceCompat = JavaVersion.VERSION_1_8
@@ -61,6 +61,7 @@ object Versions {
     object Util {
         const val YoYoHelper = "2.4@aar"
         const val AndroidUtils = "1.1.0"
+        const val CarshReporter = "1.1.0"
         const val TedPermission = "2.2.3"
     }
 }
@@ -135,6 +136,8 @@ object Dependencies {
         const val YoyoHelper = "com.daimajia.easing:library:${Versions.Util.YoYoHelper}"
         const val AndroidUtils =
             "me.sungbin:androidutils:${Versions.Util.AndroidUtils}"
+        const val CrashReporter =
+            "com.balsikandar.android:crashreporter:${Versions.Util.CarshReporter}"
         const val TedPermission = "gun0912.ted:tedpermission:${Versions.Util.TedPermission}"
     }
 

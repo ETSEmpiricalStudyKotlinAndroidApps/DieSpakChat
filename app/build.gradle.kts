@@ -17,7 +17,7 @@ android {
         versionName = Application.versionName
         ndk.debugSymbolLevel = "FULL"
         multiDexEnabled = true
-        setProperty("archivesBaseName", "v$versionName ($versionCode)")
+        setProperty("archivesBaseName", "$versionName ($versionCode)")
     }
 
     buildFeatures {
@@ -25,11 +25,21 @@ android {
         viewBinding = true
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = "key0"
+            keyPassword = "ingan123"
+            storePassword = "ingan123"
+            storeFile = file("spakchat.jks")
+        }
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -114,6 +124,7 @@ dependencies {
 
         Dependencies.Util.YoyoHelper,
         Dependencies.Util.AndroidUtils,
+        Dependencies.Util.CrashReporter,
         Dependencies.Util.TedPermission
     )
 

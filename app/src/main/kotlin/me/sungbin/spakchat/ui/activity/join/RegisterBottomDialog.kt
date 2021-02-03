@@ -23,6 +23,8 @@ import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import kotlin.random.Random
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
@@ -41,8 +43,6 @@ import me.sungbin.spakchat.util.Gmail
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
 import me.sungbin.spakchat.util.extensions.isEmail
-import javax.inject.Inject
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
@@ -132,6 +132,7 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
                 getString(R.string.register_value_signup_code, code)
             )
             val layout = LayoutDialogRegisterConfirmCodeBinding.inflate(layoutInflater)
+            layout.tvNotice.text = getString(R.string.register_dialog_label_confirm_code, email)
             val dialog = AlertDialog.Builder(requireActivity())
             dialog.setTitle(getString(R.string.register_confirm_code))
             dialog.setView(layout.root)

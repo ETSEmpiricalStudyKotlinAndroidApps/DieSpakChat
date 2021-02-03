@@ -16,8 +16,7 @@
         android:id="@+id/tv_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/register_dialog_label_confirm_code" />
+        android:gravity="center" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"

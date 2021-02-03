@@ -8,18 +8,16 @@
 
 package me.sungbin.spakchat.util
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
+import com.balsikandar.crashreporter.CrashReporter
 import me.sungbin.androidutils.util.Logger
-import me.sungbin.androidutils.util.toastutil.ToastUtil
-import me.sungbin.spakchat.ui.activity.ExceptionActivity
 import kotlin.system.exitProcess
 
 object ExceptionUtil {
 
+    // todo: UncaughtException를 어떻게 해야하지?
     fun except(exception: Exception, context: Context) {
-        (context as Activity).runOnUiThread {
+        /*(context as Activity).runOnUiThread {
             val message = exception.message
             val line = exception.stackTrace[0].lineNumber
             val content = "$message #$line"
@@ -30,7 +28,13 @@ object ExceptionUtil {
             context.startActivity(intent)
             ToastUtil.show(context, exception.toString())
             Logger.e(message)
-        }
+        }*/
+        val message = exception.message
+        val line = exception.stackTrace[0].lineNumber
+        val content = "$message #$line"
+        CrashReporter.logException(exception)
+        exception.printStackTrace()
+        Logger.e(content)
         exitProcess(10)
     }
 }

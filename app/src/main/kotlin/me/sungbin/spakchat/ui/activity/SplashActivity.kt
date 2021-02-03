@@ -12,6 +12,7 @@ import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.androidutils.util.NetworkUtil
@@ -29,7 +30,6 @@ import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity() {
