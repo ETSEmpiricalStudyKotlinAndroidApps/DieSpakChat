@@ -35,7 +35,7 @@ class ChatAdapter(
                 ivProfile.setOnClickListener {
                     (it.context as Activity).startActivity<ChatActivity>(
                         false,
-                        "id" to message.owner?.id
+                        "id" to message.owner?.userId
                     )
                 }
                 invalidateAll()

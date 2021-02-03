@@ -8,22 +8,22 @@
 
 package me.sungbin.spakchat.util
 
+import java.util.Date
+import kotlin.random.Random
+import kotlin.random.nextInt
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.model.user.AccountStatus
 import me.sungbin.spakchat.model.user.Sex
 import me.sungbin.spakchat.model.user.User
-import java.util.Date
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 object TestUtil {
 
     val getTestUser
         get() = User(
             key = Util.randomId,
-            id = Util.randomId.toString(),
-            email = "sungbin.dev@gmail.com",
+            userId = Util.randomId.toString(),
+            loginId = "sungbin.dev@gmail.com",
             password = "test-pw",
             name = "zmo__${Random.nextInt(0..10)}",
             profileImage = null,

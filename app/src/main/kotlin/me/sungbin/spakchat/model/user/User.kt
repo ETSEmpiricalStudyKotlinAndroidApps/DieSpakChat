@@ -10,8 +10,8 @@ package me.sungbin.spakchat.model.user
 
 data class User(
     val key: Long? = null,
-    val id: String? = null,
-    val email: String? = null,
+    val userId: String? = null,
+    val loginId: String? = null,
     val password: String? = null,
     val name: String? = null,
     val profileImage: String? = null,

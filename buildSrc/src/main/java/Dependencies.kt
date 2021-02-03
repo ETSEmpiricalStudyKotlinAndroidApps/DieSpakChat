@@ -6,7 +6,7 @@ object Application {
     const val compileSdk = 30
     const val jvmTarget = "1.8"
     const val versionCode = 1
-    const val versionName = "Please_end_FUCKING_CORONA"
+    const val versionName = "PLEASE_DIE_FUCKING_CORONA"
 
     val targetCompat = JavaVersion.VERSION_1_8
     val sourceCompat = JavaVersion.VERSION_1_8
@@ -20,7 +20,7 @@ object Versions {
     object Essential {
         const val Google = "4.3.3"
         const val Kotlin = "1.4.30-RC"
-        const val Gradle = "4.1.1"
+        const val Gradle = "4.1.2"
         const val AppCompat = "1.2.0"
         const val LifeCycleViewModel = "2.2.0"
         const val LifeCycleExtensions = "2.2.0"

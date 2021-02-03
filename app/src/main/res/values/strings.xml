@@ -38,7 +38,7 @@
     <string name="register_dialog_signin">로그인</string>
     <string name="register_dialog_add_account">계정 추가</string>
     <string name="register_dialog_description_profile_picture">프로필 사진</string>
-    <string name="register_dialog_email">이메일</string>
+    <string name="register_dialog_id">아이디</string>
     <string name="register_dialog_nickname">닉네임</string>
     <string name="register_dialog_password">비밀번호</string>
     <string name="register_dialog_password_confirm">비밀번호 확인</string>
@@ -48,21 +48,14 @@
     <string name="register_need_permission_for_load_picture">사진들을 불러오기 위해 내부 메모리에 접근 권한이 필요해요.</string>
     <string name="register_done">가입이 완료되었어요 :)</string>
     <string name="register_input_all">모두 입력해 주세요</string>
-    <string name="register_dialog_confirm_code">인증코드</string>
-    <string name="register_dialog_label_confirm_code">인증코드가\n%s\n이메일로 발송되었어요.\n인증코드를 입력해 주세요.</string>
-    <string name="register_label_signup_code">SpakChat 회원가입 인증코드</string>
-    <string name="register_value_signup_code">😍 우선 SpakChat에 가입해 주셔서 감사해요!\n\n[ %s ]\n\n위 코드를 사용해 SpakChat 가입을 완료해 주세요 :)</string>
-    <string name="register_confirm_code">인증코드</string>
-    <string name="register_confirm">인증</string>
-    <string name="register_not_match_confirm_code">인증코드가 잘못되었어요.</string>
-    <string name="register_not_match_email_pattern">이메일 형식에 맞게 입력해 주세요</string>
     <string name="register_nickname_too_long">닉네임이 너무 길어요</string>
+    <string name="register_input_five_length">5자 이상 입력해 주세요</string>
     <string name="register_input_eight_length">8자 이상 입력해 주세요</string>
     <string name="register_not_match_password_confirm">비밀번호가 일치하지 않아요</string>
 
     <string name="login_welcome">%s님 환영합니다!</string>
-    <string name="login_unknown_email">존재하지 않는 이메일 이에요.</string>
-    <string name="login_not_match_email_password">이메일과 비밀번호가 일치하지 않아요.</string>
+    <string name="login_unknown_id">존재하지 않는 아이디에요.</string>
+    <string name="login_not_match_id_password">아이디와 비밀번호가 일치하지 않아요.</string>
     <string name="login_default_status_message">새로 가입했어요!</string>
 
     <string name="exception_except">오류가 발생했습니다 😔</string>
@@ -83,6 +76,7 @@
     <string name="chat_preview_time">오전 09:47</string>
     <string name="chat_preview_unread_count">99</string>
 
+    <string name="splash_not_supported_version">해당 버전의 SpakChat은 더 이상 이용하실 수 없어요 :(\n새로운 버전으로 업데이트를 해 주세요.</string>
     <string name="splash_non_internet">인터넷 없음!</string>
     <string name="splash_need_internet">SpakChat을 이용하려면 인터넷에 연결되있어야 해요 😢</string>
 

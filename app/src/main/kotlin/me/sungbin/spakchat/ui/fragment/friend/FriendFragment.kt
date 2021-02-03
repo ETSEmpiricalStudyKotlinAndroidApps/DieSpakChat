@@ -56,8 +56,8 @@ class FriendFragment : BaseFragment() {
                     with(it) {
                         val user = User(
                             key = key,
-                            id = id,
-                            email = email,
+                            userId = id,
+                            loginId = email,
                             password = password,
                             name = name,
                             profileImage = profileImage,

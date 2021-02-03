@@ -9,12 +9,12 @@
 package me.sungbin.spakchat.ui.activity.join
 
 import android.Manifest
-import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
@@ -30,7 +30,6 @@ import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.LayoutDialogRegisterBinding
-import me.sungbin.spakchat.databinding.LayoutDialogRegisterConfirmCodeBinding
 import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.user.AccountStatus
@@ -39,10 +38,8 @@ import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
-import me.sungbin.spakchat.util.Gmail
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
-import me.sungbin.spakchat.util.extensions.isEmail
 
 @AndroidEntryPoint
 class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
@@ -96,20 +93,20 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
 
         binding.btnSignupDone.setOnClickListener {
             binding.tilName.error = null
-            binding.tilEmail.error = null
+            binding.tilId.error = null
             binding.tilPassword.error = null
             binding.tilPasswordConfirm.error = null
             val name = binding.tietName.text.toString()
-            val email = binding.tietEmail.text.toString()
+            val id = binding.tietId.text.toString()
             val password = binding.tietPassword.text.toString()
             val passwordConfirm = binding.tietPasswordConfirm.text.toString()
             // todo: 이렇게 if문을 return써서 하는게 나을까?? 아니면 원래대로 if-else 지옥으로 가야하나???
-            if (name.isBlank() || email.isBlank() || password.isBlank() || passwordConfirm.isBlank()) {
+            if (name.isBlank() || id.isBlank() || password.isBlank() || passwordConfirm.isBlank()) {
                 toast(getString(R.string.register_input_all))
                 return@setOnClickListener
             }
-            if (!email.isEmail()) {
-                binding.tilEmail.error = getString(R.string.register_not_match_email_pattern)
+            if (id.length < 5) {
+                binding.tilId.error = getString(R.string.register_input_five_length)
                 return@setOnClickListener
             }
             if (name.length > 16) {
@@ -125,58 +122,40 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
                     getString(R.string.register_not_match_password_confirm)
                 return@setOnClickListener
             }
-            val code = Random.nextInt(10000, 100000).toString()
-            Gmail.send(
-                email,
-                getString(R.string.register_label_signup_code),
-                getString(R.string.register_value_signup_code, code)
-            )
-            val layout = LayoutDialogRegisterConfirmCodeBinding.inflate(layoutInflater)
-            layout.tvNotice.text = getString(R.string.register_dialog_label_confirm_code, email)
-            val dialog = AlertDialog.Builder(requireActivity())
-            dialog.setTitle(getString(R.string.register_confirm_code))
-            dialog.setView(layout.root)
-            dialog.setCancelable(false)
-            dialog.setPositiveButton(getString(R.string.register_confirm)) { _, _ ->
-                if (code == layout.etConfirmCode.text.toString()) {
-                    if (binding.ivProfile.tag != null) {
-                        storage // 프로필 사진 등록
-                            .child("profile/$email/profile.png")
-                            .putFile(Uri.parse(binding.ivProfile.tag.toString()))
-                            .addOnSuccessListener {
-                                it.storage.downloadUrl.addOnSuccessListener { uri ->
-                                    upload(name, email, password, uri)
-                                }
-                            }
-                            .addOnFailureListener { exception ->
-                                ExceptionUtil.except(exception, requireContext())
-                            }
-                    } else {
-                        upload(name, email, password)
+            if (binding.ivProfile.tag != null) {
+                val imagePath = binding.ivProfile.tag.toString()
+                storage // 프로필 사진 등록
+                    .child("profile/$name/profile.${imagePath.substringAfterLast(".")}")
+                    .putFile(imagePath.toUri())
+                    .addOnSuccessListener {
+                        it.storage.downloadUrl.addOnSuccessListener { uri ->
+                            upload(name, id, password, uri)
+                        }
                     }
-                } else {
-                    toast(getString(R.string.register_not_match_confirm_code))
-                }
+                    .addOnFailureListener { exception ->
+                        ExceptionUtil.except(exception, requireContext())
+                    }
+            } else {
+                upload(name, id, password)
             }
-            dialog.show()
         }
     }
 
     private fun upload(
         name: String,
-        email: String,
+        id: String,
         password: String,
         profileImageUri: Uri? = null,
     ) {
         val user = User(
-            key = "${email.first().toInt()}${
+            key = "${id.first().toInt()}${
             Random.nextInt(
                 10000,
                 100000
             )
             }${name.last().toInt()}".toLong(),
-            id = "$name${Random.nextInt(10000)}",
-            email = email,
+            userId = "$name${Random.nextInt(10000)}",
+            loginId = id,
             password = EncryptUtil.encrypt(
                 EncryptUtil.EncryptType.MD5,
                 password
@@ -198,17 +177,14 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
         )
 
         firestore.collection("users")
-            .document(
-                EncryptUtil.encrypt(
-                    EncryptUtil.EncryptType.SHA256,
-                    email
-                ).substring(0..5)
-            )
+            .document(name)
             .set(user)
             .addOnSuccessListener {
-                PrefUtil.save(requireContext(), KeyManager.User.EMAIL, email)
+                PrefUtil.save(requireContext(), KeyManager.User.NAME, name)
+                PrefUtil.save(requireContext(), KeyManager.User.ID, id)
                 PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
                 toast(getString(R.string.register_done))
+                vm.me = user
                 onDestroy()
                 startActivity<MainActivity>()
             }

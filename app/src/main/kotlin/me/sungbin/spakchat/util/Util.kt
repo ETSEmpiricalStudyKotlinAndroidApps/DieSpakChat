@@ -8,6 +8,7 @@
 
 package me.sungbin.spakchat.util
 
+import android.content.Context
 import me.sungbin.androidutils.util.Util
 
 object Util {
@@ -21,4 +22,7 @@ object Util {
             ownerName
         ).substring(0..3)
         }$randomId".substring(0..9).toLong()
+
+    @Suppress("DEPRECATION")
+    fun getVersionCode(context: Context) = context.packageManager.getPackageInfo(context.packageName, 0).versionCode.toLong()
 }

@@ -11,7 +11,9 @@ package me.sungbin.spakchat.util
 object KeyManager {
 
     object User {
-        const val EMAIL = "USER_EMAIL"
+
+        const val NAME = "USER_NAME"
+        const val ID = "USER_ID"
         const val PASSWORD = "USER_PASSWORD"
     }
 }

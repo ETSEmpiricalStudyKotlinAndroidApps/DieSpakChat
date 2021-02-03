@@ -11,10 +11,13 @@ package me.sungbin.spakchat.ui.activity
 import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.androidutils.util.NetworkUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakViewModel
@@ -30,6 +33,7 @@ import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
+import me.sungbin.spakchat.util.Util
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity() {
@@ -51,19 +55,36 @@ class SplashActivity : BaseActivity() {
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Logger.w(
+            listOf(
+                Firebase.remoteConfig.getLong("app_versionCode"),
+                Util.getVersionCode(
+                    applicationContext
+                )
+            )
+        )
+        if (Firebase.remoteConfig.getLong("app_versionCode") != Util.getVersionCode(
+                applicationContext
+            )
+        ) {
+            toast(getString(R.string.splash_not_supported_version))
+            finish()
+            return
+        }
+
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
             // todo: 없는 정보만 처리하기
             firestore.collection("users")
                 .get()
                 .addOnSuccessListener {
-                    for (user in it) {
+                    it.forEach { user ->
                         user?.let {
                             with(user.toObject(User::class.java)) {
                                 Thread {
                                     val entity = UserEntity(
                                         key = this.key,
-                                        id = this.id,
-                                        email = this.email,
+                                        id = this.userId,
+                                        email = this.loginId,
                                         password = this.password,
                                         name = this.name,
                                         profileImage = this.profileImage.toString(),
@@ -104,26 +125,22 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun gotoLoginOrMainPage() { // todo: change naming
-        val email = PrefUtil.read(applicationContext, KeyManager.User.EMAIL, null)
+        val name = PrefUtil.read(applicationContext, KeyManager.User.NAME, null)
+        val id = PrefUtil.read(applicationContext, KeyManager.User.ID, null)
         val password = PrefUtil.read(applicationContext, KeyManager.User.PASSWORD, null)
-        if (email == null || password == null) {
+        if (id == null || password == null || name == null) {
             startActivity<JoinActivity>()
         } else {
             firestore.collection("users")
-                .document(
-                    EncryptUtil.encrypt(
-                        EncryptUtil.EncryptType.SHA256,
-                        email
-                    ).substring(0..5)
-                )
+                .document(name)
                 .get()
                 .addOnSuccessListener {
                     it!!.toObject(User::class.java)?.run {
-                        if (this.email == email &&
-                            EncryptUtil.encrypt(
+                        if (this.loginId == id &&
+                            this.password == EncryptUtil.encrypt(
                                     EncryptUtil.EncryptType.MD5,
                                     password
-                                ) == this.password
+                                )
                         ) {
                             vm.me = this
                             toast(getString(R.string.login_welcome, name))

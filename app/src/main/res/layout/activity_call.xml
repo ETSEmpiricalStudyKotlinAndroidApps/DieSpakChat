@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_half"
             android:gravity="center"
-            android:text="@{User.id}"
+            android:text="@{User.userId}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"

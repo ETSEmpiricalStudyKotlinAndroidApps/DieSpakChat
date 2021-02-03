@@ -11,4 +11,5 @@ package me.sungbin.spakchat.model.user
 object Sex {
     const val MEN = 1
     const val WOMEN = 2
+    const val OTHER = 3
 }

@@ -43,7 +43,7 @@ object PrefUtil {
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
 
-    fun save(context: Context, key: String, value: String) {
+    fun save(context: Context, key: String, value: String?) {
         getEncryptedSharedPreferences(context).edit().putString(key, value).apply()
     }
 

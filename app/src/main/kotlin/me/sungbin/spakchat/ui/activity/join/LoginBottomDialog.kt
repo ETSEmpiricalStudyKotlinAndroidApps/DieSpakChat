@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
@@ -28,6 +27,7 @@ import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
@@ -54,9 +54,9 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
         retainInstance = false
 
         binding.btnSigninDone.setOnClickListener {
-            val email = binding.tietEmail.text.toString()
+            val id = binding.tietId.text.toString()
             val password = binding.tietPassword.text.toString()
-            if (email.isBlank() || password.isBlank()) {
+            if (id.isBlank() || password.isBlank()) {
                 toast(getString(R.string.register_input_all))
                 return@setOnClickListener
             }
@@ -64,14 +64,14 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
                 .document(
                     EncryptUtil.encrypt(
                         EncryptUtil.EncryptType.SHA256,
-                        email
+                        id
                     ).substring(0..5)
                 )
                 .get()
                 .addOnSuccessListener {
                     it?.let {
                         it.toObject(User::class.java)?.run {
-                            if (this.email == email &&
+                            if (this.loginId == id &&
                                 EncryptUtil.encrypt(
                                         EncryptUtil.EncryptType.MD5,
                                         password
@@ -79,15 +79,16 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
                             ) {
                                 vm.me = this
                                 toast(getString(R.string.login_welcome, name))
-                                PrefUtil.save(requireContext(), KeyManager.User.EMAIL, email)
+                                PrefUtil.save(requireContext(), KeyManager.User.NAME, name)
+                                PrefUtil.save(requireContext(), KeyManager.User.ID, id)
                                 PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
                                 onDestroy()
                                 startActivity<MainActivity>()
                             } else {
-                                toast(getString(R.string.login_not_match_email_password))
+                                toast(getString(R.string.login_not_match_id_password))
                             }
                         }
-                    } ?: toast(getString(R.string.login_unknown_email))
+                    } ?: toast(getString(R.string.login_unknown_id))
                 }
                 .addOnFailureListener {
                     ExceptionUtil.except(it, requireContext())

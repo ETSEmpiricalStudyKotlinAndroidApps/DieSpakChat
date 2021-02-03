@@ -17,7 +17,7 @@ android {
         versionName = Application.versionName
         ndk.debugSymbolLevel = "FULL"
         multiDexEnabled = true
-        setProperty("archivesBaseName", "$versionName ($versionCode)")
+        setProperty("archivesBaseName", "$versionName")
     }
 
     buildFeatures {
@@ -74,10 +74,6 @@ android {
 
 dependencies {
     "implementation"(platform(Dependencies.Firebase.Bom))
-
-    implementation(files("libs\\activation.jar"))
-    implementation(files("libs\\additionnal.jar"))
-    implementation(files("libs\\mail.jar"))
 
     fun def(vararg dependencies: String) {
         for (dependency in dependencies) implementation(dependency)
