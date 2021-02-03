@@ -10,9 +10,6 @@ package me.sungbin.spakchat
 
 import android.app.Application
 import android.content.Context
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.remoteconfig.ktx.remoteConfig
-import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import dagger.hilt.android.HiltAndroidApp
 import me.sungbin.spakchat.util.ExceptionUtil
 
@@ -27,13 +24,6 @@ class SpakChat : Application() {
         super.onCreate()
 
         context = applicationContext
-
-        val remoteConfig = Firebase.remoteConfig
-        val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = 60
-        }
-        remoteConfig.setConfigSettingsAsync(configSettings)
-        remoteConfig.fetchAndActivate()
 
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             ExceptionUtil.except(Exception(throwable), applicationContext)

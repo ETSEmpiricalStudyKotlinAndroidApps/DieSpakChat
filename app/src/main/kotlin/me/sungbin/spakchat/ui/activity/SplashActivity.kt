@@ -11,12 +11,10 @@ package me.sungbin.spakchat.ui.activity
 import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.remoteconfig.ktx.remoteConfig
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
-import me.sungbin.androidutils.util.Logger
 import me.sungbin.androidutils.util.NetworkUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakViewModel
@@ -32,8 +30,6 @@ import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
-import me.sungbin.spakchat.util.Util
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity() {
@@ -54,23 +50,6 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        Logger.w(
-            listOf(
-                Firebase.remoteConfig.getLong("app_versionCode"),
-                Util.getVersionCode(
-                    applicationContext
-                )
-            )
-        )
-        if (Firebase.remoteConfig.getLong("app_versionCode") != Util.getVersionCode(
-                applicationContext
-            )
-        ) {
-            toast(getString(R.string.splash_not_supported_version))
-            finish()
-            return
-        }
 
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
             // todo: 없는 정보만 처리하기
