@@ -46,7 +46,7 @@
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/cv_message_container"
             app:layout_constraintEnd_toStartOf="@+id/cv_message_container"
-            app:loadDate="@{Message.time}"
+            app:spak_loadDate="@{Message.time}"
             tools:ignore="SmallSp" />
 
         <androidx.cardview.widget.CardView

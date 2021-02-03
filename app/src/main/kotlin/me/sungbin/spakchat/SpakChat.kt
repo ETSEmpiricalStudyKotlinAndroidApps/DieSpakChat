@@ -11,6 +11,7 @@ package me.sungbin.spakchat
 import android.app.Application
 import android.content.Context
 import dagger.hilt.android.HiltAndroidApp
+import me.sungbin.spakchat.util.ExceptionUtil
 
 @HiltAndroidApp
 class SpakChat : Application() {
@@ -24,8 +25,18 @@ class SpakChat : Application() {
 
         context = applicationContext
 
-        /*Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
+        Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             ExceptionUtil.except(Exception(throwable), applicationContext)
-        }*/
+        }
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        GlideApp.with(applicationContext).onLowMemory()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        GlideApp.with(applicationContext).onTrimMemory(level)
     }
 }

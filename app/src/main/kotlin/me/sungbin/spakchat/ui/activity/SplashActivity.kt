@@ -43,10 +43,12 @@ class SplashActivity : BaseActivity() {
     lateinit var userDb: UserDatabase
 
     private val vm = SpakViewModel.instance()
-    private val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
+    private var _binding: ActivitySplashBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
@@ -125,10 +127,16 @@ class SplashActivity : BaseActivity() {
                         ) {
                             vm.me = this
                             toast(getString(R.string.login_welcome, name))
+                            finish()
                             startActivity<MainActivity>()
                         }
                     }
                 }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

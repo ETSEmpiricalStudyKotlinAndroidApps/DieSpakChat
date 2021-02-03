@@ -56,14 +56,15 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
     @Inject
     lateinit var storage: StorageReference
 
-    private lateinit var binding: LayoutDialogRegisterBinding
+    private var _binding: LayoutDialogRegisterBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = LayoutDialogRegisterBinding.inflate(inflater)
+        _binding = LayoutDialogRegisterBinding.inflate(inflater)
         return binding.root
     }
 
@@ -206,9 +207,9 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
             .addOnSuccessListener {
                 PrefUtil.save(requireContext(), KeyManager.User.EMAIL, email)
                 PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
-                startActivity<MainActivity>()
                 toast(getString(R.string.register_done))
-                dismiss()
+                onDestroy()
+                startActivity<MainActivity>()
             }
             .addOnFailureListener { exception ->
                 ExceptionUtil.except(exception, requireContext())
@@ -223,5 +224,11 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
             }
             return registerBottomDialog
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dismiss()
+        _binding = null
     }
 }

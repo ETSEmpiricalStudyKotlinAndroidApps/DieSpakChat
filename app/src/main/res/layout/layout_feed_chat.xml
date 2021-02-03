@@ -32,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadProfile="@{Message.owner}"
+            app:spak_loadProfile="@{Message.owner}"
             app:triv_imageRadius="@dimen/margin_twice_and_half"
             tools:src="@color/colorGreen" />
 
@@ -44,7 +44,7 @@
             android:contentDescription="@string/image_description_online_status"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toEndOf="@+id/iv_profile"
-            app:loadStatus="@{Message}" />
+            app:spak_loadStatus="@{Message.owner.isOnline}" />
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/fbl_container_chat"
@@ -82,7 +82,7 @@
                 android:singleLine="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
-                app:loadMessage="@{Message}"
+                app:spak_loadMessage="@{Message}"
                 tools:drawableStartCompat="@drawable/ic_outline_photo_24"
                 tools:text="@string/chat_preview_last_message" />
 
@@ -96,7 +96,7 @@
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_profile"
-            app:loadDate="@{Message.time}"
+            app:spak_loadDate="@{Message.time}"
             tools:ignore="SmallSp"
             tools:text="@string/chat_preview_time" />
 
@@ -112,7 +112,7 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:loadUnreadCount="@{Message}"
+            app:spak_loadUnreadCount="@{Message}"
             tools:ignore="SmallSp"
             tools:text="@string/chat_preview_unread_count" />
 

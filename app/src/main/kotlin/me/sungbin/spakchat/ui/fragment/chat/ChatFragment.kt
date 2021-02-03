@@ -20,14 +20,15 @@ import me.sungbin.spakchat.ui.fragment.BaseFragment
 
 class ChatFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentChatBinding
+    private var _binding: FragmentChatBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentChatBinding.inflate(layoutInflater)
+        _binding = FragmentChatBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -39,5 +40,10 @@ class ChatFragment : BaseFragment() {
         }.show()
 
         binding.rvChat.setFab(MainActivity.fabAction)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

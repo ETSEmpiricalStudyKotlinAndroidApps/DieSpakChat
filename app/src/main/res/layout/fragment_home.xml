@@ -19,8 +19,7 @@
         android:layout_height="75dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:triv_imageRadius="@dimen/margin_twice_and_half"
-        tools:src="@mipmap/ic_launcher" />
+        app:triv_imageRadius="@dimen/margin_twice_and_half" />
 
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="0dp"

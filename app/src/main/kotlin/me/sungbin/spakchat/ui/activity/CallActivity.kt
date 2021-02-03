@@ -14,10 +14,12 @@ import me.sungbin.spakchat.databinding.ActivityCallBinding
 
 class CallActivity : BaseActivity() {
 
-    private val binding by lazy { ActivityCallBinding.inflate(layoutInflater) }
+    private var _binding: ActivityCallBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.ctpvCounter.addOnEndListener(object : CountTimeProgressView.OnEndListener {
@@ -30,5 +32,10 @@ class CallActivity : BaseActivity() {
             }
         })
         binding.ctpvCounter.startCountTimeAnimation()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

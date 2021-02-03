@@ -114,7 +114,6 @@ dependencies {
 
         Dependencies.Util.YoyoHelper,
         Dependencies.Util.AndroidUtils,
-        Dependencies.Util.CrashReporter,
         Dependencies.Util.TedPermission
     )
 

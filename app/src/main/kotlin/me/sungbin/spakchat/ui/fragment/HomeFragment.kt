@@ -13,18 +13,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import me.sungbin.spakchat.databinding.FragmentHomeBinding
+import me.sungbin.spakchat.model.user.ViewBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
 
 class HomeFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
+    // todo: apply databinding (why do not work?)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater)
+        _binding = FragmentHomeBinding.inflate(inflater)
         return binding.root
     }
 
@@ -33,7 +36,15 @@ class HomeFragment : BaseFragment() {
 
         MainActivity.fabAction.hide()
 
+        ViewBinding.loadProfile(binding.ivProfile, vm.me)
+        binding.tvName.text = vm.me.name
+        binding.tvStatusMessage.text = vm.me.statusMessage
         binding.ivEdit.setOnClickListener {
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

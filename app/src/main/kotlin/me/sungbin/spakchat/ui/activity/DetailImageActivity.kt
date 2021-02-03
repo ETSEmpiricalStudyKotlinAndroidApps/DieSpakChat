@@ -25,16 +25,18 @@ import me.sungbin.spakchat.ui.view.circleswipelayout.transition.ChangeRoundedIma
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.TransitionListener
 
 class DetailImageActivity : AppCompatActivity() {
-    private var sharedElementEnterLeft: Int = 0
-    private var sharedElementEnterTop: Int = 0
-    private var sharedElementEnterRadius: Int = 0
+    private var sharedElementEnterLeft = 0
+    private var sharedElementEnterTop = 0
+    private var sharedElementEnterRadius = 0
     private var isInformationUiHidden = false
     private var isFlingSwiped = false
 
-    private val binding by lazy { ActivityDetailviewImageBinding.inflate(layoutInflater) }
+    private var _binding: ActivityDetailviewImageBinding? = null
+    private val binding = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityDetailviewImageBinding.inflate(layoutInflater)
         initializeViews(savedInstanceState)
     }
 
@@ -45,7 +47,6 @@ class DetailImageActivity : AppCompatActivity() {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-
         initializeSystemUi()
     }
 
@@ -78,8 +79,7 @@ class DetailImageActivity : AppCompatActivity() {
         }
 
         binding.swipeLayout.listener = object : CircleSwipeLayout.Listener {
-            override fun onSwipeStarted() {
-            }
+            override fun onSwipeStarted() {}
 
             override fun onSwipeCancelled() {}
 
@@ -116,7 +116,6 @@ class DetailImageActivity : AppCompatActivity() {
                 isInformationUiHidden = true
                 hideInformationUi()
             }
-
             false
         }
     }
@@ -176,8 +175,8 @@ class DetailImageActivity : AppCompatActivity() {
     private fun initializeSystemUi() {
         @Suppress("DEPRECATION")
         window!!.decorView.systemUiVisibility += (
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             )
     }
 
@@ -193,10 +192,15 @@ class DetailImageActivity : AppCompatActivity() {
         )?.addListener(object : AnimationListener() {
             override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {
                 super.onAnimationEnd(animation, isReverse)
-
-                if (!isFinishing)
+                if (!isFinishing) {
                     finish()
+                }
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

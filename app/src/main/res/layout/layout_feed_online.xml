@@ -29,7 +29,7 @@
             app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadProfile="@{User}"
+            app:spak_loadProfile="@{User}"
             app:triv_imageRadius="@dimen/margin_twice_and_half"
             tools:src="@mipmap/ic_launcher" />
 

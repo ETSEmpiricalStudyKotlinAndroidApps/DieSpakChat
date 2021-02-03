@@ -10,12 +10,15 @@ package me.sungbin.spakchat.model.user
 
 import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 object ViewBinding {
 
@@ -23,9 +26,8 @@ object ViewBinding {
     private val storage = FirebaseFirestore.getInstance()
 
     @JvmStatic
-    @BindingAdapter("loadProfile")
+    @BindingAdapter("spak_loadProfile")
     fun loadProfile(imageView: ImageView, user: User) {
-        Logger.w(user)
         if (user.isTestMode == true) { // nullable
             GlideApp
                 .with(imageView.context)
@@ -40,11 +42,25 @@ object ViewBinding {
     }
 
     @JvmStatic
-    @BindingAdapter("loadStatus")
+    @BindingAdapter("spak_loadStatus")
     fun loadStatus(imageView: ImageView, isOnline: Boolean) {
         imageView.setImageResource(
             if (isOnline) R.drawable.bg_shape_online
             else R.drawable.bg_shape_offline
         )
+    }
+
+    @JvmStatic
+    @BindingAdapter("spak_loadLastOnline")
+    fun loadLastOnline(textView: TextView, time: Long) {
+        textView.text = when {
+            time - Date().time in 0..(1000 * 60 * 30) -> "방금 전 까지 접속"
+            else -> {
+                val formatter = SimpleDateFormat("MM.dd kk:mm 까지 접속", Locale.KOREA)
+                val date = Date()
+                date.time = time
+                formatter.format(date)
+            }
+        }
     }
 }

@@ -29,11 +29,18 @@ class ProfileEditActivity : BaseActivity() {
     @Inject
     lateinit var storage: StorageReference
 
-    private val binding by lazy { ActivityEditProfileBinding.inflate(layoutInflater) }
+    private var _binding: ActivityEditProfileBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Slidr.attach(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

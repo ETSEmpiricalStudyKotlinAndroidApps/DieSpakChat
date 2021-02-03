@@ -31,7 +31,7 @@
             android:transitionName="@string/image_transition"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadProfile="@{Message.owner}"
+            app:spak_loadProfile="@{Message.owner}"
             app:triv_imageRadius="@dimen/margin_twice_and_half"
             tools:src="@color/colorGreen" />
 
@@ -85,7 +85,7 @@
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/cv_message_container"
             app:layout_constraintEnd_toEndOf="parent"
-            app:loadDate="@{Message.time}"
+            app:spak_loadDate="@{Message.time}"
             tools:ignore="SmallSp" />
 
         <Space

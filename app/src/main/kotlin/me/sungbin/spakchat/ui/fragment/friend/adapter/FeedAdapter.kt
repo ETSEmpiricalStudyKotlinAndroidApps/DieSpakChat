@@ -1,43 +1,32 @@
 /*
- * Create by Sungbin Ji on 2021. 1. 30.
+ * Create by Sungbin Ji on 2021. 2. 2.
  * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  *
  * SpakChat license is under the MIT license.
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.ui.fragment.chat
+package me.sungbin.spakchat.ui.fragment.friend.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
-import me.sungbin.spakchat.model.message.Message
-import me.sungbin.spakchat.ui.activity.chat.ChatActivity
+import me.sungbin.spakchat.databinding.LayoutFeedOnlineBinding
+import me.sungbin.spakchat.model.user.User
 
-class FeedChatAdapter(
-    private val items: List<Message>,
-) : RecyclerView.Adapter<FeedChatAdapter.ViewHolder>() {
+class FeedAdapter(
+    private val items: List<User>
+) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
-    inner class ViewHolder(
-        private val binding: LayoutFeedChatBinding,
-    ) :
+    inner class ViewHolder(private val binding: LayoutFeedOnlineBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(message: Message) {
+        fun bindViewHolder(user: User) {
             with(binding) {
-                this.message = message
-                ivProfile.setOnClickListener {
-                    (it.context as Activity).startActivity<ChatActivity>(
-                        false,
-                        "id" to message.owner?.id
-                    )
-                }
+                this.user = user
                 invalidateAll()
             }
         }
@@ -47,7 +36,7 @@ class FeedChatAdapter(
         ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
-                R.layout.layout_feed_chat, viewGroup, false
+                R.layout.layout_feed_online, viewGroup, false
             )
         )
 

@@ -37,14 +37,15 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
     @Inject
     lateinit var firestore: FirebaseFirestore
 
-    lateinit var binding: LayoutDialogLoginBinding
+    private var _binding: LayoutDialogLoginBinding? = null
+    private val binding = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = LayoutDialogLoginBinding.inflate(inflater)
+        _binding = LayoutDialogLoginBinding.inflate(inflater)
         return binding.root
     }
 
@@ -80,6 +81,7 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
                                 toast(getString(R.string.login_welcome, name))
                                 PrefUtil.save(requireContext(), KeyManager.User.EMAIL, email)
                                 PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
+                                onDestroy()
                                 startActivity<MainActivity>()
                             } else {
                                 toast(getString(R.string.login_not_match_email_password))
@@ -101,5 +103,11 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
             }
             return loginBottomDialog
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dismiss()
+        _binding = null
     }
 }

@@ -34,10 +34,12 @@ class JoinActivity : BaseActivity() {
     private val registerBottomDialog = RegisterBottomDialog.instance(vm)
     private val loginBottomDialog = LoginBottomDialog.instance(vm)
 
-    private val binding by lazy { ActivityJoinBinding.inflate(layoutInflater) }
+    private var _binding: ActivityJoinBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityJoinBinding.inflate(layoutInflater)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -88,5 +90,10 @@ class JoinActivity : BaseActivity() {
                 profileImageView.tag = uri
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

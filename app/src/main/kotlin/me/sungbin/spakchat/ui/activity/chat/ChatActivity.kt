@@ -62,10 +62,12 @@ class ChatActivity : BaseActivity() {
     private var keyboardHeight = 0
     private var isEmoticonContainerShown = false
 
-    private val binding by lazy { ActivityChatBinding.inflate(layoutInflater) }
+    private var _binding: ActivityChatBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
         Slidr.attach(this)
@@ -158,5 +160,10 @@ class ChatActivity : BaseActivity() {
                 // database.child("chat/room/uuid").push().setValue(message)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

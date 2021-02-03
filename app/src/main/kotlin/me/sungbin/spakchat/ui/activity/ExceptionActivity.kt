@@ -18,10 +18,12 @@ import me.sungbin.spakchat.databinding.ActivityExceptionBinding
 
 class ExceptionActivity : BaseActivity() {
 
-    private val binding by lazy { ActivityExceptionBinding.inflate(layoutInflater) }
+    private var _binding: ActivityExceptionBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityExceptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val message = intent.getStringExtra("message") ?: "NullPointerException"
@@ -40,5 +42,10 @@ class ExceptionActivity : BaseActivity() {
         binding.lavException.setOnClickListener {
             binding.lavException.playAnimation()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

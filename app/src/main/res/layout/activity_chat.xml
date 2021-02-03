@@ -61,7 +61,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_back"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:loadProfile="@{Message.owner}"
+                    app:spak_loadProfile="@{Message.owner}"
                     app:triv_imageRadius="@dimen/margin_twice_and_half"
                     tools:src="@color/colorGreen" />
 
@@ -95,7 +95,7 @@
                         android:id="@+id/tv_last_online"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:loadLastOnline="@{Message.owner.lastOnline}"
+                        app:spak_loadLastOnline="@{Message.owner.lastOnline}"
                         tools:text="@string/user_preview_last_online"
                         tools:visibility="gone" />
 

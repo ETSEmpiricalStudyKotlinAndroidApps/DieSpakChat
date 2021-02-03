@@ -89,7 +89,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ctpv_counter"
-            app:loadProfile="@{User}"
+            app:spak_loadProfile="@{User}"
             app:triv_imageRadius="100dp" />
 
         <View

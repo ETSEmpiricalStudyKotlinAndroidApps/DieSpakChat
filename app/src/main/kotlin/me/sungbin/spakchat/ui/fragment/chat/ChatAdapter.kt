@@ -8,25 +8,36 @@
 
 package me.sungbin.spakchat.ui.fragment.chat
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.LayoutFeedOnlineBinding
-import me.sungbin.spakchat.model.user.User
+import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
+import me.sungbin.spakchat.model.message.Message
+import me.sungbin.spakchat.ui.activity.chat.ChatActivity
 
-class OnlineAdapter(
-    private val items: List<User>
-) : RecyclerView.Adapter<OnlineAdapter.ViewHolder>() {
+class ChatAdapter(
+    private val items: List<Message>,
+) : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: LayoutFeedOnlineBinding) :
+    inner class ViewHolder(
+        private val binding: LayoutFeedChatBinding,
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(user: User) {
+        fun bindViewHolder(message: Message) {
             with(binding) {
-                this.user = user
+                this.message = message
+                ivProfile.setOnClickListener {
+                    (it.context as Activity).startActivity<ChatActivity>(
+                        false,
+                        "id" to message.owner?.id
+                    )
+                }
                 invalidateAll()
             }
         }
@@ -36,7 +47,7 @@ class OnlineAdapter(
         ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
-                R.layout.layout_feed_online, viewGroup, false
+                R.layout.layout_feed_chat, viewGroup, false
             )
         )
 

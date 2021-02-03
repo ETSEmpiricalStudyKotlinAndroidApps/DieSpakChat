@@ -26,14 +26,15 @@ import me.sungbin.spakchat.util.ArrayConverter.toArray
 
 class FriendFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentFriendBinding
+    private var _binding: FragmentFriendBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentFriendBinding.inflate(inflater)
+        _binding = FragmentFriendBinding.inflate(inflater)
         return binding.root
     }
 
@@ -79,5 +80,10 @@ class FriendFragment : BaseFragment() {
                 }
             }.start()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

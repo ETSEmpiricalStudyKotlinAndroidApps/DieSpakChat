@@ -18,14 +18,15 @@ import me.sungbin.spakchat.ui.activity.MainActivity
 
 class CallFragment : BaseFragment() {
 
-    private lateinit var binding: TestFragmentBinding
+    private var _binding: TestFragmentBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = TestFragmentBinding.inflate(inflater)
+        _binding = TestFragmentBinding.inflate(inflater)
         return binding.root
     }
 
@@ -37,5 +38,10 @@ class CallFragment : BaseFragment() {
         }.show()
 
         binding.tvTest.text = "CallFragment"
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
