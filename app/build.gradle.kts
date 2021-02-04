@@ -83,7 +83,6 @@ dependencies {
         Dependencies.Jetpack.Room,
         Dependencies.Jetpack.Paging,
         Dependencies.Jetpack.DataStore,
-        Dependencies.Jetpack.RoomCoroutines,
         Dependencies.Jetpack.SecurityCrypto,
 
         Dependencies.Essential.Kotlin,
@@ -91,6 +90,7 @@ dependencies {
         Dependencies.Essential.LifeCycleViewModel,
         Dependencies.Essential.LifeCycleExtensions,
 
+        Dependencies.Ktx.Room,
         Dependencies.Ktx.Core,
         Dependencies.Ktx.Fragment,
         Dependencies.Ktx.NavigationUi,

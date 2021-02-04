@@ -27,10 +27,10 @@ object ViewBinding {
 
     @JvmStatic
     @BindingAdapter("spak_loadProfile")
-    fun loadProfile(imageView: ImageView, user: User) {
+    fun loadProfile(imageView: ImageView, user: User?) {
         GlideApp
             .with(imageView.context)
-            .load(user.profileImage ?: ColorDrawable(user.profileImageColor!!))
+            .load(user!!.profileImage ?: ColorDrawable(user.profileImageColor!!))
             .into(imageView)
     }
 

@@ -12,6 +12,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.FragmentFriendBinding
 import me.sungbin.spakchat.model.user.User
@@ -50,7 +53,7 @@ class FriendFragment : BaseFragment() {
         friendAdapter.submit(vm.users)
 
         if (vm.users.isEmpty()) {
-            Thread {
+            lifecycleScope.launch(Dispatchers.IO) { // todo: Is this the best way to use coroutines?
                 val usersEntity = userDb.dao().getAllUser()
                 usersEntity.forEach {
                     with(it) {
@@ -78,7 +81,7 @@ class FriendFragment : BaseFragment() {
                         friendAdapter.submit(vm.users)
                     }
                 }
-            }.start()
+            }
         }
     }
 

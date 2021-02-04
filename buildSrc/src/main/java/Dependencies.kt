@@ -36,7 +36,7 @@ object Versions {
     }
 
     object Jetpack {
-        const val Room = "2.3.0-alpha02"
+        const val Room = "2.3.0-alpha04"
         const val Paging = "2.1.2"
         const val DataStore = "1.0.0-alpha01"
         const val Navigation = "2.3.3"
@@ -81,6 +81,7 @@ object Dependencies {
     }
 
     object Ktx {
+        const val Room = "androidx.room:room-ktx:${Versions.Jetpack.Room}"
         const val Core = "androidx.core:core-ktx:${Versions.Ktx.Core}"
         const val Fragment =
             "androidx.navigation:navigation-fragment-ktx:${Versions.Ktx.Fragment}"
@@ -106,7 +107,6 @@ object Dependencies {
 
     object Jetpack {
         const val Room = "androidx.room:room-runtime:${Versions.Jetpack.Room}"
-        const val RoomCoroutines = "androidx.room:room-coroutines:${Versions.Jetpack.Room}"
         const val Paging = "androidx.paging:paging-runtime:${Versions.Jetpack.Paging}"
         const val DataStore =
             "androidx.datastore:datastore-preferences:${Versions.Jetpack.DataStore}"

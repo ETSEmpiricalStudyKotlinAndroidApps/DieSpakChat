@@ -9,10 +9,13 @@
 package me.sungbin.spakchat.ui.activity
 
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.androidutils.util.NetworkUtil
@@ -52,37 +55,35 @@ class SplashActivity : BaseActivity() {
         setContentView(binding.root)
 
         if (NetworkUtil.isNetworkAvailable(applicationContext)) {
-            // todo: 없는 정보만 처리하기
             firestore.collection("users")
                 .get()
                 .addOnSuccessListener {
                     it.forEach { user ->
-                        user?.let {
-                            with(user.toObject(User::class.java)) {
-                                Thread {
-                                    val entity = UserEntity(
-                                        key = this.key,
-                                        id = this.userId,
-                                        email = this.loginId,
-                                        password = this.password,
-                                        name = this.name,
-                                        profileImage = this.profileImage.toString(),
-                                        profileImageColor = this.profileImageColor,
-                                        backgroundImage = this.backgroundImage.toString(),
-                                        statusMessage = this.statusMessage,
-                                        birthday = this.birthday,
-                                        lastOnline = this.lastOnline,
-                                        isOnline = this.isOnline,
-                                        friends = this.friends.toText(),
-                                        sex = this.sex,
-                                        emoji = this.emoji.toText(),
-                                        black = this.black.toText(),
-                                        accountStatus = this.accountStatus,
-                                        isTestMode = this.isTestMode
-                                    )
-                                    userDb.dao().insert(entity)
-                                }.start()
+                        lifecycleScope.launch(Dispatchers.IO) { // todo: Is this the best way to use coroutines?
+                            var entity: UserEntity
+                            with(user!!.toObject(User::class.java)) {
+                                entity = UserEntity(
+                                    key = this.key,
+                                    id = this.userId,
+                                    email = this.loginId,
+                                    password = this.password,
+                                    name = this.name,
+                                    profileImage = this.profileImage.toString(),
+                                    profileImageColor = this.profileImageColor,
+                                    backgroundImage = this.backgroundImage.toString(),
+                                    statusMessage = this.statusMessage,
+                                    birthday = this.birthday,
+                                    lastOnline = this.lastOnline,
+                                    isOnline = this.isOnline,
+                                    friends = this.friends.toText(),
+                                    sex = this.sex,
+                                    emoji = this.emoji.toText(),
+                                    black = this.black.toText(),
+                                    accountStatus = this.accountStatus,
+                                    isTestMode = this.isTestMode
+                                )
                             }
+                            userDb.dao().insert(entity)
                         }
                     }
                     gotoLoginOrMainPage()
