@@ -14,12 +14,12 @@ object Application {
 
 object Versions {
     object Firebase {
-        const val Bom = "26.3.0"
+        const val Bom = "26.4.0"
     }
 
     object Essential {
         const val Google = "4.3.3"
-        const val Kotlin = "1.4.30-RC"
+        const val Kotlin = "1.4.30"
         const val Gradle = "4.1.2"
         const val AppCompat = "1.2.0"
         const val LifeCycleViewModel = "2.2.0"
@@ -46,7 +46,7 @@ object Versions {
     object Ui {
         const val YoYo = "2.4@aar"
         const val Slidr = "2.1.0"
-        const val Glide = "4.11.0"
+        const val Glide = "4.12.0"
         const val Lottie = "3.6.0"
         const val Flexbox = "2.0.1"
         const val FishBun = "1.0.0-alpha05"
@@ -106,6 +106,7 @@ object Dependencies {
 
     object Jetpack {
         const val Room = "androidx.room:room-runtime:${Versions.Jetpack.Room}"
+        const val RoomCoroutines = "androidx.room:room-coroutines:${Versions.Jetpack.Room}"
         const val Paging = "androidx.paging:paging-runtime:${Versions.Jetpack.Paging}"
         const val DataStore =
             "androidx.datastore:datastore-preferences:${Versions.Jetpack.DataStore}"

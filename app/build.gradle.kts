@@ -38,7 +38,7 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            isDebuggable = true // todo: 출시버전 빌드할 땐 true로 바꾸기
+            isDebuggable = true // todo: 출시버전 빌드할 땐 false로 바꾸기
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -83,6 +83,7 @@ dependencies {
         Dependencies.Jetpack.Room,
         Dependencies.Jetpack.Paging,
         Dependencies.Jetpack.DataStore,
+        Dependencies.Jetpack.RoomCoroutines,
         Dependencies.Jetpack.SecurityCrypto,
 
         Dependencies.Essential.Kotlin,
