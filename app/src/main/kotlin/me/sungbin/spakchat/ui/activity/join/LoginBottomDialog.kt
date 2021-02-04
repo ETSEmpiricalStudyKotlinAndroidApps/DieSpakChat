@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
@@ -27,7 +28,6 @@ import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
@@ -72,14 +72,15 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
                     it?.let {
                         it.toObject(User::class.java)?.run {
                             if (this.loginId == id &&
+                                this.password ==
                                 EncryptUtil.encrypt(
                                         EncryptUtil.EncryptType.MD5,
                                         password
-                                    ) == this.password
+                                    )
                             ) {
                                 vm.me = this
                                 toast(getString(R.string.login_welcome, name))
-                                PrefUtil.save(requireContext(), KeyManager.User.NAME, name)
+                                PrefUtil.save(requireContext(), KeyManager.User.KEY, key.toString())
                                 PrefUtil.save(requireContext(), KeyManager.User.ID, id)
                                 PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
                                 onDestroy()

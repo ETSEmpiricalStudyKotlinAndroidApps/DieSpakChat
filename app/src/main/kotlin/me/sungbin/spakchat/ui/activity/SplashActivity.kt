@@ -105,14 +105,14 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun gotoLoginOrMainPage() { // todo: change naming
-        val name = PrefUtil.read(applicationContext, KeyManager.User.NAME, null)
+        val key = PrefUtil.read(applicationContext, KeyManager.User.KEY, null)
         val id = PrefUtil.read(applicationContext, KeyManager.User.ID, null)
         val password = PrefUtil.read(applicationContext, KeyManager.User.PASSWORD, null)
-        if (id == null || password == null || name == null) {
+        if (id == null || password == null || key == null) {
             startActivity<JoinActivity>()
         } else {
             firestore.collection("users")
-                .document(name)
+                .document(key)
                 .get()
                 .addOnSuccessListener {
                     it!!.toObject(User::class.java)?.run {

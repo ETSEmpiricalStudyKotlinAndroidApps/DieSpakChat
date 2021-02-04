@@ -11,6 +11,7 @@ package me.sungbin.spakchat.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import me.sungbin.spakchat.R
 
+// todo: why can't apply Hilt?
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun finish() {

@@ -18,11 +18,17 @@ import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import me.sungbin.spakchat.SpakChat
+import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.database.UserDatabase
 
 @Module
 @InstallIn(ApplicationComponent::class)
 class Module {
+
+    @SpakVM
+    @Reusable
+    @Provides
+    fun provideSpakVM() = SpakViewModel.instance()
 
     @UserDB
     @Reusable
@@ -39,7 +45,7 @@ class Module {
     @Provides
     fun provideFirestore() = Firebase.firestore
 
-    @RealtimeDatabase
+    @RTDB
     @Reusable
     @Provides
     fun provideRealtimeDatabase() = Firebase.database.reference.apply {

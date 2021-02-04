@@ -11,5 +11,6 @@ package me.sungbin.spakchat.model.message
 object MessageViewType {
     const val OWN = 0
     const val OTHER = 1
-    const val FEED = 2
+    const val NORMAL = 2
+    const val FEED = 3
 }

@@ -13,8 +13,8 @@
     <data>
 
         <variable
-            name="Message"
-            type="me.sungbin.spakchat.model.message.Message" />
+            name="User"
+            type="me.sungbin.spakchat.model.user.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +61,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_back"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:spak_loadProfile="@{Message.owner}"
+                    app:spak_loadProfile="@{User}"
                     app:triv_imageRadius="@dimen/margin_twice_and_half"
                     tools:src="@color/colorGreen" />
 
@@ -85,7 +85,7 @@
                         android:marqueeRepeatLimit="marquee_forever"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="@{Message.owner.name}"
+                        android:text="@{User.name}"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -95,7 +95,7 @@
                         android:id="@+id/tv_last_online"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:spak_loadLastOnline="@{Message.owner.lastOnline}"
+                        app:spak_loadLastOnline="@{User.lastOnline}"
                         tools:text="@string/user_preview_last_online"
                         tools:visibility="gone" />
 

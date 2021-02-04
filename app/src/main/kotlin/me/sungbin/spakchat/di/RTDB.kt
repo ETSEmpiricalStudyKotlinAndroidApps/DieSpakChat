@@ -12,4 +12,4 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
-annotation class RealtimeDatabase
+annotation class RTDB

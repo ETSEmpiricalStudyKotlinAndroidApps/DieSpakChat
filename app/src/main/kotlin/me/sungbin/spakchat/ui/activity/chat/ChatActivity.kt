@@ -11,14 +11,21 @@ package me.sungbin.spakchat.ui.activity.chat
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import androidx.core.widget.doAfterTextChanged
+import androidx.databinding.DataBindingUtil
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Date
+import javax.inject.Inject
 import me.sungbin.androidutils.extensions.clear
 import me.sungbin.androidutils.extensions.doDelay
 import me.sungbin.androidutils.extensions.hide
@@ -30,18 +37,17 @@ import me.sungbin.androidutils.extensions.showKeyboard
 import me.sungbin.androidutils.extensions.toBottomScroll
 import me.sungbin.androidutils.extensions.toColorStateList
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.ActivityChatBinding
 import me.sungbin.spakchat.di.Firestore
-import me.sungbin.spakchat.di.RealtimeDatabase
+import me.sungbin.spakchat.di.RTDB
 import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
+import me.sungbin.spakchat.model.message.MessageViewType
+import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.BaseActivity
-import me.sungbin.spakchat.util.TestUtil
-import me.sungbin.spakchat.util.Util
-import java.util.Date
-import javax.inject.Inject
-import kotlin.random.Random
+import me.sungbin.spakchat.util.KeyManager
 
 @AndroidEntryPoint
 class ChatActivity : BaseActivity() {
@@ -54,9 +60,12 @@ class ChatActivity : BaseActivity() {
     @Inject
     lateinit var storage: StorageReference
 
-    @RealtimeDatabase
+    @RTDB
     @Inject
     lateinit var database: DatabaseReference
+
+    private val globalVM = SpakViewModel.instance()
+    private val chatVM = ChatViewModel.instance()
 
     private var rootHeight = 0
     private var keyboardHeight = 0
@@ -65,34 +74,51 @@ class ChatActivity : BaseActivity() {
     private var _binding: ActivityChatBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var friend: User
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityChatBinding.inflate(layoutInflater)
+        _binding = DataBindingUtil.inflate(layoutInflater, R.layout.activity_chat, ConstraintLayout(this), false)
         setContentView(binding.root)
+
+        val friendKey = intent.getLongExtra(KeyManager.User.KEY, -1)
+        val databaseReference = database.child("chat/${globalVM.me.key}/friend/$friendKey")
         supportActionBar?.hide()
         Slidr.attach(this)
+        friend = globalVM.users.find {
+            it.key == friendKey
+        }!!
+        binding.user = friend
 
-        // https://wooooooak.github.io/android/2020/07/30/emoticon_container/
-        binding.clContainer.viewTreeObserver.addOnGlobalLayoutListener {
-            if (rootHeight == 0) rootHeight = binding.clContainer.height
-            val visibleFrameSize = Rect()
-            binding.clContainer.getWindowVisibleDisplayFrame(visibleFrameSize)
-            val heightExceptKeyboard = visibleFrameSize.bottom - visibleFrameSize.top
-            if (heightExceptKeyboard < rootHeight) {
-                keyboardHeight = rootHeight - heightExceptKeyboard
+        databaseReference.addChildEventListener(object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                chatVM.message.postValue(snapshot.getValue(Message::class.java))
             }
-        }
 
-        val id = intent.getStringExtra("id") // todo: key로 바꾸기
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                // todo: message edit
+            }
 
-        binding.tvName.text = "실험실"
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                // todo: message removed
+            }
 
-        val adapter = ChatAdapter()
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+            override fun onCancelled(error: DatabaseError) {}
+        })
+
+        val adapter = ChatAdapter(globalVM.me)
         binding.rvChat.adapter = adapter
+        adapter.submit(chatVM.messagesMap[friendKey] ?: listOf())
 
-        binding.ivBack.setOnClickListener {
-            finish()
+        chatVM.message.observe(this) {
+            chatVM.messagesMap[friendKey]?.add(it) ?: run {
+                chatVM.messagesMap[friendKey] = mutableListOf(it)
+            }
+            adapter.submit(chatVM.messagesMap[friendKey]!!)
         }
+
+        binding.ivBack.setOnClickListener { finish() }
 
         binding.etInput.doAfterTextChanged {
             if (it.toString().isNotBlank()) {
@@ -109,6 +135,17 @@ class ChatActivity : BaseActivity() {
                         R.color.colorTwiceLightGray
                     )
                 )
+            }
+        }
+
+        // https://wooooooak.github.io/android/2020/07/30/emoticon_container/
+        binding.clContainer.viewTreeObserver.addOnGlobalLayoutListener {
+            if (rootHeight == 0) rootHeight = binding.clContainer.height
+            val visibleFrameSize = Rect()
+            binding.clContainer.getWindowVisibleDisplayFrame(visibleFrameSize)
+            val heightExceptKeyboard = visibleFrameSize.bottom - visibleFrameSize.top
+            if (heightExceptKeyboard < rootHeight) {
+                keyboardHeight = rootHeight - heightExceptKeyboard
             }
         }
 
@@ -144,20 +181,18 @@ class ChatActivity : BaseActivity() {
             val inputMessage = binding.etInput.text.toString()
             if (inputMessage.isNotBlank()) {
                 val message = Message(
-                    // todo: User() 얻어오는 부분 추가
-                    key = Util.generateMessageId(inputMessage, "my name"),
+                    key = globalVM.me.key,
                     message = inputMessage,
                     time = Date().time,
                     type = MessageType.CHAT,
                     attachment = null,
-                    owner = TestUtil.getTestUser,
+                    owner = globalVM.me,
                     mention = listOf(),
-                    messageViewType = Random.nextInt(0, 2)
+                    messageViewType = MessageViewType.NORMAL
                 )
-                // messages.add(message)
+                databaseReference.setValue(message)
                 binding.rvChat.toBottomScroll()
                 binding.etInput.clear()
-                // database.child("chat/room/uuid").push().setValue(message)
             }
         }
     }

@@ -58,9 +58,6 @@
     <string name="login_not_match_id_password">아이디와 비밀번호가 일치하지 않아요.</string>
     <string name="login_default_status_message">새로 가입했어요!</string>
 
-    <string name="exception_except">오류가 발생했습니다 😔</string>
-    <string name="exception_preview_except">getWifiLinkLayerStats_1_3_Internal(l.934) failed {.code = ERROR_NOT_SUPPORTED, .description = }</string>
-
     <string name="fragment_chat_online">온라인</string>
 
     <string name="call_call">전화</string>

@@ -18,8 +18,11 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutUserBinding
 import me.sungbin.spakchat.model.user.User
 
+// todo: I want inject SpakViewModel to constructor with Hilt...
+// But Hilt is not supported RecyclerView.Adapter inject T.T
 class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
 
+    private var listener: FriendClickListener? = null
     private val differ = AsyncListDiffer(this, FriendsDiffItemCallback())
 
     inner class ViewHolder(
@@ -30,7 +33,9 @@ class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
         fun bindViewHolder(user: User) {
             with(binding) {
                 this.user = user
-                invalidateAll()
+                root.setOnClickListener {
+                    listener?.onFriendClick(user)
+                }
             }
         }
     }
@@ -47,7 +52,15 @@ class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
         viewholder.bindViewHolder(getUser(position))
     }
 
-    fun getUser(position: Int) = differ.currentList[position]
+    fun setOnFriendClickListener(action: User.() -> Unit) {
+        listener = object : FriendClickListener {
+            override fun onFriendClick(friend: User) {
+                action(friend)
+            }
+        }
+    }
+
+    private fun getUser(position: Int) = differ.currentList[position]
 
     fun submit(user: List<User>) {
         differ.submitList(user)

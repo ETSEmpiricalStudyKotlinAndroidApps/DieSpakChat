@@ -9,11 +9,11 @@
 package me.sungbin.spakchat.util
 
 import android.content.Context
-import android.content.Intent
 import android.os.Looper
 import android.widget.Toast
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.annotation.ActivityContext
-import me.sungbin.spakchat.ui.activity.ExceptionActivity
+import kotlin.system.exitProcess
 
 object ExceptionUtil {
 
@@ -21,14 +21,12 @@ object ExceptionUtil {
         Thread {
             val message = exception.message
             val line = exception.stackTrace[0].lineNumber
-            val content = "$message #$line"
+            val content = "예상치 못한 오류가 발생했어요 :(\n\n$message #$line"
             Looper.prepare()
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-            val intent = Intent(context, ExceptionActivity::class.java)
-            intent.putExtra("message", content)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(intent)
+            Logger.e(message)
+            Toast.makeText(context, content, Toast.LENGTH_LONG).show()
             Looper.loop()
+            exitProcess(10)
         }.start()
     }
 }

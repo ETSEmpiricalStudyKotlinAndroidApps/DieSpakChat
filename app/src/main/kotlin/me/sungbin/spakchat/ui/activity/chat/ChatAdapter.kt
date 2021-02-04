@@ -22,9 +22,10 @@ import me.sungbin.spakchat.databinding.LayoutChatOtherBinding
 import me.sungbin.spakchat.databinding.LayoutChatOwnBinding
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageViewType
+import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.DetailImageActivity
 
-class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val differ = AsyncListDiffer(this, ChatDiffItemCallback())
 
@@ -77,20 +78,28 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 LayoutInflater.from(viewGroup.context),
                 R.layout.layout_chat_other, viewGroup, false
             )
-        )
+        ) // todo: Create FEED viewholder.
         else -> throw Exception("$viewType is unknown viewType.")
     }
 
     override fun onBindViewHolder(@NonNull viewholder: RecyclerView.ViewHolder, position: Int) {
-        val chat = getItem(position)
-        when (chat.messageViewType!!) {
-            MessageViewType.OWN -> (viewholder as OwnChatViewHolder).bindViewHolder(chat)
-            MessageViewType.OTHER -> (viewholder as OtherChatViewHolder).bindViewHolder(chat)
-            else -> throw Exception("없는 뷰 홀더")
+        val message = getItem(position)
+        if (message.messageViewType == MessageViewType.FEED) {
+            // todo: Create FEED viewholder.
+        } else {
+            if (message.owner!!.key == me.key) {
+                (viewholder as OwnChatViewHolder).bindViewHolder(message)
+            } else {
+                (viewholder as OtherChatViewHolder).bindViewHolder(message)
+            }
         }
     }
 
-    fun getItem(position: Int) = differ.currentList[position]
+    fun submit(messages: List<Message>) {
+        differ.submitList(messages)
+    }
+
+    private fun getItem(position: Int) = differ.currentList[position]
 
     override fun getItemCount() = differ.currentList.size
     override fun getItemId(position: Int) = position.toLong()

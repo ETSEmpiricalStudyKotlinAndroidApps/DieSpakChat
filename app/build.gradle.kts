@@ -18,6 +18,12 @@ android {
         ndk.debugSymbolLevel = "FULL"
         multiDexEnabled = true
         setProperty("archivesBaseName", "$versionName")
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
     }
 
     buildFeatures {

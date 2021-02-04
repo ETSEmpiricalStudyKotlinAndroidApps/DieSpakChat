@@ -15,15 +15,17 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
+import javax.inject.Inject
 import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.database.UserDatabase
 import me.sungbin.spakchat.di.Firestore
-import me.sungbin.spakchat.di.RealtimeDatabase
+import me.sungbin.spakchat.di.RTDB
 import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.di.UserDB
-import javax.inject.Inject
 
 @AndroidEntryPoint
+@WithFragmentBindings
 abstract class BaseFragment : Fragment() {
 
     @Firestore
@@ -34,7 +36,7 @@ abstract class BaseFragment : Fragment() {
     @Inject
     lateinit var storage: StorageReference
 
-    @RealtimeDatabase
+    @RTDB
     @Inject
     lateinit var database: DatabaseReference
 

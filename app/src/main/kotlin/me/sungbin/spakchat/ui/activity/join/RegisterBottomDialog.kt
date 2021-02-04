@@ -100,6 +100,12 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
             val id = binding.tietId.text.toString()
             val password = binding.tietPassword.text.toString()
             val passwordConfirm = binding.tietPasswordConfirm.text.toString()
+            val key = "${id.first().toInt()}${
+                Random.nextInt(
+                    10000,
+                    100000
+                )
+            }${name.last().toInt()}".toLong()
             // todo: 이렇게 if문을 return써서 하는게 나을까?? 아니면 원래대로 if-else 지옥으로 가야하나???
             if (name.isBlank() || id.isBlank() || password.isBlank() || passwordConfirm.isBlank()) {
                 toast(getString(R.string.register_input_all))
@@ -125,35 +131,31 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
             if (binding.ivProfile.tag != null) {
                 val imagePath = binding.ivProfile.tag.toString()
                 storage // 프로필 사진 등록
-                    .child("profile/$name/profile.${imagePath.substringAfterLast(".")}")
+                    .child("profile/$key/profile.${imagePath.substringAfterLast(".")}")
                     .putFile(imagePath.toUri())
                     .addOnSuccessListener {
                         it.storage.downloadUrl.addOnSuccessListener { uri ->
-                            upload(name, id, password, uri)
+                            upload(key, name, id, password, uri)
                         }
                     }
                     .addOnFailureListener { exception ->
                         ExceptionUtil.except(exception, requireContext())
                     }
             } else {
-                upload(name, id, password)
+                upload(key, name, id, password)
             }
         }
     }
 
     private fun upload(
+        key: Long,
         name: String,
         id: String,
         password: String,
         profileImageUri: Uri? = null,
     ) {
         val user = User(
-            key = "${id.first().toInt()}${
-            Random.nextInt(
-                10000,
-                100000
-            )
-            }${name.last().toInt()}".toLong(),
+            key = key,
             userId = "$name${Random.nextInt(10000)}",
             loginId = id,
             password = EncryptUtil.encrypt(
@@ -180,7 +182,7 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
             .document(name)
             .set(user)
             .addOnSuccessListener {
-                PrefUtil.save(requireContext(), KeyManager.User.NAME, name)
+                PrefUtil.save(requireContext(), KeyManager.User.KEY, key.toString())
                 PrefUtil.save(requireContext(), KeyManager.User.ID, id)
                 PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
                 toast(getString(R.string.register_done))

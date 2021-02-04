@@ -12,7 +12,7 @@ object KeyManager {
 
     object User {
 
-        const val NAME = "USER_NAME"
+        const val KEY = "USER_KEY"
         const val ID = "USER_ID"
         const val PASSWORD = "USER_PASSWORD"
     }

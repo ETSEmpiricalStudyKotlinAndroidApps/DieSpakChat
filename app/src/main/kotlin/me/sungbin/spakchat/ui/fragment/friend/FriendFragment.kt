@@ -15,13 +15,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import me.sungbin.androidutils.extensions.startActivity
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.FragmentFriendBinding
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
+import me.sungbin.spakchat.ui.activity.chat.ChatActivity
 import me.sungbin.spakchat.ui.fragment.BaseFragment
 import me.sungbin.spakchat.ui.fragment.friend.adapter.FriendListAdapter
 import me.sungbin.spakchat.util.ArrayConverter.toArray
+import me.sungbin.spakchat.util.KeyManager
 
 /**
  * Created by SungBin on 2020-09-10.
@@ -49,6 +53,9 @@ class FriendFragment : BaseFragment() {
         }.show()
 
         val friendAdapter = FriendListAdapter()
+        friendAdapter.setOnFriendClickListener {
+            startActivity<ChatActivity>(false, KeyManager.User.KEY to key)
+        }
         binding.rvFriends.adapter = friendAdapter
         friendAdapter.submit(vm.users)
 
@@ -88,5 +95,6 @@ class FriendFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        Logger.i("Destroy `FriendFragment`")
     }
 }
