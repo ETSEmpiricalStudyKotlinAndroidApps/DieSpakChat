@@ -137,6 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/colorBackgroundWhite"
+            android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical"
             android:overScrollMode="never"

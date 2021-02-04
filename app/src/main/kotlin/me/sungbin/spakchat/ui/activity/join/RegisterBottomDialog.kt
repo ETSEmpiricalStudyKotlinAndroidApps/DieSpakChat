@@ -101,10 +101,10 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
             val password = binding.tietPassword.text.toString()
             val passwordConfirm = binding.tietPasswordConfirm.text.toString()
             val key = "${id.first().toInt()}${
-                Random.nextInt(
-                    10000,
-                    100000
-                )
+            Random.nextInt(
+                10000,
+                100000
+            )
             }${name.last().toInt()}".toLong()
             // todo: 이렇게 if문을 return써서 하는게 나을까?? 아니면 원래대로 if-else 지옥으로 가야하나???
             if (name.isBlank() || id.isBlank() || password.isBlank() || passwordConfirm.isBlank()) {
@@ -179,7 +179,7 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
         )
 
         firestore.collection("users")
-            .document(name)
+            .document(key.toString())
             .set(user)
             .addOnSuccessListener {
                 PrefUtil.save(requireContext(), KeyManager.User.KEY, key.toString())

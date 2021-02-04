@@ -18,7 +18,6 @@ android {
         ndk.debugSymbolLevel = "FULL"
         multiDexEnabled = true
         setProperty("archivesBaseName", "$versionName")
-
         kapt {
             arguments {
                 arg("room.schemaLocation", "$projectDir/schemas")
@@ -31,21 +30,11 @@ android {
         viewBinding = true
     }
 
-    signingConfigs {
-        create("release") {
-            keyAlias = "key0"
-            keyPassword = "ingan123"
-            storePassword = "ingan123"
-            storeFile = file("spakchat.jks")
-        }
-    }
-
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            isDebuggable = true // todo: 출시버전 빌드할 땐 false로 바꾸기
-            signingConfig = signingConfigs.getByName("release")
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

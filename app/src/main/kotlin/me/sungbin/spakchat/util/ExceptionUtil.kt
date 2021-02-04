@@ -10,10 +10,10 @@ package me.sungbin.spakchat.util
 
 import android.content.Context
 import android.os.Looper
+import android.os.Process
 import android.widget.Toast
 import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.annotation.ActivityContext
-import kotlin.system.exitProcess
 
 object ExceptionUtil {
 
@@ -26,7 +26,9 @@ object ExceptionUtil {
             Logger.e(message)
             Toast.makeText(context, content, Toast.LENGTH_LONG).show()
             Looper.loop()
-            exitProcess(10)
         }.start()
+        Thread.sleep(2000)
+        Process.killProcess(Process.myPid())
+        System.exit(10)
     }
 }

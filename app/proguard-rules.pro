@@ -1,4 +1,4 @@
--keepattributes SourceFile,LineNumberTable,Signature
+-keepattributes Signature
 -renamesourcefileattribute SourceFile
 
 -keepclassmembers class me.sungbin.spakchat.model.message.Message {

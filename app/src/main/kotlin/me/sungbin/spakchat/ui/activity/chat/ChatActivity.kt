@@ -116,6 +116,7 @@ class ChatActivity : BaseActivity() {
                 chatVM.messagesMap[friendKey] = mutableListOf(it)
             }
             adapter.submit(chatVM.messagesMap[friendKey]!!)
+            binding.rvChat.toBottomScroll()
         }
 
         binding.ivBack.setOnClickListener { finish() }
@@ -190,8 +191,7 @@ class ChatActivity : BaseActivity() {
                     mention = listOf(),
                     messageViewType = MessageViewType.NORMAL
                 )
-                databaseReference.setValue(message)
-                binding.rvChat.toBottomScroll()
+                databaseReference.push().setValue(message)
                 binding.etInput.clear()
             }
         }

@@ -17,6 +17,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutChatOtherBinding
 import me.sungbin.spakchat.databinding.LayoutChatOwnBinding
@@ -79,7 +80,10 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
                 R.layout.layout_chat_other, viewGroup, false
             )
         ) // todo: Create FEED viewholder.
-        else -> throw Exception("$viewType is unknown viewType.")
+        else -> {
+            Logger.w(viewType)
+            throw Exception("$viewType is unknown viewType.")
+        }
     }
 
     override fun onBindViewHolder(@NonNull viewholder: RecyclerView.ViewHolder, position: Int) {
@@ -103,5 +107,11 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
 
     override fun getItemCount() = differ.currentList.size
     override fun getItemId(position: Int) = position.toLong()
-    override fun getItemViewType(position: Int) = getItem(position).messageViewType!!
+    override fun getItemViewType(position: Int) = with(getItem(position)) {
+        if (owner!!.key == me.key) {
+            MessageViewType.OWN
+        } else {
+            MessageViewType.OTHER
+        }
+    }
 }

@@ -64,6 +64,7 @@ class FriendFragment : BaseFragment() {
                 val usersEntity = userDb.dao().getAllUser()
                 usersEntity.forEach {
                     with(it) {
+                        if (key == vm.me.key) return@with
                         val user = User(
                             key = key,
                             userId = id,
