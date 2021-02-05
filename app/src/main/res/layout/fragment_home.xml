@@ -6,73 +6,86 @@
   ~ SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/margin_default">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
-        android:id="@+id/iv_profile"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:triv_imageRadius="@dimen/margin_twice_and_half" />
+    <data>
 
-    <com.google.android.flexbox.FlexboxLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginEnd="@dimen/margin_default"
-        app:flexDirection="column"
-        app:justifyContent="space_around"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
-        app:layout_constraintEnd_toStartOf="@+id/iv_edit"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile"
-        app:layout_constraintTop_toTopOf="@+id/iv_profile">
+        <variable
+            name="User"
+            type="me.sungbin.spakchat.model.user.User" />
+    </data>
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/colorBlack"
-            android:textSize="25sp"
-            tools:text="@string/user_preview_name" />
-
-        <TextView
-            android:id="@+id/tv_status_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textSize="18sp"
-            tools:text="@string/user_preview_status_message" />
-
-    </com.google.android.flexbox.FlexboxLayout>
-
-    <ImageView
-        android:id="@+id/iv_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/image_description_edit_profile"
-        android:padding="@dimen/margin_half"
-        android:src="@drawable/ic_baseline_edit_24"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_profile" />
-
-    <View
-        android:id="@+id/view_indicator"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/margin_default"
-        android:background="@color/colorGray"
-        app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_default">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spak_loadProfile="@{User}"
+            app:triv_imageRadius="@dimen/margin_twice_and_half" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_default"
+            app:flexDirection="column"
+            app:justifyContent="space_around"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintEnd_toStartOf="@+id/iv_edit"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{User.name}"
+                android:textColor="@color/colorBlack"
+                android:textSize="25sp"
+                tools:text="@string/user_preview_name" />
+
+            <TextView
+                android:id="@+id/tv_status_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{User.statusMessage}"
+                android:textSize="18sp"
+                tools:text="@string/user_preview_status_message" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image_description_edit_profile"
+            android:padding="@dimen/margin_half"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+        <View
+            android:id="@+id/view_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_default"
+            android:background="@color/colorGray"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

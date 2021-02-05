@@ -18,7 +18,6 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.WindowManager
 import com.sangcomz.fishbun.FishBun
-import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.androidutils.extensions.get
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.GlideApp
@@ -27,12 +26,11 @@ import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.ui.activity.BaseActivity
 
-@AndroidEntryPoint
 class JoinActivity : BaseActivity() {
 
     private val vm = SpakViewModel.instance()
-    private val registerBottomDialog = RegisterBottomDialog.instance(vm)
-    private val loginBottomDialog = LoginBottomDialog.instance(vm)
+    private val registerBottomDialog = RegisterBottomDialog.instance()
+    private val loginBottomDialog = LoginBottomDialog.instance()
 
     private var _binding: ActivityJoinBinding? = null
     private val binding get() = _binding!!

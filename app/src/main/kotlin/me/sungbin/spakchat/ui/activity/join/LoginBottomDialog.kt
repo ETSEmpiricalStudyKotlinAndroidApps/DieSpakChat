@@ -12,16 +12,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.firestore.FirebaseFirestore
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.LayoutDialogLoginBinding
-import me.sungbin.spakchat.di.Firestore
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.EncryptUtil
@@ -29,13 +23,7 @@ import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
 
-@AndroidEntryPoint
-class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
-    BottomSheetDialogFragment() {
-
-    @Firestore
-    @Inject
-    lateinit var firestore: FirebaseFirestore
+class LoginBottomDialog private constructor() : BaseBottomSheetDialogFragment() {
 
     private var _binding: LayoutDialogLoginBinding? = null
     private val binding get() = _binding!!
@@ -78,7 +66,7 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
                                         password
                                     )
                             ) {
-                                vm.me = this
+                                globalVm.me = this
                                 toast(getString(R.string.login_welcome, name))
                                 PrefUtil.save(requireContext(), KeyManager.User.KEY, key.toString())
                                 PrefUtil.save(requireContext(), KeyManager.User.ID, id)
@@ -98,13 +86,8 @@ class LoginBottomDialog private constructor(private val vm: SpakViewModel) :
     }
 
     companion object {
-        private lateinit var loginBottomDialog: LoginBottomDialog
-        fun instance(vm: SpakViewModel): LoginBottomDialog {
-            if (!::loginBottomDialog.isInitialized) {
-                loginBottomDialog = LoginBottomDialog(vm)
-            }
-            return loginBottomDialog
-        }
+        private val instance = LoginBottomDialog()
+        fun instance() = instance
     }
 
     override fun onDestroy() {

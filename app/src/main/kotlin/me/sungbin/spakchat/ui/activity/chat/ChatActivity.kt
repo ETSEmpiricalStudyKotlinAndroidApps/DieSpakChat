@@ -19,13 +19,8 @@ import androidx.databinding.DataBindingUtil
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
-import dagger.hilt.android.AndroidEntryPoint
 import java.util.Date
-import javax.inject.Inject
 import me.sungbin.androidutils.extensions.clear
 import me.sungbin.androidutils.extensions.doDelay
 import me.sungbin.androidutils.extensions.hide
@@ -36,12 +31,9 @@ import me.sungbin.androidutils.extensions.show
 import me.sungbin.androidutils.extensions.showKeyboard
 import me.sungbin.androidutils.extensions.toBottomScroll
 import me.sungbin.androidutils.extensions.toColorStateList
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.ActivityChatBinding
-import me.sungbin.spakchat.di.Firestore
-import me.sungbin.spakchat.di.RTDB
-import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.message.Message
 import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.model.message.MessageViewType
@@ -49,23 +41,7 @@ import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.BaseActivity
 import me.sungbin.spakchat.util.KeyManager
 
-@AndroidEntryPoint
 class ChatActivity : BaseActivity() {
-
-    @Firestore
-    @Inject
-    lateinit var firestore: FirebaseFirestore
-
-    @Storage
-    @Inject
-    lateinit var storage: StorageReference
-
-    @RTDB
-    @Inject
-    lateinit var database: DatabaseReference
-
-    private val globalVM = SpakViewModel.instance()
-    private val chatVM = ChatViewModel.instance()
 
     private var rootHeight = 0
     private var keyboardHeight = 0
@@ -82,17 +58,17 @@ class ChatActivity : BaseActivity() {
         setContentView(binding.root)
 
         val friendKey = intent.getLongExtra(KeyManager.User.KEY, -1)
-        val databaseReference = database.child("chat/${globalVM.me.key}/friend/$friendKey")
+        val databaseReference = database.child("chat/${globalVm.me.key}/friend/$friendKey")
         supportActionBar?.hide()
         Slidr.attach(this)
-        friend = globalVM.users.find {
+        friend = globalVm.users.find {
             it.key == friendKey
         }!!
         binding.user = friend
 
         databaseReference.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                chatVM.message.postValue(snapshot.getValue(Message::class.java))
+                chatVm.message.postValue(snapshot.getValue(Message::class.java))
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -107,15 +83,16 @@ class ChatActivity : BaseActivity() {
             override fun onCancelled(error: DatabaseError) {}
         })
 
-        val adapter = ChatAdapter(globalVM.me)
+        val adapter = ChatAdapter(globalVm.me)
         binding.rvChat.adapter = adapter
-        adapter.submit(chatVM.messagesMap[friendKey] ?: listOf())
+        adapter.submit(chatVm.messagesMap[friendKey] ?: listOf())
 
-        chatVM.message.observe(this) {
-            chatVM.messagesMap[friendKey]?.add(it) ?: run {
-                chatVM.messagesMap[friendKey] = mutableListOf(it)
+        chatVm.message.observe(this) {
+            Logger.d(it)
+            chatVm.messagesMap[friendKey]?.add(it) ?: run {
+                chatVm.messagesMap[friendKey] = mutableListOf(it)
             }
-            adapter.submit(chatVM.messagesMap[friendKey]!!)
+            adapter.submit(chatVm.messagesMap[friendKey]!!)
             binding.rvChat.toBottomScroll()
         }
 
@@ -182,12 +159,12 @@ class ChatActivity : BaseActivity() {
             val inputMessage = binding.etInput.text.toString()
             if (inputMessage.isNotBlank()) {
                 val message = Message(
-                    key = globalVM.me.key,
+                    key = globalVm.me.key,
                     message = inputMessage,
                     time = Date().time,
                     type = MessageType.CHAT,
                     attachment = null,
-                    owner = globalVM.me,
+                    owner = globalVm.me,
                     mention = listOf(),
                     messageViewType = MessageViewType.NORMAL
                 )

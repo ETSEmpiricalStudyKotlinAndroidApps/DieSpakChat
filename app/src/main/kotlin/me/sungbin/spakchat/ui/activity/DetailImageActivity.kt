@@ -24,7 +24,8 @@ import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListene
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.ChangeRoundedImageTransform
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.TransitionListener
 
-class DetailImageActivity : AppCompatActivity() {
+class DetailImageActivity : BaseActivity() {
+
     private var sharedElementEnterLeft = 0
     private var sharedElementEnterTop = 0
     private var sharedElementEnterRadius = 0
@@ -37,7 +38,7 @@ class DetailImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailviewImageBinding.inflate(layoutInflater)
-        initializeViews(savedInstanceState)
+        initializeViews()
     }
 
     override fun onStart() {
@@ -50,7 +51,7 @@ class DetailImageActivity : AppCompatActivity() {
         initializeSystemUi()
     }
 
-    private fun initializeViews(savedInstanceState: Bundle?) {
+    private fun initializeViews() {
         setContentView(binding.root)
 
         // todo: 이미지 불러오는 부분

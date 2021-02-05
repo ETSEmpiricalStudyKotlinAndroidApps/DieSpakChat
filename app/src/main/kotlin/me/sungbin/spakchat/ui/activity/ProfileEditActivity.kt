@@ -9,25 +9,10 @@
 package me.sungbin.spakchat.ui.activity
 
 import android.os.Bundle
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
 import com.r0adkll.slidr.Slidr
-import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.spakchat.databinding.ActivityEditProfileBinding
-import me.sungbin.spakchat.di.Firestore
-import me.sungbin.spakchat.di.Storage
-import javax.inject.Inject
 
-@AndroidEntryPoint
 class ProfileEditActivity : BaseActivity() {
-
-    @Firestore
-    @Inject
-    lateinit var firestore: FirebaseFirestore
-
-    @Storage
-    @Inject
-    lateinit var storage: StorageReference
 
     private var _binding: ActivityEditProfileBinding? = null
     private val binding get() = _binding!!

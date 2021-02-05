@@ -57,14 +57,14 @@ class FriendFragment : BaseFragment() {
             startActivity<ChatActivity>(false, KeyManager.User.KEY to key)
         }
         binding.rvFriends.adapter = friendAdapter
-        friendAdapter.submit(vm.users)
+        friendAdapter.submit(globalVm.users)
 
-        if (vm.users.isEmpty()) {
+        if (globalVm.users.isEmpty()) {
             lifecycleScope.launch(Dispatchers.IO) { // todo: Is this the best way to use coroutines?
                 val usersEntity = userDb.dao().getAllUser()
                 usersEntity.forEach {
                     with(it) {
-                        if (key == vm.me.key) return@with
+                        if (key == globalVm.me.key) return@with
                         val user = User(
                             key = key,
                             userId = id,
@@ -85,8 +85,8 @@ class FriendFragment : BaseFragment() {
                             accountStatus = accountStatus,
                             isTestMode = isTestMode
                         )
-                        vm.users.add(user)
-                        friendAdapter.submit(vm.users)
+                        globalVm.users.add(user)
+                        friendAdapter.submit(globalVm.users)
                     }
                 }
             }

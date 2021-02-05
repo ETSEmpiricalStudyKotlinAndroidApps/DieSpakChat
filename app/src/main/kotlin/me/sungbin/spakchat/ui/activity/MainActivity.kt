@@ -13,11 +13,9 @@ import android.view.Menu
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import dagger.hilt.android.AndroidEntryPoint
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivityMainBinding
 
-@AndroidEntryPoint // for fragment
 class MainActivity : BaseActivity() {
 
     private lateinit var navController: NavController

@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("dagger.hilt.android.plugin")
+    // id("dagger.hilt.android.plugin")
     id("com.google.gms.google-services")
     id("name.remal.check-dependency-updates") version "1.2.2"
     kotlin("android")
@@ -99,7 +99,7 @@ dependencies {
         Dependencies.Ktx.Firebase.Firestore,
         Dependencies.Ktx.Firebase.Messaging,
 
-        Dependencies.Di.Hilt,
+        // Dependencies.Di.Hilt,
 
         Dependencies.Ui.YoYo,
         Dependencies.Ui.Slidr,
@@ -120,7 +120,7 @@ dependencies {
         Dependencies.Util.TedPermission
     )
 
-    kapt(Dependencies.Compiler.Hilt)
+    // kapt(Dependencies.Compiler.Hilt)
     kapt(Dependencies.Compiler.Room)
     kapt(Dependencies.Compiler.Glide)
 }

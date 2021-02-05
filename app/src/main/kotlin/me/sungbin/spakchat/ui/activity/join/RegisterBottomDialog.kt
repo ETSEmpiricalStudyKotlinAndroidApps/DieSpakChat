@@ -15,23 +15,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import kotlin.random.Random
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakViewModel
 import me.sungbin.spakchat.databinding.LayoutDialogRegisterBinding
-import me.sungbin.spakchat.di.Firestore
-import me.sungbin.spakchat.di.Storage
 import me.sungbin.spakchat.model.user.AccountStatus
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.MainActivity
@@ -41,17 +33,7 @@ import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
 
-@AndroidEntryPoint
-class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
-    BottomSheetDialogFragment() {
-
-    @Firestore
-    @Inject
-    lateinit var firestore: FirebaseFirestore
-
-    @Storage
-    @Inject
-    lateinit var storage: StorageReference
+class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment() {
 
     private var _binding: LayoutDialogRegisterBinding? = null
     private val binding get() = _binding!!
@@ -186,7 +168,7 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
                 PrefUtil.save(requireContext(), KeyManager.User.ID, id)
                 PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
                 toast(getString(R.string.register_done))
-                vm.me = user
+                globalVm.me = user
                 onDestroy()
                 startActivity<MainActivity>()
             }
@@ -196,13 +178,8 @@ class RegisterBottomDialog private constructor(private val vm: SpakViewModel) :
     }
 
     companion object {
-        private lateinit var registerBottomDialog: RegisterBottomDialog
-        fun instance(vm: SpakViewModel): RegisterBottomDialog {
-            if (!::registerBottomDialog.isInitialized) {
-                registerBottomDialog = RegisterBottomDialog(vm)
-            }
-            return registerBottomDialog
-        }
+        private val instance = RegisterBottomDialog()
+        fun instance() = instance
     }
 
     override fun onDestroy() {

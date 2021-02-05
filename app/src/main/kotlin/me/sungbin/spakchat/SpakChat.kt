@@ -10,10 +10,8 @@ package me.sungbin.spakchat
 
 import android.app.Application
 import android.content.Context
-import dagger.hilt.android.HiltAndroidApp
 import me.sungbin.spakchat.util.ExceptionUtil
 
-@HiltAndroidApp
 class SpakChat : Application() {
 
     companion object {
