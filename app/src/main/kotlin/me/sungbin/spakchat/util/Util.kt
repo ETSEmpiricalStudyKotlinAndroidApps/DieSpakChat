@@ -16,6 +16,7 @@ object Util {
 
     val randomId get() = Random.nextLong()
 
+    // todo: WTF this function? change MessageKey generate algorithm.
     fun generateMessageKey(message: String, ownerName: String): Long {
         val messageChars = mutableListOf<Char>().apply {
             if (message.length > 5) {
