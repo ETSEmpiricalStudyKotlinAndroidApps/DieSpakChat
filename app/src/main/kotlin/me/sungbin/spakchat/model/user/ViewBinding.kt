@@ -17,6 +17,7 @@ import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
 
@@ -28,6 +29,7 @@ object ViewBinding {
     @JvmStatic
     @BindingAdapter("spak_loadProfile")
     fun loadProfile(imageView: ImageView, user: User?) {
+        Logger.i("profile image", listOf(user!!.profileImage, user.profileImageColor))
         GlideApp
             .with(imageView.context)
             .load(user!!.profileImage ?: ColorDrawable(user.profileImageColor!!))

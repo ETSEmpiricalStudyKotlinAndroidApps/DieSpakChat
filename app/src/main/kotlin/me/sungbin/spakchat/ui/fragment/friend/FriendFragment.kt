@@ -16,7 +16,6 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.sungbin.androidutils.extensions.startActivity
-import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.FragmentFriendBinding
 import me.sungbin.spakchat.model.user.User
@@ -96,6 +95,5 @@ class FriendFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        Logger.i("Destroy `FriendFragment`")
     }
 }

@@ -40,6 +40,7 @@ import me.sungbin.spakchat.model.message.MessageViewType
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.BaseActivity
 import me.sungbin.spakchat.util.KeyManager
+import me.sungbin.spakchat.util.Util
 
 class ChatActivity : BaseActivity() {
 
@@ -54,7 +55,12 @@ class ChatActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = DataBindingUtil.inflate(layoutInflater, R.layout.activity_chat, ConstraintLayout(this), false)
+        _binding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.activity_chat,
+            ConstraintLayout(this),
+            false
+        )
         setContentView(binding.root)
 
         val friendKey = intent.getLongExtra(KeyManager.User.KEY, -1)
@@ -88,7 +94,7 @@ class ChatActivity : BaseActivity() {
         adapter.submit(chatVm.messagesMap[friendKey] ?: listOf())
 
         chatVm.message.observe(this) {
-            Logger.d(it)
+            Logger.d("firebase", it.key)
             chatVm.messagesMap[friendKey]?.add(it) ?: run {
                 chatVm.messagesMap[friendKey] = mutableListOf(it)
             }
@@ -159,7 +165,7 @@ class ChatActivity : BaseActivity() {
             val inputMessage = binding.etInput.text.toString()
             if (inputMessage.isNotBlank()) {
                 val message = Message(
-                    key = globalVm.me.key,
+                    key = Util.generateMessageKey(inputMessage, globalVm.me.name!!),
                     message = inputMessage,
                     time = Date().time,
                     type = MessageType.CHAT,
