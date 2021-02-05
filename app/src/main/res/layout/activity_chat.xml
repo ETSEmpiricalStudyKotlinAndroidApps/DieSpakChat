@@ -140,6 +140,8 @@
             android:orientation="vertical"
             android:overScrollMode="never"
             android:padding="@dimen/margin_default"
+            android:clipToPadding="false"
+            android:clipChildren="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/cl_container_input"
             app:layout_constraintTop_toTopOf="parent"
