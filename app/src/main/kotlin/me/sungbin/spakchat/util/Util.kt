@@ -16,6 +16,15 @@ object Util {
 
     val randomId get() = Random.nextLong()
 
+    // todo: WTF this function? should change UserKey generate algorithm.
+    fun generateUserKey(id: String, password: String): Long {
+        val idKey = id.first().toInt() * id.last().toInt()
+        val passwordKey = password.first().toInt() + password.last().toInt()
+        var key = (idKey * passwordKey).toString()
+        if (key.length > 10) key = key.substring(0..10)
+        return key.toLong()
+    }
+
     // todo: WTF this function? should change MessageKey generate algorithm.
     fun generateMessageKey(message: String, ownerName: String): Long {
         val messageChars = mutableListOf<Char>().apply {

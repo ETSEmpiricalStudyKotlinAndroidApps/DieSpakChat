@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:alpha="0.95"
             android:background="@color/colorWhite"
+            android:elevation="2dp"
             android:translationZ="90dp"
             app:contentInsetEnd="@dimen/margin_half"
             app:contentInsetStart="@dimen/margin_half"
@@ -61,7 +62,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_back"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:spak_loadProfile="@{User}"
                     app:triv_imageRadius="@dimen/margin_twice_and_half"
                     tools:src="@color/colorGreen" />
 
@@ -96,8 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:spak_loadLastOnline="@{User.lastOnline}"
-                        tools:text="@string/user_preview_last_online"
-                        tools:visibility="gone" />
+                        tools:text="@string/user_preview_last_online" />
 
                 </com.google.android.flexbox.FlexboxLayout>
 
@@ -137,8 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/colorBackgroundWhite"
-            android:clipChildren="false"
-            android:clipToPadding="false"
+            android:layoutAnimation="@anim/layout_animation"
             android:orientation="vertical"
             android:overScrollMode="never"
             android:padding="@dimen/margin_default"

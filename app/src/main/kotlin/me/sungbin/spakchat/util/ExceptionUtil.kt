@@ -13,11 +13,10 @@ import android.os.Looper
 import android.os.Process
 import android.widget.Toast
 import me.sungbin.androidutils.util.Logger
-import me.sungbin.spakchat.annotation.ActivityContext
 
 object ExceptionUtil {
 
-    fun except(exception: Exception, @ActivityContext context: Context) {
+    fun except(exception: Exception, context: Context) {
         Thread {
             val message = exception.message
             val line = exception.stackTrace[0].lineNumber

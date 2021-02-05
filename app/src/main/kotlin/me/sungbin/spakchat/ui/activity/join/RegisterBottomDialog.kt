@@ -32,6 +32,7 @@ import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
+import me.sungbin.spakchat.util.Util
 
 class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment() {
 
@@ -82,12 +83,7 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
             val id = binding.tietId.text.toString()
             val password = binding.tietPassword.text.toString()
             val passwordConfirm = binding.tietPasswordConfirm.text.toString()
-            val key = "${id.first().toInt()}${
-            Random.nextInt(
-                10000,
-                100000
-            )
-            }${name.last().toInt()}".toLong()
+            val key = Util.generateUserKey(id, password)
             // todo: 이렇게 if문을 return써서 하는게 나을까?? 아니면 원래대로 if-else 지옥으로 가야하나???
             if (name.isBlank() || id.isBlank() || password.isBlank() || passwordConfirm.isBlank()) {
                 toast(getString(R.string.register_input_all))

@@ -9,6 +9,7 @@
 package me.sungbin.spakchat.ui.activity.chat
 
 import android.graphics.Rect
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -30,9 +31,9 @@ import me.sungbin.androidutils.extensions.setEndDrawableClickEvent
 import me.sungbin.androidutils.extensions.setTint
 import me.sungbin.androidutils.extensions.show
 import me.sungbin.androidutils.extensions.showKeyboard
-import me.sungbin.androidutils.extensions.toBottomScroll
 import me.sungbin.androidutils.extensions.toColorStateList
 import me.sungbin.androidutils.util.Logger
+import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivityChatBinding
 import me.sungbin.spakchat.model.message.Message
@@ -192,6 +193,9 @@ class ChatActivity : BaseActivity() {
                 databaseReference.push().setValue(message)
             }
         }
+
+        // 임시
+        GlideApp.with(applicationContext).load(ColorDrawable(-150744)).into(binding.ivRoomCover)
     }
 
     private fun updateMessage(message: Message) {
@@ -199,7 +203,7 @@ class ChatActivity : BaseActivity() {
             chatVm.messagesMap[friend.key!!] = mutableListOf(message)
         }
         adapter.submit(chatVm.messagesMap[friend.key!!]!!)
-        binding.rvChat.toBottomScroll()
+        binding.rvChat.scrollToPosition(adapter.itemCount - 1)
     }
 
     override fun onDestroy() {

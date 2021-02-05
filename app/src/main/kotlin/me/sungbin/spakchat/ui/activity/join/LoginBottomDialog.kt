@@ -22,6 +22,7 @@ import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
+import me.sungbin.spakchat.util.Util
 
 class LoginBottomDialog private constructor() : BaseBottomSheetDialogFragment() {
 
@@ -49,12 +50,7 @@ class LoginBottomDialog private constructor() : BaseBottomSheetDialogFragment() 
                 return@setOnClickListener
             }
             firestore.collection("users")
-                .document(
-                    EncryptUtil.encrypt(
-                        EncryptUtil.EncryptType.SHA256,
-                        id
-                    ).substring(0..5)
-                )
+                .document(Util.generateUserKey(id, password).toString())
                 .get()
                 .addOnSuccessListener {
                     it?.let {
