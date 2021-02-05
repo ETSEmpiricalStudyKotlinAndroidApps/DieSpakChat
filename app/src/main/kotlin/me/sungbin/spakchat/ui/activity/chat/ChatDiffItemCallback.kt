@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
 import me.sungbin.spakchat.model.message.Message
 
 class ChatDiffItemCallback : DiffUtil.ItemCallback<Message>() {
+
     override fun areItemsTheSame(oldItem: Message, newItem: Message) = oldItem == newItem
     override fun areContentsTheSame(oldItem: Message, newItem: Message) = oldItem.key == newItem.key
 }

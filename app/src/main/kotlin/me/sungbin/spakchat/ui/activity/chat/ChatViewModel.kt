@@ -8,14 +8,17 @@
 
 package me.sungbin.spakchat.ui.activity.chat
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.model.message.Message
 
 class ChatViewModel private constructor() : ViewModel() {
 
+    init {
+        Logger.e("init", "ChatViewModel is init again.")
+    }
+
     val messagesMap = HashMap<Long, MutableList<Message>>()
-    val message: MutableLiveData<Message> = MutableLiveData()
 
     companion object {
         private val instance = ChatViewModel()

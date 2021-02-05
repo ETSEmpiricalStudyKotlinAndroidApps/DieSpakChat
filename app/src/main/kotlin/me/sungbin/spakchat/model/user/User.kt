@@ -27,4 +27,9 @@ data class User(
     val black: List<Long>? = null, // for user-key
     val accountStatus: Int? = null,
     val isTestMode: Boolean? = null,
-)
+) {
+    override fun hashCode() = key!!.toInt()
+    override fun equals(other: Any?) = with(other as User) {
+        key == this.key
+    }
+}

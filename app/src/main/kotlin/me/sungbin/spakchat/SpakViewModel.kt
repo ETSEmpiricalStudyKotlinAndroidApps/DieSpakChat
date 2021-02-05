@@ -9,9 +9,14 @@
 package me.sungbin.spakchat
 
 import androidx.lifecycle.ViewModel
+import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.model.user.User
 
 class SpakViewModel private constructor() : ViewModel() {
+
+    init {
+        Logger.e("init", "SpakViewModel is init again.")
+    }
 
     lateinit var me: User
     val users = mutableListOf<User>()

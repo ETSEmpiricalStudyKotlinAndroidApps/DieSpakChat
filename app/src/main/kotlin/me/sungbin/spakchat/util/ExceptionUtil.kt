@@ -23,11 +23,11 @@ object ExceptionUtil {
             val line = exception.stackTrace[0].lineNumber
             val content = "예상치 못한 오류가 발생했어요 :(\n\n$message #$line"
             Looper.prepare()
-            Logger.e(message)
+            Logger.e(content)
             Toast.makeText(context, content, Toast.LENGTH_LONG).show()
             Looper.loop()
         }.start()
-        Thread.sleep(2000)
+        Thread.sleep(3000)
         Process.killProcess(Process.myPid())
         System.exit(10)
     }

@@ -1,6 +1,6 @@
 /*
  * Create by Sungbin Ji on 2021. 1. 30.
- * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
+ * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  *
  * SpakChat license is under the MIT license.
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
@@ -19,6 +19,7 @@ import androidx.databinding.DataBindingUtil
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.r0adkll.slidr.Slidr
 import java.util.Date
 import me.sungbin.androidutils.extensions.clear
@@ -39,10 +40,15 @@ import me.sungbin.spakchat.model.message.MessageType
 import me.sungbin.spakchat.model.message.MessageViewType
 import me.sungbin.spakchat.model.user.User
 import me.sungbin.spakchat.ui.activity.BaseActivity
+import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.Util
 
 class ChatActivity : BaseActivity() {
+
+    private var isNewMessage = false
+    private val adapter by lazy { ChatAdapter(globalVm.me) }
+    private lateinit var databaseReference: DatabaseReference
 
     private var rootHeight = 0
     private var keyboardHeight = 0
@@ -64,17 +70,30 @@ class ChatActivity : BaseActivity() {
         setContentView(binding.root)
 
         val friendKey = intent.getLongExtra(KeyManager.User.KEY, -1)
-        val databaseReference = database.child("chat/${globalVm.me.key}/friend/$friendKey")
+        databaseReference = database.child("chat/${globalVm.me.key}/friend/$friendKey")
         supportActionBar?.hide()
         Slidr.attach(this)
         friend = globalVm.users.find {
             it.key == friendKey
         }!!
-        binding.user = friend
+
+        initBinding()
 
         databaseReference.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                chatVm.message.postValue(snapshot.getValue(Message::class.java))
+                val message = snapshot.getValue(Message::class.java)!!
+                chatVm.messagesMap[friend.key!!]?.let { messagesCache ->
+                    if (isNewMessage) {
+                        updateMessage(message)
+                    } else {
+                        if (message.key == messagesCache.last().key) {
+                            isNewMessage = true // 다음 메시지부터 받기
+                        }
+                    }
+                } ?: run {
+                    isNewMessage = true
+                    updateMessage(message)
+                }
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -86,22 +105,17 @@ class ChatActivity : BaseActivity() {
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
-            override fun onCancelled(error: DatabaseError) {}
-        })
-
-        val adapter = ChatAdapter(globalVm.me)
-        binding.rvChat.adapter = adapter
-        adapter.submit(chatVm.messagesMap[friendKey] ?: listOf())
-
-        chatVm.message.observe(this) {
-            Logger.d("firebase", it.key)
-            chatVm.messagesMap[friendKey]?.add(it) ?: run {
-                chatVm.messagesMap[friendKey] = mutableListOf(it)
+            override fun onCancelled(error: DatabaseError) {
+                ExceptionUtil.except(error.toException(), this@ChatActivity)
             }
-            adapter.submit(chatVm.messagesMap[friendKey]!!)
-            binding.rvChat.toBottomScroll()
-        }
+        })
+    }
 
+    private fun initBinding() {
+        adapter.submit(chatVm.messagesMap[friend.key] ?: listOf())
+
+        binding.user = friend
+        binding.rvChat.adapter = adapter
         binding.ivBack.setOnClickListener { finish() }
 
         binding.etInput.doAfterTextChanged {
@@ -174,14 +188,23 @@ class ChatActivity : BaseActivity() {
                     mention = listOf(),
                     messageViewType = MessageViewType.NORMAL
                 )
-                databaseReference.push().setValue(message)
                 binding.etInput.clear()
+                databaseReference.push().setValue(message)
             }
         }
+    }
+
+    private fun updateMessage(message: Message) {
+        chatVm.messagesMap[friend.key!!]?.add(message) ?: run {
+            chatVm.messagesMap[friend.key!!] = mutableListOf(message)
+        }
+        adapter.submit(chatVm.messagesMap[friend.key!!]!!)
+        binding.rvChat.toBottomScroll()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        Logger.d("onDestroy", "ChatActivity")
     }
 }
