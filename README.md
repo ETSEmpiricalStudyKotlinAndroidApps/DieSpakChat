@@ -11,7 +11,7 @@ Android firebase sns application.
 
 -----
 
-# 🔧 Dev-Skill
+# 🔧 Dev-Skill (todo)
 1. `Hilt` for `DI`
 2. `Room` and `EncryptedSharedPreferences` for `Storage`
 3. `MVVM` pattern for `Clean Architecture`
