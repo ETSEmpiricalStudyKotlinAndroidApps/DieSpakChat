@@ -128,7 +128,7 @@ object Dependencies {
     )
 
     val compiler = listOf(
-        "com.google.dagger:hilt-android-compiler:${Versions.Di.Hilt}",
+        // "com.google.dagger:hilt-android-compiler:${Versions.Di.Hilt}",
         "androidx.room:room-compiler:${Versions.Jetpack.Room}",
         "com.github.bumptech.glide:compiler:${Versions.Ui.Glide}"
     )
