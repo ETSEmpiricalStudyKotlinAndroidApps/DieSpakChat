@@ -4,7 +4,7 @@
 Android firebase sns application.
 
 > 나 왜케 요세 코딩 실력이 똥된거 같지 <br/>
-> 코드 보여주기 부끄럽다.. private로 돌릴까
+> 코드 보여주기 부끄럽다.. private로 돌릴까?
 
 -----
 
