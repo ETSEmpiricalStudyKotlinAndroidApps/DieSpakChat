@@ -10,18 +10,13 @@ package me.sungbin.spakchat.chat
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import me.sungbin.spakchat.chat.model.Message
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import kotlin.random.Random
-import me.sungbin.spakchat.chat.model.Message
 
 object ChatBinding {
-
-    private val db = FirebaseStorage.getInstance().reference
-    private val storage = FirebaseFirestore.getInstance()
 
     @JvmStatic
     @BindingAdapter("spak_loadMessage")
@@ -42,8 +37,7 @@ object ChatBinding {
     @JvmStatic
     @BindingAdapter("spak_loadUnreadCount")
     fun loadUnreadCount(textView: TextView, message: Message) {
-        if (message.owner?.isTestMode!!) {
-            textView.text = Random.nextInt(0, 100).toString()
-        }
+        // todo
+        textView.text = Random.nextInt(0, 100).toString()
     }
 }

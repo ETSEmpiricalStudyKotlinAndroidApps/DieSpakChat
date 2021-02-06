@@ -22,13 +22,13 @@ import me.sungbin.androidutils.extensions.get
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakViewModel
+import me.sungbin.spakchat.user.UserViewModel
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.ui.activity.BaseActivity
 
 class JoinActivity : BaseActivity() {
 
-    private val vm = SpakViewModel.instance()
+    private val vm = UserViewModel.instance()
     private val registerBottomDialog = RegisterBottomDialog.instance()
     private val loginBottomDialog = LoginBottomDialog.instance()
 

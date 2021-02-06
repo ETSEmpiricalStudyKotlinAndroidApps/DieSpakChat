@@ -12,9 +12,14 @@ object KeyManager {
 
     object ChatType {
 
-        override fun toString() = "ChatType"
+        fun toKey() = "ChatType"
         const val FRIENDS = "CHAT_FRIEND"
         const val OPEN = "CHAT_OPEN"
+    }
+
+    object Room {
+
+        const val KEY = "ROOM_KEY"
     }
 
     object User {

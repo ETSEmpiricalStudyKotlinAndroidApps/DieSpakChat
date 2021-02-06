@@ -70,7 +70,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                tools:text="@string/user_preview_name" />
+                tools:text="@string/chat_preview_name" />
 
             <TextView
                 android:id="@+id/tv_last_message"

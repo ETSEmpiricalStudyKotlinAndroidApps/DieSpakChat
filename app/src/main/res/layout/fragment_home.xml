@@ -29,7 +29,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spak_loadProfile="@{User}"
-            app:triv_imageRadius="@dimen/margin_twice_and_half" />
+            app:triv_imageRadius="@dimen/margin_twice_and_half"
+            tools:src="@mipmap/ic_launcher" />
 
         <com.google.android.flexbox.FlexboxLayout
             android:layout_width="0dp"
@@ -53,7 +54,7 @@
                 android:text="@{User.name}"
                 android:textColor="@color/colorBlack"
                 android:textSize="25sp"
-                tools:text="@string/user_preview_name" />
+                tools:text="@string/chat_preview_name" />
 
             <TextView
                 android:id="@+id/tv_status_message"

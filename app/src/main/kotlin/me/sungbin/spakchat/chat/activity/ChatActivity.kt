@@ -14,25 +14,35 @@ import android.view.WindowManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.r0adkll.slidr.Slidr
+import java.util.Date
+import me.sungbin.androidutils.extensions.clear
 import me.sungbin.androidutils.extensions.doDelay
+import me.sungbin.androidutils.extensions.hide
+import me.sungbin.androidutils.extensions.hideKeyboard
+import me.sungbin.androidutils.extensions.setEndDrawableClickEvent
+import me.sungbin.androidutils.extensions.setTint
+import me.sungbin.androidutils.extensions.show
+import me.sungbin.androidutils.extensions.showKeyboard
+import me.sungbin.androidutils.extensions.toBottomScroll
 import me.sungbin.androidutils.extensions.toColorStateList
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.ActivityChatBinding
 import me.sungbin.spakchat.chat.model.Message
 import me.sungbin.spakchat.chat.model.MessageType
 import me.sungbin.spakchat.chat.model.MessageViewType
-import me.sungbin.spakchat.user.model.User
+import me.sungbin.spakchat.databinding.ActivityChatBinding
+import me.sungbin.spakchat.chat.room.Room
 import me.sungbin.spakchat.ui.activity.BaseActivity
+import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.Util
-import java.util.Date
 
 class ChatActivity : BaseActivity() {
 
@@ -57,8 +67,8 @@ class ChatActivity : BaseActivity() {
         )
         setContentView(binding.root)
 
-        val chatType = intent.getStringExtra(KeyManager.ChatType.toString())
-        val friendKey = intent.getLongExtra(KeyManager.User.KEY, -1)
+        val chatType = intent.getStringExtra(KeyManager.ChatType.toKey())
+        val roomKey = intent.getLongExtra(KeyManager.Room.KEY, -1)
 
         supportActionBar?.hide()
         Slidr.attach(this)
@@ -66,25 +76,30 @@ class ChatActivity : BaseActivity() {
         when (chatType) {
             KeyManager.ChatType.FRIENDS -> {
                 val friend = globalVm.users.find {
-                    it.key == friendKey
+                    it.key == roomKey
                 }!!
                 initializeFriendsChatRef(friend)
-                initializeBinding(friend)
+                initializeBinding(friend.toRoom())
             }
             KeyManager.ChatType.OPEN -> {
-                initializeOpenChatRef()
-                initializeBinding()
+                val room = Room(
+                    key = roomKey,
+                    name = "",
+                    roomCoverImage = ""
+                )
+                initializeOpenChatRef(room)
+                initializeBinding(room)
             }
         }
     }
 
-    private fun initializeOpenChatRef() { // todo
+    private fun initializeOpenChatRef(room: Room) {
         databaseReference.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val message = snapshot.getValue(Message::class.java)!!
-                chatVm.messagesMap[friend.key!!]?.let { messagesCache ->
+                chatVm.messagesMap[room.key]?.let { messagesCache ->
                     if (isNewMessage) {
-                        updateMessage(message)
+                        updateMessage(room.key, message)
                     } else {
                         if (message.key == messagesCache.last().key) {
                             isNewMessage = true // 다음 메시지부터 받기
@@ -92,7 +107,7 @@ class ChatActivity : BaseActivity() {
                     }
                 } ?: run {
                     isNewMessage = true
-                    updateMessage(message)
+                    updateMessage(room.key, message)
                 }
             }
 
@@ -145,10 +160,10 @@ class ChatActivity : BaseActivity() {
         })
     }
 
-    private fun initializeBinding(roomData: User) {
-        adapter.submit(chatVm.messagesMap[roomData.key] ?: listOf())
+    private fun initializeBinding(room: Room) {
+        adapter.submit(chatVm.messagesMap[room.key] ?: listOf())
 
-        binding.user = roomData
+        binding.room = room
         binding.rvChat.adapter = adapter
         binding.ivBack.setOnClickListener { finish() }
 

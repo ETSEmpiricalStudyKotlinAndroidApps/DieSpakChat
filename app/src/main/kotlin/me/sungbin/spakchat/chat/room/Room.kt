@@ -6,12 +6,10 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.room.model
+package me.sungbin.spakchat.chat.room
 
 data class Room(
     val key: Long,
     val name: String,
-    val lastChatTime: Long,
-    val lastChatPreview: String,
     val roomCoverImage: String,
 )

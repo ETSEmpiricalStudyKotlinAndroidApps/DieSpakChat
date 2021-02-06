@@ -13,8 +13,8 @@
     <data>
 
         <variable
-            name="User"
-            type="me.sungbin.spakchat.user.model.User" />
+            name="Room"
+            type="me.sungbin.spakchat.room.model.Room" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,11 +58,11 @@
                     android:id="@+id/iv_room_cover"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    app:spak_loadProfile="@{User}"
                     android:layout_marginStart="@dimen/margin_default"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_back"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:spak_loadCover="@{Room.roomCoverImage}"
                     app:triv_imageRadius="@dimen/margin_twice_and_half"
                     tools:src="@color/colorGreen" />
 
@@ -86,18 +86,18 @@
                         android:marqueeRepeatLimit="marquee_forever"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="@{User.name}"
+                        android:text="@{Room.name}"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        tools:text="@string/user_preview_name" />
+                        tools:text="@string/chat_preview_name" />
 
                     <TextView
-                        android:id="@+id/tv_last_online"
+                        android:id="@+id/tv_chatting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:spak_loadLastOnline="@{User.lastOnline}"
-                        tools:text="@string/user_preview_last_online" />
+                        android:visibility="gone"
+                        tools:text="@string/chat_preview_chatting_user" />
 
                 </com.google.android.flexbox.FlexboxLayout>
 
@@ -137,12 +137,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/colorBackgroundWhite"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:layoutAnimation="@anim/layout_animation"
             android:orientation="vertical"
             android:overScrollMode="never"
             android:padding="@dimen/margin_default"
-            android:clipToPadding="false"
-            android:clipChildren="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/cl_container_input"
             app:layout_constraintTop_toTopOf="parent"

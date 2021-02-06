@@ -14,16 +14,15 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.SpakChat
-import me.sungbin.spakchat.SpakViewModel
-import me.sungbin.spakchat.chat.activity.ChatViewModel
-import me.sungbin.spakchat.user.room.UserDatabase
+import me.sungbin.spakchat.user.UserViewModel
+import me.sungbin.spakchat.chat.ChatViewModel
+import me.sungbin.spakchat.user.database.UserDatabase
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    val globalVm = SpakViewModel.instance()
+    val globalVm = UserViewModel.instance()
     val chatVm = ChatViewModel.instance()
-    val userDb = UserDatabase.instance(SpakChat.context)
+    val userDb = UserDatabase.instance(applicationContext)
     val storage = Firebase.storage.reference
     val firestore = Firebase.firestore
     val database = Firebase.database.reference.apply { keepSynced(true) }

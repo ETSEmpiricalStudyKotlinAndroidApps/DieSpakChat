@@ -8,6 +8,8 @@
 
 package me.sungbin.spakchat.user.model
 
+import me.sungbin.spakchat.chat.room.Room
+
 data class User(
     val key: Long? = null,
     val userId: String? = null,
@@ -28,8 +30,9 @@ data class User(
     val accountStatus: Int? = null,
 ) {
 
-    override fun hashCode() = key!!.toInt()
-    override fun equals(other: Any?) = with(other as User) {
-        key == this.key
-    }
+    fun toRoom() = Room(
+        key = key!!,
+        name = name!!,
+        roomCoverImage = profileImage ?: profileImageColor.toString()
+    )
 }

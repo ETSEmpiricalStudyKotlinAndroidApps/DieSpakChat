@@ -12,25 +12,18 @@ import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.user.model.User
 
 object UserBinding {
 
-    private val db = FirebaseStorage.getInstance().reference
-    private val storage = FirebaseFirestore.getInstance()
-
     @JvmStatic
     @BindingAdapter("spak_loadProfile")
     fun loadProfile(imageView: ImageView, user: User?) {
-        Logger.i("profile image", listOf(user!!.profileImage, user.profileImageColor))
         GlideApp
             .with(imageView.context)
             .load(user!!.profileImage ?: ColorDrawable(user.profileImageColor!!))

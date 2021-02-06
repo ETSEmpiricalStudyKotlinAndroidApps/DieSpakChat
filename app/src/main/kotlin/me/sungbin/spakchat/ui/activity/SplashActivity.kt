@@ -19,7 +19,7 @@ import me.sungbin.androidutils.util.NetworkUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivitySplashBinding
 import me.sungbin.spakchat.user.model.User
-import me.sungbin.spakchat.user.room.UserEntity
+import me.sungbin.spakchat.user.database.UserEntity
 import me.sungbin.spakchat.ui.activity.join.JoinActivity
 import me.sungbin.spakchat.util.ArrayConverter.toText
 import me.sungbin.spakchat.util.EncryptUtil

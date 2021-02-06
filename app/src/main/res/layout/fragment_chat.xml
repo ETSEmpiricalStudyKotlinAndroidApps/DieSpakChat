@@ -12,22 +12,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- todo: 오픈채팅 / 일반채팅 indicator -->
+    <TextView
+        android:id="@+id/tv_friends_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:text="@string/fragment_chat_label_friends"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/view_vertical_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_open_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_half"
+        android:text="@string/fragment_chat_label_open"
+        android:textColor="@color/colorGray"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/view_vertical_line"
+        app:layout_constraintStart_toEndOf="@+id/tv_friends_chat"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_half"
+        android:layout_marginTop="@dimen/margin_twice_half"
+        android:layout_marginEnd="@dimen/margin_half"
         android:contentDescription="@string/image_description_search"
         android:padding="@dimen/margin_half"
         android:src="@drawable/ic_baseline_search_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/colorLightGray" />
+        app:tint="@color/colorBlack" />
+
+    <View
+        android:id="@+id/view_vertical_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginTop="@dimen/margin_twice_half"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/iv_search"
+        tools:background="@color/colorPrimary"
+        tools:layout_height="5dp"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_chat"
+        android:id="@+id/rv_open_chat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorBackgroundWhite"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_vertical_line"
+        tools:listitem="@layout/layout_feed_chat" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_friends_chat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorBackgroundWhite"
@@ -35,7 +82,7 @@
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_search"
+        app:layout_constraintTop_toBottomOf="@+id/view_vertical_line"
         tools:listitem="@layout/layout_feed_chat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

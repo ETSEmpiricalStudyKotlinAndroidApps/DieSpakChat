@@ -19,10 +19,10 @@ import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.chat.activity.ChatActivity
 import me.sungbin.spakchat.databinding.FragmentFriendBinding
-import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.ui.fragment.BaseFragment
 import me.sungbin.spakchat.user.fragment.adapter.FriendListAdapter
+import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.util.ArrayConverter.toArray
 import me.sungbin.spakchat.util.KeyManager
 
@@ -55,8 +55,8 @@ class FriendFragment : BaseFragment() {
         friendAdapter.setOnFriendClickListener {
             startActivity<ChatActivity>(
                 false,
-                KeyManager.User.KEY to key,
-                KeyManager.ChatType.toString() to KeyManager.ChatType.FRIENDS
+                KeyManager.Room.KEY to key,
+                KeyManager.ChatType.toKey() to KeyManager.ChatType.FRIENDS
             )
         }
         binding.rvFriends.adapter = friendAdapter
@@ -87,13 +87,17 @@ class FriendFragment : BaseFragment() {
                             accountStatus = accountStatus,
                         )
                         globalVm.users.add(user)
-                        friendAdapter.submit(globalVm.users)
                     }
                 }
+                friendAdapter.submit(globalVm.users)
             }
         } else {
             friendAdapter.submit(globalVm.users)
         }
+    }
+
+    private fun reload() {
+        // todo
     }
 
     override fun onDestroy() {

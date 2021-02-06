@@ -46,7 +46,7 @@
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/iv_profile"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/user_preview_name" />
+            tools:text="@string/chat_preview_name" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_message_container"

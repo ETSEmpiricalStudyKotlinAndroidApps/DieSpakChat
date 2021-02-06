@@ -36,7 +36,7 @@ class FeedAdapter(
         ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
-                R.layout.layout_feed_online, viewGroup, false
+                R.layout.layout_feed_story, viewGroup, false
             )
         )
 

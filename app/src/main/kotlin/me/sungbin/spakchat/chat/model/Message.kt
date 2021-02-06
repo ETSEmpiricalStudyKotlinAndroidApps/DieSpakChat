@@ -19,10 +19,4 @@ data class Message(
     val owner: User? = null,
     val mention: List<Long>? = null, // for user-key
     val messageViewType: Int? = null,
-) {
-
-    override fun hashCode() = key!!.toInt()
-    override fun equals(other: Any?) = with(other as Message) {
-        key == this.key
-    }
-}
+)

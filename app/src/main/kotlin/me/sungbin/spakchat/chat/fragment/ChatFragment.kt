@@ -1,5 +1,5 @@
 /*
- * Create by Sungbin Ji on 2021. 1. 30.
+ * Create by Sungbin Ji on 2021. 2. 6.
  * Copyright (c) 2021. Sungbin Ji. All rights reserved. 
  *
  * SpakChat license is under the MIT license.
@@ -12,7 +12,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import me.sungbin.androidutils.extensions.setFab
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.FragmentChatBinding
 import me.sungbin.spakchat.ui.activity.MainActivity

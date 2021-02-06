@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.user.room
+package me.sungbin.spakchat.user.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

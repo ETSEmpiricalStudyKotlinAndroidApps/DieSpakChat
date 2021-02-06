@@ -58,20 +58,22 @@
     <string name="login_not_match_id_password">아이디와 비밀번호가 일치하지 않아요.</string>
     <string name="login_default_status_message">새로 가입했어요!</string>
 
+    <string name="fragment_chat_label_friends">채팅</string>
+    <string name="fragment_chat_label_open">오픈채팅</string>
     <string name="fragment_chat_online">온라인</string>
 
-    <string name="call_call">전화</string>
-
-    <string name="user_preview_name">zmo__</string>
-    <string name="user_preview_id">sungbin_dev</string>
-    <string name="user_preview_last_online">어제 오후 7시까지 접속함</string>
-    <string name="user_preview_status_message">성빈 프로그래밍 잘하게 해주세요!!!</string>
+    <string name="call_preview_id">sungbin_dev</string>
+    <string name="call_label">전화</string>
 
     <string name="chat_input_message">메시지 입력…</string>
     <string name="chat_preview_message">성빈 프로그래밍 잘하게 해주세요!!!</string>
     <string name="chat_preview_last_message">사진을 보냈어요.</string>
     <string name="chat_preview_time">오전 09:47</string>
     <string name="chat_preview_unread_count">99</string>
+    <string name="chat_preview_name">zmo__</string>
+    <string name="chat_preview_chatting_user">성빈 님이 입력중</string>
+
+    <string name="user_preview_status_message">성빈 프로그래밍 잘하게 해주세요!!!</string>
 
     <string name="splash_not_supported_version">해당 버전의 SpakChat은 더 이상 이용하실 수 없어요 :(\n새로운 버전으로 업데이트를 해 주세요.</string>
     <string name="splash_non_internet">인터넷 없음!</string>

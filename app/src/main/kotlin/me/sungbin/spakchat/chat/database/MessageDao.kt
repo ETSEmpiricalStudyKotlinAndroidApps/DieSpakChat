@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.chat.room
+package me.sungbin.spakchat.chat.database
 
 import androidx.room.Dao
 import androidx.room.Delete

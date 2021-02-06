@@ -6,13 +6,15 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.chat.activity
+package me.sungbin.spakchat.chat
 
 import androidx.lifecycle.ViewModel
 import me.sungbin.spakchat.chat.model.Message
+import me.sungbin.spakchat.chat.room.Room
 
 class ChatViewModel private constructor() : ViewModel() {
 
+    val rooms = mutableListOf<Room>()
     val messagesMap = HashMap<Long, MutableList<Message>>()
 
     companion object {

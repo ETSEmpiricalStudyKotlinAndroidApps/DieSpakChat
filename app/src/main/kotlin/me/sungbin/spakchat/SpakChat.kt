@@ -9,20 +9,12 @@
 package me.sungbin.spakchat
 
 import android.app.Application
-import android.content.Context
 import me.sungbin.spakchat.util.ExceptionUtil
 
 class SpakChat : Application() {
 
-    companion object {
-        lateinit var context: Context
-    }
-
     override fun onCreate() {
         super.onCreate()
-
-        context = applicationContext
-
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             ExceptionUtil.except(Exception(throwable), applicationContext)
         }
