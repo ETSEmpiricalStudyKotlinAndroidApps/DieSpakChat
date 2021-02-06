@@ -21,7 +21,7 @@ interface MessageDao {
     suspend fun getAllMessage(): List<MessageEntity>
 
     @Query("SELECT * FROM MessageEntity WHERE `key` =:key")
-    fun getMessageByKey(key: Long): MessageEntity? // 일치 항목 없을 땐 null 나옴
+    suspend fun getMessageByKey(key: Long): MessageEntity? // 일치 항목 없을 땐 null 나옴
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(vararg message: MessageEntity)

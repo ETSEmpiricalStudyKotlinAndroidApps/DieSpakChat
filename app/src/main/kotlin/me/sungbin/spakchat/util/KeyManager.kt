@@ -13,8 +13,8 @@ object KeyManager {
     object ChatType {
 
         fun toKey() = "ChatType"
-        const val FRIENDS = "CHAT_FRIEND"
-        const val OPEN = "CHAT_OPEN"
+        const val FRIENDS = "friends"
+        const val OPEN = "open"
     }
 
     object Room {

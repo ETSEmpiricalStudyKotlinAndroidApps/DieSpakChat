@@ -52,6 +52,7 @@ class FriendFragment : BaseFragment() {
         }.show()
 
         val friendAdapter = FriendListAdapter()
+        binding.rvFriends.adapter = friendAdapter
         friendAdapter.setOnFriendClickListener {
             startActivity<ChatActivity>(
                 false,
@@ -59,7 +60,6 @@ class FriendFragment : BaseFragment() {
                 KeyManager.ChatType.toKey() to KeyManager.ChatType.FRIENDS
             )
         }
-        binding.rvFriends.adapter = friendAdapter
 
         if (globalVm.users.isEmpty()) {
             lifecycleScope.launch(Dispatchers.IO) { // todo: Is this the best way to use Coroutines?

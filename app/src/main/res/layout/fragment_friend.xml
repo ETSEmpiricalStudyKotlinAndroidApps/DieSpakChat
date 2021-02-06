@@ -17,13 +17,13 @@
         android:id="@+id/tv_online"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_half"
         android:layout_marginStart="@dimen/margin_default"
         android:text="@string/fragment_chat_online"
         android:textColor="@color/colorBlack"
         android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_search"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/iv_search" />
 
     <ImageView
         android:id="@+id/iv_search"
@@ -42,14 +42,14 @@
         android:id="@+id/rv_feed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_half"
         android:clipToPadding="false"
         android:orientation="horizontal"
         android:overScrollMode="never"
         android:paddingStart="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_half"
         android:paddingEnd="@dimen/margin_default"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/tv_online"
+        app:layout_constraintTop_toBottomOf="@+id/iv_search"
         tools:listitem="@layout/layout_feed_story" />
 
     <androidx.recyclerview.widget.RecyclerView

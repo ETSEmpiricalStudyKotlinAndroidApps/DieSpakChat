@@ -14,7 +14,7 @@
 
         <variable
             name="Room"
-            type="me.sungbin.spakchat.room.model.Room" />
+            type="me.sungbin.spakchat.chat.room.Room" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

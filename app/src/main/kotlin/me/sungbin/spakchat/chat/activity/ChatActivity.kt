@@ -36,10 +36,9 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.chat.model.Message
 import me.sungbin.spakchat.chat.model.MessageType
 import me.sungbin.spakchat.chat.model.MessageViewType
-import me.sungbin.spakchat.databinding.ActivityChatBinding
 import me.sungbin.spakchat.chat.room.Room
+import me.sungbin.spakchat.databinding.ActivityChatBinding
 import me.sungbin.spakchat.ui.activity.BaseActivity
-import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.Util
@@ -67,7 +66,7 @@ class ChatActivity : BaseActivity() {
         )
         setContentView(binding.root)
 
-        val chatType = intent.getStringExtra(KeyManager.ChatType.toKey())
+        val chatType = intent.getStringExtra(KeyManager.ChatType.toKey())!!
         val roomKey = intent.getLongExtra(KeyManager.Room.KEY, -1)
 
         supportActionBar?.hide()
@@ -78,28 +77,27 @@ class ChatActivity : BaseActivity() {
                 val friend = globalVm.users.find {
                     it.key == roomKey
                 }!!
-                initializeFriendsChatRef(friend)
                 initializeBinding(friend.toRoom())
             }
             KeyManager.ChatType.OPEN -> {
-                val room = Room(
-                    key = roomKey,
-                    name = "",
-                    roomCoverImage = ""
-                )
-                initializeOpenChatRef(room)
+                val room = chatVm.rooms.find {
+                    it.key == roomKey
+                }!!
                 initializeBinding(room)
             }
         }
+
+        initializeReference(roomKey, chatType)
     }
 
-    private fun initializeOpenChatRef(room: Room) {
+    private fun initializeReference(key: Long, chatType: String) {
+        databaseReference = database.child("chat/$chatType/$key")
         databaseReference.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val message = snapshot.getValue(Message::class.java)!!
-                chatVm.messagesMap[room.key]?.let { messagesCache ->
+                chatVm.messagesMap[key]?.let { messagesCache ->
                     if (isNewMessage) {
-                        updateMessage(room.key, message)
+                        updateMessage(key, message)
                     } else {
                         if (message.key == messagesCache.last().key) {
                             isNewMessage = true // 다음 메시지부터 받기
@@ -107,46 +105,12 @@ class ChatActivity : BaseActivity() {
                     }
                 } ?: run {
                     isNewMessage = true
-                    updateMessage(room.key, message)
+                    updateMessage(key, message)
                 }
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                // todo: message edit
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-                // todo: message removed
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
-            override fun onCancelled(error: DatabaseError) {
-                ExceptionUtil.except(error.toException(), this@ChatActivity)
-            }
-        })
-    }
-
-    private fun initializeFriendsChatRef(friend: User) {
-        databaseReference = database.child("chat/${globalVm.me.key}/friends/${friend.key}")
-        databaseReference.addChildEventListener(object : ChildEventListener {
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                val message = snapshot.getValue(Message::class.java)!!
-                chatVm.messagesMap[friend.key!!]?.let { messagesCache ->
-                    if (isNewMessage) {
-                        updateMessage(friend.key, message)
-                    } else {
-                        if (message.key == messagesCache.last().key) {
-                            isNewMessage = true // 다음 메시지부터 받기
-                        }
-                    }
-                } ?: run {
-                    isNewMessage = true
-                    updateMessage(friend.key, message)
-                }
-            }
-
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                // todo: message edit
+                // todo: message edited
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {

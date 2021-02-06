@@ -9,18 +9,21 @@
 package me.sungbin.spakchat.chat.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.LayoutChatOtherBinding
-import me.sungbin.spakchat.databinding.LayoutChatOwnBinding
 import me.sungbin.spakchat.chat.model.Message
 import me.sungbin.spakchat.chat.model.MessageViewType
+import me.sungbin.spakchat.databinding.LayoutChatOtherBinding
+import me.sungbin.spakchat.databinding.LayoutChatOwnBinding
+import me.sungbin.spakchat.ui.activity.DetailImageActivity
 import me.sungbin.spakchat.user.model.User
 
 class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -106,9 +109,9 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
     override fun getItemId(position: Int) = position.toLong()
     override fun getItemViewType(position: Int) = with(getItem(position)) {
         if (owner!!.key == me.key) {
-            me.sungbin.spakchat.chat.MessageViewType.OWN
+            MessageViewType.OWN
         } else {
-            me.sungbin.spakchat.chat.MessageViewType.OTHER
+            MessageViewType.OTHER
         }
     }
 }
