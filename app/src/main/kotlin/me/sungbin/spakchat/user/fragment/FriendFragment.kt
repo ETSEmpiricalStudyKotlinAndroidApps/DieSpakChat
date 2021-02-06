@@ -59,7 +59,7 @@ class FriendFragment : BaseFragment() {
                 KeyManager.Room.KEY to key!!,
                 KeyManager.ChatType.toKey() to KeyManager.ChatType.FRIENDS
             )
-            userUtil.joinRoom(userVm.me, key)
+            userUtil.joinRoom(userVm.me, key) // todo: 중복으로 들어가는거 고치기
         }
 
         if (userVm.users.isEmpty()) {
