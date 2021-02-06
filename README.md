@@ -28,7 +28,7 @@ Android firebase sns application.
 2. - [ ] **develop 100%!**
 3. - [ ] [Animated emoji support](https://github.com/sungbin5304/SpakChat/issues/1)
 4. - [ ] Using `DI` in parameter (just goal...)
-5. - [x] Using `Custom Annotation` (just goal...)
+5. - [ ] Using `Custom Annotation` (just goal...)
 6. - [x] Full Kotlin
 7. - [ ] Clean Architecture (mvvm parttern)
 8. - [ ] Project re-packaging (project clean-up)
