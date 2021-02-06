@@ -33,9 +33,9 @@ import me.sungbin.androidutils.extensions.showKeyboard
 import me.sungbin.androidutils.extensions.toBottomScroll
 import me.sungbin.androidutils.extensions.toColorStateList
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.chat.model.Message
-import me.sungbin.spakchat.chat.model.MessageType
-import me.sungbin.spakchat.chat.model.MessageViewType
+import me.sungbin.spakchat.chat.model.Chat
+import me.sungbin.spakchat.chat.model.ChatType
+import me.sungbin.spakchat.chat.model.ChatViewType
 import me.sungbin.spakchat.chat.room.Room
 import me.sungbin.spakchat.databinding.ActivityChatBinding
 import me.sungbin.spakchat.ui.activity.BaseActivity
@@ -46,7 +46,7 @@ import me.sungbin.spakchat.util.Util
 class ChatActivity : BaseActivity() {
 
     private var isNewMessage = false
-    private val adapter by lazy { ChatAdapter(globalVm.me) }
+    private val adapter by lazy { ChatAdapter(userVm.me) }
     private lateinit var databaseReference: DatabaseReference
 
     private var rootHeight = 0
@@ -74,7 +74,7 @@ class ChatActivity : BaseActivity() {
 
         when (chatType) {
             KeyManager.ChatType.FRIENDS -> {
-                val friend = globalVm.users.find {
+                val friend = userVm.users.find {
                     it.key == roomKey
                 }!!
                 initializeBinding(friend.toRoom())
@@ -94,7 +94,7 @@ class ChatActivity : BaseActivity() {
         databaseReference = database.child("chat/$chatType/$key")
         databaseReference.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                val message = snapshot.getValue(Message::class.java)!!
+                val message = snapshot.getValue(Chat::class.java)!!
                 chatVm.messagesMap[key]?.let { messagesCache ->
                     if (isNewMessage) {
                         updateMessage(key, message)
@@ -125,11 +125,11 @@ class ChatActivity : BaseActivity() {
     }
 
     private fun initializeBinding(room: Room) {
-        adapter.submit(chatVm.messagesMap[room.key] ?: listOf())
-
         binding.room = room
         binding.rvChat.adapter = adapter
         binding.ivBack.setOnClickListener { finish() }
+
+        adapter.submit(chatVm.messagesMap[room.key] ?: listOf())
 
         binding.etInput.doAfterTextChanged {
             if (it.toString().isNotBlank()) {
@@ -191,15 +191,15 @@ class ChatActivity : BaseActivity() {
         binding.ivSend.setOnClickListener {
             val inputMessage = binding.etInput.text.toString()
             if (inputMessage.isNotBlank()) {
-                val message = Message(
-                    key = Util.generateMessageKey(inputMessage, globalVm.me.name!!),
+                val message = Chat(
+                    key = Util.generateMessageKey(inputMessage, userVm.me.name!!),
                     message = inputMessage,
                     time = Date().time,
-                    type = MessageType.CHAT,
+                    type = ChatType.CHAT,
                     attachment = null,
-                    owner = globalVm.me,
-                    mention = listOf(),
-                    messageViewType = MessageViewType.NORMAL
+                    owner = userVm.me,
+                    mention = mutableListOf(),
+                    messageViewType = ChatViewType.NORMAL
                 )
                 binding.etInput.clear()
                 databaseReference.push().setValue(message)
@@ -207,9 +207,9 @@ class ChatActivity : BaseActivity() {
         }
     }
 
-    private fun updateMessage(key: Long, message: Message) {
-        chatVm.messagesMap[key]?.add(message) ?: run {
-            chatVm.messagesMap[key] = mutableListOf(message)
+    private fun updateMessage(key: Long, chat: Chat) {
+        chatVm.messagesMap[key]?.add(chat) ?: run {
+            chatVm.messagesMap[key] = mutableListOf(chat)
         }
         adapter.submit(chatVm.messagesMap[key]!!)
         binding.rvChat.toBottomScroll()

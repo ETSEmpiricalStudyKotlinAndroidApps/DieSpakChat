@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.ui.activity.join
+package me.sungbin.spakchat.user.activity.join
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,8 +16,8 @@ import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutDialogLoginBinding
-import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.ui.activity.MainActivity
+import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
@@ -62,7 +62,7 @@ class LoginBottomDialog private constructor() : BaseBottomSheetDialogFragment() 
                                         password
                                     )
                             ) {
-                                globalVm.me = this
+                                userVm.me = this
                                 toast(getString(R.string.login_welcome, name))
                                 PrefUtil.save(requireContext(), KeyManager.User.KEY, key.toString())
                                 PrefUtil.save(requireContext(), KeyManager.User.ID, id)

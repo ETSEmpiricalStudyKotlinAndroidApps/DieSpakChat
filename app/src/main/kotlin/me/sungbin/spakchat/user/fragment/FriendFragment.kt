@@ -23,7 +23,7 @@ import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.ui.fragment.BaseFragment
 import me.sungbin.spakchat.user.fragment.adapter.FriendListAdapter
 import me.sungbin.spakchat.user.model.User
-import me.sungbin.spakchat.util.ArrayConverter.toArray
+import me.sungbin.spakchat.util.ArrayConverter.toList
 import me.sungbin.spakchat.util.KeyManager
 
 /**
@@ -53,20 +53,21 @@ class FriendFragment : BaseFragment() {
 
         val friendAdapter = FriendListAdapter()
         binding.rvFriends.adapter = friendAdapter
-        friendAdapter.setOnFriendClickListener {
+        friendAdapter.setOnUserClickListener {
             startActivity<ChatActivity>(
                 false,
-                KeyManager.Room.KEY to key,
+                KeyManager.Room.KEY to key!!,
                 KeyManager.ChatType.toKey() to KeyManager.ChatType.FRIENDS
             )
+            userUtil.joinRoom(userVm.me, key)
         }
 
-        if (globalVm.users.isEmpty()) {
+        if (userVm.users.isEmpty()) {
             lifecycleScope.launch(Dispatchers.IO) { // todo: Is this the best way to use Coroutines?
                 val usersEntity = userDb.dao().getAllUser()
                 usersEntity.forEach {
                     with(it) {
-                        if (key == globalVm.me.key) return@with
+                        if (key == userVm.me.key) return@with
                         val user = User(
                             key = key,
                             userId = userId,
@@ -80,19 +81,19 @@ class FriendFragment : BaseFragment() {
                             birthday = birthday,
                             lastOnline = lastOnline,
                             isOnline = isOnline,
-                            friends = toArray<Long>(friends),
+                            friends = toList<Long>(friends),
                             sex = sex,
-                            emoji = toArray<Long>(emoji),
-                            black = toArray<Long>(black),
+                            emoji = toList<Long>(emoji),
+                            black = toList<Long>(black),
                             accountStatus = accountStatus,
                         )
-                        globalVm.users.add(user)
+                        userVm.users.add(user)
                     }
                 }
-                friendAdapter.submit(globalVm.users)
+                friendAdapter.submit(userVm.users)
             }
         } else {
-            friendAdapter.submit(globalVm.users)
+            friendAdapter.submit(userVm.users)
         }
     }
 

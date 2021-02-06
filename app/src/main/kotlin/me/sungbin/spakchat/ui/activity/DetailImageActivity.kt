@@ -18,7 +18,7 @@ import androidx.core.app.SharedElementCallback
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.databinding.ActivityDetailviewImageBinding
-import me.sungbin.spakchat.ui.view.circleswipelayout.CircleSwipeLayout
+import me.sungbin.spakchat.ui.view.circleswipelayout.CircleSwipeListener
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.ChangeRoundedImageTransform
 import me.sungbin.spakchat.ui.view.circleswipelayout.transition.TransitionListener
@@ -78,9 +78,8 @@ class DetailImageActivity : BaseActivity() {
             supportFinishAfterTransition()
         }
 
-        binding.swipeLayout.circleSwipeListener = object : CircleSwipeLayout.CircleSwipeListener {
+        binding.swipeLayout.circleSwipeListener = object : CircleSwipeListener {
             override fun onSwipeStarted() {}
-
             override fun onSwipeCancelled() {}
 
             override fun onSwiped() {

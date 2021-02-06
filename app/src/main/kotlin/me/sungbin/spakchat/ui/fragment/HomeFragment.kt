@@ -28,7 +28,7 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        binding.user = globalVm.me
+        binding.user = userVm.me
         return binding.root
     }
 

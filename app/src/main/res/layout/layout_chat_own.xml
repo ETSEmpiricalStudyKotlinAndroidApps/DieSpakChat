@@ -13,8 +13,8 @@
     <data>
 
         <variable
-            name="Message"
-            type="me.sungbin.spakchat.chat.model.Message" />
+            name="Chat"
+            type="me.sungbin.spakchat.chat.model.Chat" />
 
     </data>
 
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
-            android:text="@{Message.owner.name}"
+            android:text="@{Chat.owner.name}"
             android:textColor="@color/colorBlack"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/cv_message_container"
             app:layout_constraintEnd_toStartOf="@+id/cv_message_container"
-            app:spak_loadDate="@{Message.time}"
+            app:spak_loadDate="@{Chat.time}"
             tools:ignore="SmallSp" />
 
         <androidx.cardview.widget.CardView
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="200dp"
-                android:text="@{Message.message}"
+                android:text="@{Chat.message}"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

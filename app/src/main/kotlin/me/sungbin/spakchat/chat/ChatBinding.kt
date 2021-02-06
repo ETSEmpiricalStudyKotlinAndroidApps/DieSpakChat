@@ -10,7 +10,7 @@ package me.sungbin.spakchat.chat
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import me.sungbin.spakchat.chat.model.Message
+import me.sungbin.spakchat.chat.model.Chat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -20,9 +20,9 @@ object ChatBinding {
 
     @JvmStatic
     @BindingAdapter("spak_loadMessage")
-    fun loadMessage(textView: TextView, message: Message) {
+    fun loadMessage(textView: TextView, chat: Chat) {
         // todo: 메시지 타입 가져와서 처리하기
-        textView.text = message.message ?: "unknown message"
+        textView.text = chat.message ?: "unknown message"
     }
 
     @JvmStatic
@@ -36,7 +36,7 @@ object ChatBinding {
 
     @JvmStatic
     @BindingAdapter("spak_loadUnreadCount")
-    fun loadUnreadCount(textView: TextView, message: Message) {
+    fun loadUnreadCount(textView: TextView, chat: Chat) {
         // todo
         textView.text = Random.nextInt(0, 100).toString()
     }

@@ -8,7 +8,7 @@
 
 package me.sungbin.spakchat.chat.model
 
-object MessageType {
+object ChatType {
 
     const val ATTACHMENT = 0
     const val REPLY = 1

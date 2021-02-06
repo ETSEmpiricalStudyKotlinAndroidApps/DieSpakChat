@@ -13,25 +13,25 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [MessageEntity::class], version = 1)
-abstract class MessageDatabase : RoomDatabase() {
+@Database(entities = [ChatEntity::class], version = 1)
+abstract class ChatDatabase : RoomDatabase() {
 
-    abstract fun dao(): MessageDao
+    abstract fun dao(): ChatDao
 
     companion object {
-        private lateinit var messageDatabase: MessageDatabase
+        private lateinit var chatDatabase: ChatDatabase
 
-        fun instance(context: Context): MessageDatabase {
-            if (!Companion::messageDatabase.isInitialized) {
-                synchronized(MessageDatabase::class) {
-                    messageDatabase = Room.databaseBuilder(
+        fun instance(context: Context): ChatDatabase {
+            if (!Companion::chatDatabase.isInitialized) {
+                synchronized(ChatDatabase::class) {
+                    chatDatabase = Room.databaseBuilder(
                         context,
-                        MessageDatabase::class.java, "message.db"
+                        ChatDatabase::class.java, "message.db"
                     ).fallbackToDestructiveMigration() // for Migration (database version change)
                         .build()
                 }
             }
-            return messageDatabase
+            return chatDatabase
         }
     }
 }

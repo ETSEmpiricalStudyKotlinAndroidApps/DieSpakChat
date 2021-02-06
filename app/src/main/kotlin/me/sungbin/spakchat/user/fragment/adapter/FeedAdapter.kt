@@ -14,14 +14,14 @@ import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.databinding.LayoutFeedOnlineBinding
+import me.sungbin.spakchat.databinding.LayoutFeedStoryBinding
 import me.sungbin.spakchat.user.model.User
 
 class FeedAdapter(
     private val items: List<User>
 ) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: LayoutFeedOnlineBinding) :
+    inner class ViewHolder(private val binding: LayoutFeedStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindViewHolder(user: User) {

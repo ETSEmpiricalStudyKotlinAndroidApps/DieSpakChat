@@ -15,17 +15,21 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.chat.ChatViewModel
+import me.sungbin.spakchat.chat.database.ChatDatabase
+import me.sungbin.spakchat.user.UserUtil
 import me.sungbin.spakchat.user.UserViewModel
 import me.sungbin.spakchat.user.database.UserDatabase
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    val globalVm = UserViewModel.instance()
+    val userVm = UserViewModel.instance()
     val chatVm = ChatViewModel.instance()
     val userDb = UserDatabase.instance(applicationContext)
+    val chatDb = ChatDatabase.instance(applicationContext)
     val storage = Firebase.storage.reference
     val firestore = Firebase.firestore
     val database = Firebase.database.reference.apply { keepSynced(true) }
+    val userUtil = UserUtil.instance(firestore, userDb, applicationContext)
 
     override fun finish() {
         super.finish()

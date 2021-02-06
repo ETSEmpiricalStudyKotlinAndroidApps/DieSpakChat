@@ -10,7 +10,7 @@ package me.sungbin.spakchat.user.fragment.adapter
 
 import me.sungbin.spakchat.user.model.User
 
-interface FriendClickListener {
+interface UserClickListener {
 
-    fun onFriendClick(friend: User)
+    fun onUserClick(user: User)
 }

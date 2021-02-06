@@ -8,7 +8,7 @@
 
 package me.sungbin.spakchat.chat.model
 
-object MessageViewType {
+object ChatViewType {
 
     const val OWN = 0
     const val OTHER = 1

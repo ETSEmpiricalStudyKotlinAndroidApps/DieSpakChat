@@ -38,7 +38,7 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.join.JoinActivity"
+            android:name="me.sungbin.spakchat.user.activity.join.JoinActivity"
             android:theme="@style/SpakChat.FullScreen" />
 
         <activity
@@ -54,7 +54,7 @@
             android:theme="@style/SpakChat.DetailImageActivity" />
 
         <activity
-            android:name=".ui.activity.ProfileEditActivity"
+            android:name=".user.activity.ProfileEditActivity"
             android:theme="@style/SpakChat.FullScreen" />
 
         <meta-data

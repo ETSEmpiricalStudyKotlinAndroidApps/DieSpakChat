@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.chat.activity.ChatActivity
-import me.sungbin.spakchat.chat.model.Message
+import me.sungbin.spakchat.chat.model.Chat
 import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
 
 class ChatAdapter(
-    private val items: List<Message>,
+    private val items: List<Chat>,
 ) : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
     inner class ViewHolder(
@@ -29,13 +29,13 @@ class ChatAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(message: Message) {
+        fun bindViewHolder(chat: Chat) {
             with(binding) {
-                this.message = message
+                this.message = chat
                 ivProfile.setOnClickListener {
                     (it.context as Activity).startActivity<ChatActivity>(
                         false,
-                        "id" to message.owner?.userId,
+                        "id" to chat.owner?.userId,
 
                     )
                 }

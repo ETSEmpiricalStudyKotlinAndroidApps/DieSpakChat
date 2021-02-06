@@ -12,7 +12,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class MessageEntity(
+class ChatEntity(
     @PrimaryKey val key: Long? = null,
     val message: String? = null,
     val time: Long? = null, // Date().time

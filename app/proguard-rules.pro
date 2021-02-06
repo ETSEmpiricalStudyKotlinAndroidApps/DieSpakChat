@@ -1,7 +1,7 @@
 -keepattributes Signature
 -renamesourcefileattribute SourceFile
 
--keepclassmembers class me.sungbin.spakchat.chat.model.Message {
+-keepclassmembers class me.sungbin.spakchat.chat.model.Chat {
     *;
 }
 -keepclassmembers class me.sungbin.spakchat.user.model.User {

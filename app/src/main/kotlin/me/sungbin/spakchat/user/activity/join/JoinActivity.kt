@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.ui.activity.join
+package me.sungbin.spakchat.user.activity.join
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -22,9 +22,9 @@ import me.sungbin.androidutils.extensions.get
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.user.UserViewModel
 import me.sungbin.spakchat.databinding.ActivityJoinBinding
 import me.sungbin.spakchat.ui.activity.BaseActivity
+import me.sungbin.spakchat.user.UserViewModel
 
 class JoinActivity : BaseActivity() {
 

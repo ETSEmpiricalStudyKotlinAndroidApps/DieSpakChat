@@ -13,8 +13,8 @@
     <data>
 
         <variable
-            name="Message"
-            type="me.sungbin.spakchat.chat.model.Message" />
+            name="Chat"
+            type="me.sungbin.spakchat.chat.model.Chat" />
 
     </data>
 
@@ -32,7 +32,7 @@
             android:transitionName="@string/image_transition"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:spak_loadProfile="@{Message.owner}"
+            app:spak_loadProfile="@{Chat.owner}"
             app:triv_imageRadius="@dimen/margin_twice_and_half"
             tools:src="@color/colorGreen" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
-            android:text="@{Message.owner.name}"
+            android:text="@{Chat.owner.name}"
             android:textColor="@color/colorBlack"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/iv_profile"
@@ -86,7 +86,7 @@
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/cv_message_container"
             app:layout_constraintEnd_toEndOf="parent"
-            app:spak_loadDate="@{Message.time}"
+            app:spak_loadDate="@{Chat.time}"
             tools:ignore="SmallSp" />
 
         <Space

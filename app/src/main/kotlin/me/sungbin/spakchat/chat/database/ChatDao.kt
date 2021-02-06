@@ -15,17 +15,17 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface MessageDao {
+interface ChatDao {
 
-    @Query("SELECT * FROM MessageEntity")
-    suspend fun getAllMessage(): List<MessageEntity>
+    @Query("SELECT * FROM ChatEntity")
+    suspend fun getAllMessage(): List<ChatEntity>
 
-    @Query("SELECT * FROM MessageEntity WHERE `key` =:key")
-    suspend fun getMessageByKey(key: Long): MessageEntity? // 일치 항목 없을 땐 null 나옴
+    @Query("SELECT * FROM ChatEntity WHERE `key` =:key")
+    suspend fun getMessageByKey(key: Long): ChatEntity? // 일치 항목 없을 땐 null 나옴
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg message: MessageEntity)
+    suspend fun insert(vararg chat: ChatEntity)
 
     @Delete
-    suspend fun delete(vararg message: MessageEntity)
+    suspend fun delete(vararg chat: ChatEntity)
 }

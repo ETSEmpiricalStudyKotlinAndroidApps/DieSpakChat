@@ -9,10 +9,10 @@
 package me.sungbin.spakchat.chat.activity
 
 import androidx.recyclerview.widget.DiffUtil
-import me.sungbin.spakchat.chat.model.Message
+import me.sungbin.spakchat.chat.model.Chat
 
-class ChatDiffItemCallback : DiffUtil.ItemCallback<Message>() {
+class ChatDiffItemCallback : DiffUtil.ItemCallback<Chat>() {
 
-    override fun areItemsTheSame(oldItem: Message, newItem: Message) = oldItem == newItem
-    override fun areContentsTheSame(oldItem: Message, newItem: Message) = oldItem.key == newItem.key
+    override fun areItemsTheSame(oldItem: Chat, newItem: Chat) = oldItem == newItem
+    override fun areContentsTheSame(oldItem: Chat, newItem: Chat) = oldItem.key == newItem.key
 }

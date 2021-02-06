@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3556b22f62578135013ef563f05dd2e0",
+    "identityHash": "0ee508c48a2ed91bedfa3df10b01e484",
     "entities": [
       {
         "tableName": "UserEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`key` INTEGER, `userId` TEXT, `loginId` TEXT, `password` TEXT, `name` TEXT, `profileImage` TEXT, `profileImageColor` INTEGER, `backgroundImage` TEXT, `statusMessage` TEXT, `birthday` INTEGER, `lastOnline` INTEGER, `isOnline` INTEGER, `friends` TEXT, `sex` INTEGER, `emoji` TEXT, `black` TEXT, `accountStatus` INTEGER, PRIMARY KEY(`key`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`key` INTEGER, `userId` TEXT, `loginId` TEXT, `password` TEXT, `name` TEXT, `profileImage` TEXT, `profileImageColor` INTEGER, `backgroundImage` TEXT, `statusMessage` TEXT, `birthday` INTEGER, `lastOnline` INTEGER, `isOnline` INTEGER, `rooms` TEXT, `friends` TEXT, `sex` INTEGER, `emoji` TEXT, `black` TEXT, `accountStatus` INTEGER, PRIMARY KEY(`key`))",
         "fields": [
           {
             "fieldPath": "key",
@@ -81,6 +81,12 @@
             "notNull": false
           },
           {
+            "fieldPath": "rooms",
+            "columnName": "rooms",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
             "fieldPath": "friends",
             "columnName": "friends",
             "affinity": "TEXT",
@@ -124,7 +130,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3556b22f62578135013ef563f05dd2e0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0ee508c48a2ed91bedfa3df10b01e484')"
     ]
   }
 }

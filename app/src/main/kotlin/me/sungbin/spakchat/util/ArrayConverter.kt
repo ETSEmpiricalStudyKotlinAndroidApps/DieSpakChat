@@ -12,7 +12,7 @@ object ArrayConverter {
 
     const val PREFIX = "⭓" // 카톡에서 쓰인 방식
 
-    inline fun <reified T> toArray(value: String?): List<T> {
+    inline fun <reified T> toList(value: String?): MutableList<T> {
         val list = mutableListOf<T>()
         value?.split(PREFIX)?.forEach {
             if (it.isNotBlank()) { // todo: 과연 공백이 들어오는 데이터가 있을까?
@@ -22,7 +22,7 @@ object ArrayConverter {
         return list
     }
 
-    fun <T> List<T>?.toText(): String {
+    fun <T> MutableList<T>?.toText(): String {
         val string = StringBuilder()
         this?.forEach {
             val value = it.toString()

@@ -13,8 +13,8 @@
     <data>
 
         <variable
-            name="Message"
-            type="me.sungbin.spakchat.chat.model.Message" />
+            name="Chat"
+            type="me.sungbin.spakchat.chat.model.Chat" />
 
     </data>
 
@@ -32,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:spak_loadProfile="@{Message.owner}"
+            app:spak_loadProfile="@{Chat.owner}"
             app:triv_imageRadius="@dimen/margin_twice_and_half"
             tools:src="@color/colorGreen" />
 
@@ -44,7 +44,7 @@
             android:contentDescription="@string/image_description_online_status"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toEndOf="@+id/iv_profile"
-            app:spak_loadStatus="@{Message.owner.isOnline}" />
+            app:spak_loadStatus="@{Chat.owner.isOnline}" />
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/fbl_container_chat"
@@ -66,7 +66,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@{Message.owner.name}"
+                android:text="@{Chat.owner.name}"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -82,7 +82,7 @@
                 android:singleLine="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
-                app:spak_loadMessage="@{Message}"
+                app:spak_loadMessage="@{Chat}"
                 tools:drawableStartCompat="@drawable/ic_outline_photo_24"
                 tools:text="@string/chat_preview_last_message" />
 
@@ -96,7 +96,7 @@
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_profile"
-            app:spak_loadDate="@{Message.time}"
+            app:spak_loadDate="@{Chat.time}"
             tools:ignore="SmallSp"
             tools:text="@string/chat_preview_time" />
 
@@ -112,7 +112,7 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:spak_loadUnreadCount="@{Message}"
+            app:spak_loadUnreadCount="@{Chat}"
             tools:ignore="SmallSp"
             tools:text="@string/chat_preview_unread_count" />
 

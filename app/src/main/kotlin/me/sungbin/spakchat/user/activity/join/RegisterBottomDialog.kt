@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.ui.activity.join
+package me.sungbin.spakchat.user.activity.join
 
 import android.Manifest
 import android.net.Uri
@@ -24,9 +24,9 @@ import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutDialogRegisterBinding
+import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.user.model.AccountStatus
 import me.sungbin.spakchat.user.model.User
-import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
@@ -148,10 +148,11 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
             birthday = null,
             lastOnline = null,
             isOnline = true,
-            friends = listOf(),
+            rooms = mutableListOf(),
+            friends = mutableListOf(),
             sex = null,
-            emoji = listOf(),
-            black = listOf(),
+            emoji = mutableListOf(),
+            black = mutableListOf(),
             accountStatus = AccountStatus.UNVARIED
         )
 
@@ -163,7 +164,7 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
                 PrefUtil.save(requireContext(), KeyManager.User.ID, id)
                 PrefUtil.save(requireContext(), KeyManager.User.PASSWORD, password)
                 toast(getString(R.string.register_done))
-                globalVm.me = user
+                userVm.me = user
                 onDestroy()
                 startActivity<MainActivity>()
             }

@@ -9,13 +9,13 @@
 package me.sungbin.spakchat.chat
 
 import androidx.lifecycle.ViewModel
-import me.sungbin.spakchat.chat.model.Message
+import me.sungbin.spakchat.chat.model.Chat
 import me.sungbin.spakchat.chat.room.Room
 
 class ChatViewModel private constructor() : ViewModel() {
 
     val rooms = mutableListOf<Room>()
-    val messagesMap = HashMap<Long, MutableList<Message>>()
+    val messagesMap = HashMap<Long, MutableList<Chat>>()
 
     companion object {
         private val instance = ChatViewModel()

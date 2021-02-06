@@ -18,9 +18,9 @@ import me.sungbin.androidutils.extensions.toast
 import me.sungbin.androidutils.util.NetworkUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivitySplashBinding
-import me.sungbin.spakchat.user.model.User
+import me.sungbin.spakchat.user.activity.join.JoinActivity
 import me.sungbin.spakchat.user.database.UserEntity
-import me.sungbin.spakchat.ui.activity.join.JoinActivity
+import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.util.ArrayConverter.toText
 import me.sungbin.spakchat.util.EncryptUtil
 import me.sungbin.spakchat.util.ExceptionUtil
@@ -58,6 +58,7 @@ class SplashActivity : BaseActivity() {
                                     birthday = this.birthday,
                                     lastOnline = this.lastOnline,
                                     isOnline = this.isOnline,
+                                    rooms = this.rooms.toText(),
                                     friends = this.friends.toText(),
                                     sex = this.sex,
                                     emoji = this.emoji.toText(),
@@ -104,7 +105,7 @@ class SplashActivity : BaseActivity() {
                                     password
                                 )
                         ) {
-                            globalVm.me = this
+                            userVm.me = this
                             toast(getString(R.string.login_welcome, name))
                             finish()
                             startActivity<MainActivity>()

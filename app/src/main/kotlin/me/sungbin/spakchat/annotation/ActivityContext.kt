@@ -6,11 +6,8 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.chat.room
+package me.sungbin.spakchat.annotation
 
-data class Room(
-    val key: Long,
-    val name: String,
-    val roomCoverImage: String,
-    val kick: List<Long> = listOf(), // todo
-)
+@Retention(AnnotationRetention.SOURCE)
+@Target(AnnotationTarget.VALUE_PARAMETER)
+annotation class ActivityContext

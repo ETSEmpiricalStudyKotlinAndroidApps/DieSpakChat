@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.chat.model.Message
-import me.sungbin.spakchat.chat.model.MessageViewType
+import me.sungbin.spakchat.chat.model.Chat
+import me.sungbin.spakchat.chat.model.ChatViewType
 import me.sungbin.spakchat.databinding.LayoutChatOtherBinding
 import me.sungbin.spakchat.databinding.LayoutChatOwnBinding
 import me.sungbin.spakchat.ui.activity.DetailImageActivity
@@ -35,16 +35,16 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(message: Message) {
+        fun bindViewHolder(chat: Chat) {
             with(binding) {
-                this.message = message
+                this.message = chat
                 ivProfile.setOnClickListener {
                     val context = it.context
                     val transitionName = context.getString(R.string.image_transition)
                     val intent = Intent(context, DetailImageActivity::class.java)
-                        .putExtra("image", message.owner?.profileImageColor)
-                        .putExtra("name", message.owner?.name)
-                        .putExtra("avatar", message.owner?.profileImageColor)
+                        .putExtra("image", chat.owner?.profileImageColor)
+                        .putExtra("name", chat.owner?.name)
+                        .putExtra("avatar", chat.owner?.profileImageColor)
                     val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                         context as Activity,
                         ivProfile, transitionName
@@ -60,21 +60,21 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(message: Message) {
+        fun bindViewHolder(chat: Chat) {
             with(binding) {
-                this.message = message
+                this.message = chat
             }
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) = when (viewType) {
-        MessageViewType.OWN -> OwnChatViewHolder(
+        ChatViewType.OWN -> OwnChatViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
                 R.layout.layout_chat_own, viewGroup, false
             )
         )
-        MessageViewType.OTHER -> OtherChatViewHolder(
+        ChatViewType.OTHER -> OtherChatViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(viewGroup.context),
                 R.layout.layout_chat_other, viewGroup, false
@@ -88,7 +88,7 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
 
     override fun onBindViewHolder(@NonNull viewholder: RecyclerView.ViewHolder, position: Int) {
         val message = getItem(position)
-        if (message.messageViewType == MessageViewType.FEED) {
+        if (message.messageViewType == ChatViewType.FEED) {
             // todo: Create FEED viewholder.
         } else {
             if (message.owner!!.key == me.key) {
@@ -99,8 +99,8 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    fun submit(messages: List<Message>) {
-        differ.submitList(messages)
+    fun submit(chats: List<Chat>) {
+        differ.submitList(chats)
     }
 
     private fun getItem(position: Int) = differ.currentList[position]
@@ -109,9 +109,9 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
     override fun getItemId(position: Int) = position.toLong()
     override fun getItemViewType(position: Int) = with(getItem(position)) {
         if (owner!!.key == me.key) {
-            MessageViewType.OWN
+            ChatViewType.OWN
         } else {
-            MessageViewType.OTHER
+            ChatViewType.OTHER
         }
     }
 }

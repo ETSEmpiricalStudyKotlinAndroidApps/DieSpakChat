@@ -15,18 +15,19 @@ data class User(
     val userId: String? = null,
     val loginId: String? = null,
     val password: String? = null,
-    val name: String? = null,
-    val profileImage: String? = null,
-    val profileImageColor: Int? = null,
-    val backgroundImage: String? = null,
-    val statusMessage: String? = null,
-    val birthday: Long? = null, // Date().time
-    val lastOnline: Long? = null, // Date().time
-    val isOnline: Boolean? = null,
-    val friends: List<Long>? = null, // for user-key
+    var name: String? = null,
+    var profileImage: String? = null,
+    var profileImageColor: Int? = null,
+    var backgroundImage: String? = null,
+    var statusMessage: String? = null,
+    var birthday: Long? = null, // Date().time
+    var lastOnline: Long? = null, // Date().time
+    var isOnline: Boolean? = null,
+    val rooms: MutableList<Long>? = null, // for room-key
+    val friends: MutableList<Long>? = null, // for user-key
     val sex: Int? = null,
-    val emoji: List<Long>? = null, // for emoji-key
-    val black: List<Long>? = null, // for user-key
+    val emoji: MutableList<Long>? = null, // for emoji-key
+    val black: MutableList<Long>? = null, // for user-key
     val accountStatus: Int? = null,
 ) {
 

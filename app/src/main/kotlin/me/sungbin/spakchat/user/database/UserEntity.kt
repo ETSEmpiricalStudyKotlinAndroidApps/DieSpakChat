@@ -25,6 +25,7 @@ class UserEntity(
     val birthday: Long?, // Date().time
     val lastOnline: Long?, // Date().time
     val isOnline: Boolean?,
+    val rooms: String?, // for room-key // array
     val friends: String?, // for user-key // array
     val sex: Int?,
     val emoji: String?, // for emoji-key // array
