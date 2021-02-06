@@ -37,7 +37,7 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
 
         fun bindViewHolder(chat: Chat) {
             with(binding) {
-                this.message = chat
+                this.chat = chat
                 ivProfile.setOnClickListener {
                     val context = it.context
                     val transitionName = context.getString(R.string.image_transition)
@@ -62,7 +62,7 @@ class ChatAdapter(private val me: User) : RecyclerView.Adapter<RecyclerView.View
 
         fun bindViewHolder(chat: Chat) {
             with(binding) {
-                this.message = chat
+                this.chat = chat
             }
         }
     }

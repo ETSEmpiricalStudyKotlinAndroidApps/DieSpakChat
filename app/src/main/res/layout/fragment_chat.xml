@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_half"
         android:text="@string/fragment_chat_label_open"
-        android:textColor="@color/colorGray"
+        android:textColor="@color/colorLightGray"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_search"
         app:layout_constraintStart_toEndOf="@+id/tv_friends_chat"

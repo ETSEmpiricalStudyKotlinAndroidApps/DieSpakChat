@@ -12,6 +12,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import me.sungbin.spakchat.annotation.ApplicationContext
 
 @Database(entities = [ChatEntity::class], version = 1)
 abstract class ChatDatabase : RoomDatabase() {
@@ -21,7 +22,7 @@ abstract class ChatDatabase : RoomDatabase() {
     companion object {
         private lateinit var chatDatabase: ChatDatabase
 
-        fun instance(context: Context): ChatDatabase {
+        fun instance(@ApplicationContext context: Context): ChatDatabase {
             if (!Companion::chatDatabase.isInitialized) {
                 synchronized(ChatDatabase::class) {
                     chatDatabase = Room.databaseBuilder(

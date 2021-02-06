@@ -25,12 +25,12 @@ abstract class BaseFragment : Fragment() {
 
     val userVm = UserViewModel.instance()
     val chatVm = ChatViewModel.instance()
-    val userDb = UserDatabase.instance(requireContext())
-    val chatDb = ChatDatabase.instance(requireContext())
     val storage = Firebase.storage.reference
     val firestore = Firebase.firestore
     val database = Firebase.database.reference.apply { keepSynced(true) }
-    val userUtil = UserUtil.instance(firestore, userDb, requireContext())
+    val userDb by lazy { UserDatabase.instance(requireContext()) }
+    val chatDb by lazy { ChatDatabase.instance(requireContext()) }
+    val userUtil by lazy { UserUtil.instance(firestore, userDb, requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

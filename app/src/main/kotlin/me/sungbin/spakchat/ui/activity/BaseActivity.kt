@@ -24,12 +24,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     val userVm = UserViewModel.instance()
     val chatVm = ChatViewModel.instance()
-    val userDb = UserDatabase.instance(applicationContext)
-    val chatDb = ChatDatabase.instance(applicationContext)
     val storage = Firebase.storage.reference
     val firestore = Firebase.firestore
     val database = Firebase.database.reference.apply { keepSynced(true) }
-    val userUtil = UserUtil.instance(firestore, userDb, applicationContext)
+    val userDb by lazy { UserDatabase.instance(applicationContext) }
+    val chatDb by lazy { ChatDatabase.instance(applicationContext) }
+    val userUtil by lazy { UserUtil.instance(firestore, userDb, applicationContext) }
 
     override fun finish() {
         super.finish()

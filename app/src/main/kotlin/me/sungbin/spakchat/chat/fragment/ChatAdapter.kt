@@ -31,7 +31,7 @@ class ChatAdapter(
 
         fun bindViewHolder(chat: Chat) {
             with(binding) {
-                this.message = chat
+                this.chat = chat
                 ivProfile.setOnClickListener {
                     (it.context as Activity).startActivity<ChatActivity>(
                         false,
