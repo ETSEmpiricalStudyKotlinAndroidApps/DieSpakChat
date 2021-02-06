@@ -22,6 +22,7 @@ import me.sungbin.spakchat.R
 // https://github.com/salih-demir/swipe-layout
 class ChangeRoundedImageTransform(context: Context?, attrs: AttributeSet?) :
     ChangeBounds(context, attrs) {
+
     private var fromRadius: Int = 0
     private var toRadius: Int = 0
 

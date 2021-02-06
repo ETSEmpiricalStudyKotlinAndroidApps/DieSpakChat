@@ -24,8 +24,8 @@ import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutDialogRegisterBinding
-import me.sungbin.spakchat.model.user.AccountStatus
-import me.sungbin.spakchat.model.user.User
+import me.sungbin.spakchat.user.model.AccountStatus
+import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.util.ColorUtil
 import me.sungbin.spakchat.util.EncryptUtil
@@ -152,8 +152,7 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
             sex = null,
             emoji = listOf(),
             black = listOf(),
-            accountStatus = AccountStatus.UNVARIED,
-            isTestMode = false
+            accountStatus = AccountStatus.UNVARIED
         )
 
         firestore.collection("users")

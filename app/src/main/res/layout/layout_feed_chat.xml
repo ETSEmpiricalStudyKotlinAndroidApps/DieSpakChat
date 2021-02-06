@@ -14,7 +14,7 @@
 
         <variable
             name="Message"
-            type="me.sungbin.spakchat.model.message.Message" />
+            type="me.sungbin.spakchat.chat.model.Message" />
 
     </data>
 

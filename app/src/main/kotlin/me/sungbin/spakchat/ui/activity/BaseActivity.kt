@@ -16,8 +16,8 @@ import com.google.firebase.storage.ktx.storage
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.SpakChat
 import me.sungbin.spakchat.SpakViewModel
-import me.sungbin.spakchat.database.UserDatabase
-import me.sungbin.spakchat.ui.activity.chat.ChatViewModel
+import me.sungbin.spakchat.chat.activity.ChatViewModel
+import me.sungbin.spakchat.user.room.UserDatabase
 
 abstract class BaseActivity : AppCompatActivity() {
 

@@ -14,7 +14,7 @@
 
         <variable
             name="User"
-            type="me.sungbin.spakchat.model.user.User" />
+            type="me.sungbin.spakchat.user.model.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

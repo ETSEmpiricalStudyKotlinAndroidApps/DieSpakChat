@@ -24,11 +24,11 @@ class CallActivity : BaseActivity() {
 
         binding.ctpvCounter.addOnEndListener(object : CountTimeProgressView.OnEndListener {
             override fun onAnimationEnd() {
-                // todo: 통화 끊기
+                // todo: end call
             }
 
             override fun onClick(overageTime: Long) {
-                // todo: 프로필 열기
+                // todo: open profile
             }
         })
         binding.ctpvCounter.startCountTimeAnimation()

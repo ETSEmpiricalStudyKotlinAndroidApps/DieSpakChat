@@ -15,6 +15,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
 object PrefUtil {
+
     private const val DEFAULT_KEY = "DataEncryptedSharedPreferences"
     private lateinit var masterKey: MasterKey
 

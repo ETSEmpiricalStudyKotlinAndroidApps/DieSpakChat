@@ -12,6 +12,7 @@ import android.transition.Transition
 
 // // https://github.com/salih-demir/swipe-layout
 open class TransitionListener : Transition.TransitionListener {
+
     override fun onTransitionEnd(transition: Transition?) {}
     override fun onTransitionResume(transition: Transition?) {}
     override fun onTransitionPause(transition: Transition?) {}

@@ -14,7 +14,7 @@
 
         <variable
             name="User"
-            type="me.sungbin.spakchat.model.user.User" />
+            type="me.sungbin.spakchat.user.model.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +58,7 @@
                     android:id="@+id/iv_room_cover"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    app:spak_loadProfile="@{User}"
                     android:layout_marginStart="@dimen/margin_default"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_back"

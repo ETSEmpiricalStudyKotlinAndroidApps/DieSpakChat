@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable
 
 // https://github.com/salih-demir/swipe-layout
 class CircularDrawable(bitmap: Bitmap) : Drawable() {
+
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         shader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
     }

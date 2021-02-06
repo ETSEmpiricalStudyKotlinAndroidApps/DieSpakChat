@@ -14,7 +14,6 @@ import android.os.Bundle
 import android.transition.Transition
 import android.transition.TransitionSet
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.SharedElementCallback
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.GlideApp
@@ -38,7 +37,7 @@ class DetailImageActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailviewImageBinding.inflate(layoutInflater)
-        initializeViews()
+        initializeBinding()
     }
 
     override fun onStart() {
@@ -51,7 +50,7 @@ class DetailImageActivity : BaseActivity() {
         initializeSystemUi()
     }
 
-    private fun initializeViews() {
+    private fun initializeBinding() {
         setContentView(binding.root)
 
         // todo: 이미지 불러오는 부분
@@ -79,7 +78,7 @@ class DetailImageActivity : BaseActivity() {
             supportFinishAfterTransition()
         }
 
-        binding.swipeLayout.listener = object : CircleSwipeLayout.Listener {
+        binding.swipeLayout.circleSwipeListener = object : CircleSwipeLayout.CircleSwipeListener {
             override fun onSwipeStarted() {}
 
             override fun onSwipeCancelled() {}

@@ -10,6 +10,13 @@ package me.sungbin.spakchat.util
 
 object KeyManager {
 
+    object ChatType {
+
+        override fun toString() = "ChatType"
+        const val FRIENDS = "CHAT_FRIEND"
+        const val OPEN = "CHAT_OPEN"
+    }
+
     object User {
 
         const val KEY = "USER_KEY"

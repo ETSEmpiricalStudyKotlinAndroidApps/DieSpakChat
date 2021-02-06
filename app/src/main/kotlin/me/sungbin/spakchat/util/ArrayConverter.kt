@@ -10,7 +10,7 @@ package me.sungbin.spakchat.util
 
 object ArrayConverter {
 
-    const val PREFIX = "⭓"
+    const val PREFIX = "⭓" // 카톡에서 쓰인 방식
 
     inline fun <reified T> toArray(value: String?): List<T> {
         val list = mutableListOf<T>()

@@ -18,8 +18,8 @@ import me.sungbin.androidutils.extensions.toast
 import me.sungbin.androidutils.util.NetworkUtil
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.ActivitySplashBinding
-import me.sungbin.spakchat.model.user.User
-import me.sungbin.spakchat.model.user.UserEntity
+import me.sungbin.spakchat.user.model.User
+import me.sungbin.spakchat.user.room.UserEntity
 import me.sungbin.spakchat.ui.activity.join.JoinActivity
 import me.sungbin.spakchat.util.ArrayConverter.toText
 import me.sungbin.spakchat.util.EncryptUtil
@@ -42,13 +42,13 @@ class SplashActivity : BaseActivity() {
                 .get()
                 .addOnSuccessListener {
                     it.forEach { user ->
-                        lifecycleScope.launch(Dispatchers.IO) { // todo: Is this the best way to use coroutines?
+                        lifecycleScope.launch(Dispatchers.IO) { // todo: Is this the best way to use Coroutines?
                             var entity: UserEntity
                             with(user!!.toObject(User::class.java)) {
                                 entity = UserEntity(
                                     key = this.key,
-                                    id = this.userId,
-                                    email = this.loginId,
+                                    userId = this.userId,
+                                    loginId = this.loginId,
                                     password = this.password,
                                     name = this.name,
                                     profileImage = this.profileImage.toString(),
@@ -63,7 +63,6 @@ class SplashActivity : BaseActivity() {
                                     emoji = this.emoji.toText(),
                                     black = this.black.toText(),
                                     accountStatus = this.accountStatus,
-                                    isTestMode = this.isTestMode
                                 )
                             }
                             userDb.dao().insert(entity)

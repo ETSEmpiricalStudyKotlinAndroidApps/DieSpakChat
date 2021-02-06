@@ -29,20 +29,13 @@ import android.widget.FrameLayout
 import androidx.annotation.FloatRange
 import androidx.core.view.GestureDetectorCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.properties.Delegates
+import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 
 // // https://github.com/salih-demir/swipe-layout
 class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
-    interface Listener {
-        fun onSwipeStarted()
-        fun onSwipeCancelled()
-        fun onSwiped()
-        fun onSwipedFling()
-        fun onSwipeReset()
-    }
 
     companion object {
         @FloatRange(from = 0.0, to = 1.0, fromInclusive = false, toInclusive = false)
@@ -69,11 +62,11 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
     private var isMoveToStateAnimationPresent = false
 
     private var progress: Float by Delegates.observable(0f) { _, old, new ->
-        if (old == 0f && new > 0f) listener?.onSwipeStarted()
+        if (old == 0f && new > 0f) circleSwipeListener?.onSwipeStarted()
         handleProgressChange(new)
     }
 
-    var listener: Listener? = null
+    var circleSwipeListener: CircleSwipeListener? = null
     var autoReset = true
     var swipeEnabled = true
 
@@ -123,9 +116,9 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL ->
                     if (isTransitionPresent()) {
                         if (progress > MOVE_PROGRESS_OFFSET) {
-                            listener?.onSwiped()
+                            circleSwipeListener?.onSwiped()
                         } else {
-                            listener?.onSwipeCancelled()
+                            circleSwipeListener?.onSwipeCancelled()
                         }
                         if (autoReset) {
                             resetTransition()
@@ -151,7 +144,7 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
         velocityX: Float,
         velocityY: Float,
     ) = if (velocityY > 1000) {
-        listener?.onSwipedFling()
+        circleSwipeListener?.onSwipedFling()
         true
     } else {
         false
@@ -314,7 +307,7 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
         changeProgress.addListener(object : AnimationListener() {
             override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {
                 super.onAnimationEnd(animation, isReverse)
-                listener?.onSwipeReset()
+                circleSwipeListener?.onSwipeReset()
             }
         })
         changeProgress.start()

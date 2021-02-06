@@ -9,12 +9,12 @@
 package me.sungbin.spakchat.util
 
 import android.content.Context
-import kotlin.random.Random
 import me.sungbin.androidutils.extensions.join
+import kotlin.random.Random
 
 object Util {
 
-    val randomId get() = Random.nextLong()
+    private val randomId get() = Random.nextLong()
 
     // todo: WTF this function? should change UserKey generate algorithm.
     fun generateUserKey(id: String, password: String): Long {

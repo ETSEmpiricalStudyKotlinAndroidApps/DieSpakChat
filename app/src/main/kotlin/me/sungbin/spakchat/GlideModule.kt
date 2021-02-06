@@ -18,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions
 
 @GlideModule
 class GlideModule : AppGlideModule() {
+
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         builder.setDefaultRequestOptions(
             RequestOptions()

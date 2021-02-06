@@ -12,6 +12,7 @@ import android.animation.Animator
 
 // https://github.com/salih-demir/swipe-layout
 open class AnimationListener : Animator.AnimatorListener {
+
     override fun onAnimationStart(animation: Animator, isReverse: Boolean) {}
     override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {}
     override fun onAnimationStart(animator: Animator) {}
