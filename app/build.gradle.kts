@@ -10,6 +10,7 @@ plugins {
 
 android {
     compileSdkVersion(Application.compileSdk)
+
     defaultConfig {
         minSdkVersion(Application.minSdk)
         targetSdkVersion(Application.targetSdk)
@@ -67,60 +68,15 @@ android {
     }
 }
 
+// Ignore red-line; work as well
 dependencies {
-    "implementation"(platform(Dependencies.Firebase.Bom))
+    "implementation"(platform(Dependencies.firebase[0]))
 
-    fun def(vararg dependencies: String) {
-        for (dependency in dependencies) implementation(dependency)
-    }
+    Dependencies.essential.forEach(::implementation)
+    Dependencies.ktx.forEach(::implementation)
+    Dependencies.jetpack.forEach(::implementation)
+    Dependencies.ui.forEach(::implementation)
+    Dependencies.util.forEach(::implementation)
 
-    def(
-        Dependencies.Jetpack.Room,
-        Dependencies.Jetpack.Paging,
-        Dependencies.Jetpack.DataStore,
-        Dependencies.Jetpack.SecurityCrypto,
-
-        Dependencies.Essential.Kotlin,
-        Dependencies.Essential.AppCompat,
-        Dependencies.Essential.LifeCycleViewModel,
-        Dependencies.Essential.LifeCycleExtensions,
-
-        Dependencies.Ktx.Room,
-        Dependencies.Ktx.Core,
-        Dependencies.Ktx.Fragment,
-        Dependencies.Ktx.NavigationUi,
-        Dependencies.Ktx.NavigationFragment,
-
-        Dependencies.Ktx.Firebase.Auth,
-        Dependencies.Ktx.Firebase.Config,
-        Dependencies.Ktx.Firebase.Storage,
-        Dependencies.Ktx.Firebase.Database,
-        Dependencies.Ktx.Firebase.Analytics,
-        Dependencies.Ktx.Firebase.Firestore,
-        Dependencies.Ktx.Firebase.Messaging,
-
-        // Dependencies.Di.Hilt,
-
-        Dependencies.Ui.YoYo,
-        Dependencies.Ui.Slidr,
-        Dependencies.Ui.Glide,
-        Dependencies.Ui.Lottie,
-        Dependencies.Ui.FishBun,
-        Dependencies.Ui.Flexbox,
-        Dependencies.Ui.Material,
-        Dependencies.Ui.CardView,
-        Dependencies.Ui.SmoothBottomBar,
-        Dependencies.Ui.ConstraintLayout,
-        Dependencies.Ui.GlideTransformation,
-        Dependencies.Ui.CountTimeProgressView,
-
-        Dependencies.Util.YoyoHelper,
-        Dependencies.Util.AndroidUtils,
-        Dependencies.Util.CrashReporter,
-        Dependencies.Util.TedPermission
-    )
-
-    // kapt(Dependencies.Compiler.Hilt)
-    kapt(Dependencies.Compiler.Room)
-    kapt(Dependencies.Compiler.Glide)
+    Dependencies.compiler.forEach(::kapt)
 }
