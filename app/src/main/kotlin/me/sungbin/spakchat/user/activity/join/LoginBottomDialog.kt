@@ -50,7 +50,7 @@ class LoginBottomDialog private constructor() : BaseBottomSheetDialogFragment() 
                 return@setOnClickListener
             }
             firestore.collection("users")
-                .document(Util.generateUserKey(id, password).toString())
+                .document(Util.generateRandomKey(id, password).toString())
                 .get()
                 .addOnSuccessListener {
                     it?.let {

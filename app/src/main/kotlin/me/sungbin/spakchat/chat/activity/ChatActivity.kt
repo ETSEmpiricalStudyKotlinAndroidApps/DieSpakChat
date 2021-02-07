@@ -192,7 +192,7 @@ class ChatActivity : BaseActivity() {
             val inputMessage = binding.etInput.text.toString()
             if (inputMessage.isNotBlank()) {
                 val message = Chat(
-                    key = Util.generateMessageKey(inputMessage, userVm.me.name!!),
+                    key = Util.generateRandomKey(inputMessage, userVm.me.name!!),
                     message = inputMessage,
                     time = Date().time,
                     type = ChatType.CHAT,
