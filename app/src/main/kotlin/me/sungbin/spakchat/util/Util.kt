@@ -13,6 +13,7 @@ import me.sungbin.androidutils.extensions.join
 
 object Util {
 
+    // todo: WTF this function?? should change Key generate algorithm.
     fun generateRandomKey(key: String, value: String): Long {
         val strings = key + value
         val randomChars = mutableListOf<Int>().apply {
