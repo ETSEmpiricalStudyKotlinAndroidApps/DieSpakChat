@@ -21,12 +21,15 @@ import me.sungbin.spakchat.user.model.User
 
 object UserBinding {
 
+    infix fun String?.or(other: ColorDrawable): Any =
+        if (this.toString() == "null") other else this!!
+
     @JvmStatic
     @BindingAdapter("spak_loadProfile")
     fun loadProfile(imageView: ImageView, user: User?) {
         GlideApp
             .with(imageView.context)
-            .load(user!!.profileImage ?: ColorDrawable(user.profileImageColor!!))
+            .load(user!!.profileImage or ColorDrawable(user.profileImageColor!!))
             .into(imageView)
     }
 

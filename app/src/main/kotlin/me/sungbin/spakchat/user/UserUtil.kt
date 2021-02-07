@@ -29,17 +29,19 @@ class UserUtil private constructor(
 ) {
 
     fun joinRoom(user: User, roomKey: Long) {
-        user.rooms!!.add(roomKey)
-        firestore.collection("users")
-            .document(user.key.toString())
-            .set(user)
-            .addOnSuccessListener {
-                updateDatabase(user)
-                Logger.i("UserUtil.joinRoom(${user.name})", "방 입장 완료: $roomKey")
-            }
-            .addOnFailureListener { exception ->
-                ExceptionUtil.except(exception, context)
-            }
+        if (!user.rooms!!.contains(roomKey)) {
+            user.rooms.add(roomKey)
+            firestore.collection("users")
+                .document(user.key.toString())
+                .set(user)
+                .addOnSuccessListener {
+                    updateDatabase(user)
+                    Logger.i("UserUtil.joinRoom(${user.name})", "방 입장 완료: $roomKey")
+                }
+                .addOnFailureListener { exception ->
+                    ExceptionUtil.except(exception, context)
+                }
+        }
     }
 
     private fun updateDatabase(user: User) {

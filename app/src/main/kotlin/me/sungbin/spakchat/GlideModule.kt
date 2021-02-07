@@ -23,7 +23,7 @@ class GlideModule : AppGlideModule() {
         builder.setDefaultRequestOptions(
             RequestOptions()
                 .format(DecodeFormat.PREFER_ARGB_8888)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
         )
     }
 }
