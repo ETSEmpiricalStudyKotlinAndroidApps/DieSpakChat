@@ -100,6 +100,7 @@ class ChatFragment : BaseFragment() {
             .addOnSuccessListener {
                 val room = it.getValue(Room::class.java)!!
                 Logger.w(room.name)
+                // todo
                 adapter.submit(chatVm.openRooms)
             }
     }
