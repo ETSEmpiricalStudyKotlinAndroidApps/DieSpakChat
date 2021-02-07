@@ -11,6 +11,7 @@ package me.sungbin.spakchat.chat.model
 import me.sungbin.spakchat.user.model.User
 
 data class Chat(
+    val roomKey: Long? = null,
     val key: Long? = null,
     val message: String? = null,
     val time: Long? = null, // Date().time

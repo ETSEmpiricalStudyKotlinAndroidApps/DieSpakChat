@@ -53,7 +53,7 @@ class FriendFragment : BaseFragment() {
 
         val friendAdapter = FriendListAdapter()
         binding.rvFriends.adapter = friendAdapter
-        friendAdapter.setOnUserClickListener {
+        friendAdapter.setOnFriendClickListener {
             startActivity<ChatActivity>(
                 false,
                 KeyManager.Room.KEY to key!!,

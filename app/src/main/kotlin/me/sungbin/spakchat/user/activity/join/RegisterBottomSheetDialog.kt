@@ -25,6 +25,7 @@ import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutDialogRegisterBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
+import me.sungbin.spakchat.ui.fragment.BaseBottomSheetDialogFragment
 import me.sungbin.spakchat.user.model.AccountStatus
 import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.util.ColorUtil
@@ -34,7 +35,7 @@ import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
 import me.sungbin.spakchat.util.Util
 
-class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment() {
+class RegisterBottomSheetDialog private constructor() : BaseBottomSheetDialogFragment() {
 
     private var _binding: LayoutDialogRegisterBinding? = null
     private val binding get() = _binding!!
@@ -57,7 +58,7 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
                 .setPermissionListener(object : PermissionListener {
                     override fun onPermissionGranted() {
                         FishBun
-                            .with(requireActivity())
+                            .with(requireParentFragment())
                             .setImageAdapter(GlideAdapter())
                             .setMaxCount(1)
                             .setMinCount(1)
@@ -75,7 +76,6 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
         }
 
         binding.btnSignupDone.setOnClickListener {
-            binding.tilName.error = null
             binding.tilId.error = null
             binding.tilPassword.error = null
             binding.tilPasswordConfirm.error = null
@@ -93,10 +93,6 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
                 binding.tilId.error = getString(R.string.register_input_five_length)
                 return@setOnClickListener
             }
-            if (name.length > 16) {
-                binding.tilName.error = getString(R.string.register_nickname_too_long)
-                return@setOnClickListener
-            }
             if (password.length < 8) {
                 binding.tilPassword.error = getString(R.string.register_input_eight_length)
                 return@setOnClickListener
@@ -107,25 +103,25 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
                 return@setOnClickListener
             }
             if (binding.ivProfile.tag != null) {
-                val imagePath = binding.ivProfile.tag.toString()
+                val imageUri = binding.ivProfile.tag.toString()
                 storage // 프로필 사진 등록
-                    .child("profile/$key/profile.${imagePath.substringAfterLast(".")}")
-                    .putFile(imagePath.toUri())
+                    .child("profile/$key/profile.${imageUri.substringAfterLast(".")}")
+                    .putFile(imageUri.toUri())
                     .addOnSuccessListener {
                         it.storage.downloadUrl.addOnSuccessListener { uri ->
-                            upload(key, name, id, password, uri)
+                            joinUser(key, name, id, password, uri)
                         }
                     }
                     .addOnFailureListener { exception ->
                         ExceptionUtil.except(exception, requireContext())
                     }
             } else {
-                upload(key, name, id, password)
+                joinUser(key, name, id, password)
             }
         }
     }
 
-    private fun upload(
+    private fun joinUser(
         key: Long,
         name: String,
         id: String,
@@ -174,7 +170,7 @@ class RegisterBottomDialog private constructor() : BaseBottomSheetDialogFragment
     }
 
     companion object {
-        private val instance = RegisterBottomDialog()
+        private val instance = RegisterBottomSheetDialog()
         fun instance() = instance
     }
 

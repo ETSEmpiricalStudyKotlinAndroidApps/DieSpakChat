@@ -1,12 +1,12 @@
 /*
- * Create by Sungbin Ji on 2021. 2. 2.
+ * Create by Sungbin Ji on 2021. 2. 7.
  * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  *
  * SpakChat license is under the MIT license.
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.user.fragment.adapter
+package me.sungbin.spakchat.user.fragment.adapter.story
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,9 +17,9 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutFeedStoryBinding
 import me.sungbin.spakchat.user.model.User
 
-class FeedAdapter(
+class StoryAdapter(
     private val items: List<User>
-) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: LayoutFeedStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,7 +27,6 @@ class FeedAdapter(
         fun bindViewHolder(user: User) {
             with(binding) {
                 this.user = user
-                invalidateAll()
             }
         }
     }

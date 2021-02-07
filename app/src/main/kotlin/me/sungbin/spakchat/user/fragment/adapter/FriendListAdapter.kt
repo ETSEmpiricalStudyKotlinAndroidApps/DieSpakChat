@@ -20,7 +20,7 @@ import me.sungbin.spakchat.user.model.User
 
 class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
 
-    private var listener: UserClickListener? = null
+    private var listener: FriendClickListener? = null
     private val differ = AsyncListDiffer(this, FriendsDiffItemCallback())
 
     inner class ViewHolder(
@@ -32,7 +32,7 @@ class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
             with(binding) {
                 this.user = user
                 root.setOnClickListener {
-                    listener?.onUserClick(user)
+                    listener?.onFriendClick(user)
                 }
             }
         }
@@ -50,10 +50,10 @@ class FriendListAdapter : RecyclerView.Adapter<FriendListAdapter.ViewHolder>() {
         viewholder.bindViewHolder(getUser(position))
     }
 
-    fun setOnUserClickListener(action: User.() -> Unit) {
-        listener = object : UserClickListener {
-            override fun onUserClick(user: User) {
-                action(user)
+    fun setOnFriendClickListener(action: User.() -> Unit) {
+        listener = object : FriendClickListener {
+            override fun onFriendClick(friend: User) {
+                action(friend)
             }
         }
     }

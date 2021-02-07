@@ -8,6 +8,7 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
@@ -17,15 +18,16 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register_dialog_add_account"
+        android:text="@string/fragment_chat_dialog_create_chat"
         android:textColor="@color/colorBlack"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/cl_container_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/cl_container_cover"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cl_container_profile" />
+        app:layout_constraintTop_toTopOf="@+id/cl_container_cover"
+        tools:text="@string/fragment_chat_dialog_preview_create_chat" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_container_profile"
+        android:id="@+id/cl_container_cover"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/bg_round_all_32"
@@ -33,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
-            android:id="@+id/iv_profile"
+            android:id="@+id/iv_room_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/register_dialog_description_profile_picture"
@@ -48,20 +50,19 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_id"
+        android:id="@+id/til_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_twice"
         android:hint="@string/register_dialog_id"
-        app:errorEnabled="true"
         app:counterEnabled="true"
-        app:helperText="@string/register_dialog_more_five"
+        app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        app:startIconDrawable="@drawable/ic_outline_person_24">
+        app:startIconDrawable="@drawable/ic_baseline_text_format_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_id"
+            android:id="@+id/tiet_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -71,83 +72,36 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_name"
+        android:id="@+id/til_join_code"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_half"
-        android:hint="@string/register_dialog_nickname"
+        android:hint="@string/fragment_chat_dialog_join_code"
         app:counterEnabled="true"
-        app:counterMaxLength="16"
-        app:layout_constraintTop_toBottomOf="@+id/til_id"
+        app:counterMaxLength="8"
+        app:helperText="@string/fragment_chat_dialog_more_four"
+        app:layout_constraintTop_toBottomOf="@+id/til_name"
         app:startIconDrawable="@drawable/ic_baseline_text_format_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_name"
+            android:id="@+id/tiet_join_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="16"
-            android:maxLines="1"
-            android:singleLine="true" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_half"
-        android:hint="@string/register_dialog_password"
-        app:counterEnabled="true"
-        app:endIconMode="password_toggle"
-        app:errorEnabled="true"
-        app:helperText="@string/register_dialog_more_eight"
-        app:layout_constraintTop_toBottomOf="@+id/til_name"
-        app:startIconDrawable="@drawable/ic_outline_vpn_key_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:singleLine="true" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_password_confirm"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_half"
-        android:hint="@string/register_dialog_password_confirm"
-        app:counterEnabled="true"
-        app:endIconMode="password_toggle"
-        app:errorEnabled="true"
-        app:layout_constraintTop_toBottomOf="@+id/til_password"
-        app:startIconDrawable="@drawable/ic_outline_vpn_key_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiet_password_confirm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_signup_done"
+        android:id="@+id/btn_create_done"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/margin_twice"
-        android:text="@string/register_dialog_singup"
+        android:text="@string/fragment_chat_dialog_label_create_chat"
         app:cornerRadius="@dimen/margin_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_password_confirm" />
+        app:layout_constraintTop_toBottomOf="@+id/til_join_code" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

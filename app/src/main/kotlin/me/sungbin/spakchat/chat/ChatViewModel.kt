@@ -14,7 +14,8 @@ import me.sungbin.spakchat.chat.room.Room
 
 class ChatViewModel private constructor() : ViewModel() {
 
-    val rooms = mutableListOf<Room>()
+    val openRooms = mutableListOf<Room>()
+    val friendsRooms = mutableListOf<Room>()
     val messagesMap = HashMap<Long, MutableList<Chat>>()
 
     companion object {

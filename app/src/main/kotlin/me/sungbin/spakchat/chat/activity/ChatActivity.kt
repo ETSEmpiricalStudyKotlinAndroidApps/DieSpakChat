@@ -74,13 +74,13 @@ class ChatActivity : BaseActivity() {
 
         when (chatType) {
             KeyManager.ChatType.FRIENDS -> {
-                val friend = userVm.users.find {
+                val room = chatVm.friendsRooms.find {
                     it.key == roomKey
                 }!!
-                initializeBinding(friend.toRoom())
+                initializeBinding(room)
             }
             KeyManager.ChatType.OPEN -> {
-                val room = chatVm.rooms.find {
+                val room = chatVm.openRooms.find {
                     it.key == roomKey
                 }!!
                 initializeBinding(room)

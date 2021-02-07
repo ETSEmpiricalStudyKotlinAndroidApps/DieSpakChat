@@ -9,8 +9,9 @@
 package me.sungbin.spakchat.chat.room
 
 data class Room(
-    val key: Long,
-    val name: String,
-    val roomCoverImage: String,
-    val kick: List<Long> = listOf(), // todo
+    val key: Long? = null,
+    val name: String? = null,
+    val joinCode: String? = null,
+    val roomCoverImage: String? = null,
+    val kick: MutableList<Long>? = null, // todo
 )

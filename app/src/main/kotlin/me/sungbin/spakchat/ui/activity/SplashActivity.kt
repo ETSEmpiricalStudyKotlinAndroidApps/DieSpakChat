@@ -80,7 +80,7 @@ class SplashActivity : BaseActivity() {
                 .setTitle(getString(R.string.splash_non_internet))
                 .setMessage(R.string.splash_need_internet)
                 .setCancelable(false)
-                .setPositiveButton(getString(R.string.cancel)) { _, _ ->
+                .setPositiveButton(getString(R.string.splash_dialog_cancel)) { _, _ ->
                     finish()
                 }
                 .show()

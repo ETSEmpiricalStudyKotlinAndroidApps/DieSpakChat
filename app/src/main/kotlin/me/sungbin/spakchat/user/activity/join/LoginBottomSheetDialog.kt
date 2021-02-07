@@ -16,6 +16,7 @@ import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.R
 import me.sungbin.spakchat.databinding.LayoutDialogLoginBinding
+import me.sungbin.spakchat.ui.fragment.BaseBottomSheetDialogFragment
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.user.model.User
 import me.sungbin.spakchat.util.EncryptUtil
@@ -24,7 +25,7 @@ import me.sungbin.spakchat.util.KeyManager
 import me.sungbin.spakchat.util.PrefUtil
 import me.sungbin.spakchat.util.Util
 
-class LoginBottomDialog private constructor() : BaseBottomSheetDialogFragment() {
+class LoginBottomSheetDialog private constructor() : BaseBottomSheetDialogFragment() {
 
     private var _binding: LayoutDialogLoginBinding? = null
     private val binding get() = _binding!!
@@ -82,7 +83,7 @@ class LoginBottomDialog private constructor() : BaseBottomSheetDialogFragment() 
     }
 
     companion object {
-        private val instance = LoginBottomDialog()
+        private val instance = LoginBottomSheetDialog()
         fun instance() = instance
     }
 

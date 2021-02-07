@@ -29,8 +29,8 @@ import me.sungbin.spakchat.user.UserViewModel
 class JoinActivity : BaseActivity() {
 
     private val vm = UserViewModel.instance()
-    private val registerBottomDialog = RegisterBottomDialog.instance()
-    private val loginBottomDialog = LoginBottomDialog.instance()
+    private val registerBottomSheetDialog = RegisterBottomSheetDialog.instance()
+    private val loginBottomSheetDialog = LoginBottomSheetDialog.instance()
 
     private var _binding: ActivityJoinBinding? = null
     private val binding get() = _binding!!
@@ -47,11 +47,11 @@ class JoinActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.btnLogin.setOnClickListener { // todo: 왜 랙이 걸릴까???
-            loginBottomDialog.show(supportFragmentManager, "")
+            loginBottomSheetDialog.show(supportFragmentManager, "")
         }
 
         binding.btnRegister.setOnClickListener { // todo: 왜 랙이 걸릴까???
-            registerBottomDialog.show(supportFragmentManager, "")
+            registerBottomSheetDialog.show(supportFragmentManager, "")
         }
 
         binding.tvDescription.run {
@@ -77,7 +77,7 @@ class JoinActivity : BaseActivity() {
         when (requestCode) {
             FishBun.FISHBUN_REQUEST_CODE -> {
                 val profileImageView =
-                    registerBottomDialog.view?.get(
+                    registerBottomSheetDialog.view?.get(
                         R.id.iv_profile,
                         TagableRoundImageView::class.java
                     )

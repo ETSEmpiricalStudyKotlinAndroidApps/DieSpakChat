@@ -8,20 +8,36 @@
 
 package me.sungbin.spakchat.chat.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.database.DatabaseReference
+import com.sangcomz.fishbun.FishBun
+import me.sungbin.androidutils.extensions.get
 import me.sungbin.androidutils.extensions.setFab
+import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
+import me.sungbin.androidutils.util.Logger
+import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.chat.fragment.adapter.ChatAdapter
+import me.sungbin.spakchat.chat.room.Room
 import me.sungbin.spakchat.databinding.FragmentChatBinding
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.ui.fragment.BaseFragment
+import me.sungbin.spakchat.util.KeyManager
 
 class ChatFragment : BaseFragment() {
 
-    private lateinit var databaseReference: DatabaseReference
+    private val chatType
+        get() = if (binding.tvFriendsChat.currentTextColor == R.color.colorBlack)
+            KeyManager.ChatType.FRIENDS else KeyManager.ChatType.OPEN
+
+    private val openChatCreateBottomSheetDialog = OpenChatCreateBottomSheetDialog.instance()
+
+    private val adapter by lazy { ChatAdapter() }
+
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
 
@@ -39,9 +55,53 @@ class ChatFragment : BaseFragment() {
 
         MainActivity.fabAction.apply {
             text = getString(R.string.main_new_chat)
+            setOnClickListener { createChatRoom() }
         }.show()
 
+        initializeChats(KeyManager.ChatType.FRIENDS)
+        initializeChats(KeyManager.ChatType.OPEN)
+
+        binding.rvChat.adapter = adapter
         binding.rvChat.setFab(MainActivity.fabAction)
+    }
+
+    private fun createChatRoom() {
+        when (chatType) {
+            KeyManager.ChatType.OPEN -> {
+                openChatCreateBottomSheetDialog.show(parentFragmentManager, "")
+            }
+            KeyManager.ChatType.FRIENDS -> {
+                // todo: 친구 시스템 만들기
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            FishBun.FISHBUN_REQUEST_CODE -> {
+                val profileImageView =
+                    openChatCreateBottomSheetDialog.view?.get(
+                        R.id.iv_profile,
+                        TagableRoundImageView::class.java
+                    )
+                val uri =
+                    data?.getParcelableArrayListExtra<Uri>(FishBun.INTENT_PATH)?.get(0) ?: return
+                profileImageView!!.setPadding(0, 0, 0, 0)
+                GlideApp.with(requireContext()).load(uri).into(profileImageView)
+                profileImageView.tag = uri
+            }
+        }
+    }
+
+    private fun initializeChats(type: String) {
+        database.child("chat/$type")
+            .get()
+            .addOnSuccessListener {
+                val room = it.getValue(Room::class.java)!!
+                Logger.w(room.name)
+                adapter.submit(chatVm.openRooms)
+            }
     }
 
     private fun reload() {
