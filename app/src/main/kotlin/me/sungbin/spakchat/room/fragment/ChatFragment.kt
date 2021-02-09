@@ -17,9 +17,11 @@ import android.view.ViewGroup
 import com.sangcomz.fishbun.FishBun
 import me.sungbin.androidutils.extensions.get
 import me.sungbin.androidutils.extensions.setFab
+import me.sungbin.androidutils.extensions.startActivity
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
+import me.sungbin.spakchat.chat.activity.ChatActivity
 import me.sungbin.spakchat.databinding.FragmentChatBinding
 import me.sungbin.spakchat.room.Room
 import me.sungbin.spakchat.room.RoomAdapter
@@ -31,7 +33,7 @@ class ChatFragment : BaseFragment() {
 
     private val chatType
         get() = if (binding.tvFriendsChat.currentTextColor == R.color.colorBlack)
-            KeyManager.ChatType.FRIENDS else KeyManager.ChatType.OPEN
+            KeyManager.RoomType.FRIENDS else KeyManager.RoomType.OPEN
 
     private val openChatCreateBottomSheetDialog = OpenChatCreateBottomSheetDialog.instance()
 
@@ -57,19 +59,26 @@ class ChatFragment : BaseFragment() {
             setOnClickListener { createChatRoom() }
         }.show()
 
-        initializeChats(KeyManager.ChatType.FRIENDS)
-        initializeChats(KeyManager.ChatType.OPEN)
+        initializeChats(KeyManager.RoomType.FRIENDS)
+        initializeChats(KeyManager.RoomType.OPEN)
 
         binding.rvChat.adapter = adapter
+        adapter.setOnRoomClickListener {
+            startActivity<ChatActivity>(
+                false,
+                KeyManager.Room.KEY to key,
+                KeyManager.RoomType.toKey() to KeyManager.RoomType.OPEN
+            )
+        }
         binding.rvChat.setFab(MainActivity.fabAction)
     }
 
     private fun createChatRoom() {
         when (chatType) {
-            KeyManager.ChatType.OPEN -> {
+            KeyManager.RoomType.OPEN -> {
                 openChatCreateBottomSheetDialog.show(parentFragmentManager, "")
             }
-            KeyManager.ChatType.FRIENDS -> {
+            KeyManager.RoomType.FRIENDS -> {
                 // todo: 친구 시스템 만들기
             }
         }
@@ -81,7 +90,7 @@ class ChatFragment : BaseFragment() {
             FishBun.FISHBUN_REQUEST_CODE -> {
                 val profileImageView =
                     openChatCreateBottomSheetDialog.view?.get(
-                        R.id.iv_profile,
+                        R.id.iv_room_cover,
                         TagableRoundImageView::class.java
                     )
                 val uri =
@@ -94,12 +103,14 @@ class ChatFragment : BaseFragment() {
     }
 
     private fun initializeChats(type: String) {
-        database.child("chat/$type")
+        firestore.collection(type)
             .get()
-            .addOnSuccessListener { ref ->
-                ref.children.forEach {
-                    val room = it.getValue(Room::class.java)!!
-                    chatVm.openRooms.add(room)
+            .addOnSuccessListener {
+                it.forEach { _room ->
+                    val room = _room.toObject(Room::class.java)
+                    if (!chatVm.openRooms.contains(room)) {
+                        chatVm.openRooms.add(room)
+                    }
                     adapter.submit(chatVm.openRooms)
                 }
             }

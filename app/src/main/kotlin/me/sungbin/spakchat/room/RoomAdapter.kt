@@ -22,7 +22,7 @@ class RoomAdapter : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     private val differ = AsyncListDiffer(this, RoomDiffItemCallback())
     private var listener: RoomClickInterface? = null
 
-    fun setOnChatClickListener(action: Room.() -> Unit) {
+    fun setOnRoomClickListener(action: Room.() -> Unit) {
         listener = object : RoomClickInterface {
             override fun onRoomClicked(room: Room) {
                 action(room)

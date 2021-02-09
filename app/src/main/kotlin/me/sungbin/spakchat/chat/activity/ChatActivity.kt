@@ -8,6 +8,7 @@
 
 package me.sungbin.spakchat.chat.activity
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -65,20 +66,20 @@ class ChatActivity : BaseActivity() {
         )
         setContentView(binding.root)
 
-        val chatType = intent.getStringExtra(KeyManager.ChatType.toKey())!!
+        val chatType = intent.getStringExtra(KeyManager.RoomType.toKey())!!
         val roomKey = intent.getLongExtra(KeyManager.Room.KEY, -1)
 
         supportActionBar?.hide()
         Slidr.attach(this)
 
         when (chatType) {
-            KeyManager.ChatType.FRIENDS -> {
+            KeyManager.RoomType.FRIENDS -> {
                 val room = chatVm.friendsRooms.find {
                     it.key == roomKey
                 }!!
                 initializeBinding(room)
             }
-            KeyManager.ChatType.OPEN -> {
+            KeyManager.RoomType.OPEN -> {
                 val room = chatVm.openRooms.find {
                     it.key == roomKey
                 }!!
@@ -147,16 +148,17 @@ class ChatActivity : BaseActivity() {
                 )
             }
         }
-        /*// https://wooooooak.github.io/android/2020/07/30/emoticon_container/
-        binding.clContainer.viewTreeObserver.addOnGlobalLayoutListener {
-            if (rootHeight == 0) rootHeight = binding.clContainer.height
+
+        // https://wooooooak.github.io/android/2020/07/30/emoticon_container/
+        binding.tvTest.viewTreeObserver.addOnGlobalLayoutListener {
+            if (rootHeight == 0) rootHeight = binding.tvTest.height
             val visibleFrameSize = Rect()
-            binding.clContainer.getWindowVisibleDisplayFrame(visibleFrameSize)
+            binding.tvTest.getWindowVisibleDisplayFrame(visibleFrameSize)
             val heightExceptKeyboard = visibleFrameSize.bottom - visibleFrameSize.top
             if (heightExceptKeyboard < rootHeight) {
                 keyboardHeight = rootHeight - heightExceptKeyboard
             }
-        }*/
+        }
 
 
         @Suppress("DEPRECATION")

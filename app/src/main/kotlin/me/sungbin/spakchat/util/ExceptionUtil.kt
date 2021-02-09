@@ -12,12 +12,15 @@ import android.content.Context
 import android.os.Looper
 import android.os.Process
 import android.widget.Toast
+import com.balsikandar.crashreporter.CrashReporter
 import me.sungbin.androidutils.util.Logger
 
 object ExceptionUtil {
 
     fun except(exception: Exception, context: Context) {
         Thread {
+            CrashReporter.logException(exception)
+            exception.printStackTrace()
             val message = exception.message
             val line = exception.stackTrace[0].lineNumber
             val content = "예상치 못한 오류가 발생했어요 :(\n\n$message #$line"

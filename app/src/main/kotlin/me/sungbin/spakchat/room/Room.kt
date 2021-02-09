@@ -11,7 +11,7 @@ package me.sungbin.spakchat.room
 data class Room(
     val key: Long? = null,
     val name: String? = null,
-    val unreadCount: Int? = null,
+    val unreadCount: String? = null,
     val lastMessage: String? = null,
     val lastChatTime: String? = null,
     val joinCode: String? = null,

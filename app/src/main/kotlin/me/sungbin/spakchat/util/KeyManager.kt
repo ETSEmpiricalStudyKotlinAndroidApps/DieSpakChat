@@ -10,11 +10,11 @@ package me.sungbin.spakchat.util
 
 object KeyManager {
 
-    object ChatType {
+    object RoomType {
 
-        fun toKey() = "ChatType"
-        const val FRIENDS = "friends"
-        const val OPEN = "open"
+        fun toKey() = "RoomType"
+        const val FRIENDS = "FriendsRoom"
+        const val OPEN = "OpenRoom"
     }
 
     object Room {

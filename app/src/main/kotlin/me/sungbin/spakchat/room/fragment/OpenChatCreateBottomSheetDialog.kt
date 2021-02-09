@@ -110,14 +110,16 @@ class OpenChatCreateBottomSheetDialog private constructor() : BaseBottomSheetDia
         val room = Room(
             key = key,
             name = name,
-            unreadCount = 15,
+            unreadCount = "15",
             lastMessage = "Hello World!",
             lastChatTime = "3초 후",
             joinCode = joinCode,
             roomCoverImage = coverUri.toString(),
-            kick = null,
+            kick = mutableListOf(),
         )
-        database.child("chat/${KeyManager.ChatType.OPEN}").push().setValue(room)
+        firestore.collection(KeyManager.RoomType.OPEN)
+            .document(key.toString())
+            .set(room)
         binding.tietName.clear()
         binding.tietJoinCode.clear()
         binding.ivRoomCover.setPadding(16, 16, 16, 16)
