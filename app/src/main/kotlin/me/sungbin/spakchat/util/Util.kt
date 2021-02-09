@@ -21,7 +21,7 @@ object Util {
                 add(strings.random().toInt())
             }
         }
-        return randomChars.shuffled().join("").toLong()
+        return randomChars.shuffled().join("").substring(0..8).toLong()
     }
 
     @Suppress("DEPRECATION")

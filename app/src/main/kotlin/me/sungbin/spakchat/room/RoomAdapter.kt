@@ -1,12 +1,12 @@
 /*
- * Create by Sungbin Ji on 2021. 2. 7.
+ * Create by Sungbin Ji on 2021. 2. 9.
  * Copyright (c) 2021. Sungbin Ji. All rights reserved.
  *
  * SpakChat license is under the MIT license.
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.chat.fragment.adapter
+package me.sungbin.spakchat.room
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,18 +15,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.chat.model.Chat
 import me.sungbin.spakchat.databinding.LayoutFeedChatBinding
 
-class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
+class RoomAdapter : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
 
-    private val differ = AsyncListDiffer(this, ChatDiffItemCallback())
-    private var listener: ChatClickInterface? = null
+    private val differ = AsyncListDiffer(this, RoomDiffItemCallback())
+    private var listener: RoomClickInterface? = null
 
-    fun setOnChatClickListener(action: Chat.() -> Unit) {
-        listener = object : ChatClickInterface {
-            override fun onChatClicked(chat: Chat) {
-                action(chat)
+    fun setOnChatClickListener(action: Room.() -> Unit) {
+        listener = object : RoomClickInterface {
+            override fun onRoomClicked(room: Room) {
+                action(room)
             }
         }
     }
@@ -36,11 +35,11 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindViewHolder(chat: Chat) {
+        fun bindViewHolder(room: Room) {
             with(binding) {
-                this.chat = chat
+                this.room = room
                 binding.root.setOnClickListener {
-                    listener?.onChatClicked(chat)
+                    listener?.onRoomClicked(room)
                 }
             }
         }
@@ -58,7 +57,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
         viewholder.bindViewHolder(getItem(position))
     }
 
-    fun submit(items: MutableList<Chat>) {
+    fun submit(items: MutableList<Room>) {
         differ.submitList(items)
     }
 

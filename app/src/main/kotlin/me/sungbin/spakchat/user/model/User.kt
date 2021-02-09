@@ -8,7 +8,7 @@
 
 package me.sungbin.spakchat.user.model
 
-import me.sungbin.spakchat.chat.room.Room
+import me.sungbin.spakchat.room.Room
 
 data class User(
     val key: Long? = null,

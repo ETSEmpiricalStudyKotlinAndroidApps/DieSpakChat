@@ -8,7 +8,6 @@
 
 package me.sungbin.spakchat.chat.activity
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -36,8 +35,8 @@ import me.sungbin.spakchat.R
 import me.sungbin.spakchat.chat.model.Chat
 import me.sungbin.spakchat.chat.model.ChatType
 import me.sungbin.spakchat.chat.model.ChatViewType
-import me.sungbin.spakchat.chat.room.Room
 import me.sungbin.spakchat.databinding.ActivityChatBinding
+import me.sungbin.spakchat.room.Room
 import me.sungbin.spakchat.ui.activity.BaseActivity
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
@@ -148,8 +147,7 @@ class ChatActivity : BaseActivity() {
                 )
             }
         }
-
-        // https://wooooooak.github.io/android/2020/07/30/emoticon_container/
+        /*// https://wooooooak.github.io/android/2020/07/30/emoticon_container/
         binding.clContainer.viewTreeObserver.addOnGlobalLayoutListener {
             if (rootHeight == 0) rootHeight = binding.clContainer.height
             val visibleFrameSize = Rect()
@@ -158,7 +156,8 @@ class ChatActivity : BaseActivity() {
             if (heightExceptKeyboard < rootHeight) {
                 keyboardHeight = rootHeight - heightExceptKeyboard
             }
-        }
+        }*/
+
 
         @Suppress("DEPRECATION")
         binding.etInput.setEndDrawableClickEvent {
@@ -207,7 +206,7 @@ class ChatActivity : BaseActivity() {
         }
     }
 
-    private fun updateMessage(key: Long, chat: Chat) {
+    private fun updateMessage(key: Long, chat: me.sungbin.spakchat.chat.model.Chat) {
         chatVm.messagesMap[key]?.add(chat) ?: run {
             chatVm.messagesMap[key] = mutableListOf(chat)
         }

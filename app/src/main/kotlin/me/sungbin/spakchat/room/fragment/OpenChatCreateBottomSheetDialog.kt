@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.chat.fragment
+package me.sungbin.spakchat.room.fragment
 
 import android.Manifest
 import android.net.Uri
@@ -23,8 +23,8 @@ import me.sungbin.androidutils.extensions.clear
 import me.sungbin.androidutils.extensions.toast
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.chat.room.Room
 import me.sungbin.spakchat.databinding.LayoutDialogCreateChatBinding
+import me.sungbin.spakchat.room.Room
 import me.sungbin.spakchat.ui.fragment.BaseBottomSheetDialogFragment
 import me.sungbin.spakchat.util.ExceptionUtil
 import me.sungbin.spakchat.util.KeyManager
@@ -110,9 +110,12 @@ class OpenChatCreateBottomSheetDialog private constructor() : BaseBottomSheetDia
         val room = Room(
             key = key,
             name = name,
+            unreadCount = 15,
+            lastMessage = "Hello World!",
+            lastChatTime = "3초 후",
             joinCode = joinCode,
             roomCoverImage = coverUri.toString(),
-            kick = null
+            kick = null,
         )
         database.child("chat/${KeyManager.ChatType.OPEN}").push().setValue(room)
         binding.tietName.clear()

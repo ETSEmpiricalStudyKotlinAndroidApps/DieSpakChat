@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.chat.room
+package me.sungbin.spakchat.room
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -15,7 +15,7 @@ import me.sungbin.spakchat.GlideApp
 object RoomBinding {
 
     @JvmStatic
-    @BindingAdapter("spak_loadCover")
+    @BindingAdapter("spak_loadRoomCover")
     fun loadCover(imageView: ImageView, image: String) {
         GlideApp
             .with(imageView.context)

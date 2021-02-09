@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/chat"
-        android:name="me.sungbin.spakchat.chat.fragment.ChatFragment"
+        android:name="me.sungbin.spakchat.room.fragment.ChatFragment"
         android:label="ChatFragment" />
 
     <fragment

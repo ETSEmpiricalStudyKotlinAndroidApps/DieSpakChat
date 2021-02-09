@@ -6,7 +6,7 @@
  * SEE LICENSE: https://github.com/sungbin5304/SpakChat/blob/master/LICENSE
  */
 
-package me.sungbin.spakchat.chat.fragment
+package me.sungbin.spakchat.room.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -18,12 +18,11 @@ import com.sangcomz.fishbun.FishBun
 import me.sungbin.androidutils.extensions.get
 import me.sungbin.androidutils.extensions.setFab
 import me.sungbin.androidutils.tagableroundimageview.TagableRoundImageView
-import me.sungbin.androidutils.util.Logger
 import me.sungbin.spakchat.GlideApp
 import me.sungbin.spakchat.R
-import me.sungbin.spakchat.chat.fragment.adapter.ChatAdapter
-import me.sungbin.spakchat.chat.room.Room
 import me.sungbin.spakchat.databinding.FragmentChatBinding
+import me.sungbin.spakchat.room.Room
+import me.sungbin.spakchat.room.RoomAdapter
 import me.sungbin.spakchat.ui.activity.MainActivity
 import me.sungbin.spakchat.ui.fragment.BaseFragment
 import me.sungbin.spakchat.util.KeyManager
@@ -36,7 +35,7 @@ class ChatFragment : BaseFragment() {
 
     private val openChatCreateBottomSheetDialog = OpenChatCreateBottomSheetDialog.instance()
 
-    private val adapter by lazy { ChatAdapter() }
+    private val adapter by lazy { RoomAdapter() }
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
@@ -97,11 +96,12 @@ class ChatFragment : BaseFragment() {
     private fun initializeChats(type: String) {
         database.child("chat/$type")
             .get()
-            .addOnSuccessListener {
-                val room = it.getValue(Room::class.java)!!
-                Logger.w(room.name)
-                // todo
-                adapter.submit(chatVm.openRooms)
+            .addOnSuccessListener { ref ->
+                ref.children.forEach {
+                    val room = it.getValue(Room::class.java)!!
+                    chatVm.openRooms.add(room)
+                    adapter.submit(chatVm.openRooms)
+                }
             }
     }
 

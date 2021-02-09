@@ -14,7 +14,7 @@
 
         <variable
             name="Room"
-            type="me.sungbin.spakchat.chat.room.Room" />
+            type="me.sungbin.spakchat.room.Room" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +62,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_back"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:spak_loadCover="@{Room.roomCoverImage}"
+                    app:spak_loadRoomCover="@{Room.roomCoverImage}"
                     app:triv_imageRadius="@dimen/margin_twice_and_half"
                     tools:src="@color/colorGreen" />
 
