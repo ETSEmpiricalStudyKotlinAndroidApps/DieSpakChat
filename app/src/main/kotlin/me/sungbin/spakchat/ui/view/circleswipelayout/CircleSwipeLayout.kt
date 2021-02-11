@@ -29,12 +29,12 @@ import android.widget.FrameLayout
 import androidx.annotation.FloatRange
 import androidx.core.view.GestureDetectorCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.properties.Delegates
-import me.sungbin.spakchat.ui.view.circleswipelayout.transition.AnimationListener
 
-// // https://github.com/salih-demir/swipe-layout
+// https://github.com/salih-demir/swipe-layout
 class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
 
     companion object {
@@ -46,8 +46,29 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
         private const val DEFAULT_ANIMATION_DURATION_IN_MS = 200L
     }
 
-    private val gestureDetector: GestureDetectorCompat
-    private val stateAnimTypeEvaluator: TypeEvaluator<Array<Float>>
+    private val gestureDetector = GestureDetectorCompat(context, this).apply {
+        setIsLongpressEnabled(false)
+    }
+
+    private val stateAnimTypeEvaluator: TypeEvaluator<Array<Float>> =
+        TypeEvaluator { fraction, startValues, endValues ->
+            val leftStart = startValues[0]
+            val topStart = startValues[1]
+            val radiusStart = startValues[2]
+            val alphaStart = startValues[3]
+
+            val leftEnd = endValues[0]
+            val topEnd = endValues[1]
+            val radiusEnd = endValues[2]
+            val alphaEnd = endValues[3]
+
+            val targetLeft = leftStart + ((leftEnd - leftStart) * fraction)
+            val targetTop = topStart + ((topEnd - topStart) * fraction)
+            val targetRadius = radiusStart + ((radiusEnd - radiusStart) * fraction)
+            val targetAlpha = alphaStart + ((alphaEnd - alphaStart) * fraction)
+
+            arrayOf(targetLeft, targetTop, targetRadius, targetAlpha)
+        }
     private val decelerateInterpolator = DecelerateInterpolator()
 
     private var lastDownPoint: PointF? = null
@@ -79,29 +100,6 @@ class CircleSwipeLayout : FrameLayout, GestureDetector.OnGestureListener {
     )
 
     init {
-        stateAnimTypeEvaluator = TypeEvaluator { fraction, startValues, endValues ->
-            val leftStart = startValues[0]
-            val topStart = startValues[1]
-            val radiusStart = startValues[2]
-            val alphaStart = startValues[3]
-
-            val leftEnd = endValues[0]
-            val topEnd = endValues[1]
-            val radiusEnd = endValues[2]
-            val alphaEnd = endValues[3]
-
-            val targetLeft = leftStart + ((leftEnd - leftStart) * fraction)
-            val targetTop = topStart + ((topEnd - topStart) * fraction)
-            val targetRadius = radiusStart + ((radiusEnd - radiusStart) * fraction)
-            val targetAlpha = alphaStart + ((alphaEnd - alphaStart) * fraction)
-
-            arrayOf(targetLeft, targetTop, targetRadius, targetAlpha)
-        }
-
-        gestureDetector = GestureDetectorCompat(context, this).apply {
-            setIsLongpressEnabled(false)
-        }
-
         isClickable = true
         isFocusable = true
     }
