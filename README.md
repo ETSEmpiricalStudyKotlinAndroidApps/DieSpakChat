@@ -3,9 +3,6 @@
 # 💬 SpakChat [![codebeat badge](https://codebeat.co/badges/18a1b0d1-bd49-47cc-bdee-23990693870d)](https://codebeat.co/projects/github-com-sungbin5304-spakchat-master) [![time tracker](https://wakatime.com/badge/github/sungbin5304/SpakChat.svg)](https://wakatime.com/badge/github/sungbin5304/SpakChat) [![Main Project](https://img.shields.io/badge/Project-MAIN-blueviolet)](https://github.com/sungbin5304/SpakChat)
 Android firebase sns application.
 
-> 나 왜케 요세 코딩 실력이 똥된거 같지 <br/>
-> 코드 보여주기 부끄럽다.. private로 돌릴까?
-
 -----
 
 # 🚧 Process in Developing!
@@ -37,3 +34,7 @@ Android firebase sns application.
 `SpakChat` license is under the [MIT](https://github.com/sungbin5304/SpakChat/blob/master/LICENSE) license.
 
 # 😀 Happy Coding :)
+
+----------
+
+# 곧 게발 재시작 예정!!
