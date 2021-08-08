@@ -37,4 +37,4 @@ Android firebase sns application.
 
 ----------
 
-# 곧 게발 재시작 예정!!
+# 곧 개발 재시작 예정!!
