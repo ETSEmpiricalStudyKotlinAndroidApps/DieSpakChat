@@ -6,6 +6,7 @@ Android firebase sns application.
 -----
 
 # 🚧 Process in Developing!
+# 곧 개발 재시작 예정!!
 
 -----
 
@@ -34,7 +35,3 @@ Android firebase sns application.
 `SpakChat` license is under the [MIT](https://github.com/sungbin5304/SpakChat/blob/master/LICENSE) license.
 
 # 😀 Happy Coding :)
-
-----------
-
-# 곧 개발 재시작 예정!!
