@@ -6,6 +6,7 @@ Android firebase sns application.
 
 
 # DEPRECATED
+> [[Project Moved]](https://github.com/jisungbin/SpakChat)
 
 -----
 
